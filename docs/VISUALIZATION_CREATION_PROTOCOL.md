@@ -46,6 +46,32 @@ A lesson creation request must provide or derive these fields:
 
 If any are missing, the AI should infer them from the problem and write the assumptions into the lesson files.
 
+## Preset Design Contract
+
+Presets are not filler examples.
+They are part of the teaching surface and should be chosen for explanatory value.
+
+Every approach should define presets that cover:
+- the most explanatory success path
+- the most explanatory failure path when failure is meaningful for the problem
+- important edge cases that reveal the lesson shape, constraints, or branching behavior
+
+Do not spend preset slots on arbitrary random inputs when a more legible case exists.
+
+Recommended semantic preset labels:
+- `success path` - the clean representative run that teaches the intended core mechanic
+- `failure path` - a miss, impossible target, exhausted frontier, or other instructive negative outcome
+- `edge case` - a boundary or shape that exposes a structural nuance the learner is likely to miss
+
+When the shell supports preset badges, these semantic classes should use semantic tokens rather than arbitrary decorative colors.
+That means:
+- success-like presets use reassuring/supportive emphasis
+- failure-like presets use destructive emphasis
+- edge-case presets use neutral or outline emphasis
+
+The point is not decoration.
+The point is to help the learner immediately understand what kind of scenario they are selecting.
+
 ## Canonical Lesson Workflow
 
 1. Define the lesson.

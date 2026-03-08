@@ -24,9 +24,11 @@ export async function selectFooterOption(
 
     const dialog = page.getByRole("dialog", { name: "Preset Studio" })
     await expect(dialog).toBeVisible()
-    const input = dialog.getByPlaceholder(/search presets or jump to custom input/i)
-    await input.fill(option)
-    await input.press("Enter")
+    await dialog
+      .getByRole("button", { name: new RegExp(option, "i") })
+      .evaluate((element) => {
+        ;(element as HTMLButtonElement).click()
+      })
     await dialog
       .getByRole("button", { name: /run preset|active preset/i })
       .evaluate((element) => {

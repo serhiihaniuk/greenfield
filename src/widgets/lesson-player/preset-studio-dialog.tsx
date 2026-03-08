@@ -6,14 +6,11 @@ import type { InputSource } from "@/features/player/types"
 import { Badge } from "@/shared/ui/badge"
 import { Button } from "@/shared/ui/button"
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/shared/ui/command"
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/shared/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -22,6 +19,7 @@ import {
   DialogTitle,
 } from "@/shared/ui/dialog"
 import { KbdGroup } from "@/shared/ui/kbd"
+import { Separator } from "@/shared/ui/separator"
 import { Textarea } from "@/shared/ui/textarea"
 import { cn } from "@/shared/lib/utils"
 
@@ -85,6 +83,54 @@ function getPresetDescription(preset: PresetDefinition | undefined) {
     preset.description ??
     "A verified scenario for this approach. Use it to replay a known execution shape."
   )
+}
+
+type PresetSemanticTone = "success" | "failure" | "edge"
+
+function classifyPreset(preset: PresetDefinition | undefined): {
+  label: string
+  tone: PresetSemanticTone
+} {
+  const description = getPresetDescription(preset).toLowerCase()
+  const label = `${preset?.label ?? ""} ${preset?.id ?? ""}`.toLowerCase()
+
+  if (
+    description.includes("fail") ||
+    description.includes("not found") ||
+    description.includes("impossible") ||
+    description.includes("blocked") ||
+    description.includes("return -1") ||
+    label.includes("blocked") ||
+    label.includes("not-found")
+  ) {
+    return { label: "failure path", tone: "failure" }
+  }
+
+  if (
+    description.includes("edge") ||
+    description.includes("single") ||
+    description.includes("heavy") ||
+    description.includes("zigzag") ||
+    description.includes("tail") ||
+    label.includes("left-heavy") ||
+    label.includes("zigzag")
+  ) {
+    return { label: "edge case", tone: "edge" }
+  }
+
+  return { label: "success path", tone: "success" }
+}
+
+function semanticBadgeVariant(tone: PresetSemanticTone) {
+  switch (tone) {
+    case "failure":
+      return "destructive"
+    case "edge":
+      return "outline"
+    case "success":
+    default:
+      return "secondary"
+  }
 }
 
 export function PresetStudioDialog({
@@ -154,70 +200,99 @@ export function PresetStudioDialog({
         </DialogHeader>
 
         <div className="grid min-h-[34rem] overflow-hidden xl:grid-cols-[minmax(18rem,21rem)_1fr]">
-          <Command className="border-b border-border/30 xl:border-r xl:border-b-0">
-            <CommandInput placeholder="Search presets or jump to custom input..." />
-            <CommandList className="max-h-none p-3">
-              <CommandEmpty>No presets match the current search.</CommandEmpty>
-              <CommandGroup heading="Verified Presets">
+          <aside className="overflow-y-auto border-b border-border/30 p-4 xl:border-r xl:border-b-0">
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  Verified presets
+                </div>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  Pick the scenario that best explains the algorithm. Presets are organized around teaching value, not internal ids.
+                </p>
+              </div>
+
+              <div className="grid gap-3">
                 {approach?.presets.map((preset) => {
                   const isActive = preset.id === selectedPresetId && presetModeActive
                   const isSelected = preset.id === selectedEntryId
+                  const semantic = classifyPreset(preset)
 
                   return (
-                    <CommandItem
+                    <button
                       key={preset.id}
-                      value={`${preset.label} ${preset.description ?? ""}`}
-                      keywords={[preset.id]}
-                      onFocus={() => setSelectedEntryId(preset.id)}
-                      onMouseMove={() => setSelectedEntryId(preset.id)}
-                      onSelect={() => setSelectedEntryId(preset.id)}
-                      className={cn(
-                        "items-start rounded-xl border border-transparent px-3 py-3",
-                        isSelected && "border-border/50 bg-accent text-accent-foreground"
-                      )}
+                      type="button"
+                      onClick={() => setSelectedEntryId(preset.id)}
+                      aria-pressed={isSelected}
+                      className={cn("text-left outline-none", isSelected && "rounded-xl")}
                     >
-                      <div className="min-w-0 space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="truncate font-medium">{preset.label}</span>
-                          {isActive ? <Badge variant="secondary">active</Badge> : null}
-                        </div>
-                        <p className="line-clamp-2 text-xs text-muted-foreground">
-                          {getPresetDescription(preset)}
-                        </p>
-                      </div>
-                    </CommandItem>
+                      <Card
+                        size="sm"
+                        className={cn(
+                          "gap-2 ring-1 transition-colors",
+                          isSelected ? "ring-primary/50" : "ring-foreground/10",
+                          !isSelected && "hover:ring-foreground/20"
+                        )}
+                      >
+                        <CardHeader className="gap-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <CardTitle className="truncate">{preset.label}</CardTitle>
+                            <Badge variant={semanticBadgeVariant(semantic.tone)}>
+                              {semantic.label}
+                            </Badge>
+                            {isActive ? <Badge variant="secondary">active</Badge> : null}
+                          </div>
+                          <CardDescription className="line-clamp-3">
+                            {getPresetDescription(preset)}
+                          </CardDescription>
+                        </CardHeader>
+                      </Card>
+                    </button>
                   )
                 })}
-              </CommandGroup>
+              </div>
 
-              <CommandSeparator className="my-2" />
+              <Separator />
 
-              <CommandGroup heading="Custom Runs">
-                <CommandItem
-                  value="Custom input JSON replay"
-                  keywords={["custom", "input", "json", "replay"]}
-                  onFocus={() => setSelectedEntryId(CUSTOM_ENTRY_ID)}
-                  onMouseMove={() => setSelectedEntryId(CUSTOM_ENTRY_ID)}
-                  onSelect={() => setSelectedEntryId(CUSTOM_ENTRY_ID)}
-                  className={cn(
-                    "items-start rounded-xl border border-transparent px-3 py-3",
-                    selectedEntryId === CUSTOM_ENTRY_ID &&
-                      "border-border/50 bg-accent text-accent-foreground"
-                  )}
-                >
-                  <div className="min-w-0 space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">Custom input</span>
-                      {customModeActive ? <Badge variant="secondary">active</Badge> : null}
-                    </div>
-                    <p className="line-clamp-2 text-xs text-muted-foreground">
-                      Paste a failed interview example or branch off an existing preset into a new runtime.
-                    </p>
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    Custom runs
                   </div>
-                </CommandItem>
-              </CommandGroup>
-            </CommandList>
-          </Command>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    Start from a preset or paste your own JSON when you need to inspect a real failed attempt.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedEntryId(CUSTOM_ENTRY_ID)}
+                  aria-pressed={selectedEntryId === CUSTOM_ENTRY_ID}
+                  className="text-left outline-none"
+                >
+                  <Card
+                    size="sm"
+                    className={cn(
+                      "gap-2 ring-1 transition-colors",
+                      selectedEntryId === CUSTOM_ENTRY_ID
+                        ? "ring-primary/50"
+                        : "ring-foreground/10 hover:ring-foreground/20"
+                    )}
+                  >
+                    <CardHeader className="gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <CardTitle>Custom input</CardTitle>
+                        <Badge variant="outline">explore</Badge>
+                        {customModeActive ? <Badge variant="secondary">active</Badge> : null}
+                      </div>
+                      <CardDescription>
+                        Paste a failed interview example or branch off an existing preset into a new runtime.
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                </button>
+              </div>
+            </div>
+          </aside>
 
           <div className="min-h-0 overflow-y-auto p-5">
             {selectedEntryId === CUSTOM_ENTRY_ID ? (
