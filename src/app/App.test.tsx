@@ -24,7 +24,7 @@ describe("App", () => {
   it("renders the lesson player toolbar", () => {
     renderApp()
 
-    expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: /^play$/i })).toBeInTheDocument()
   })
 
   it("renders the primitive audit surface when requested by query param", async () => {

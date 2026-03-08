@@ -426,7 +426,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           value={activeLessonId || null}
           onValueChange={(value) => value && setLessonId(value)}
         >
-          <SelectTrigger size="sm">
+          <SelectTrigger size="sm" aria-label="Lesson">
             <SelectValue placeholder="Lesson" />
           </SelectTrigger>
           <SelectContent>
@@ -445,7 +445,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           value={approachId || null}
           onValueChange={(value) => value && setApproachId(value)}
         >
-          <SelectTrigger size="sm">
+          <SelectTrigger size="sm" aria-label="Approach">
             <SelectValue placeholder="Approach" />
           </SelectTrigger>
           <SelectContent>
@@ -461,7 +461,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         </Select>
 
         <Select value={mode || null} onValueChange={(value) => value && setMode(value)}>
-          <SelectTrigger size="sm">
+          <SelectTrigger size="sm" aria-label="Mode">
             <SelectValue placeholder="Mode" />
           </SelectTrigger>
           <SelectContent>
@@ -480,7 +480,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           value={selectedPresetId ?? null}
           onValueChange={(value) => value && selectPreset(value)}
         >
-          <SelectTrigger size="sm">
+          <SelectTrigger size="sm" aria-label="Preset">
             <SelectValue placeholder="Preset" />
           </SelectTrigger>
           <SelectContent>
@@ -506,6 +506,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   variant="ghost"
                   onClick={jumpToFirst}
                   disabled={learnerModeBlocked}
+                  aria-label="First frame"
                 />
               }
             >
@@ -521,6 +522,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   variant="ghost"
                   onClick={previousFrame}
                   disabled={learnerModeBlocked}
+                  aria-label="Previous frame"
                 />
               }
             >
@@ -557,6 +559,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   variant="ghost"
                   onClick={nextFrame}
                   disabled={learnerModeBlocked}
+                  aria-label="Next frame"
                 />
               }
             >
@@ -572,6 +575,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   variant="ghost"
                   onClick={jumpToLast}
                   disabled={learnerModeBlocked}
+                  aria-label="Last frame"
                 />
               }
             >
@@ -587,6 +591,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   variant="ghost"
                   onClick={reset}
                   disabled={learnerModeBlocked}
+                  aria-label="Reset playback"
                 />
               }
             >
@@ -619,7 +624,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           value={playbackSpeed}
           onValueChange={(value) => value && setPlaybackSpeed(value)}
         >
-          <SelectTrigger size="sm" className="w-[4.5rem]">
+          <SelectTrigger size="sm" className="w-[4.5rem]" aria-label="Playback speed">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -641,6 +646,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 size="icon-xs"
                 variant={inputModalOpen ? "secondary" : "ghost"}
                 onClick={() => setInputModalOpen((value) => !value)}
+                aria-label="Custom input"
               />
             }
           >
@@ -672,6 +678,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 size="icon-xs"
                 variant="ghost"
                 onClick={() => setHotkeysOpen(true)}
+                aria-label="Keyboard shortcuts"
               />
             }
           >
@@ -739,6 +746,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               </div>
             </div>
             <Textarea
+              aria-label="Custom input editor"
               value={rawInput}
               onChange={(event) => setRawInput(event.target.value)}
               rows={12}
