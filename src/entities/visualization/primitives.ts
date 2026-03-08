@@ -195,6 +195,7 @@ export const treeNodeSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),
   parentId: z.string().min(1).optional(),
+  childSide: z.enum(["left", "right"]).optional(),
   depth: z.number().int().nonnegative().optional(),
   annotation: z.string().optional(),
   status: z

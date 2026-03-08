@@ -1,7 +1,11 @@
 {
   "frames": [
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L2",
       "id": "frame-1",
       "narrationSummary": "Start recursion at the root node 3.",
@@ -17,6 +21,7 @@
                 "status": "active"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -24,6 +29,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -31,6 +37,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -38,6 +45,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -98,7 +106,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-2",
       "narrationSummary": "Node 3 is not null, so this call must ask both children for their depth.",
@@ -115,6 +127,7 @@
                 "status": "active"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -122,6 +135,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -129,6 +143,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -136,6 +151,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -196,7 +212,11 @@
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-3",
       "narrationSummary": "Descend into the left child at node 9.",
@@ -212,6 +232,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -219,6 +240,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -226,6 +248,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -233,6 +256,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -306,7 +330,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-4",
       "narrationSummary": "Node 9 is not null, so this call must ask both children for their depth.",
@@ -323,6 +351,7 @@
               },
               {
                 "annotation": "expand",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -330,6 +359,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -337,6 +367,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -344,6 +375,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -417,7 +449,11 @@
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-5",
       "narrationSummary": "Enter left child recursion with null.",
@@ -434,6 +470,7 @@
               },
               {
                 "annotation": "left -> null",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -441,6 +478,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -448,6 +486,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -455,6 +494,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -541,7 +581,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-6",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -557,6 +601,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -564,6 +609,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -571,6 +617,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -578,6 +625,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -665,7 +713,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-7",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -681,6 +733,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -688,6 +741,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -695,6 +749,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -702,6 +757,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -784,7 +840,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-8",
       "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
@@ -801,6 +861,7 @@
               },
               {
                 "annotation": "L=0",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -808,6 +869,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -815,6 +877,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -822,6 +885,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -904,7 +968,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-9",
       "narrationSummary": "Enter right child recursion with null.",
@@ -921,6 +989,7 @@
               },
               {
                 "annotation": "right -> null",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -928,6 +997,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -935,6 +1005,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -942,6 +1013,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1037,7 +1109,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-10",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -1053,6 +1129,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1060,6 +1137,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1067,6 +1145,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1074,6 +1153,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1170,7 +1250,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-11",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -1186,6 +1270,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1193,6 +1278,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1200,6 +1286,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1207,6 +1294,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1298,7 +1386,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-12",
       "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
@@ -1315,6 +1407,7 @@
               },
               {
                 "annotation": "R=0",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1322,6 +1415,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1329,6 +1423,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1336,6 +1431,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1427,7 +1523,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-13",
       "narrationSummary": "Compute depth at node 9: 1 + max(0, 0) = 1.",
@@ -1444,6 +1544,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1451,6 +1552,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1458,6 +1560,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1465,6 +1568,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1557,7 +1661,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-14",
       "narrationSummary": "Return depth 1 to the parent call.",
@@ -1574,6 +1682,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1581,6 +1690,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1588,6 +1698,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1595,6 +1706,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1682,7 +1794,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-15",
       "narrationSummary": "Store leftDepth = 1 after the left subtree returns.",
@@ -1700,6 +1816,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1707,6 +1824,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1714,6 +1832,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1721,6 +1840,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1808,7 +1928,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-16",
       "narrationSummary": "Descend into the right child at node 20.",
@@ -1825,6 +1949,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1832,6 +1957,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1839,6 +1965,7 @@
                 "status": "active"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1846,6 +1973,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -1946,7 +2074,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-17",
       "narrationSummary": "Node 20 is not null, so this call must ask both children for their depth.",
@@ -1963,6 +2095,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -1971,6 +2104,7 @@
               },
               {
                 "annotation": "expand",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -1978,6 +2112,7 @@
                 "status": "active"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -1985,6 +2120,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2085,7 +2221,11 @@
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-18",
       "narrationSummary": "Descend into the left child at node 15.",
@@ -2102,6 +2242,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2109,6 +2250,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2116,6 +2258,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2123,6 +2266,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2236,7 +2380,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-19",
       "narrationSummary": "Node 15 is not null, so this call must ask both children for their depth.",
@@ -2253,6 +2401,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2260,6 +2409,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2268,6 +2418,7 @@
               },
               {
                 "annotation": "expand",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2275,6 +2426,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2388,7 +2540,11 @@
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-20",
       "narrationSummary": "Enter left child recursion with null.",
@@ -2405,6 +2561,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2412,6 +2569,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2420,6 +2578,7 @@
               },
               {
                 "annotation": "left -> null",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2427,6 +2586,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2553,7 +2713,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-21",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -2570,6 +2734,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2577,6 +2742,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2584,6 +2750,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2591,6 +2758,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2718,7 +2886,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-22",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -2735,6 +2907,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2742,6 +2915,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2749,6 +2923,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2756,6 +2931,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -2878,7 +3054,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-23",
       "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
@@ -2895,6 +3075,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -2902,6 +3083,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -2910,6 +3092,7 @@
               },
               {
                 "annotation": "L=0",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -2917,6 +3100,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3039,7 +3223,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-24",
       "narrationSummary": "Enter right child recursion with null.",
@@ -3056,6 +3244,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3063,6 +3252,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3071,6 +3261,7 @@
               },
               {
                 "annotation": "right -> null",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3078,6 +3269,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3213,7 +3405,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-25",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -3230,6 +3426,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3237,6 +3434,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3244,6 +3442,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3251,6 +3450,7 @@
                 "status": "default"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3387,7 +3587,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-26",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -3404,6 +3608,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3411,6 +3616,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3418,6 +3624,7 @@
                 "status": "default"
               },
               {
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3425,6 +3632,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3556,7 +3764,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-27",
       "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
@@ -3573,6 +3785,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3580,6 +3793,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3588,6 +3802,7 @@
               },
               {
                 "annotation": "R=0",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3595,6 +3810,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3726,7 +3942,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-28",
       "narrationSummary": "Compute depth at node 15: 1 + max(0, 0) = 1.",
@@ -3743,6 +3963,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3750,6 +3971,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3758,6 +3980,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3765,6 +3988,7 @@
                 "status": "active"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -3897,7 +4121,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-29",
       "narrationSummary": "Return depth 1 to the parent call.",
@@ -3914,6 +4142,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -3921,6 +4150,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -3929,6 +4159,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -3936,6 +4167,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4063,7 +4295,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-30",
       "narrationSummary": "Store leftDepth = 1 after the left subtree returns.",
@@ -4080,6 +4316,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4088,6 +4325,7 @@
               },
               {
                 "annotation": "L=1",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -4096,6 +4334,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -4103,6 +4342,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4230,7 +4470,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-31",
       "narrationSummary": "Descend into the right child at node 7.",
@@ -4247,6 +4491,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4254,6 +4499,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -4262,6 +4508,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -4269,6 +4516,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4409,7 +4657,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-32",
       "narrationSummary": "Node 7 is not null, so this call must ask both children for their depth.",
@@ -4426,6 +4678,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4433,6 +4686,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -4441,6 +4695,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -4449,6 +4704,7 @@
               },
               {
                 "annotation": "expand",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4589,7 +4845,11 @@
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-33",
       "narrationSummary": "Enter left child recursion with null.",
@@ -4606,6 +4866,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4613,6 +4874,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -4621,6 +4883,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -4629,6 +4892,7 @@
               },
               {
                 "annotation": "left -> null",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4782,7 +5046,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-34",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -4799,6 +5067,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4806,6 +5075,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -4814,6 +5084,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -4821,6 +5092,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -4975,7 +5247,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-35",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -4992,6 +5268,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -4999,6 +5276,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5007,6 +5285,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5014,6 +5293,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -5163,7 +5443,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L6",
       "id": "frame-36",
       "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
@@ -5180,6 +5464,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -5187,6 +5472,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5195,6 +5481,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5203,6 +5490,7 @@
               },
               {
                 "annotation": "L=0",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -5352,7 +5640,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-37",
       "narrationSummary": "Enter right child recursion with null.",
@@ -5369,6 +5661,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -5376,6 +5669,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5384,6 +5678,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5392,6 +5687,7 @@
               },
               {
                 "annotation": "right -> null",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -5554,7 +5850,11 @@
       "visualChangeType": "enter"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-38",
       "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
@@ -5571,6 +5871,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -5578,6 +5879,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5586,6 +5888,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5593,6 +5896,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -5756,7 +6060,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-39",
       "narrationSummary": "Return base depth 0 to the waiting parent call.",
@@ -5773,6 +6081,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -5780,6 +6089,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5788,6 +6098,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5795,6 +6106,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -5953,7 +6265,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-40",
       "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
@@ -5970,6 +6286,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -5977,6 +6294,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -5985,6 +6303,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -5993,6 +6312,7 @@
               },
               {
                 "annotation": "R=0",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -6151,7 +6471,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-41",
       "narrationSummary": "Compute depth at node 7: 1 + max(0, 0) = 1.",
@@ -6168,6 +6492,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -6175,6 +6500,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -6183,6 +6509,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -6191,6 +6518,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -6350,7 +6678,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-42",
       "narrationSummary": "Return depth 1 to the parent call.",
@@ -6367,6 +6699,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -6374,6 +6707,7 @@
                 "status": "done"
               },
               {
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -6382,6 +6716,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -6390,6 +6725,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -6544,7 +6880,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-43",
       "narrationSummary": "Store rightDepth = 1 after the right subtree returns.",
@@ -6561,6 +6901,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -6569,6 +6910,7 @@
               },
               {
                 "annotation": "R=1",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -6577,6 +6919,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -6585,6 +6928,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -6739,7 +7083,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-44",
       "narrationSummary": "Compute depth at node 20: 1 + max(1, 1) = 2.",
@@ -6756,6 +7104,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -6764,6 +7113,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -6772,6 +7122,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -6780,6 +7131,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -6935,7 +7287,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-45",
       "narrationSummary": "Return depth 2 to the parent call.",
@@ -6952,6 +7308,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -6960,6 +7317,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -6968,6 +7326,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -6976,6 +7335,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -7126,7 +7486,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-46",
       "narrationSummary": "Store rightDepth = 2 after the right subtree returns.",
@@ -7144,6 +7508,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -7152,6 +7517,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -7160,6 +7526,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -7168,6 +7535,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -7318,7 +7686,11 @@
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-47",
       "narrationSummary": "Compute depth at node 3: 1 + max(1, 2) = 3.",
@@ -7336,6 +7708,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -7344,6 +7717,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -7352,6 +7726,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -7360,6 +7735,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -7511,7 +7887,11 @@
       "visualChangeType": "result"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-48",
       "narrationSummary": "Return depth 3 to the parent call.",
@@ -7529,6 +7909,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -7537,6 +7918,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -7545,6 +7927,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -7553,6 +7936,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",
@@ -7698,7 +8082,11 @@
       "visualChangeType": "exit"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L2",
       "id": "frame-49",
       "narrationSummary": "The wrapper returns maximum depth 3.",
@@ -7716,6 +8104,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 1,
                 "id": "node-1",
                 "label": "9",
@@ -7724,6 +8113,7 @@
               },
               {
                 "annotation": "d=2",
+                "childSide": "right",
                 "depth": 1,
                 "id": "node-2",
                 "label": "20",
@@ -7732,6 +8122,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "left",
                 "depth": 2,
                 "id": "node-5",
                 "label": "15",
@@ -7740,6 +8131,7 @@
               },
               {
                 "annotation": "d=1",
+                "childSide": "right",
                 "depth": 2,
                 "id": "node-6",
                 "label": "7",

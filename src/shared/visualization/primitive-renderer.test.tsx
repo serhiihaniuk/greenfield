@@ -286,13 +286,29 @@ describe("PrimitiveRenderer", () => {
   it("produces deterministic structural and execution tree layouts", () => {
     const structural = layoutTree([
       { id: "root" },
-      { id: "left", parentId: "root" },
-      { id: "right", parentId: "root" },
+      { id: "left", parentId: "root", childSide: "left" },
+      { id: "right", parentId: "root", childSide: "right" },
+    ])
+    const leftOnly = layoutTree([
+      { id: "root" },
+      { id: "left-only", parentId: "root", childSide: "left" },
+    ])
+    const rightOnly = layoutTree([
+      { id: "root" },
+      { id: "right-only", parentId: "root", childSide: "right" },
     ])
     const execution = layoutCallTree([
       { id: "root" },
       { id: "child", parentId: "root" },
     ])
+
+    const structuralRoot = structural.nodes.find((node) => node.id === "root")
+    const structuralLeft = structural.nodes.find((node) => node.id === "left")
+    const structuralRight = structural.nodes.find((node) => node.id === "right")
+    const leftOnlyRoot = leftOnly.nodes.find((node) => node.id === "root")
+    const leftOnlyChild = leftOnly.nodes.find((node) => node.id === "left-only")
+    const rightOnlyRoot = rightOnly.nodes.find((node) => node.id === "root")
+    const rightOnlyChild = rightOnly.nodes.find((node) => node.id === "right-only")
 
     expect(structural.nodes.map((node) => node.id)).toEqual([
       "root",
@@ -300,6 +316,10 @@ describe("PrimitiveRenderer", () => {
       "right",
     ])
     expect(structural.edges).toHaveLength(2)
+    expect(structuralLeft?.x).toBeLessThan(structuralRoot?.x ?? 0)
+    expect(structuralRight?.x).toBeGreaterThan(structuralRoot?.x ?? 0)
+    expect(leftOnlyChild?.x).toBeLessThan(leftOnlyRoot?.x ?? 0)
+    expect(rightOnlyChild?.x).toBeGreaterThan(rightOnlyRoot?.x ?? 0)
     expect(execution.nodes[1]?.y).toBeGreaterThan(execution.nodes[0]?.y ?? 0)
   })
 })

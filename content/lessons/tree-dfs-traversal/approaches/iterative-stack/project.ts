@@ -166,6 +166,14 @@ function buildTreeNodes(
       : undefined
 
   return snapshot.nodes.map((node) => {
+    const parentNode = getNode(snapshot, node.parentId)
+    const childSide =
+      parentNode?.leftId === node.id
+        ? "left"
+        : parentNode?.rightId === node.id
+          ? "right"
+          : undefined
+
     let status: TreeNode["status"] = "default"
     if (node.id === currentNodeId || node.id === nextNodeId || node.id === pushedNodeId) {
       status =
@@ -192,6 +200,7 @@ function buildTreeNodes(
       id: node.id,
       label: String(node.value),
       parentId: node.parentId,
+      childSide,
       depth: node.depth,
       annotation,
       status,
