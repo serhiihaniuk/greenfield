@@ -2,9 +2,11 @@ import { expect, test } from "@playwright/test"
 
 import {
   expectNoVerticalPageScroll,
+  expectPrimitiveCanvasFits,
   expectNoVerticalRegionOverflow,
   expectRegionMinHeight,
   expectRuntimeReady,
+  primitiveRegion,
   selectFooterOption,
   testRegion,
   timelineSlider,
@@ -121,6 +123,31 @@ test("keeps the author drawer docked without forcing page scroll", async ({
 
   await expect(testRegion(page, "author-review-drawer")).toBeVisible()
   await expectNoVerticalPageScroll(page)
+})
+
+test("keeps tall primary primitive canvases fully visible inside their shells", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await selectFooterOption(page, "Lesson", "Coin Change Memo DFS")
+  await selectFooterOption(page, "Preset", "Blocked Seven")
+  await expectRuntimeReady(page, "Execution Tree", "Call Stack")
+  await expect(primitiveRegion(page, "execution-tree")).toBeVisible()
+  await expectPrimitiveCanvasFits(page, "execution-tree-canvas")
+
+  await selectFooterOption(page, "Lesson", "Maximum Depth of Binary Tree")
+  await selectFooterOption(page, "Preset", "Left Heavy")
+  await expectRuntimeReady(page, "Binary Tree", "Call Stack")
+  await expect(primitiveRegion(page, "tree")).toBeVisible()
+  await expectPrimitiveCanvasFits(page, "tree-canvas")
+
+  await selectFooterOption(page, "Lesson", "Top K Largest with Min Heap")
+  await selectFooterOption(page, "Preset", "Skip Small Tail")
+  await expectRuntimeReady(page, "Min Heap", "Input Scan")
+  await expect(primitiveRegion(page, "min-heap")).toBeVisible()
+  await expectPrimitiveCanvasFits(page, "min-heap-canvas")
 })
 
 test("supports deterministic stepping from pointer, slider, and keyboard controls", async ({

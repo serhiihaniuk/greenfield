@@ -22,6 +22,7 @@ export function TreeView({ primitive }: { primitive: TreePrimitiveFrameState }) 
   return (
     <PrimitiveShell primitive={primitive}>
       <div
+        data-testid={`${primitive.id}-canvas`}
         className="relative overflow-x-auto rounded-2xl border border-border/60 bg-muted/14 p-4"
         style={{ minHeight: canvasHeight }}
       >

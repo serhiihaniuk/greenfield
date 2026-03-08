@@ -622,6 +622,7 @@ Notes:
 
 - flagship lessons must be optimized for desktop first
 - normal presets should avoid scrolling on common desktop widths
+- tall primary renderer canvases must fit within their primitive shells on flagship desktop presets, not only within the page viewport
 - narrow screens may switch to simplified stacked layouts, but without losing step correctness
 
 ### Maintainability

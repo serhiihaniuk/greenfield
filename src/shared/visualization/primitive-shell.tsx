@@ -24,6 +24,8 @@ export function PrimitiveShell({
 
   return (
     <section
+      data-testid={`primitive-${primitive.id}`}
+      data-primitive-kind={primitive.kind}
       className={cn(
         role === "primary" && "p-2",
         role === "secondary" && "rounded-xl border border-border/50 bg-card/60 p-3",

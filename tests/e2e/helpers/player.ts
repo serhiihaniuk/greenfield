@@ -25,6 +25,10 @@ export function testRegion(page: Page, testId: string): Locator {
   return page.getByTestId(testId)
 }
 
+export function primitiveRegion(page: Page, primitiveId: string): Locator {
+  return testRegion(page, `primitive-${primitiveId}`)
+}
+
 export async function expectRuntimeReady(
   page: Page,
   primaryHeading: string,
@@ -80,4 +84,20 @@ export async function expectRegionMinHeight(
   }))
 
   expect(metrics.clientHeight).toBeGreaterThanOrEqual(minimumHeight)
+}
+
+export async function expectPrimitiveCanvasFits(
+  page: Page,
+  canvasTestId: string,
+  tolerance = 1
+) {
+  const region = testRegion(page, canvasTestId)
+  await expect(region).toBeVisible()
+
+  const metrics = await region.evaluate((node) => ({
+    clientHeight: node.clientHeight,
+    scrollHeight: node.scrollHeight,
+  }))
+
+  expect(metrics.scrollHeight).toBeLessThanOrEqual(metrics.clientHeight + tolerance)
 }
