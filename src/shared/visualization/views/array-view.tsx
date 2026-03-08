@@ -107,12 +107,16 @@ export function ArrayView({
                   className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
                 >
                   <div
-                    className="flex min-h-8 min-w-max flex-nowrap items-end justify-center gap-1"
+                    className="flex min-h-10 min-w-max flex-nowrap items-end justify-center gap-1"
                     data-testid={`pointer-stack-top-${cell.id}`}
                   >
                     <AnimatePresence initial={false}>
                       {topPointers.map((pointer) => (
-                        <PointerChip key={pointer.id} pointer={pointer} />
+                        <PointerChip
+                          key={pointer.id}
+                          pointer={pointer}
+                          scopeId={primitive.id}
+                        />
                       ))}
                     </AnimatePresence>
                   </div>
@@ -156,12 +160,16 @@ export function ArrayView({
                   </div>
 
                   <div
-                    className="flex min-h-8 min-w-max flex-nowrap items-start justify-center gap-1"
+                    className="flex min-h-10 min-w-max flex-nowrap items-start justify-center gap-1"
                     data-testid={`pointer-stack-bottom-${cell.id}`}
                   >
                     <AnimatePresence initial={false}>
                       {bottomPointers.map((pointer) => (
-                        <PointerChip key={pointer.id} pointer={pointer} />
+                        <PointerChip
+                          key={pointer.id}
+                          pointer={pointer}
+                          scopeId={primitive.id}
+                        />
                       ))}
                     </AnimatePresence>
                   </div>

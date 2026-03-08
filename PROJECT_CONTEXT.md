@@ -178,6 +178,7 @@ Completed so far:
 - a first motion contract now exists in the canonical docs, and the initial runtime pilot is Binary Search: pointer travel, active code-line handoff, and code-state value commits are now animated under reduced-motion-safe rules
 - runtime verification now includes a pointer-continuity guard, and House Robber has been corrected so its index pointer stays visible and moves instead of blinking out between steps
 - the motion pilot now covers the first recursion lesson too: Maximum Depth animates execution-tree call nodes, stack push/pop handoff, and return-value commitment so recursive flow is legible without relying on static status changes alone
+- shared pointers are no longer rendered as bordered chips; the runtime now uses an arrow-based pointer primitive with directional mount/move animation and shared movement memory across array and sequence views
 
 ## Immediate Next Step
 

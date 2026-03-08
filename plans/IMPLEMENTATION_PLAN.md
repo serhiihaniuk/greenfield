@@ -79,6 +79,7 @@ Phase 9 now also includes a shared lesson view-spec contract so approach metadat
 Phase 9 now also includes the first motion-system slice: a canonical motion contract in the architecture/runtime/visual specs and a Binary Search pilot for pointer travel, active code-line handoff, and state-value commitment under reduced-motion-safe rules.
 Phase 9 now also includes the first explicit continuity guard for tracked signals: runtime verification warns when pointers blink out between adjacent non-terminal frames, and House Robber has been corrected to keep its focus pointer visible across the loop-check step.
 Phase 9 now also extends the motion pilot into recursion: Maximum Depth of Binary Tree now animates execution-tree node promotion, call-stack push/pop handoff, and return-value commitment as the first non-array motion pass.
+Phase 9 now also upgrades the shared pointer system: array and sequence pointers are rendered as animated arrow primitives rather than bordered chips, with movement bias driven by tracked pointer continuity.
 
 ## Phase 0: Operating System
 

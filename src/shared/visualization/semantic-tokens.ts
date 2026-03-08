@@ -23,13 +23,13 @@ export const highlightToneClasses: ToneClassMap<HighlightTone> = {
 }
 
 export const pointerToneClasses: ToneClassMap<PointerTone> = {
-  primary: "border-cyan-400/65 bg-cyan-400/12 text-cyan-50",
-  secondary: "border-slate-300/35 bg-slate-300/8 text-slate-100",
-  compare: "border-sky-400/65 bg-sky-400/12 text-sky-50",
-  success: "border-emerald-400/65 bg-emerald-400/14 text-emerald-50",
-  error: "border-rose-400/65 bg-rose-400/14 text-rose-50",
-  done: "border-emerald-500/40 bg-emerald-500/8 text-emerald-100",
-  special: "border-amber-400/65 bg-amber-400/14 text-amber-50",
+  primary: "text-cyan-300",
+  secondary: "text-slate-300",
+  compare: "text-sky-300",
+  success: "text-emerald-300",
+  error: "text-rose-300",
+  done: "text-emerald-400/80",
+  special: "text-amber-300",
 }
 
 export const annotationToneClasses: ToneClassMap<AnnotationTone> = {

@@ -18,6 +18,12 @@ export const MOTION_TOKENS = {
     duration: 0.28,
     ease: MOTION_EASINGS.emphasis,
   },
+  pointerTravel: {
+    type: "spring",
+    stiffness: 400,
+    damping: 25,
+    mass: 1,
+  },
   layout: {
     duration: 0.32,
     ease: MOTION_EASINGS.standard,

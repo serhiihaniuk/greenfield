@@ -114,7 +114,8 @@ Pointers must be visually consistent across all primitives.
 
 ### Pointer anatomy
 
-- short label chip or text label
+- compact arrow glyph with chevron tip, stem, and small anchor dot
+- short mono label attached to the arrow, not a bordered pill
 - thin connector or anchor relationship to target when needed
 - semantic tone color
 - stable placement around the target
@@ -128,9 +129,9 @@ Pointers must be visually consistent across all primitives.
 
 ### Pointer style
 
-- compact label
-- high-contrast text
-- subtle filled or outlined chip depending on density
+- compact mono label
+- high-contrast stroke and text color with no bordered chip chrome
+- the arrow itself is the pointer; do not wrap it in a badge or pill
 - no cartoon arrows
 - if a line is needed, keep it thin and precise
 
