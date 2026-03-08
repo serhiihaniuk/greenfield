@@ -275,9 +275,15 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             collapsible
             collapsedSize="0%"
           >
-            <div className="flex h-full min-h-0 flex-col">
+            <div
+              data-testid="context-column"
+              className="flex h-full min-h-0 flex-col"
+            >
               {hasSecondaryStage ? (
-                <div className="shrink-0 border-b border-border/30">
+                <div
+                  data-testid="secondary-primitives-region"
+                  className="shrink-0 border-b border-border/30"
+                >
                   <button
                     className="flex w-full items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
                     onClick={() => setStateCollapsed((value) => !value)}
@@ -290,14 +296,20 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                     State
                   </button>
                   {!stateCollapsed ? (
-                    <div className="grid auto-rows-max gap-2 px-3 pb-3">
-                      {secondaryPrimitives.map((primitive) => (
-                        <PrimitiveRenderer
-                          key={primitive.id}
-                          primitive={primitive}
-                          role="secondary"
-                        />
-                      ))}
+                    <div
+                      data-testid="secondary-primitives-scroll"
+                      className="overflow-y-auto px-3 pb-3"
+                      style={{ maxHeight: "min(32rem, 58vh)" }}
+                    >
+                      <div className="grid auto-rows-max gap-2">
+                        {secondaryPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="secondary"
+                          />
+                        ))}
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -311,7 +323,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </p>
               </div>
 
-              <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+              <div
+                data-testid="reference-column"
+                className="flex min-h-0 flex-1 flex-col overflow-hidden"
+              >
                 <PrimitiveRenderer primitive={codeTracePrimitive} role="reference" />
                 {failure ? (
                   <div className="shrink-0 border-t border-destructive/30 bg-destructive/8 px-3 py-2">
@@ -328,7 +343,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           <ResizableHandle withHandle />
 
           <ResizablePanel id="stage" defaultSize="73%" minSize="30%">
-            <section className="flex h-full flex-col overflow-auto p-4">
+            <section
+              data-testid="stage-scroll-region"
+              className="flex h-full flex-col overflow-auto p-4"
+            >
               <div className="grid auto-rows-max gap-4">
                 {primaryPrimitives.map((primitive) => (
                   <PrimitiveRenderer
@@ -394,7 +412,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         ) : null}
 
         {authorMode ? (
-          <div className="absolute inset-x-0 bottom-0 z-10 border-t border-border/40 bg-card/95 backdrop-blur-sm">
+          <div
+            data-testid="author-review-drawer"
+            className="absolute inset-x-0 bottom-0 z-10 border-t border-border/40 bg-card/95 backdrop-blur-sm"
+          >
             <div className="flex items-center gap-2 border-b border-border/20 px-4 py-1.5">
               <Badge variant="outline">change {visualChangeLabel}</Badge>
               <Badge variant="outline">status {playbackStatus}</Badge>

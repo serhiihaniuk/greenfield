@@ -21,6 +21,10 @@ export function timelineSlider(page: Page): Locator {
   return page.getByLabel("Timeline", { exact: true })
 }
 
+export function testRegion(page: Page, testId: string): Locator {
+  return page.getByTestId(testId)
+}
+
 export async function expectRuntimeReady(
   page: Page,
   primaryHeading: string,
@@ -45,4 +49,35 @@ export async function expectNoVerticalPageScroll(page: Page) {
   }))
 
   expect(metrics.docHeight).toBeLessThanOrEqual(metrics.viewportHeight + 1)
+}
+
+export async function expectNoVerticalRegionOverflow(
+  page: Page,
+  testId: string,
+  tolerance = 1
+) {
+  const region = testRegion(page, testId)
+  await expect(region).toBeVisible()
+
+  const metrics = await region.evaluate((node) => ({
+    clientHeight: node.clientHeight,
+    scrollHeight: node.scrollHeight,
+  }))
+
+  expect(metrics.scrollHeight).toBeLessThanOrEqual(metrics.clientHeight + tolerance)
+}
+
+export async function expectRegionMinHeight(
+  page: Page,
+  testId: string,
+  minimumHeight: number
+) {
+  const region = testRegion(page, testId)
+  await expect(region).toBeVisible()
+
+  const metrics = await region.evaluate((node) => ({
+    clientHeight: node.clientHeight,
+  }))
+
+  expect(metrics.clientHeight).toBeGreaterThanOrEqual(minimumHeight)
 }

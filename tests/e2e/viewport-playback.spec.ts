@@ -2,8 +2,11 @@ import { expect, test } from "@playwright/test"
 
 import {
   expectNoVerticalPageScroll,
+  expectNoVerticalRegionOverflow,
+  expectRegionMinHeight,
   expectRuntimeReady,
   selectFooterOption,
+  testRegion,
   timelineSlider,
 } from "./helpers/player"
 
@@ -64,6 +67,60 @@ test("keeps flagship presets inside the desktop page viewport", async ({
     await expectRuntimeReady(page, entry.primaryHeading, entry.secondaryHeading)
     await expectNoVerticalPageScroll(page)
   }
+})
+
+const denseViewportMatrix = [
+  {
+    lesson: "Coin Change Memo DFS",
+    preset: "Blocked Seven",
+    primaryHeading: "Execution Tree",
+    secondaryHeading: "Call Stack",
+  },
+  {
+    lesson: "Maximum Depth of Binary Tree",
+    preset: "Left Heavy",
+    primaryHeading: "Binary Tree",
+    secondaryHeading: "Call Stack",
+  },
+  {
+    lesson: "Top K Largest with Min Heap",
+    preset: "Skip Small Tail",
+    primaryHeading: "Min Heap",
+    secondaryHeading: "Input Scan",
+  },
+] as const
+
+test("keeps dense presets inside stage and context regions on desktop", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  for (const entry of denseViewportMatrix) {
+    await selectFooterOption(page, "Lesson", entry.lesson)
+    await selectFooterOption(page, "Preset", entry.preset)
+    await expectRuntimeReady(page, entry.primaryHeading, entry.secondaryHeading)
+    await expectNoVerticalPageScroll(page)
+    await expectNoVerticalRegionOverflow(page, "stage-scroll-region")
+    await expectNoVerticalRegionOverflow(page, "context-column")
+    await expectRegionMinHeight(page, "reference-column", 120)
+  }
+})
+
+test("keeps the author drawer docked without forcing page scroll", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await selectFooterOption(page, "Lesson", "Coin Change Memo DFS")
+  await selectFooterOption(page, "Preset", "Blocked Seven")
+  await expectRuntimeReady(page, "Execution Tree", "Call Stack")
+
+  await page.getByRole("button", { name: /author/i }).click()
+
+  await expect(testRegion(page, "author-review-drawer")).toBeVisible()
+  await expectNoVerticalPageScroll(page)
 })
 
 test("supports deterministic stepping from pointer, slider, and keyboard controls", async ({

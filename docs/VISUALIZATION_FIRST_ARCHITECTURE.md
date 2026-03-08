@@ -523,6 +523,7 @@ Shell rules:
 - vertical sprawl is a product bug
 - the active state should stay near the visual center
 - archived or low-importance states should be compacted
+- dense secondary stacks must be height-capped before they can starve narration or code/reference space
 - the learner should rarely need to scroll during normal preset playback on desktop
 
 ## Workspace Structure

@@ -161,6 +161,7 @@ Completed so far:
 - Phase 9 now adds a broader Playwright lesson matrix across all eight flagship lessons plus alternate-preset coverage for memoization, priority-structure, and stack-execution lessons
 - Coin Change verification was hardened so impossible-target presets no longer fail for lacking a `remainder 0` base case; terminal-state checks now only require learner-visible outcomes that actually occur in the trace
 - Phase 9 now adds explicit desktop viewport and playback-behavior QA, covering no-page-scroll flagship presets plus deterministic stepping through pointer controls, keyboard shortcuts, and timeline scrubbing
+- Phase 9 now verifies dense presets at the shell-region level: stage and context columns stay within the desktop viewport contract, author review remains docked, and the secondary primitive stack is capped so code/reference space never collapses to zero height
 
 ## Immediate Next Step
 
@@ -168,7 +169,7 @@ Continue Phase 9 from the plan:
 
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
-3. extend viewport QA from page-level no-scroll checks into primitive-level overflow and stage-height assertions for the densest lessons
+3. extend viewport QA from region-level overflow checks into primitive-level overflow assertions for the tallest tree, call-tree, and heap renderers
 4. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
 
 ## Canonical Files
