@@ -1,0 +1,153 @@
+# Project Context
+
+## What This Project Is
+
+A from-scratch algorithm visualization app for hard interview-style problems.
+
+This is not a general docs site and not a blog-like learning platform.
+It is a dark, desktop-first, visualization-heavy study tool for the moment when the learner is stuck and needs the algorithm made concrete step by step.
+
+## What The Previous Product Was
+
+The previous product was an interactive algorithm visualizer built iteratively.
+It was strongest when the concept could be explained by a few synchronized views such as:
+- two pointers over an array
+- sliding window boundaries and conditions
+- binary search on a sorted array
+- basic tree traversal with a visible tree plus stack
+
+The old product had:
+- a dark UI
+- a large central visualization area
+- step playback controls
+- narration for each step
+- code shown with the visualization
+- custom input support for replaying failed examples
+
+But it was inconsistent and incomplete as a system.
+It did not scale cleanly to harder recursive, DP, and structural lessons.
+
+## What We Are Building Now
+
+We are building a stricter and more trustworthy version of that product.
+
+The new app should feel like this on desktop:
+- a compact top bar
+- one dominant central visualization surface
+- synchronized side panels only when they improve understanding
+- step narration close to the active visualization
+- code trace docked into the same lesson surface
+- almost no unnecessary prose or decorative whitespace
+
+The learner should be able to open one lesson and immediately see:
+- what changed
+- why it changed
+- what is waiting now
+- what code line this corresponds to
+- what the broader execution shape looks like
+
+## Primary User Behavior
+
+The user:
+- opens the app only when deeply confused
+- uses almost only the visualization
+- reads step narration, not long prose
+- sometimes loads custom input from a failed whiteboard attempt
+- often wants multiple approaches because interview questions may ask for them
+
+## Why This Rebuild Exists
+
+The earlier product was not precise enough as an implementation system.
+Main reasons for the rebuild:
+- primitives were not designed as a coherent system
+- some visualizations became too tall, too sparse, or too hard to trust
+- steps often skipped learner-visible micro-transitions or did too much work at once
+- important state could be visually lost even when the algorithm was technically correct
+- the shell was still too docs-oriented for real usage
+- AI-generated first attempts were often wrong, and the learner could not reliably validate them
+- the architecture did not make correctness and pedagogical integrity easy to prove
+
+## Product Thesis
+
+This project must be:
+- visualization-first
+- confusion-first
+- AI-authored but verification-gated
+- pedagogically verified, not only algorithmically verified
+- desktop-study-optimized
+- built as a Vite React app with `shadcn/ui` for shell and controls
+- rendered through DOM plus SVG plus Motion for animated lesson visuals
+
+## Chosen Stack Summary
+
+- Vite
+- React 19
+- TypeScript 5
+- React Router 7
+- Tailwind CSS v4
+- shadcn/ui with `base-nova`
+- motion / motion-react
+- Zustand
+- Zod
+- Shiki
+- d3-hierarchy
+- Vitest
+- React Testing Library
+- Playwright
+
+## Current Status
+
+Phase 0 operating docs are defined.
+Phase 1 repo bootstrap is complete.
+Phase 2 canonical contracts are complete.
+Phase 3 runtime core is complete.
+Phase 4 primitive foundation is complete.
+Phase 5 verification layer is complete.
+Phase 6 shell refinement is complete.
+
+Completed so far:
+- greenfield workspace created
+- canonical architecture written
+- primitive system spec written
+- runtime and bootstrap specs written
+- architecture reviewed for greenfield completeness
+- implementation plan created
+- Codex operating rules captured for future chats
+- frontend platform and rendering stack decisions made
+- Vite app scaffolded at the workspace root
+- `shadcn/ui` initialized with Base UI in `base-nova` style
+- `components.json` and path aliases aligned to the workspace architecture
+- baseline lint, typecheck, unit test, build, and Playwright smoke test wiring added
+- canonical lesson, trace, frame, primitive, and verification contracts implemented in code
+- typed lesson registry and placeholder content lesson registry added
+- registry contract tests added and passing
+- first end-to-end lesson runtime path implemented with loader, trace, projector, verification, player state, code highlighting, and author review surfaces
+- Phase 3 verification gate passing for typecheck, lint, unit tests, and production build
+- primitive foundation completed: semantic tone mapping, shared primitive shell, shared SVG edge layer, deterministic tree and call-tree layouts, pointer chips, and stateless `ArrayView`, `StateView`, `StackView`, `HashMapView`, `TreeView`, `CallTreeView`, `CodeTraceView`, and `NarrationView` renderers
+- runtime shell now renders canonical primitives instead of the debug preview widget
+- primitive renderer tests added and passing
+- runtime verification completed: semantic/frame/code-line/pedagogical/viewport checks run before learner mode is shown
+- author review now surfaces frame checks and related verification issues instead of only aggregate counts
+- flagship binary-search focus mode is locked to a checked-in JSON golden under `content/lessons/binary-search/approaches/iterative/goldens`
+- binary-search projection was tightened so early frames and compare/decision frames now produce distinct learner-visible changes instead of relying on narration-only differences
+- shell refinement completed: the top slab is now a denser instrument bar, the stage reads as one dominant surface, and the docked context column is visually subordinate but still synchronized
+- responsive shell behavior was tightened so the top header and badges no longer collapse into broken narrow-column layouts on mobile-width screens
+
+## Immediate Next Step
+
+Begin Phase 7 from the plan:
+1. deepen author mode beyond counts and frame checks into event, diff, invariant, and narration-binding inspection
+2. make verification failures and broken contracts louder than plausible-looking visuals
+3. keep author inspection on the same runtime state rather than introducing a second state machine
+4. use the now-verified shell and runtime as the base for lesson auditing rather than inventing new author-only abstractions
+
+## Canonical Files
+
+Read these before making major changes:
+- `CODEX.md`
+- `docs/VISUALIZATION_FIRST_ARCHITECTURE.md`
+- `docs/PRIMITIVE_SYSTEM_SPEC.md`
+- `docs/RUNTIME_PLAYER_SPEC.md`
+- `docs/BOOTSTRAP_SPEC.md`
+- `docs/VISUALIZATION_CREATION_PROTOCOL.md`
+- `plans/IMPLEMENTATION_PLAN.md`

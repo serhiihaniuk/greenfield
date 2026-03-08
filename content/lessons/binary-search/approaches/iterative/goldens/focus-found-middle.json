@@ -1,0 +1,1167 @@
+{
+  "frames": [
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Initialize the low pointer at the start of the array.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": "—",
+              "lo": 0,
+              "mid": "—",
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Initialize the high pointer at the end of the array.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 0,
+              "mid": "—",
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "Check whether the search interval is still valid.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 0,
+              "mid": "—",
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Move the midpoint to index 2.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-2",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 0,
+              "mid": 2,
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-5",
+      "narrationSummary": "Compare nums[mid]=5 against target=7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-2",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 0,
+              "mid": 2,
+              "target": 7,
+              "value": 5
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-6",
+      "narrationSummary": "Decide which half to discard based on 5 < 7.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-6-decision",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "go right",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-0",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-2",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 0,
+              "mid": 2,
+              "target": 7,
+              "value": 5
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L10",
+      "id": "frame-7",
+      "narrationSummary": "Discard the left half through mid and move lo to 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "strong", "targetId": "cell-3", "tone": "mutated" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-2",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 3,
+              "mid": 2,
+              "target": 7,
+              "value": 5
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-8",
+      "narrationSummary": "Check whether the search interval is still valid.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 3,
+              "mid": "—",
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-9",
+      "narrationSummary": "Move the midpoint to index 4.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-4",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 3,
+              "mid": 4,
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-10",
+      "narrationSummary": "Compare nums[mid]=9 against target=7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-4",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 3,
+              "mid": 4,
+              "target": 7,
+              "value": 9
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-11",
+      "narrationSummary": "Decide which half to discard based on 9 < 7.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-11-decision",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "go left",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-5",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-4",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 5,
+              "lo": 3,
+              "mid": 4,
+              "target": 7,
+              "value": 9
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-12",
+      "narrationSummary": "Discard the right half through mid and move hi to 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "strong", "targetId": "cell-3", "tone": "mutated" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-3",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-4",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 3,
+              "lo": 3,
+              "mid": 4,
+              "target": 7,
+              "value": 9
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-13",
+      "narrationSummary": "Check whether the search interval is still valid.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 3,
+              "lo": 3,
+              "mid": "—",
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-14",
+      "narrationSummary": "Move the midpoint to index 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "strong", "targetId": "cell-3", "tone": "compare" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-3",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-3",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 3,
+              "lo": 3,
+              "mid": 3,
+              "target": 7,
+              "value": "—"
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-15",
+      "narrationSummary": "Compare nums[mid]=7 against target=7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "strong", "targetId": "cell-3", "tone": "found" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-3",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-3",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "—",
+              "hi": 3,
+              "lo": 3,
+              "mid": 3,
+              "target": 7,
+              "value": 7
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-16",
+      "narrationSummary": "The target is found at index 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [1, 3, 5, 7, 9, 11]
+          },
+          "highlights": [
+            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
+            { "emphasis": "strong", "targetId": "cell-3", "tone": "found" },
+            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
+            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+          ],
+          "id": "array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "lo",
+              "label": "lo",
+              "placement": "top-start",
+              "targetId": "cell-3",
+              "tone": "primary"
+            },
+            {
+              "id": "hi",
+              "label": "hi",
+              "placement": "top-end",
+              "targetId": "cell-3",
+              "tone": "secondary"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "placement": "bottom",
+              "targetId": "cell-3",
+              "tone": "compare"
+            }
+          ],
+          "title": "Search Interval",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": 3,
+              "hi": 3,
+              "lo": 3,
+              "mid": 3,
+              "target": 7,
+              "value": 7
+            }
+          },
+          "highlights": [],
+          "id": "state",
+          "kind": "state",
+          "pointers": [],
+          "title": "State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    { "codeLine": "L1", "id": "event-1", "type": "mutate" },
+    { "codeLine": "L2", "id": "event-2", "type": "mutate" },
+    { "codeLine": "L3", "id": "event-3", "type": "compare" },
+    { "codeLine": "L4", "id": "event-4", "type": "pointer-update" },
+    { "codeLine": "L6", "id": "event-5", "type": "compare" },
+    { "codeLine": "L9", "id": "event-6", "type": "compare" },
+    { "codeLine": "L10", "id": "event-7", "type": "pointer-update" },
+    { "codeLine": "L3", "id": "event-8", "type": "compare" },
+    { "codeLine": "L4", "id": "event-9", "type": "pointer-update" },
+    { "codeLine": "L6", "id": "event-10", "type": "compare" },
+    { "codeLine": "L9", "id": "event-11", "type": "compare" },
+    { "codeLine": "L12", "id": "event-12", "type": "pointer-update" },
+    { "codeLine": "L3", "id": "event-13", "type": "compare" },
+    { "codeLine": "L4", "id": "event-14", "type": "pointer-update" },
+    { "codeLine": "L6", "id": "event-15", "type": "compare" },
+    { "codeLine": "L7", "id": "event-16", "type": "result" },
+    { "codeLine": "L7", "id": "event-17", "type": "complete" }
+  ]
+}

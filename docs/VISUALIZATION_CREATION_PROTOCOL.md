@@ -1,0 +1,262 @@
+# Visualization Creation Protocol
+
+## Purpose
+
+This document defines the exact workflow for creating a new visualization lesson in this workspace.
+
+Use it when:
+- creating a new lesson from scratch
+- asking another AI to generate a lesson
+- turning the lesson workflow into a reusable skill
+
+The goal is low ambiguity.
+A lesson should not appear through ad hoc page edits or undocumented decisions.
+
+## What This Protocol Solves
+
+Architecture alone is not enough for reliable lesson creation.
+Another AI also needs:
+- defined inputs
+- exact files to create or update
+- required contracts
+- validation gates
+- a clear definition of done
+- validation gates for pedagogical integrity, not only algorithmic correctness
+
+This protocol provides that layer.
+
+A lesson is not complete just because the algorithm is correct.
+It must also be safe as a teaching artifact: no skipped learner-visible steps, no hidden state loss, and no overloaded frames.
+
+## Required Inputs
+
+A lesson creation request must provide or derive these fields:
+
+- `slug`
+- `title`
+- `problem type`
+- `primary confusion type`
+- `approach list`
+- `default approach`
+- `default visualization mode`
+- `at least 2 presets`
+- `code template per approach`
+- `required synchronized views`
+- `custom input format`
+
+If any are missing, the AI should infer them from the problem and write the assumptions into the lesson files.
+
+## Canonical Lesson Workflow
+
+1. Define the lesson.
+2. Define each approach.
+3. Define the semantic trace events.
+4. Define the projection into frames.
+5. Bind narration to frame state.
+6. Wire the lesson into the lesson registry.
+7. Run verification.
+8. Review in author mode.
+9. Expose in learner mode only after verification passes.
+
+## Files A New Lesson Must Create
+
+Assuming lesson slug `coin-change`, create these files:
+
+```txt
+content/lessons/coin-change/
+  lesson.ts
+  presets.ts
+  approaches/
+    memo-dfs/
+      code.ts
+      trace.ts
+      project.ts
+      verify.ts
+      notes.ts
+```
+
+Required meanings:
+- `lesson.ts` - top-level lesson definition and metadata
+- `presets.ts` - preset inputs
+- `code.ts` - learner-facing code template
+- `trace.ts` - semantic event generator
+- `project.ts` - event-to-frame projector
+- `verify.ts` - lesson-specific verification helpers
+- `notes.ts` - short pattern note and short supporting insights only
+
+## Files The AI May Also Need To Update
+
+```txt
+content/lessons/index.ts
+src/domains/lessons/registry.ts
+src/domains/lessons/types.ts
+src/domains/tracing/*
+src/domains/projection/*
+src/domains/verification/*
+```
+
+Only update shared contracts when the lesson genuinely requires a new reusable capability.
+Do not patch shared types for one-off page behavior.
+
+## Required Contract Sequence
+
+### Step 1: Lesson definition
+
+Create `lesson.ts` with:
+- lesson metadata
+- confusion type
+- default mode
+- viewport contract
+- approach references
+
+### Step 2: Code template
+
+Create `code.ts` for each approach.
+The code must be the canonical code the learner is expected to understand or write.
+
+### Step 3: Trace generator
+
+Create `trace.ts`.
+The trace must emit typed semantic events only.
+Do not emit visual instructions here.
+
+### Step 4: Projector
+
+Create `project.ts`.
+The projector maps semantic events to learner-visible frames.
+Each frame must:
+- point to a source event
+- point to a code line
+- declare one visual change type
+- produce primitive states
+- produce narration payload
+
+### Step 5: Verification
+
+Create `verify.ts`.
+This file checks:
+- semantic invariants
+- frame invariants
+- code-line mapping
+- one-visual-change compliance
+- state continuity and no-hidden-state-loss rules
+- lesson-specific correctness requirements
+- lesson-specific pedagogical integrity requirements
+
+### Step 6: Registration
+
+Add the lesson to the canonical lesson registry.
+Do not create hidden routes or hardcoded page lists.
+
+## One Visual Change Taxonomy
+
+Every learner-visible frame must declare exactly one of these step types:
+
+| Step Type | What Changes | Example |
+|-----------|-------------|---------|
+| `Move` | A pointer or frontier marker moves | `i` moves from index `2` to `3` |
+| `Compare` | Elements or states are checked against each other | `arr[mid]=5 < target=7` |
+| `Mutate` | The data structure or tracked state is modified | Push `3` onto stack |
+| `Result` | A result value is written, returned, or committed | `answer[0] = 3` |
+| `Enter` | A new frame or scope is entered | Push `dfs(4)` onto call stack |
+| `Exit` | A frame or scope completes | Pop a frame and mark subtree done |
+
+Rules:
+- one frame may declare only one step type
+- if two learner-visible changes happen, split them into two frames
+- if state changes ownership, the handoff must be visible
+- if a frame completes, the learner must still be able to see what finished and where control returned
+
+## Required Synchronized Views
+
+The AI must choose views from confusion type.
+
+### `pointer-state`
+
+Minimum:
+- primary sequence or array view
+- pointer labels
+- invariant or comparison state
+- code trace
+- narration
+
+### `stack-execution`
+
+Minimum:
+- primary structural or execution view
+- stack or frame view
+- code trace
+- narration
+
+### `memoization-reuse`
+
+Minimum:
+- call tree or focused execution tree
+- stack view
+- memo table
+- code trace
+- narration
+
+### `structural-mutation`
+
+Minimum:
+- primary structure view
+- mutation target emphasis
+- result state
+- code trace
+- narration
+
+## Rules The AI Must Follow
+
+- visualization-first, not prose-first
+- one visual change per step
+- every learner-visible step maps to a real code line
+- primitives are stateless renderers
+- semantic meaning must not live only in color or styling
+- focus mode is the default for hard lessons unless there is a stronger reason not to
+- desktop playback should avoid unnecessary scrolling on normal presets
+- if algorithmic correctness cannot be verified, the lesson is not done
+- if pedagogical integrity cannot be verified, the lesson is not done
+
+## Definition Of Done
+
+A new lesson is done only when all are true:
+
+- lesson files exist in the canonical content structure
+- lesson is registered through the canonical registry
+- semantic trace passes verification
+- frames pass one-visual-change verification
+- code-line mapping is valid
+- no required learner-visible micro-step is skipped
+- important state is never lost silently between adjacent frames
+- required synchronized views are present
+- custom input parsing works
+- normal presets are readable on desktop without unnecessary scrolling
+- author mode can explain why the lesson is correct and pedagogically safe
+
+## What Another AI Should Return
+
+If another AI is instructed to create a lesson through a skill, it should return:
+
+1. the created or modified file list
+2. the chosen confusion type
+3. the chosen synchronized views
+4. any assumptions it had to make
+5. verification status
+6. known gaps if verification is incomplete
+
+It should not return only prose or only a mockup.
+A lesson is an implemented, registered, and verified artifact.
+
+## Skill Conversion Guidance
+
+If this workflow is turned into a reusable skill, the skill should load:
+- `AGENTS.md`
+- `CODEX.md`
+- `PROJECT_CONTEXT.md`
+- `docs/VISUALIZATION_FIRST_ARCHITECTURE.md`
+- this file
+
+The skill should enforce the lesson workflow above and reject requests that skip verification or pedagogical integrity checks.
+
+

@@ -1,0 +1,34 @@
+import { describe, expect, it } from "vitest"
+
+import { createLessonPlayerStore } from "@/features/player/store"
+
+describe("lesson player store", () => {
+  it("loads the binary search lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("binary-search")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("binary-search")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
+  it("rebuilds from custom input without a page reload", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("binary-search")
+    store.getState().setRawInput(
+      JSON.stringify({
+        nums: [4, 8, 12, 16],
+        target: 16,
+      })
+    )
+    store.getState().applyCustomInput()
+
+    const state = store.getState()
+    expect(state.inputSource).toBe("custom")
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.currentFrameIndex).toBe(0)
+    expect(state.failure).toBeUndefined()
+  })
+})
