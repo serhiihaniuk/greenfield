@@ -29,3 +29,6 @@ test-results
 playwright-*.png
 phase*.png
 primitive-*.png
+
+# Local agent/editor config
+.claude/
