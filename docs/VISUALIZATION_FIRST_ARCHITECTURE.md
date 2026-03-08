@@ -643,6 +643,7 @@ Author mode should show:
 - invariant checks
 - pointer continuity checks
 - narration-bound values
+- direct navigation back to referenced or adjacent frames and events on the same runtime state
 - warning if more than one visual change occurred
 - warning if a material state element disappeared without an explicit visual handoff
 - warning if narration and visual change classify different learner-visible actions

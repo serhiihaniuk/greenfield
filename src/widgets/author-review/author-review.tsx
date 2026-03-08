@@ -2,6 +2,7 @@ import type { Frame } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import type { VerificationIssue, VerificationReport } from "@/domains/verification/types"
 import { Badge } from "@/shared/ui/badge"
+import { Button } from "@/shared/ui/button"
 import {
   Card,
   CardContent,
@@ -23,6 +24,10 @@ type AuthorReviewProps = {
   nextFrame?: Frame
   event?: TraceEvent
   verification?: VerificationReport
+  onInspectPreviousFrame?: () => void
+  onInspectNextFrame?: () => void
+  onJumpToFrameId?: (frameId: string) => void
+  onJumpToEventId?: (eventId: string) => void
 }
 
 function StatBadge({
@@ -78,11 +83,15 @@ function IssueList({
   emptyText,
   hiddenCount,
   title,
+  onJumpToFrameId,
+  onJumpToEventId,
 }: {
   issues: VerificationIssue[]
   emptyText: string
   hiddenCount: number
   title: string
+  onJumpToFrameId?: (frameId: string) => void
+  onJumpToEventId?: (eventId: string) => void
 }) {
   return (
     <div className="space-y-2">
@@ -107,10 +116,34 @@ function IssueList({
                 {issue.pedagogicalCheck ? (
                   <Badge variant="outline">{issue.pedagogicalCheck}</Badge>
                 ) : null}
+                {issue.frameId ? <Badge variant="outline">frame {issue.frameId}</Badge> : null}
+                {issue.eventId ? <Badge variant="outline">event {issue.eventId}</Badge> : null}
               </div>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                 {issue.message}
               </p>
+              {issue.frameId || issue.eventId ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {issue.frameId ? (
+                    <Button
+                      size="xs"
+                      variant="outline"
+                      onClick={() => onJumpToFrameId?.(issue.frameId!)}
+                    >
+                      Jump to frame
+                    </Button>
+                  ) : null}
+                  {issue.eventId ? (
+                    <Button
+                      size="xs"
+                      variant="outline"
+                      onClick={() => onJumpToEventId?.(issue.eventId!)}
+                    >
+                      Jump to event
+                    </Button>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           ))}
           {hiddenCount > 0 ? (
@@ -188,6 +221,10 @@ export function AuthorReview({
   nextFrame,
   event,
   verification,
+  onInspectPreviousFrame,
+  onInspectNextFrame,
+  onJumpToFrameId,
+  onJumpToEventId,
 }: AuthorReviewProps) {
   const issueSummary = collectRelatedIssues(verification, frame, event)
   const narrationBindings = summarizeNarrationBindings(frame, event)
@@ -222,6 +259,24 @@ export function AuthorReview({
             />
             <StatBadge label="change" value={frame?.visualChangeType ?? "-"} />
             <StatBadge label="code" value={frame?.codeLine ?? event?.codeLine ?? "-"} />
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              size="xs"
+              variant="outline"
+              onClick={onInspectPreviousFrame}
+              disabled={!previousFrame}
+            >
+              Inspect previous frame
+            </Button>
+            <Button
+              size="xs"
+              variant="outline"
+              onClick={onInspectNextFrame}
+              disabled={!nextFrame}
+            >
+              Inspect next frame
+            </Button>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <MetaItem label="event id" value={event?.id} />
@@ -406,12 +461,16 @@ export function AuthorReview({
             emptyText="No blocking issues are attached to this frame, event, or the global runtime report."
             hiddenCount={issueSummary.hiddenBlockingCount}
             title="Blocking Issues"
+            onJumpToFrameId={onJumpToFrameId}
+            onJumpToEventId={onJumpToEventId}
           />
           <IssueList
             issues={issueSummary.warnings}
             emptyText="No warnings are attached to this frame, event, or the global runtime report."
             hiddenCount={issueSummary.hiddenWarningCount}
             title="Warnings"
+            onJumpToFrameId={onJumpToFrameId}
+            onJumpToEventId={onJumpToEventId}
           />
         </CardContent>
       </Card>

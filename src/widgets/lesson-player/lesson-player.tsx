@@ -195,6 +195,28 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const blockingIssues = collectRelatedIssues(verification, activeFrame, activeEvent, 3)
   const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame?.codeLine)
 
+  const inspectFrameById = useCallback(
+    (frameId: string) => {
+      const frameIndex = frames.findIndex((candidate) => candidate.id === frameId)
+      if (frameIndex >= 0) {
+        scrubTo(frameIndex)
+      }
+    },
+    [frames, scrubTo]
+  )
+
+  const inspectEventById = useCallback(
+    (eventId: string) => {
+      const frameIndex = frames.findIndex(
+        (candidate) => candidate.sourceEventId === eventId
+      )
+      if (frameIndex >= 0) {
+        scrubTo(frameIndex)
+      }
+    },
+    [frames, scrubTo]
+  )
+
   useEffect(() => {
     initialize(lessonId)
   }, [initialize, lessonId])
@@ -438,6 +460,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 nextFrame={nextVisibleFrame}
                 event={activeEvent}
                 verification={verification}
+                onInspectPreviousFrame={previousFrame}
+                onInspectNextFrame={nextFrame}
+                onJumpToFrameId={inspectFrameById}
+                onJumpToEventId={inspectEventById}
               />
             </div>
           </div>
