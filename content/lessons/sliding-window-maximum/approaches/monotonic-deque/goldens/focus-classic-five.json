@@ -1,0 +1,5770 @@
+{
+  "frames": [
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Initialize an empty deque that will keep candidate indices in decreasing value order.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "default"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": "-",
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": "-",
+              "k": 3,
+              "result": "-"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Initialize the output list for completed window maximums.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "default"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": "-",
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": "-",
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "Advance to index 0 for the next window transition.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": 1,
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": 0,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Move the focus to nums[0] = 1.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-4-current",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "current",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": 1,
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": 0,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-5",
+      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": 1,
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": 0,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-6",
+      "narrationSummary": "Push index 0 so it can compete in later windows.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-6-push",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-6-push",
+              "kind": "badge",
+              "targetId": "deque-0",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "mutated"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 1,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 0,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-7",
+      "narrationSummary": "The window is not full yet, so do not emit an output.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 1,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 0,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-8",
+      "narrationSummary": "Advance to index 1 for the next window transition.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 3,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-9",
+      "narrationSummary": "Move the focus to nums[1] = 3.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-9-current",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "current",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 3,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-10",
+      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-10-front-check",
+              "kind": "badge",
+              "targetId": "deque-0",
+              "text": "front",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 3,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-11",
+      "narrationSummary": "Deque back index 0 is dominated by 3, so pop it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-11-compare-back",
+              "kind": "badge",
+              "targetId": "deque-0",
+              "text": "compare",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 1",
+                "id": "deque-0",
+                "label": "0"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-0",
+              "tone": "compare"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 0,
+              "current": 3,
+              "deque": "0",
+              "frontIdx": 0,
+              "frontVal": 1,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-12",
+      "narrationSummary": "Pop dominated index 0 from the deque back.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-12-pop-back",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "pop back",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": 3,
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-13",
+      "narrationSummary": "Push index 1 so it can compete in later windows.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-13-push",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-13-push",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "mutated"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": 3,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-14",
+      "narrationSummary": "The window is not full yet, so do not emit an output.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": 3,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 1,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-15",
+      "narrationSummary": "Advance to index 2 for the next window transition.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": -1,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-16",
+      "narrationSummary": "Move the focus to nums[2] = -1.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-16-current",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "current",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": -1,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-17",
+      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-17-front-check",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "front",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": -1,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-17",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-18",
+      "narrationSummary": "The deque back is larger than the current value, so it can stay as a candidate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-18-compare-back",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "compare",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "compare"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 1,
+              "current": -1,
+              "deque": "1",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-18",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-19",
+      "narrationSummary": "Push index 2 so it can compete in later windows.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-19-push",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-19-push",
+              "kind": "badge",
+              "targetId": "deque-2",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "mutated"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -1,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-19",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-20",
+      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -1,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-20",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L13",
+      "id": "frame-21",
+      "narrationSummary": "Append 3 from deque front index 1 to the result.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-21-max",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "max 3",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "found"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-21-output",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "emit",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "found"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "max",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "success"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -1,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 2,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-21",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-22",
+      "narrationSummary": "Advance to index 3 for the next window transition.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -3,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-22",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-23",
+      "narrationSummary": "Move the focus to nums[3] = -3.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-23-current",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "current",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -3,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-23",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-24",
+      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-24-front-check",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "front",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -3,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-24",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-25",
+      "narrationSummary": "The deque back is larger than the current value, so it can stay as a candidate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-25-compare-back",
+              "kind": "badge",
+              "targetId": "deque-2",
+              "text": "compare",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "compare"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": -3,
+              "deque": "1 -> 2",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-25",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-26",
+      "narrationSummary": "Push index 3 so it can compete in later windows.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-26-push",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-26-push",
+              "kind": "badge",
+              "targetId": "deque-3",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "deque-3",
+              "tone": "mutated"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": -3,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-26",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-27",
+      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": -3,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-27",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L13",
+      "id": "frame-28",
+      "narrationSummary": "Append 3 from deque front index 1 to the result.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-28-max",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "max 3",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "found"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-28-output",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "emit",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "found"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "max",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "success"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": -3,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 3,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-28",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-29",
+      "narrationSummary": "Advance to index 4 for the next window transition.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-29",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-30",
+      "narrationSummary": "Move the focus to nums[4] = 5.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-30-current",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "current",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "active"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-30",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-31",
+      "narrationSummary": "Deque front index 1 is stale, so it must leave the window.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-31-front-check",
+              "kind": "badge",
+              "targetId": "deque-1",
+              "text": "front",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 3",
+                "id": "deque-1",
+                "label": "1"
+              },
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-1",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "1 -> 2 -> 3",
+              "frontIdx": 1,
+              "frontVal": 3,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-31",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-32",
+      "narrationSummary": "Remove stale index 1 from the deque front.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-32-stale",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "stale",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "error"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-2",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "2 -> 3",
+              "frontIdx": 2,
+              "frontVal": -1,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-32",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-33",
+      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-33-front-check",
+              "kind": "badge",
+              "targetId": "deque-2",
+              "text": "front",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "normal",
+              "targetId": "deque-3",
+              "tone": "default"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-2",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "2 -> 3",
+              "frontIdx": 2,
+              "frontVal": -1,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-33",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-34",
+      "narrationSummary": "Deque back index 3 is dominated by 5, so pop it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-34-compare-back",
+              "kind": "badge",
+              "targetId": "deque-3",
+              "text": "compare",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              },
+              {
+                "detail": "val -3",
+                "id": "deque-3",
+                "label": "3"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "deque-3",
+              "tone": "compare"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-2",
+              "tone": "primary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-3",
+              "tone": "secondary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 3,
+              "current": 5,
+              "deque": "2 -> 3",
+              "frontIdx": 2,
+              "frontVal": -1,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-34",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-35",
+      "narrationSummary": "Pop dominated index 3 from the deque back.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-35-pop-back",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "pop back",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": 5,
+              "deque": "2",
+              "frontIdx": 2,
+              "frontVal": -1,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-35",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-36",
+      "narrationSummary": "Deque back index 2 is dominated by 5, so pop it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-36-compare-back",
+              "kind": "badge",
+              "targetId": "deque-2",
+              "text": "compare",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val -1",
+                "id": "deque-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-2",
+              "tone": "compare"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 2,
+              "current": 5,
+              "deque": "2",
+              "frontIdx": 2,
+              "frontVal": -1,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-36",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-37",
+      "narrationSummary": "Pop dominated index 2 from the deque back.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-37-pop-back",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "pop back",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": "-",
+              "current": 5,
+              "deque": "-",
+              "frontIdx": "-",
+              "frontVal": "-",
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-37",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-38",
+      "narrationSummary": "Push index 4 so it can compete in later windows.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-38-push",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "mutated"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-38-push",
+              "kind": "badge",
+              "targetId": "deque-4",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 5",
+                "id": "deque-4",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-4",
+              "tone": "mutated"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 4,
+              "current": 5,
+              "deque": "4",
+              "frontIdx": 4,
+              "frontVal": 5,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-38",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L12",
+      "id": "frame-39",
+      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 5",
+                "id": "deque-4",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 4,
+              "current": 5,
+              "deque": "4",
+              "frontIdx": 4,
+              "frontVal": 5,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-39",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L13",
+      "id": "frame-40",
+      "narrationSummary": "Append 5 from deque front index 4 to the result.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-40-max",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "max 5",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "found"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-40-output",
+              "kind": "badge",
+              "targetId": "deque-4",
+              "text": "emit",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 5",
+                "id": "deque-4",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-4",
+              "tone": "found"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "max",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-4",
+              "tone": "success"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 4,
+              "current": 5,
+              "deque": "4",
+              "frontIdx": 4,
+              "frontVal": 5,
+              "index": 4,
+              "k": 3,
+              "result": "3, 3, 5"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-40",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-41",
+      "narrationSummary": "Every index has been processed, so the output list is complete.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "default"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "val 5",
+                "id": "deque-4",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 4,
+              "current": "-",
+              "deque": "4",
+              "frontIdx": 4,
+              "frontVal": 5,
+              "index": "-",
+              "k": 3,
+              "result": "3, 3, 5"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-41",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L16",
+      "id": "frame-42",
+      "narrationSummary": "Return the completed maxima list [3, 3, 5].",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-42-return",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "return",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              1,
+              3,
+              -1,
+              -3,
+              5
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "default"
+            }
+          ],
+          "id": "window-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Sliding Window",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-42-return",
+              "kind": "badge",
+              "targetId": "deque-4",
+              "text": "return",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "detail": "val 5",
+                "id": "deque-4",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "deque-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "monotonic-deque",
+          "kind": "sequence",
+          "pointers": [
+            {
+              "id": "deque-front",
+              "label": "front",
+              "placement": "top",
+              "priority": 1,
+              "status": "active",
+              "targetId": "deque-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Monotonic Deque",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "backIdx": 4,
+              "current": "-",
+              "deque": "4",
+              "frontIdx": 4,
+              "frontVal": 5,
+              "index": "-",
+              "k": 3,
+              "result": "3, 3, 5"
+            }
+          },
+          "highlights": [],
+          "id": "window-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Window State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-42",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-5",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-6",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-7",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-8",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-9",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-10",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-11",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-12",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-13",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-14",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-15",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-16",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-17",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-18",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-19",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-20",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L13",
+      "id": "event-21",
+      "type": "result"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-22",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-23",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-24",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-25",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-26",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-27",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L13",
+      "id": "event-28",
+      "type": "result"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-29",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-30",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-31",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-32",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-33",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-34",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-35",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-36",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-37",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-38",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-39",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L13",
+      "id": "event-40",
+      "type": "result"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-41",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L16",
+      "id": "event-42",
+      "type": "result"
+    },
+    {
+      "codeLine": "L16",
+      "id": "event-43",
+      "type": "complete"
+    }
+  ]
+}

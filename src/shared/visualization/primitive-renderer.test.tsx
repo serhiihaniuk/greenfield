@@ -8,6 +8,7 @@ import {
   defineNarrationPrimitiveFrameState,
   defineArrayPrimitiveFrameState,
   defineQueuePrimitiveFrameState,
+  defineSequencePrimitiveFrameState,
   defineStackPrimitiveFrameState,
   defineStatePrimitiveFrameState,
   defineTreePrimitiveFrameState,
@@ -98,7 +99,45 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("5")).toBeInTheDocument()
   })
 
-  it("renders stack, queue, hash-map, tree, graph, call-tree, code-trace, and narration primitives", () => {
+  it("renders sequence, stack, queue, hash-map, tree, graph, call-tree, code-trace, and narration primitives", () => {
+    const sequencePrimitive = defineSequencePrimitiveFrameState({
+      id: "sequence",
+      kind: "sequence",
+      title: "Monotonic Deque",
+      data: {
+        leadingLabel: "front",
+        trailingLabel: "back",
+        items: [
+          { id: "d1", label: "1", detail: "val 3" },
+          { id: "d2", label: "4", detail: "val 5" },
+        ],
+      },
+      pointers: [
+        {
+          id: "front",
+          targetId: "d1",
+          label: "max",
+          tone: "success",
+          placement: "top",
+        },
+      ],
+      highlights: [
+        {
+          targetId: "d2",
+          tone: "candidate",
+          emphasis: "strong",
+        },
+      ],
+      annotations: [
+        {
+          id: "push",
+          targetId: "d2",
+          kind: "badge",
+          text: "push",
+          tone: "active",
+        },
+      ],
+    })
     const stackPrimitive = defineStackPrimitiveFrameState({
       id: "stack",
       kind: "stack",
@@ -214,6 +253,7 @@ describe("PrimitiveRenderer", () => {
 
     render(
       <div>
+        <PrimitiveRenderer primitive={sequencePrimitive} />
         <PrimitiveRenderer primitive={stackPrimitive} />
         <PrimitiveRenderer primitive={queuePrimitive} />
         <PrimitiveRenderer primitive={hashMapPrimitive} />
@@ -225,6 +265,7 @@ describe("PrimitiveRenderer", () => {
       </div>
     )
 
+    expect(screen.getByText("Monotonic Deque")).toBeInTheDocument()
     expect(screen.getByText("Call Stack")).toBeInTheDocument()
     expect(screen.getByText("Frontier")).toBeInTheDocument()
     expect(screen.getByText("Memo")).toBeInTheDocument()
@@ -234,10 +275,12 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getAllByText("Code Trace")).toHaveLength(1)
     expect(screen.getByText("Narration")).toBeInTheDocument()
     expect(screen.getByText("dfs(3)")).toBeInTheDocument()
-    expect(screen.getByText("front")).toBeInTheDocument()
+    expect(screen.getAllByText("front").length).toBeGreaterThan(0)
     expect(screen.getAllByText("A").length).toBeGreaterThan(1)
     expect(screen.getByText("?")).toBeInTheDocument()
     expect(screen.getByText("return mid")).toBeInTheDocument()
+    expect(screen.getByText("val 5")).toBeInTheDocument()
+    expect(screen.getByText("push")).toBeInTheDocument()
   })
 
   it("produces deterministic structural and execution tree layouts", () => {

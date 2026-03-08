@@ -71,6 +71,18 @@ function summarizePrimitiveData(primitive: PrimitiveFrameState) {
           primitive.data as { cells: Array<{ value: string | number }> }
         ).cells.map((cell) => cell.value),
       }
+    case "sequence":
+      return {
+        items: (
+          primitive.data as {
+            items: Array<{ id: string; label: string; detail?: string }>
+          }
+        ).items.map((item) => ({
+          id: item.id,
+          label: item.label,
+          detail: item.detail,
+        })),
+      }
     case "state":
       return {
         values: Object.fromEntries(

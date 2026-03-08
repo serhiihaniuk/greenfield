@@ -34,6 +34,37 @@ export function defineArrayPrimitiveFrameState(
   }) as ArrayPrimitiveFrameState
 }
 
+export const sequenceItemSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  detail: z.string().optional(),
+})
+
+export type SequenceItem = z.infer<typeof sequenceItemSchema>
+
+export const sequencePrimitiveDataSchema = z.object({
+  items: z.array(sequenceItemSchema),
+  leadingLabel: z.string().optional(),
+  trailingLabel: z.string().optional(),
+})
+
+export type SequencePrimitiveData = z.infer<typeof sequencePrimitiveDataSchema>
+
+export type SequencePrimitiveFrameState =
+  PrimitiveFrameState<SequencePrimitiveData> & {
+    kind: "sequence"
+  }
+
+export function defineSequencePrimitiveFrameState(
+  state: SequencePrimitiveFrameState
+): SequencePrimitiveFrameState {
+  const data = sequencePrimitiveDataSchema.parse(state.data)
+  return definePrimitiveFrameState({
+    ...state,
+    data,
+  }) as SequencePrimitiveFrameState
+}
+
 export const stateValueSchema = z.object({
   label: z.string().min(1),
   value: z.union([z.string(), z.number()]),

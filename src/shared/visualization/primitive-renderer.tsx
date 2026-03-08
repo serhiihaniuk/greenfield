@@ -6,6 +6,7 @@ import type {
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
   QueuePrimitiveFrameState,
+  SequencePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
   TreePrimitiveFrameState,
@@ -23,6 +24,7 @@ import { GraphView } from "@/shared/visualization/views/graph-view"
 import { HashMapView } from "@/shared/visualization/views/hash-map-view"
 import { NarrationView } from "@/shared/visualization/views/narration-view"
 import { QueueView } from "@/shared/visualization/views/queue-view"
+import { SequenceView } from "@/shared/visualization/views/sequence-view"
 import { StackView } from "@/shared/visualization/views/stack-view"
 import { StateView } from "@/shared/visualization/views/state-view"
 import { TreeView } from "@/shared/visualization/views/tree-view"
@@ -38,6 +40,11 @@ export function PrimitiveRenderer({ primitive, role }: PrimitiveRendererProps) {
   switch (primitive.kind) {
     case "array":
       content = <ArrayView primitive={primitive as ArrayPrimitiveFrameState} />
+      break
+    case "sequence":
+      content = (
+        <SequenceView primitive={primitive as SequencePrimitiveFrameState} />
+      )
       break
     case "state":
       content = <StateView primitive={primitive as StatePrimitiveFrameState} />

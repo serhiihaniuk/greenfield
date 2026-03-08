@@ -13,6 +13,7 @@ import type {
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
   QueuePrimitiveFrameState,
+  SequencePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
   TreePrimitiveFrameState,
@@ -80,6 +81,12 @@ function collectPrimitiveTargetIds(
       return new Set(
         (primitive as ArrayPrimitiveFrameState).data.cells.map(
           (cell) => cell.id
+        )
+      )
+    case "sequence":
+      return new Set(
+        (primitive as SequencePrimitiveFrameState).data.items.map(
+          (item) => item.id
         )
       )
     case "state":

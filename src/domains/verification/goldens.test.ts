@@ -11,6 +11,7 @@ import { binarySearchLesson } from "../../../content/lessons/binary-search/lesso
 import { graphBfsLesson } from "../../../content/lessons/graph-bfs/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
+import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
 
 describe("runtime goldens", () => {
   it("matches the checked-in binary-search focus golden", () => {
@@ -132,6 +133,39 @@ describe("runtime goldens", () => {
         path.resolve(
           process.cwd(),
           "content/lessons/maximum-depth/approaches/recursive-dfs/goldens/focus-balanced-five.json"
+        ),
+        "utf8"
+      )
+    ) as RuntimeGoldenSnapshot
+
+    const comparison = compareRuntimeGoldenSnapshots(actual, expected)
+
+    expect(comparison.matches).toBe(true)
+    expect(comparison.differences).toEqual([])
+  })
+
+  it("matches the checked-in sliding-window-maximum focus golden", () => {
+    const approach = slidingWindowMaximumLesson.approaches[0]
+    const preset = approach?.presets.find(
+      (entry) => entry.id === "classic-five"
+    )
+
+    if (!approach || !preset) {
+      throw new Error("Sliding window maximum golden fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: slidingWindowMaximumLesson,
+      approach,
+      mode: "focus",
+      rawInput: preset.rawInput,
+    })
+    const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
+    const expected = JSON.parse(
+      readFileSync(
+        path.resolve(
+          process.cwd(),
+          "content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens/focus-classic-five.json"
         ),
         "utf8"
       )

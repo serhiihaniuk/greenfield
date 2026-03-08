@@ -47,6 +47,17 @@ describe("lesson player store", () => {
     expect(state.failure).toBeUndefined()
   })
 
+  it("loads the sliding window maximum lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("sliding-window-maximum")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("sliding-window-maximum")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
   it("rebuilds from custom input without a page reload", () => {
     const store = createLessonPlayerStore()
     store.getState().initialize("binary-search")
