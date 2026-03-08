@@ -47,6 +47,17 @@ describe("lesson player store", () => {
     expect(state.failure).toBeUndefined()
   })
 
+  it("loads the heap top-k lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("heap-top-k")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("heap-top-k")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
   it("loads the maximum depth lesson end to end", () => {
     const store = createLessonPlayerStore()
     store.getState().initialize("maximum-depth")

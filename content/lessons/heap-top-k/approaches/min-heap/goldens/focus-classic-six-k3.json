@@ -1,0 +1,4008 @@
+{
+  "frames": [
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Start with an empty min-heap that will hold only the current top k values.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "default"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[]",
+              "i": "-",
+              "k": 3,
+              "num": "-",
+              "size": 0,
+              "threshold": "-",
+              "topK": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Scan nums[0] = 5.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "num-0",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[]",
+              "i": 0,
+              "k": 3,
+              "num": 5,
+              "size": 0,
+              "threshold": "-",
+              "topK": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "The heap has room because size 0 is still below k = 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-3-room",
+              "kind": "badge",
+              "targetId": "num-0",
+              "text": "room",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "num-0",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[]",
+              "i": 0,
+              "k": 3,
+              "num": 5,
+              "size": 0,
+              "threshold": "-",
+              "topK": "[]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Push 5 into the heap as a new top-k candidate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "push",
+                "id": "slot-0",
+                "label": "5",
+                "status": "found"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-4-push",
+              "kind": "badge",
+              "targetId": "num-0",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "num-0",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5]",
+              "i": 0,
+              "k": 3,
+              "num": 5,
+              "size": 1,
+              "threshold": 5,
+              "topK": "[5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-5",
+      "narrationSummary": "Scan nums[1] = 1.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-1",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5]",
+              "i": 1,
+              "k": 3,
+              "num": 1,
+              "size": 1,
+              "threshold": 5,
+              "topK": "[5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-6",
+      "narrationSummary": "The heap has room because size 1 is still below k = 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-6-room",
+              "kind": "badge",
+              "targetId": "num-1",
+              "text": "room",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5]",
+              "i": 1,
+              "k": 3,
+              "num": 1,
+              "size": 1,
+              "threshold": 5,
+              "topK": "[5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-7",
+      "narrationSummary": "Push 1 into the heap as a new top-k candidate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              },
+              {
+                "annotation": "push",
+                "id": "slot-1",
+                "label": "1",
+                "parentId": "slot-0",
+                "status": "found"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-7-push",
+              "kind": "badge",
+              "targetId": "num-1",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-1",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 1]",
+              "i": 1,
+              "k": 3,
+              "num": 1,
+              "size": 2,
+              "threshold": 5,
+              "topK": "[5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-8",
+      "narrationSummary": "1 is smaller than parent 5, so bubble it up.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "parent",
+                "id": "slot-0",
+                "label": "5",
+                "status": "active"
+              },
+              {
+                "annotation": "child",
+                "id": "slot-1",
+                "label": "1",
+                "parentId": "slot-0",
+                "status": "active"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-1",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 1]",
+              "i": 1,
+              "k": 3,
+              "num": 1,
+              "size": 2,
+              "threshold": 5,
+              "topK": "[5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-9",
+      "narrationSummary": "Swap heap slots 0 and 1 to restore min-heap order.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "up",
+                "id": "slot-0",
+                "label": "1",
+                "status": "found"
+              },
+              {
+                "annotation": "down",
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "found"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-1",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5]",
+              "i": 1,
+              "k": 3,
+              "num": 1,
+              "size": 2,
+              "threshold": 1,
+              "topK": "[5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-10",
+      "narrationSummary": "Scan nums[2] = 9.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-2",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5]",
+              "i": 2,
+              "k": 3,
+              "num": 9,
+              "size": 2,
+              "threshold": 1,
+              "topK": "[5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-11",
+      "narrationSummary": "The heap has room because size 2 is still below k = 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-11-room",
+              "kind": "badge",
+              "targetId": "num-2",
+              "text": "room",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5]",
+              "i": 2,
+              "k": 3,
+              "num": 9,
+              "size": 2,
+              "threshold": 1,
+              "topK": "[5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-12",
+      "narrationSummary": "Push 9 into the heap as a new top-k candidate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "annotation": "push",
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "found"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-12-push",
+              "kind": "badge",
+              "targetId": "num-2",
+              "text": "push",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-2",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5, 9]",
+              "i": 2,
+              "k": 3,
+              "num": 9,
+              "size": 3,
+              "threshold": 1,
+              "topK": "[9, 5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-13",
+      "narrationSummary": "9 is not smaller than parent 1, so the min-heap order already holds.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "parent",
+                "id": "slot-0",
+                "label": "1",
+                "status": "active"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "annotation": "child",
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "active"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-2",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5, 9]",
+              "i": 2,
+              "k": 3,
+              "num": 9,
+              "size": 3,
+              "threshold": 1,
+              "topK": "[9, 5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-14",
+      "narrationSummary": "Scan nums[3] = 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-3",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5, 9]",
+              "i": 3,
+              "k": 3,
+              "num": 3,
+              "size": 3,
+              "threshold": 1,
+              "topK": "[9, 5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-15",
+      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-15-room",
+              "kind": "badge",
+              "targetId": "num-3",
+              "text": "full",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-3",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5, 9]",
+              "i": 3,
+              "k": 3,
+              "num": 3,
+              "size": 3,
+              "threshold": 1,
+              "topK": "[9, 5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-16",
+      "narrationSummary": "3 beats the root threshold 1, so it enters the top-k set.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 1",
+                "id": "slot-0",
+                "label": "1",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-3",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[1, 5, 9]",
+              "i": 3,
+              "k": 3,
+              "num": 3,
+              "size": 3,
+              "threshold": 1,
+              "topK": "[9, 5, 1]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-17",
+      "narrationSummary": "Replace heap root 1 with 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "drop 1",
+                "id": "slot-0",
+                "label": "3",
+                "status": "found"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-17-replace",
+              "kind": "badge",
+              "targetId": "num-3",
+              "text": "replace",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[3, 5, 9]",
+              "i": 3,
+              "k": 3,
+              "num": 3,
+              "size": 3,
+              "threshold": 3,
+              "topK": "[9, 5, 3]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-17",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-18",
+      "narrationSummary": "Parent 3 is already below its smaller child 5, so the heap is restored.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "parent",
+                "id": "slot-0",
+                "label": "3",
+                "status": "active"
+              },
+              {
+                "annotation": "child",
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "active"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-3",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[3, 5, 9]",
+              "i": 3,
+              "k": 3,
+              "num": 3,
+              "size": 3,
+              "threshold": 3,
+              "topK": "[9, 5, 3]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-18",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-19",
+      "narrationSummary": "Scan nums[4] = 7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 3",
+                "id": "slot-0",
+                "label": "3",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[3, 5, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 3,
+              "topK": "[9, 5, 3]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-19",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-20",
+      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 3",
+                "id": "slot-0",
+                "label": "3",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-20-room",
+              "kind": "badge",
+              "targetId": "num-4",
+              "text": "full",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[3, 5, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 3,
+              "topK": "[9, 5, 3]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-20",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-21",
+      "narrationSummary": "7 beats the root threshold 3, so it enters the top-k set.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 3",
+                "id": "slot-0",
+                "label": "3",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[3, 5, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 3,
+              "topK": "[9, 5, 3]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-21",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-22",
+      "narrationSummary": "Replace heap root 3 with 7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "drop 3",
+                "id": "slot-0",
+                "label": "7",
+                "status": "found"
+              },
+              {
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-22-replace",
+              "kind": "badge",
+              "targetId": "num-4",
+              "text": "replace",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[7, 5, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 7,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-22",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-23",
+      "narrationSummary": "The smaller child 5 is below parent 7, so sift the replacement down.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "parent",
+                "id": "slot-0",
+                "label": "7",
+                "status": "active"
+              },
+              {
+                "annotation": "child",
+                "id": "slot-1",
+                "label": "5",
+                "parentId": "slot-0",
+                "status": "active"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[7, 5, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 7,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-23",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-24",
+      "narrationSummary": "Swap parent slot 0 with child slot 1 during sift-down.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "down",
+                "id": "slot-0",
+                "label": "5",
+                "status": "found"
+              },
+              {
+                "annotation": "up",
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "found"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-4",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "dim"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 7, 9]",
+              "i": 4,
+              "k": 3,
+              "num": 7,
+              "size": 3,
+              "threshold": 5,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-24",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-25",
+      "narrationSummary": "Scan nums[5] = 8.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "active"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 7, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 5,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-25",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-26",
+      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-26-room",
+              "kind": "badge",
+              "targetId": "num-5",
+              "text": "full",
+              "tone": "muted"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "compare"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 7, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 5,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-26",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-27",
+      "narrationSummary": "8 beats the root threshold 5, so it enters the top-k set.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "min 5",
+                "id": "slot-0",
+                "label": "5",
+                "status": "default"
+              },
+              {
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "compare"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[5, 7, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 5,
+              "topK": "[9, 7, 5]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-27",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-28",
+      "narrationSummary": "Replace heap root 5 with 8.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "drop 5",
+                "id": "slot-0",
+                "label": "8",
+                "status": "found"
+              },
+              {
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "default"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [
+            {
+              "id": "event-28-replace",
+              "kind": "badge",
+              "targetId": "num-5",
+              "text": "replace",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "mutated"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[8, 7, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 8,
+              "topK": "[9, 8, 7]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-28",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-29",
+      "narrationSummary": "The smaller child 7 is below parent 8, so sift the replacement down.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "parent",
+                "id": "slot-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "annotation": "child",
+                "id": "slot-1",
+                "label": "7",
+                "parentId": "slot-0",
+                "status": "active"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "active"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[8, 7, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 8,
+              "topK": "[9, 8, 7]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-29",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-30",
+      "narrationSummary": "Swap parent slot 0 with child slot 1 during sift-down.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "down",
+                "id": "slot-0",
+                "label": "7",
+                "status": "found"
+              },
+              {
+                "annotation": "up",
+                "id": "slot-1",
+                "label": "8",
+                "parentId": "slot-0",
+                "status": "found"
+              },
+              {
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "default"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "num-5",
+              "tone": "active"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "scan-index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "num-5",
+              "tone": "primary"
+            }
+          ],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[7, 8, 9]",
+              "i": 5,
+              "k": 3,
+              "num": 8,
+              "size": 3,
+              "threshold": 7,
+              "topK": "[9, 8, 7]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-30",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L11",
+      "id": "frame-31",
+      "narrationSummary": "Return the top-k values [9, 8, 7] in descending order.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "threshold",
+                "id": "slot-0",
+                "label": "7",
+                "status": "done"
+              },
+              {
+                "annotation": "top 8",
+                "id": "slot-1",
+                "label": "8",
+                "parentId": "slot-0",
+                "status": "done"
+              },
+              {
+                "annotation": "top 9",
+                "id": "slot-2",
+                "label": "9",
+                "parentId": "slot-0",
+                "status": "done"
+              }
+            ],
+            "rootId": "slot-0"
+          },
+          "highlights": [],
+          "id": "min-heap",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Min Heap",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              5,
+              1,
+              9,
+              3,
+              7,
+              8
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "num-0",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-1",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-2",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-3",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-4",
+              "tone": "default"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "num-5",
+              "tone": "default"
+            }
+          ],
+          "id": "input-array",
+          "kind": "array",
+          "pointers": [],
+          "title": "Input Scan",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "heap": "[7, 8, 9]",
+              "i": "-",
+              "k": 3,
+              "num": "-",
+              "size": 3,
+              "threshold": 7,
+              "topK": "[9, 8, 7]"
+            }
+          },
+          "highlights": [],
+          "id": "heap-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Top-K State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-31",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-5",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-6",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-7",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-8",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-9",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-10",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-11",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-12",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-13",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-14",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-15",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-16",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-17",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-18",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-19",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-20",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-21",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-22",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-23",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-24",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-25",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-26",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-27",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-28",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-29",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-30",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-31",
+      "type": "result"
+    },
+    {
+      "codeLine": "L11",
+      "id": "event-32",
+      "type": "complete"
+    }
+  ]
+}

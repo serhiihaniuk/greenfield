@@ -150,15 +150,16 @@ Completed so far:
 - Phase 8 now includes a frontier-traversal flagship lesson: Graph BFS Frontier is implemented as a registered, verified queue-based BFS lesson with graph, queue, and traversal-state views plus a checked-in focus golden under `content/lessons/graph-bfs/approaches/queue-bfs/goldens`
 - Phase 8 now includes a dense-window flagship lesson: Sliding Window Maximum is implemented as a registered, verified monotonic-deque lesson with array, sequence, and window-state views plus a checked-in focus golden under `content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens`
 - Phase 8 now includes a memoization flagship lesson: Coin Change Memo DFS is implemented as a registered, verified memoized recursion lesson with call-tree, call-stack, and memo-table views plus a checked-in focus golden under `content/lessons/coin-change/approaches/memo-dfs/goldens`
+- Phase 8 now includes a priority-structure flagship lesson: Heap Top K is implemented as a registered, verified min-heap lesson with heap tree, input scan, and threshold state views plus a checked-in focus golden under `content/lessons/heap-top-k/approaches/min-heap/goldens`
 
 ## Immediate Next Step
 
 Continue Phase 8 from the plan:
 
 1. add the next flagship lesson that exercises a remaining confusion family beyond memoization reuse, recursion, rolling state, and frontier traversal
-2. prioritize heap-based top-k or tree DFS traversal with an explicit call stack so the next lesson proves either priority-structure behavior or the remaining stack-execution lesson family in real content
+2. finish Phase 8 by adding the remaining explicit tree DFS traversal lesson with a visible call stack, since priority-structure is now covered by Heap Top K
 3. keep every new lesson on the same verification bar: runtime checks, lesson-specific verification, and checked-in JSON goldens
-4. use Coin Change, Sliding Window Maximum, House Robber, Maximum Depth, and Graph BFS as the templates for how new flagship lessons should be registered and hardened
+4. use Heap Top K, Coin Change, Sliding Window Maximum, House Robber, Maximum Depth, and Graph BFS as the templates for how new flagship lessons should be registered and hardened
 
 ## Canonical Files
 
