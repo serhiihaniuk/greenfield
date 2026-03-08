@@ -1,6 +1,14 @@
 import { cn } from "@/shared/lib/utils"
 
-function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
+type KbdProps = React.ComponentProps<"kbd"> & {
+  keys?: readonly string[]
+}
+
+type KbdGroupProps = React.ComponentProps<"div"> & {
+  shortcuts?: readonly (readonly string[])[]
+}
+
+function Kbd({ className, children, keys, ...props }: KbdProps) {
   return (
     <kbd
       data-slot="kbd"
@@ -9,17 +17,35 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
         className
       )}
       {...props}
-    />
+    >
+      {keys?.join(" + ") ?? children}
+    </kbd>
   )
 }
 
-function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
+function KbdGroup({
+  className,
+  children,
+  shortcuts,
+  ...props
+}: KbdGroupProps) {
   return (
-    <kbd
+    <span
       data-slot="kbd-group"
       className={cn("inline-flex items-center gap-1", className)}
       {...props}
-    />
+    >
+      {shortcuts
+        ? shortcuts.map((shortcut, index) => (
+            <span key={shortcut.join("-")} className="inline-flex items-center gap-1">
+              {index > 0 ? (
+                <span className="text-[10px] text-muted-foreground">/</span>
+              ) : null}
+              <Kbd keys={shortcut} />
+            </span>
+          ))
+        : children}
+    </span>
   )
 }
 

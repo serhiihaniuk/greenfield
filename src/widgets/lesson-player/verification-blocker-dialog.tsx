@@ -18,7 +18,7 @@ type VerificationBlockerDialogProps = {
   verification?: VerificationReport
   failure?: RuntimeFailure
   blockingIssues: VerificationIssue[]
-  onOpenAuthorMode: () => void
+  onOpenAuditMode: () => void
   onInspectInput: () => void
 }
 
@@ -27,7 +27,7 @@ export function VerificationBlockerDialog({
   verification,
   failure,
   blockingIssues,
-  onOpenAuthorMode,
+  onOpenAuditMode,
   onInspectInput,
 }: VerificationBlockerDialogProps) {
   return (
@@ -48,7 +48,7 @@ export function VerificationBlockerDialog({
             Verification Blocked
           </DialogTitle>
           <DialogDescription>
-            This lesson output still has blocking verification issues. Open author mode to inspect the same runtime state with frame diffs, narration bindings, issue filters, and the event timeline instead of relying on plausible visuals.
+            This lesson output still has blocking verification issues. Open lesson audit to inspect the same runtime state with frame diffs, narration bindings, issue filters, and the event timeline instead of relying on plausible visuals.
           </DialogDescription>
         </DialogHeader>
 
@@ -81,7 +81,7 @@ export function VerificationBlockerDialog({
             </div>
           ) : (
             <div className="rounded-lg border border-border/50 bg-background/60 p-3 text-sm text-muted-foreground">
-              Verification failed, but no frame-linked blocking issues were attached to the current summary. Open author mode for the full report.
+              Verification failed, but no frame-linked blocking issues were attached to the current summary. Open audit mode for the full report.
             </div>
           )}
         </div>
@@ -90,8 +90,8 @@ export function VerificationBlockerDialog({
           <Button size="sm" variant="outline" onClick={onInspectInput}>
             Inspect input
           </Button>
-          <Button size="sm" variant="secondary" onClick={onOpenAuthorMode}>
-            Open author mode
+          <Button size="sm" variant="secondary" onClick={onOpenAuditMode}>
+            Open audit mode
           </Button>
         </DialogFooter>
       </DialogContent>

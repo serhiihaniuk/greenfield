@@ -169,6 +169,9 @@ Completed so far:
 - Phase 9 now deepens the author audit workflow on the same runtime state: the drawer exposes an issue inbox with filters, a full frame-backed event timeline, and primitive-focus controls that highlight the matching live stage view
 - Phase 9 now completes the remaining blocker-shell audit: learner-mode verification failures render through the shared dialog shell instead of a custom overlay, while still forcing authors into the same runtime-backed inspection workflow
 - Phase 9 now restores a sharper shell contract: lightweight code-state panels stay beside narration and code in the left support column, while stacks, queues, memo tables, outputs, and other execution visuals render inside the right-stage composition with the primary visual
+- Phase 9 now introduces a command-driven shell pass: the lesson picker moved to a command palette trigger, hotkeys are defined through shared app commands instead of scattered callbacks, and the old learner-facing `Author` label is now presented as `Audit` to make the QA purpose explicit
+- Phase 9 now replaces the bare preset dropdown with a richer preset studio: verified scenarios open in a dedicated dialog with descriptions, input snapshots, sticky run actions, and an in-place path into custom input
+- shortcut presentation is now centralized through the shared `Kbd` contract, so combinations render as one chip like `Ctrl + K` while alternative bindings render as separate chips like `Left / A`
 
 ## Immediate Next Step
 

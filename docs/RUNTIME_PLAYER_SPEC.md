@@ -131,9 +131,16 @@ When custom input changes:
 5. rerun verification
 6. reset current frame index to `0`
 
+Preset selection and custom input should share one shell surface.
+The player should expose a dedicated preset studio dialog where the learner can:
+- inspect what makes each verified preset special before running it
+- compare lightweight input snapshots without leaving the player
+- jump from a verified preset into editable custom input
+- keep the primary action reachable through a sticky in-dialog action bar even when preset details are long
+
 ## Author Mode Contract
 
-Author mode is a runtime view over the same lesson state.
+Author mode, presented in-product as lesson audit, is a runtime QA view over the same lesson state.
 It must expose:
 - current frame index
 - current semantic event
@@ -148,6 +155,18 @@ It must expose:
 
 Author mode must not have a separate lesson state machine.
 It inspects the normal player state.
+
+## Command And Shortcut Contract
+
+The runtime shell should treat buttons, hotkeys, and the command palette as different inputs for the same command layer.
+
+That command layer should:
+- define shared action ids, labels, shortcuts, and enablement rules
+- gate shortcut execution with the same learner-mode and dialog-state rules as pointer controls
+- provide the same actions to the command palette and hotkey help surface
+- keep lesson, approach, preset, and mode switching reachable through the command palette instead of only through footer-local controls
+- keep preset selection reachable through the preset studio as well as direct command actions
+- store shortcut display data in a structured form so combinations and alternatives are rendered consistently by one shared `Kbd` component
 
 ## Runtime Error States
 

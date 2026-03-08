@@ -5,6 +5,38 @@ export async function selectFooterOption(
   label: string,
   option: string
 ) {
+  if (label === "Lesson") {
+    await page
+      .getByRole("button", { name: "Open task command palette" })
+      .click({ force: true })
+
+    const dialog = page.getByRole("dialog", { name: "Command Palette" })
+    await expect(dialog).toBeVisible()
+    await dialog.getByPlaceholder(/search tasks, playback, audit, and workspace actions/i).fill(option)
+    await dialog.getByText(option, { exact: true }).click()
+
+    await expect(dialog).toBeHidden()
+    return
+  }
+
+  if (label === "Preset") {
+    await page.getByRole("button", { name: "Open preset studio" }).click({ force: true })
+
+    const dialog = page.getByRole("dialog", { name: "Preset Studio" })
+    await expect(dialog).toBeVisible()
+    const input = dialog.getByPlaceholder(/search presets or jump to custom input/i)
+    await input.fill(option)
+    await input.press("Enter")
+    await dialog
+      .getByRole("button", { name: /run preset|active preset/i })
+      .evaluate((element) => {
+        ;(element as HTMLButtonElement).click()
+      })
+
+    await expect(dialog).toBeHidden()
+    return
+  }
+
   await page.getByRole("combobox", { name: label, exact: true }).click()
   await page.getByRole("option", { name: option, exact: true }).click()
 }
@@ -18,12 +50,12 @@ export async function applyCustomInput(page: Page, rawInput: string) {
   await openCustomInput(page)
   await customInputEditor(page).fill(rawInput)
   await customInputDialog(page)
-    .getByRole("button", { name: "Apply", exact: true })
+    .getByRole("button", { name: "Apply custom input", exact: true })
     .press("Enter")
 }
 
 export function customInputDialog(page: Page): Locator {
-  return page.getByRole("dialog", { name: "Custom Input", exact: true })
+  return page.getByRole("dialog", { name: "Preset Studio", exact: true })
 }
 
 export async function closeCustomInput(page: Page) {

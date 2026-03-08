@@ -26,6 +26,11 @@ async function renderApp() {
 
 describe("App", () => {
   beforeEach(() => {
+    Object.defineProperty(Element.prototype, "scrollIntoView", {
+      configurable: true,
+      value: vi.fn(),
+      writable: true,
+    })
     window.history.replaceState({}, "", "/")
     lessonPlayerStore.getState().initialize("binary-search")
   })
@@ -39,15 +44,29 @@ describe("App", () => {
     await renderApp()
 
     expect(await screen.findByRole("button", { name: /^play$/i })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: /open task command palette/i })).toBeInTheDocument()
   })
 
   it("opens custom input through the dialog shell", async () => {
     await renderApp()
 
-    fireEvent.click(screen.getByRole("button", { name: /custom input/i }))
+    fireEvent.click(screen.getByRole("button", { name: /open preset studio/i }))
+    fireEvent.click(screen.getByText("Custom input", { exact: true }))
 
-    expect(screen.getByRole("dialog", { name: /custom input/i })).toBeInTheDocument()
+    expect(screen.getByRole("dialog", { name: /preset studio/i })).toBeInTheDocument()
     expect(screen.getByLabelText(/custom input editor/i)).toBeInTheDocument()
+  })
+
+  it("shows preset descriptions inside the preset studio", async () => {
+    await renderApp()
+
+    fireEvent.click(screen.getByRole("button", { name: /open preset studio/i }))
+    fireEvent.click(screen.getByText("Not Found", { exact: true }))
+
+    expect(screen.getByText("What makes it special", { exact: true })).toBeInTheDocument()
+    expect(
+      screen.getAllByText(/The search exhausts the interval and returns -1/i).length
+    ).toBeGreaterThan(0)
   })
 
   it("renders the verification blocker through the dialog shell", async () => {
@@ -73,7 +92,7 @@ describe("App", () => {
       await screen.findByRole("dialog", { name: /verification blocked/i })
     ).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole("button", { name: /open author mode/i }))
+    fireEvent.click(screen.getByRole("button", { name: /open audit mode/i }))
 
     await waitFor(() => {
       expect(
