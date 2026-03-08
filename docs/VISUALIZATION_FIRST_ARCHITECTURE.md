@@ -116,6 +116,8 @@ It is not the visualization primitive system.
 ### Code rendering and narration
 
 - `Shiki` for syntax highlighting of learner-facing code templates
+- syntax highlighting should be loaded through a fine-grained lazy bundle instead of the default all-language client bundle
+- if a client language is not explicitly bundled for the current lesson set, code should fall back to readable plain text instead of bloating the runtime
 - custom line metadata for active line, waiting line, and returned-line emphasis
 - narration generated from frame-bound payloads, not ad hoc prose
 
@@ -613,6 +615,7 @@ Notes:
 - projection and verification should run fast enough for interactive custom input
 - primitives should avoid layout jank between adjacent steps
 - lesson playback should stay smooth on a common laptop without relying on canvas rendering
+- code highlighting must stay off the initial hot path when possible; the visualization runtime should still render usable plain code before async highlighting resolves
 
 ### Viewport behavior
 

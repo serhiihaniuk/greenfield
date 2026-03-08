@@ -1,55 +1,41 @@
-import { createHighlighter } from "shiki"
+import { createBundledHighlighter } from "shiki/core"
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript"
 
 import type { CodeLanguage, CodeTemplate } from "@/domains/lessons/types"
+import {
+  buildPlainCodePresentation,
+  DEFAULT_CODE_BACKGROUND,
+  DEFAULT_CODE_FOREGROUND,
+  type CodePresentation,
+} from "@/features/player/code-presentation"
 
-type HighlightToken = {
-  content: string
-  color?: string
-  fontStyle?: number
-}
-
-export interface CodePresentationLine {
-  id: string
-  lineNumber: number
-  text: string
-  highlightable?: boolean
-  tokens: HighlightToken[]
-}
-
-export interface CodePresentation {
-  lines: CodePresentationLine[]
-  background: string
-  foreground: string
-  themeName: string
-}
+const createCodeHighlighter = createBundledHighlighter({
+  langs: {
+    ts: () => import("@shikijs/langs/typescript"),
+  },
+  themes: {
+    "github-dark": () => import("@shikijs/themes/github-dark"),
+  },
+  engine: () => createJavaScriptRegexEngine(),
+})
 
 let highlighterPromise:
-  | ReturnType<typeof createHighlighter>
+  | ReturnType<typeof createCodeHighlighter>
   | undefined
 
 function toShikiLanguage(language: CodeLanguage) {
   switch (language) {
     case "typescript":
       return "ts"
-    case "javascript":
-      return "js"
-    case "python":
-      return "python"
-    case "java":
-      return "java"
-    case "cpp":
-      return "cpp"
-    case "go":
-      return "go"
     default:
-      return "txt"
+      return null
   }
 }
 
 async function getHighlighter() {
-  highlighterPromise ??= createHighlighter({
+  highlighterPromise ??= createCodeHighlighter({
     themes: ["github-dark"],
-    langs: ["ts", "js", "python", "java", "cpp", "go", "txt"],
+    langs: ["ts"],
   })
 
   return highlighterPromise
@@ -58,16 +44,19 @@ async function getHighlighter() {
 export async function tokenizeCodeTemplate(
   template: CodeTemplate
 ): Promise<CodePresentation> {
+  const language = toShikiLanguage(template.language)
+  if (!language) return buildPlainCodePresentation(template)
+
   const highlighter = await getHighlighter()
   const source = template.lines.map((line) => line.text).join("\n")
-  const tokenized = highlighter.codeToTokens(source, {
-    lang: toShikiLanguage(template.language),
+  const tokenized = await highlighter.codeToTokens(source, {
+    lang: language,
     theme: "github-dark",
   })
 
   return {
-    background: tokenized.bg ?? "#24292e",
-    foreground: tokenized.fg ?? "#e1e4e8",
+    background: tokenized.bg ?? DEFAULT_CODE_BACKGROUND,
+    foreground: tokenized.fg ?? DEFAULT_CODE_FOREGROUND,
     themeName: tokenized.themeName ?? "github-dark",
     lines: template.lines.map((line, index) => ({
       id: line.id,

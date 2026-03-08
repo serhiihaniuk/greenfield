@@ -97,6 +97,7 @@ This project must be:
 - Zustand
 - Zod
 - Shiki
+- fine-grained, lazy client loading for syntax highlighting so the player does not pay the full highlighter cost on first paint
 - d3-hierarchy
 - Vitest
 - React Testing Library
@@ -154,6 +155,8 @@ Completed so far:
 - Phase 8 now includes a priority-structure flagship lesson: Heap Top K is implemented as a registered, verified min-heap lesson with heap tree, input scan, and threshold state views plus a checked-in focus golden under `content/lessons/heap-top-k/approaches/min-heap/goldens`
 - Phase 8 now includes the explicit stack-execution flagship lesson: Tree DFS Traversal with Stack is implemented as a registered, verified iterative preorder lesson with tree, stack, and visit-order views plus a checked-in focus golden under `content/lessons/tree-dfs-traversal/approaches/iterative-stack/goldens`
 - Phase 9 hardening has started with a shared binary-tree-array model utility and direct tests, replacing duplicated tree-building logic across the maximum-depth and tree-dfs-traversal lessons while also catching disconnected descendants beneath null parents
+- Phase 9 now also hardens the client bundle: code highlighting is lazy-loaded through a fine-grained Shiki path, the primitive audit harness is on-demand, lesson content is chunked separately, and the production build no longer emits oversized chunk warnings
+- all current flagship lessons use TypeScript code templates, so the client bundle only ships TypeScript highlighting; other lesson languages currently fall back to plain text until they are explicitly added back as a verified bundle decision
 
 ## Immediate Next Step
 
@@ -162,7 +165,7 @@ Continue Phase 9 from the plan:
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
 3. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
-4. treat large production chunks from the current Shiki payload as the most obvious platform-level cleanup after lesson QA
+4. keep pushing Phase 9 toward real lesson QA and Playwright coverage now that the standing production chunk warning has been removed
 
 ## Canonical Files
 

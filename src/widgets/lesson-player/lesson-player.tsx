@@ -22,8 +22,11 @@ import { listLessons } from "@/domains/lessons/loaders"
 import type { VisualizationMode } from "@/domains/lessons/types"
 import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
-import { tokenizeCodeTemplate, type CodePresentation } from "@/features/player/code"
 import { PLAYBACK_SPEED_MS } from "@/features/player/runtime"
+import {
+  buildPlainCodePresentation,
+  type CodePresentation,
+} from "@/features/player/code-presentation"
 import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
 import { collectRelatedIssues } from "@/widgets/author-review/model"
@@ -197,9 +200,19 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   useEffect(() => {
     if (!approach) return
     let cancelled = false
-    tokenizeCodeTemplate(approach.codeTemplate).then((presentation) => {
-      if (!cancelled) setCodePresentation(presentation)
-    })
+    setCodePresentation(buildPlainCodePresentation(approach.codeTemplate))
+
+    import("@/features/player/code")
+      .then(({ tokenizeCodeTemplate }) =>
+        tokenizeCodeTemplate(approach.codeTemplate)
+      )
+      .then((presentation) => {
+        if (!cancelled) setCodePresentation(presentation)
+      })
+      .catch(() => {
+        // Leave the plain-text presentation in place if highlighting fails.
+      })
+
     return () => {
       cancelled = true
     }

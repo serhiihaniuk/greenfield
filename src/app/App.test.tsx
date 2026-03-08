@@ -27,13 +27,13 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument()
   })
 
-  it("renders the primitive audit surface when requested by query param", () => {
+  it("renders the primitive audit surface when requested by query param", async () => {
     window.history.replaceState({}, "", "/?audit=primitives")
 
     renderApp()
 
     expect(
-      screen.getByRole("heading", {
+      await screen.findByRole("heading", {
         name: /primitive qa harness/i,
       })
     ).toBeInTheDocument()
