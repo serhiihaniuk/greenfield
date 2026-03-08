@@ -1,17 +1,15 @@
 import { expect, test, type Page } from "@playwright/test"
-
-async function selectOption(page: Page, label: string, option: string) {
-  await page.getByRole("combobox", { name: label, exact: true }).click()
-  await page.getByRole("option", { name: option }).click()
-}
+import {
+  customInputEditor,
+  expectRuntimeReady,
+  openCustomInput,
+  selectFooterOption,
+} from "./helpers/player"
 
 test("loads the real lesson runtime and opens author review", async ({ page }) => {
   await page.goto("/")
 
-  await expect(page.getByRole("button", { name: "Play", exact: true })).toBeVisible()
-  await expect(
-    page.getByRole("heading", { name: "Search Interval", exact: true })
-  ).toBeVisible()
+  await expectRuntimeReady(page, "Search Interval", "State")
 
   await page.getByRole("button", { name: /author/i }).click()
 
@@ -22,25 +20,20 @@ test("loads the real lesson runtime and opens author review", async ({ page }) =
 test("switches lessons and presets through the footer controls", async ({ page }) => {
   await page.goto("/")
 
-  await selectOption(page, "Lesson", "Graph BFS Frontier")
-  await expect(
-    page.getByRole("heading", { name: "Graph Frontier", exact: true })
-  ).toBeVisible()
-  await expect(
-    page.getByRole("heading", { name: "Frontier Queue", exact: true })
-  ).toBeVisible()
+  await selectFooterOption(page, "Lesson", "Graph BFS Frontier")
+  await expectRuntimeReady(page, "Graph Frontier", "Frontier Queue")
 
-  await selectOption(page, "Preset", "Blocked Z")
-  await page.getByRole("button", { name: "Custom input" }).click()
+  await selectFooterOption(page, "Preset", "Blocked Z")
+  await openCustomInput(page)
 
-  await expect(page.getByLabel("Custom input editor")).toContainText('"targetId": "Z"')
+  await expect(customInputEditor(page)).toContainText('"targetId": "Z"')
 })
 
 test("surfaces custom input parse failures in the live runtime", async ({ page }) => {
   await page.goto("/")
 
-  await page.getByRole("button", { name: "Custom input" }).click()
-  await page.getByLabel("Custom input editor").fill("{")
+  await openCustomInput(page)
+  await customInputEditor(page).fill("{")
   await page.getByRole("button", { name: /apply/i }).click()
 
   await expect(

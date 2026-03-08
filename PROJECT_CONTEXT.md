@@ -158,6 +158,8 @@ Completed so far:
 - Phase 9 now also hardens the client bundle: code highlighting is lazy-loaded through a fine-grained Shiki path, the primitive audit harness is on-demand, lesson content is chunked separately, and the production build no longer emits oversized chunk warnings
 - all current flagship lessons use TypeScript code templates, so the client bundle only ships TypeScript highlighting; other lesson languages currently fall back to plain text until they are explicitly added back as a verified bundle decision
 - Phase 9 now replaces the stale scaffold smoke test with real Playwright runtime coverage for learner-mode load, author-mode inspection, lesson and preset switching, and custom-input parse-failure surfacing
+- Phase 9 now adds a broader Playwright lesson matrix across all eight flagship lessons plus alternate-preset coverage for memoization, priority-structure, and stack-execution lessons
+- Coin Change verification was hardened so impossible-target presets no longer fail for lacking a `remainder 0` base case; terminal-state checks now only require learner-visible outcomes that actually occur in the trace
 
 ## Immediate Next Step
 
@@ -165,7 +167,7 @@ Continue Phase 9 from the plan:
 
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
-3. extend Playwright beyond smoke coverage into a broader lesson matrix, especially stack-execution, memoization, and priority-structure presets
+3. extend Playwright from lesson-load coverage into viewport and interaction assertions, especially around no-scroll desktop contracts and playback stepping
 4. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
 
 ## Canonical Files

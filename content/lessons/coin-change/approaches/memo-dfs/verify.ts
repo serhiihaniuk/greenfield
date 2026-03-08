@@ -184,6 +184,7 @@ function verifyBaseAndDeadStates(frames: Frame[]): VerificationReport {
     return createVerificationReport(issues)
   }
 
+  const expectsZeroBase = baseFrames.some((frame) => frame.codeLine === "L3")
   const hasZeroBase = baseFrames.some((frame) => {
     const tree = findPrimitive(frame, "execution-tree")
     return (
@@ -194,7 +195,7 @@ function verifyBaseAndDeadStates(frames: Frame[]): VerificationReport {
     )
   })
 
-  if (!hasZeroBase) {
+  if (expectsZeroBase && !hasZeroBase) {
     issues.push({
       code: "COIN_CHANGE_ZERO_BASE_NOT_VISIBLE",
       kind: "pedagogical-integrity",
@@ -204,6 +205,7 @@ function verifyBaseAndDeadStates(frames: Frame[]): VerificationReport {
     })
   }
 
+  const expectsDeadBranch = baseFrames.some((frame) => frame.codeLine === "L4")
   const hasDeadBranch = baseFrames.some((frame) => {
     const tree = findPrimitive(frame, "execution-tree")
     return (
@@ -214,7 +216,7 @@ function verifyBaseAndDeadStates(frames: Frame[]): VerificationReport {
     )
   })
 
-  if (!hasDeadBranch) {
+  if (expectsDeadBranch && !hasDeadBranch) {
     issues.push({
       code: "COIN_CHANGE_DEAD_BRANCH_NOT_VISIBLE",
       kind: "pedagogical-integrity",

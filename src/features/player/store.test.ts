@@ -36,6 +36,19 @@ describe("lesson player store", () => {
     expect(state.failure).toBeUndefined()
   })
 
+  it("loads the blocked coin change preset without runtime failure", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("coin-change")
+    store.getState().selectPreset("blocked-seven")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("coin-change")
+    expect(state.selectedPresetId).toBe("blocked-seven")
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+    expect(state.verification?.isValid).toBe(true)
+  })
+
   it("loads the graph bfs lesson end to end", () => {
     const store = createLessonPlayerStore()
     store.getState().initialize("graph-bfs")
