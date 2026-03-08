@@ -1,6 +1,9 @@
+import { motion } from "motion/react"
+
 import type { EdgeHighlightSpec } from "@/entities/visualization/types"
-import { edgeToneClasses } from "@/shared/visualization/semantic-tokens"
 import { cn } from "@/shared/lib/utils"
+import { useMotionContract } from "@/shared/motion/contract"
+import { edgeToneClasses } from "@/shared/visualization/semantic-tokens"
 
 type EdgePoint = {
   id: string
@@ -27,6 +30,7 @@ export function EdgeLayer({
   width,
   height,
 }: EdgeLayerProps) {
+  const { animateTravel, transitions } = useMotionContract()
   const nodeMap = new Map(nodes.map((node) => [node.id, node]))
   const highlightMap = new Map(
     (edgeHighlights ?? []).map((edge) => [edge.id, edge])
@@ -49,8 +53,11 @@ export function EdgeLayer({
         const midY = (source.y + target.y) / 2
 
         return (
-          <path
+          <motion.path
             key={edge.id}
+            initial={animateTravel ? { opacity: 0, pathLength: 0.85 } : false}
+            animate={{ opacity: 1, pathLength: 1 }}
+            transition={transitions.layout}
             className={cn(
               "fill-none stroke-[1.75]",
               edgeToneClasses[highlight?.tone ?? "default"],

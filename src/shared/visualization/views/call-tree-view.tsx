@@ -1,8 +1,11 @@
+import { AnimatePresence, LayoutGroup, motion } from "motion/react"
+
 import type { CallTreePrimitiveFrameState } from "@/entities/visualization/primitives"
-import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
-import { layoutCallTree } from "@/shared/visualization/layouts/call-tree-layout"
-import { EdgeLayer } from "@/shared/visualization/edge-layer"
 import { cn } from "@/shared/lib/utils"
+import { useMotionContract } from "@/shared/motion/contract"
+import { EdgeLayer } from "@/shared/visualization/edge-layer"
+import { layoutCallTree } from "@/shared/visualization/layouts/call-tree-layout"
+import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 
 const statusClasses = {
   current: "border-cyan-400/65 bg-cyan-400/12 text-cyan-50",
@@ -19,6 +22,7 @@ export function CallTreeView({
 }: {
   primitive: CallTreePrimitiveFrameState
 }) {
+  const { animateTravel, transitions } = useMotionContract()
   const layout = layoutCallTree(primitive.data.nodes)
   const canvasWidth = Math.max(layout.width + 136, 360)
   const canvasHeight = Math.max(layout.height + 84, 280)
@@ -31,50 +35,112 @@ export function CallTreeView({
         style={{ minHeight: canvasHeight }}
       >
         <div className="flex min-w-max justify-center">
-          <div
-            className="relative"
-            style={{ width: canvasWidth, height: canvasHeight }}
-          >
-          <EdgeLayer
-            nodes={layout.nodes.map((node) => ({ id: node.id, x: node.x + 68, y: node.y + 42 }))}
-            edges={layout.edges}
-            edgeHighlights={primitive.edgeHighlights}
-            width={canvasWidth}
-            height={canvasHeight}
-          />
-          {layout.nodes.map((positioned) => {
-            const node = primitive.data.nodes.find((entry) => entry.id === positioned.id)!
-            return (
-              <div
-                key={node.id}
-                className={cn(
-                  "absolute w-32 -translate-x-1/2 -translate-y-1/2 rounded-xl border px-3 py-2.5 shadow-[0_18px_40px_rgba(2,8,23,0.2)]",
-                  statusClasses[node.status]
-                )}
-                style={{ left: positioned.x + 68, top: positioned.y + 42 }}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.16em]">
-                    {node.label}
-                  </div>
-                  {node.badge ? (
-                    <div className="rounded-full border border-current/30 px-1.5 py-0.5 text-[10px] font-mono">
-                      {node.badge}
-                    </div>
-                  ) : null}
-                </div>
-                <div className="mt-2 font-mono text-lg font-semibold">
-                  {node.stateValue}
-                </div>
-                {node.returnValue ? (
-                  <div className="mt-1 text-[11px] text-muted-foreground">
-                    return {node.returnValue}
-                  </div>
-                ) : null}
-              </div>
-            )
-          })}
-          </div>
+          <LayoutGroup id={`${primitive.id}-call-tree`}>
+            <div
+              className="relative"
+              style={{ width: canvasWidth, height: canvasHeight }}
+            >
+              <EdgeLayer
+                nodes={layout.nodes.map((node) => ({
+                  id: node.id,
+                  x: node.x + 68,
+                  y: node.y + 42,
+                }))}
+                edges={layout.edges}
+                edgeHighlights={primitive.edgeHighlights}
+                width={canvasWidth}
+                height={canvasHeight}
+              />
+              <AnimatePresence initial={false}>
+                {layout.nodes.map((positioned) => {
+                  const node = primitive.data.nodes.find(
+                    (entry) => entry.id === positioned.id
+                  )!
+
+                  return (
+                    <motion.div
+                      key={node.id}
+                      layout={animateTravel}
+                      layoutId={
+                        animateTravel ? `call-tree-node-${node.id}` : undefined
+                      }
+                      initial={
+                        animateTravel
+                          ? { opacity: 0, scale: 0.92, filter: "blur(4px)" }
+                          : false
+                      }
+                      animate={{
+                        opacity: 1,
+                        scale: node.status === "current" ? 1.03 : 1,
+                        filter: "blur(0px)",
+                        left: positioned.x + 68,
+                        top: positioned.y + 42,
+                      }}
+                      exit={
+                        animateTravel
+                          ? { opacity: 0, scale: 0.94, filter: "blur(4px)" }
+                          : { opacity: 0 }
+                      }
+                      transition={
+                        node.status === "current"
+                          ? transitions.pointer
+                          : transitions.layout
+                      }
+                      className={cn(
+                        "absolute w-32 -translate-x-1/2 -translate-y-1/2 rounded-xl border px-3 py-2.5 shadow-[0_18px_40px_rgba(2,8,23,0.2)]",
+                        statusClasses[node.status]
+                      )}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="font-mono text-[11px] tracking-[0.16em] uppercase">
+                          {node.label}
+                        </div>
+                        {node.badge ? (
+                          <motion.div
+                            layout={animateTravel}
+                            transition={transitions.highlight}
+                            className="rounded-full border border-current/30 px-1.5 py-0.5 font-mono text-[10px]"
+                          >
+                            {node.badge}
+                          </motion.div>
+                        ) : null}
+                      </div>
+                      <div className="mt-2 font-mono text-lg font-semibold">
+                        {node.stateValue}
+                      </div>
+                      <div className="mt-1 min-h-4 text-[11px] text-muted-foreground">
+                        <AnimatePresence initial={false} mode="popLayout">
+                          {node.returnValue ? (
+                            <motion.div
+                              key={`${node.id}-${node.returnValue}`}
+                              initial={
+                                animateTravel
+                                  ? { opacity: 0, y: 6, filter: "blur(2px)" }
+                                  : false
+                              }
+                              animate={{
+                                opacity: 1,
+                                y: 0,
+                                filter: "blur(0px)",
+                              }}
+                              exit={
+                                animateTravel
+                                  ? { opacity: 0, y: -6, filter: "blur(2px)" }
+                                  : { opacity: 0 }
+                              }
+                              transition={transitions.valueCommit}
+                            >
+                              return {node.returnValue}
+                            </motion.div>
+                          ) : null}
+                        </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </AnimatePresence>
+            </div>
+          </LayoutGroup>
         </div>
       </div>
     </PrimitiveShell>
