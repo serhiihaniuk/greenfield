@@ -51,10 +51,12 @@ import { Textarea } from "@/shared/ui/textarea"
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/shared/ui/tooltip"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogFooter,
 } from "@/shared/ui/dialog"
 import { ThemeToggle } from "@/shared/ui/theme-toggle"
 
@@ -744,51 +746,53 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         </DialogContent>
       </Dialog>
 
-      {inputModalOpen ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
-          onClick={() => setInputModalOpen(false)}
-        >
-          <div
-            className="w-full max-w-lg rounded-lg border border-border/60 bg-card p-4 shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-sm font-medium">Custom Input</h2>
+      <Dialog open={inputModalOpen} onOpenChange={setInputModalOpen}>
+        <DialogContent className="sm:max-w-lg" showCloseButton={false}>
+          <DialogHeader className="pr-8">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <DialogTitle>Custom Input</DialogTitle>
+                <DialogDescription>
+                  Paste lesson JSON to rebuild the current runtime without leaving the player.
+                </DialogDescription>
+              </div>
               <div className="flex items-center gap-2">
                 <Badge variant="outline">{inputSource}</Badge>
-                <Button
-                  size="icon-xs"
-                  variant="ghost"
-                  onClick={() => setInputModalOpen(false)}
-                  aria-label="Close custom input"
+                <DialogClose
+                  render={
+                    <Button
+                      size="icon-xs"
+                      variant="ghost"
+                      aria-label="Close custom input"
+                    />
+                  }
                 >
                   <XIcon />
-                </Button>
+                </DialogClose>
               </div>
             </div>
-            <Textarea
-              aria-label="Custom input editor"
-              value={rawInput}
-              onChange={(event) => setRawInput(event.target.value)}
-              rows={12}
-              className="font-mono text-xs"
-            />
-            <div className="mt-3 flex justify-end gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => selectedPresetId && selectPreset(selectedPresetId)}
-              >
-                Use preset
-              </Button>
-              <Button size="sm" onClick={applyCustomInput}>
-                Apply
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : null}
+          </DialogHeader>
+          <Textarea
+            aria-label="Custom input editor"
+            value={rawInput}
+            onChange={(event) => setRawInput(event.target.value)}
+            rows={12}
+            className="font-mono text-xs"
+          />
+          <DialogFooter className="sm:justify-between">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => selectedPresetId && selectPreset(selectedPresetId)}
+            >
+              Use preset
+            </Button>
+            <Button size="sm" onClick={applyCustomInput}>
+              Apply
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }

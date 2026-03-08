@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, beforeEach } from "vitest"
 
 import App from "@/app/App"
@@ -25,6 +25,15 @@ describe("App", () => {
     renderApp()
 
     expect(screen.getByRole("button", { name: /^play$/i })).toBeInTheDocument()
+  })
+
+  it("opens custom input through the dialog shell", () => {
+    renderApp()
+
+    fireEvent.click(screen.getByRole("button", { name: /custom input/i }))
+
+    expect(screen.getByRole("dialog", { name: /custom input/i })).toBeInTheDocument()
+    expect(screen.getByLabelText(/custom input editor/i)).toBeInTheDocument()
   })
 
   it("renders the primitive audit surface when requested by query param", async () => {

@@ -11,16 +11,28 @@ export async function selectFooterOption(
 
 export async function openCustomInput(page: Page) {
   await page.getByRole("button", { name: "Custom input", exact: true }).click()
+  await expect(customInputDialog(page)).toBeVisible()
 }
 
 export async function applyCustomInput(page: Page, rawInput: string) {
   await openCustomInput(page)
   await customInputEditor(page).fill(rawInput)
-  await page.getByRole("button", { name: "Apply", exact: true }).click()
+  await customInputDialog(page)
+    .getByRole("button", { name: "Apply", exact: true })
+    .press("Enter")
+}
+
+export function customInputDialog(page: Page): Locator {
+  return page.getByRole("dialog", { name: "Custom Input", exact: true })
+}
+
+export async function closeCustomInput(page: Page) {
+  await page.keyboard.press("Escape")
+  await expect(customInputDialog(page)).toBeHidden()
 }
 
 export function customInputEditor(page: Page): Locator {
-  return page.getByLabel("Custom input editor", { exact: true })
+  return customInputDialog(page).getByLabel("Custom input editor", { exact: true })
 }
 
 export function timelineSlider(page: Page): Locator {

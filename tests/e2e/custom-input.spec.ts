@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test"
 
 import {
   applyCustomInput,
+  closeCustomInput,
   expectRuntimeReady,
   selectFooterOption,
 } from "./helpers/player"
@@ -140,7 +141,7 @@ for (const entry of customInputMatrix) {
     await applyCustomInput(page, entry.rawInput)
     await expect(page.getByText(/Runtime failure/i)).toHaveCount(0)
     await expect(page.getByText("custom", { exact: true })).toBeVisible()
-    await page.getByRole("button", { name: "Close custom input", exact: true }).click()
+    await closeCustomInput(page)
 
     await expectRuntimeReady(page, entry.primaryHeading, entry.secondaryHeading)
     await expect(
