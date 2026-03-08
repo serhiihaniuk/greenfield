@@ -2,6 +2,7 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { recursiveMaximumDepthCodeTemplate } from "./approaches/recursive-dfs/code"
 import {
@@ -11,6 +12,7 @@ import {
 import { projectRecursiveMaximumDepth } from "./approaches/recursive-dfs/project"
 import { verifyRecursiveMaximumDepth } from "./approaches/recursive-dfs/verify"
 import { recursiveMaximumDepthNotes } from "./approaches/recursive-dfs/notes"
+import { recursiveMaximumDepthViewSpecs } from "./approaches/recursive-dfs/views"
 import { maximumDepthPresets } from "./presets"
 
 const recursiveDfsApproach = defineApproachDefinition({
@@ -19,26 +21,7 @@ const recursiveDfsApproach = defineApproachDefinition({
   codeTemplate: recursiveMaximumDepthCodeTemplate,
   parseInput: parseMaximumDepthInput,
   presets: maximumDepthPresets,
-  requiredViews: [
-    {
-      id: "tree",
-      primitive: "tree",
-      role: "primary",
-      title: "Binary Tree",
-    },
-    {
-      id: "call-stack",
-      primitive: "stack",
-      role: "secondary",
-      title: "Call Stack",
-    },
-    {
-      id: "execution-tree",
-      primitive: "call-tree",
-      role: "secondary",
-      title: "Execution Tree",
-    },
-  ],
+  requiredViews: toRequiredViews(recursiveMaximumDepthViewSpecs),
   trace: traceRecursiveMaximumDepth,
   project: projectRecursiveMaximumDepth,
   verify: (events, frames) =>

@@ -10,6 +10,7 @@ There is no dependency on another repo or on preserving an older implementation.
 ## Product Job
 
 This app exists for one moment:
+
 - the learner is stuck
 - whiteboard reasoning broke down
 - normal explanations are not enough
@@ -23,6 +24,7 @@ It is a visualization system for when normal explanations fail.
 The app should feel like a focused study instrument, not a content website.
 
 On desktop, the default lesson experience should look like:
+
 - a compact top bar
 - one dominant central visualization surface
 - synchronized secondary panels only when they improve understanding
@@ -32,6 +34,7 @@ On desktop, the default lesson experience should look like:
 - dark theme, low chrome, and minimal wasted space
 
 A learner opening a lesson should immediately understand:
+
 - what changed
 - why it changed
 - what is waiting now
@@ -63,6 +66,7 @@ Algorithmic correctness is necessary but not sufficient.
 A lesson can still fail as a teaching artifact even when the algorithm output is right.
 
 The system must block lessons that:
+
 - skip learner-visible micro-steps
 - hide important state transitions
 - collapse multiple visual changes into one frame
@@ -75,6 +79,7 @@ The greenfield app should be bootstrapped as a **Vite React TypeScript app**.
 
 Use `shadcn/ui` from the start for the non-visualization UI layer.
 That means:
+
 - bootstrap the workspace with the `vite` template through the `shadcn` CLI
 - use `shadcn/ui` for shell, controls, forms, overlays, panels, tabs, and utility UI
 - keep algorithm visualization primitives custom and domain-specific
@@ -212,6 +217,7 @@ The app is built from 6 systems.
 
 Owns typed lesson definitions.
 A lesson declares:
+
 - learning objective
 - confusion type
 - approaches
@@ -228,6 +234,7 @@ Owns semantic algorithm execution.
 It converts parsed input and approach code into typed events.
 
 Responsibilities:
+
 - deterministic event generation
 - event invariants
 - variable snapshots
@@ -240,6 +247,7 @@ Responsibilities:
 Owns translation from semantic events to learner-visible frames.
 
 Responsibilities:
+
 - enforce One Visual Change
 - bind frames to code lines
 - produce primitive states
@@ -253,6 +261,7 @@ Responsibilities:
 Owns playback and synchronized rendering.
 
 Responsibilities:
+
 - play, pause, step, reset, scrub
 - render all synchronized primitives from a frame
 - preserve pointer continuity
@@ -266,6 +275,7 @@ Owns the reusable data-structure and code views.
 Primitives are stateless renderers with strict contracts.
 
 Core primitives:
+
 - `ArrayView`
 - `SequenceView`
 - `StackView`
@@ -279,6 +289,7 @@ Core primitives:
 - `NarrationView`
 
 Critical distinctions:
+
 - `TreeView` is for structural trees
 - `CallTreeView` is for recursive execution
 - `GraphView` is for arbitrary graph and DAG relationships
@@ -289,6 +300,7 @@ Critical distinctions:
 This is a first-class product system, not a tooling afterthought.
 
 Responsibilities:
+
 - scaffold lessons from the lesson schema
 - enforce required views for each confusion type
 - generate trace and projection skeletons
@@ -397,6 +409,7 @@ interface VerificationReport {
 ```
 
 Key rules:
+
 - pages do not own lesson logic
 - pages compose a lesson player around lesson definitions
 - trace is semantic
@@ -407,6 +420,7 @@ Key rules:
 ## Primitive Contract Rules
 
 Every primitive must support the subset of capabilities it actually needs, but the system-wide model is:
+
 - stable ids
 - pointers
 - highlights
@@ -417,6 +431,7 @@ Every primitive must support the subset of capabilities it actually needs, but t
 - deterministic layout inputs
 
 Global rules:
+
 - a primitive must never infer semantic meaning from styling alone
 - layout must be derived from actual rendered dimensions or declared dimensions, not hidden assumptions
 - repeated states should support compact representation when full-size rendering harms comprehension
@@ -425,6 +440,7 @@ Global rules:
 ## Application UI Rules
 
 For app-level UI, follow `shadcn/ui` conventions:
+
 - use `shadcn/ui` components before custom markup for controls and shell UI
 - use semantic tokens and variants, not ad hoc color classes
 - use composition, not one-off wrappers for standard controls
@@ -445,6 +461,7 @@ or persisted preferences.
 ### Pointer-state lessons
 
 Must emphasize:
+
 - exact pointer positions
 - movement legality
 - comparisons
@@ -453,14 +470,19 @@ Must emphasize:
 ### Stack-execution lessons
 
 Must emphasize:
+
 - current frame
 - waiting frames
 - current code line
 - return flow
 
+When the lesson is about recursive flow, aggregation, or return propagation, the execution tree should usually be the primary teaching surface.
+The original structural tree may stay visible as supporting context, but it should not outrank the execution model unless the structure itself is the learner's main confusion.
+
 ### Memoization-reuse lessons
 
 Must emphasize:
+
 - execution tree or focused call tree
 - recursion stack
 - memo table
@@ -470,6 +492,7 @@ Must emphasize:
 ### Structural-mutation lessons
 
 Must emphasize:
+
 - before and after structure state
 - mutation target
 - affected links or edges
@@ -502,6 +525,7 @@ These decisions are fixed for MVP so implementation does not drift.
 The shell must be designed for high-intensity study, not editorial reading.
 
 Default desktop composition:
+
 - compact top utility bar
 - dominant central visualization stage that holds both primary and secondary synchronized primitives
 - a narrower support column for narration, code trace, compact code-state panels, and lightweight runtime status
@@ -510,6 +534,7 @@ Default desktop composition:
 - almost no decorative whitespace that pushes meaning off-screen
 
 Shell rules:
+
 - horizontal space is an asset and should be used aggressively
 - vertical sprawl is a product bug
 - the active state should stay near the visual center
@@ -528,6 +553,15 @@ Each primitive declares `PrimitiveViewportSpec` in its lesson `project.ts`:
 - `minHeight`: minimum height constraint.
 
 The `splitPrimitives()` function in `lesson-player.tsx` reads `role` and `kind` to route primitives to regions.
+
+Lesson authors should not hand-duplicate view roles across lesson metadata and projector code.
+Each approach should define one shared view-spec list that contains:
+
+- required-view metadata (`id`, `primitive`, `role`, `title`)
+- viewport metadata (`preferredWidth`, `minHeight`, and runtime `role`)
+
+The lesson definition derives `requiredViews` from that list, and the projector reads the same list when assigning primitive viewport roles.
+This avoids drift where a lesson claims one primary teaching surface in metadata but renders another one as the primary stage surface at runtime.
 
 ### View rendering categories
 
@@ -610,6 +644,7 @@ plans/
 ```
 
 Notes:
+
 - use Vite as the app runtime and bundler
 - keep route wiring thin inside `src/app/router`
 - `components.json` is part of the workspace contract because `shadcn/ui` is a chosen system dependency
@@ -660,6 +695,7 @@ Notes:
 Author mode, surfaced in the UI as lesson audit, exists because the learner often cannot tell whether the AI is wrong.
 
 Author mode should show:
+
 - source semantic event
 - current code line
 - full frame-backed event timeline
@@ -676,11 +712,13 @@ Author mode should show:
 
 The shell should not treat hotkeys as component-local callbacks.
 Commands should be defined once, then exposed through:
+
 - keyboard shortcuts
 - the command palette
 - visible footer or shell controls
 
 A lesson is not ready until it passes:
+
 - semantic trace verification
 - frame verification
 - code-line sync verification
@@ -740,6 +778,7 @@ A lesson is not ready until it passes:
 ## Final Definition
 
 The correct architecture for this product is:
+
 - visualization-first
 - confusion-first
 - AI-authored but verification-gated

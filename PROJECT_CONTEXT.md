@@ -173,6 +173,8 @@ Completed so far:
 - Phase 9 now replaces the bare preset dropdown with a richer preset studio: verified scenarios open in a dedicated dialog with descriptions, input snapshots, sticky run actions, and an in-place path into custom input
 - shortcut presentation is now centralized through the shared `Kbd` contract, so combinations render as one chip like `Ctrl + K` while alternative bindings render as separate chips like `Left / A`
 - the player now ships one projection mode only: `full`; mode switching has been removed from the shell, command palette, and persisted preferences
+- lesson view weighting now has a shared authoring contract: approach `requiredViews` and projector viewport roles can be derived from one view-spec definition instead of drifting apart across lesson files
+- Maximum Depth of Binary Tree now treats the recursive execution tree as the primary teaching surface, while the structural binary tree stays visible only as supporting context
 
 ## Immediate Next Step
 

@@ -74,7 +74,7 @@ function verifyRequiredViews(frames: Frame[]): VerificationReport {
         code: "MAX_DEPTH_TREE_VIEW_MISSING",
         kind: "viewport",
         severity: "error",
-        message: `Frame "${frame.id}" should render the structural tree as the primary surface.`,
+        message: `Frame "${frame.id}" should keep the structural tree available as supporting context.`,
         frameId: frame.id,
       })
     }
@@ -94,7 +94,7 @@ function verifyRequiredViews(frames: Frame[]): VerificationReport {
         code: "MAX_DEPTH_CALL_TREE_MISSING",
         kind: "pedagogical-integrity",
         severity: "error",
-        message: `Frame "${frame.id}" should keep the recursive execution tree visible in learner mode.`,
+        message: `Frame "${frame.id}" should keep the recursive execution tree visible as the primary teaching surface.`,
         frameId: frame.id,
         pedagogicalCheck: "hidden-state-loss",
       })

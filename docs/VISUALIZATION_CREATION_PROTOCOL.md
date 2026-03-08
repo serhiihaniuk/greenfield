@@ -5,6 +5,7 @@
 This document defines the exact workflow for creating a new visualization lesson in this workspace.
 
 Use it when:
+
 - creating a new lesson from scratch
 - asking another AI to generate a lesson
 - turning the lesson workflow into a reusable skill
@@ -16,6 +17,7 @@ A lesson should not appear through ad hoc page edits or undocumented decisions.
 
 Architecture alone is not enough for reliable lesson creation.
 Another AI also needs:
+
 - defined inputs
 - exact files to create or update
 - required contracts
@@ -52,6 +54,7 @@ Presets are not filler examples.
 They are part of the teaching surface and should be chosen for explanatory value.
 
 Every approach should define presets that cover:
+
 - the most explanatory success path
 - the most explanatory failure path when failure is meaningful for the problem
 - important edge cases that reveal the lesson shape, constraints, or branching behavior
@@ -59,12 +62,14 @@ Every approach should define presets that cover:
 Do not spend preset slots on arbitrary random inputs when a more legible case exists.
 
 Recommended semantic preset labels:
+
 - `success path` - the clean representative run that teaches the intended core mechanic
 - `failure path` - a miss, impossible target, exhausted frontier, or other instructive negative outcome
 - `edge case` - a boundary or shape that exposes a structural nuance the learner is likely to miss
 
 When the shell supports preset badges, these semantic classes should use semantic tokens rather than arbitrary decorative colors.
 That means:
+
 - success-like presets use reassuring/supportive emphasis
 - failure-like presets use destructive emphasis
 - edge-case presets use neutral or outline emphasis
@@ -102,6 +107,7 @@ content/lessons/coin-change/
 ```
 
 Required meanings:
+
 - `lesson.ts` - top-level lesson definition and metadata
 - `presets.ts` - preset inputs
 - `code.ts` - learner-facing code template
@@ -129,11 +135,13 @@ Do not patch shared types for one-off page behavior.
 ### Step 1: Lesson definition
 
 Create `lesson.ts` with:
+
 - lesson metadata
 - confusion type
 - default mode
 - viewport contract
 - approach references
+- `requiredViews` derived from a shared approach view-spec list rather than duplicated manually
 
 ### Step 2: Code template
 
@@ -151,16 +159,24 @@ Do not emit visual instructions here.
 Create `project.ts`.
 The projector maps semantic events to learner-visible frames.
 Each frame must:
+
 - point to a source event
 - point to a code line
 - declare one visual change type
 - produce primitive states
 - produce narration payload
 
+Do not hardcode primitive viewport roles independently from lesson metadata.
+Each approach should define one shared view-spec list and use it in both places:
+
+- `lesson.ts` derives `requiredViews`
+- `project.ts` reads the same view specs to assign primitive viewport roles and preferred sizes
+
 ### Step 5: Verification
 
 Create `verify.ts`.
 This file checks:
+
 - semantic invariants
 - frame invariants
 - code-line mapping
@@ -178,16 +194,17 @@ Do not create hidden routes or hardcoded page lists.
 
 Every learner-visible frame must declare exactly one of these step types:
 
-| Step Type | What Changes | Example |
-|-----------|-------------|---------|
-| `Move` | A pointer or frontier marker moves | `i` moves from index `2` to `3` |
-| `Compare` | Elements or states are checked against each other | `arr[mid]=5 < target=7` |
-| `Mutate` | The data structure or tracked state is modified | Push `3` onto stack |
-| `Result` | A result value is written, returned, or committed | `answer[0] = 3` |
-| `Enter` | A new frame or scope is entered | Push `dfs(4)` onto call stack |
-| `Exit` | A frame or scope completes | Pop a frame and mark subtree done |
+| Step Type | What Changes                                      | Example                           |
+| --------- | ------------------------------------------------- | --------------------------------- |
+| `Move`    | A pointer or frontier marker moves                | `i` moves from index `2` to `3`   |
+| `Compare` | Elements or states are checked against each other | `arr[mid]=5 < target=7`           |
+| `Mutate`  | The data structure or tracked state is modified   | Push `3` onto stack               |
+| `Result`  | A result value is written, returned, or committed | `answer[0] = 3`                   |
+| `Enter`   | A new frame or scope is entered                   | Push `dfs(4)` onto call stack     |
+| `Exit`    | A frame or scope completes                        | Pop a frame and mark subtree done |
 
 Rules:
+
 - one frame may declare only one step type
 - if two learner-visible changes happen, split them into two frames
 - if state changes ownership, the handoff must be visible
@@ -200,6 +217,7 @@ The AI must choose views from confusion type.
 ### `pointer-state`
 
 Minimum:
+
 - primary sequence or array view
 - pointer labels
 - invariant or comparison state
@@ -209,14 +227,22 @@ Minimum:
 ### `stack-execution`
 
 Minimum:
-- primary structural or execution view
+
+- primary execution view when the confusion is about recursive flow, aggregation, or return propagation
+- primary structural view only when the learner is mainly tracking traversal location through the original structure
 - stack or frame view
 - code trace
 - narration
 
+Example:
+
+- Maximum Depth of Binary Tree should usually make the execution tree primary and keep the structural tree as secondary context.
+- Iterative tree traversal should usually keep the structural tree primary because the learner is tracking where traversal goes next through the original tree.
+
 ### `memoization-reuse`
 
 Minimum:
+
 - call tree or focused execution tree
 - stack view
 - memo table
@@ -226,6 +252,7 @@ Minimum:
 ### `structural-mutation`
 
 Minimum:
+
 - primary structure view
 - mutation target emphasis
 - result state
@@ -277,6 +304,7 @@ A lesson is an implemented, registered, and verified artifact.
 ## Skill Conversion Guidance
 
 If this workflow is turned into a reusable skill, the skill should load:
+
 - `AGENTS.md`
 - `CODEX.md`
 - `PROJECT_CONTEXT.md`
@@ -284,5 +312,3 @@ If this workflow is turned into a reusable skill, the skill should load:
 - this file
 
 The skill should enforce the lesson workflow above and reject requests that skip verification or pedagogical integrity checks.
-
-

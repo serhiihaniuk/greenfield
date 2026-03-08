@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -18,6 +19,7 @@ import type {
   EdgeHighlightSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { recursiveMaximumDepthViewSpecs } from "./views"
 
 type TraversalSide = "root" | "left" | "right"
 
@@ -238,22 +240,20 @@ function buildTreePrimitive(
   event: TraceEvent,
   snapshot: MaximumDepthSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(recursiveMaximumDepthViewSpecs, "tree")
+
   return defineTreePrimitiveFrameState({
     id: "tree",
     kind: "tree",
-    title: "Binary Tree",
+    title: viewSpec.title,
     subtitle:
-      "The active node asks both children for their subtree depth before returning one larger value.",
+      "The structural tree stays visible as context while the execution tree explains how recursion unfolds.",
     data: {
       nodes: buildTreeNodes(event, snapshot),
       rootId: snapshot.rootId,
     },
     edgeHighlights: getTreeEdgeHighlights(event, snapshot),
-    viewport: {
-      role: "primary",
-      preferredWidth: 960,
-      minHeight: 360,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -286,21 +286,22 @@ function buildStackFrames(snapshot: MaximumDepthSnapshot): StackFrame[] {
 function buildStackPrimitive(
   snapshot: MaximumDepthSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(
+    recursiveMaximumDepthViewSpecs,
+    "call-stack"
+  )
+
   return defineStackPrimitiveFrameState({
     id: "call-stack",
     kind: "stack",
-    title: "Call Stack",
+    title: viewSpec.title,
     subtitle:
       "Only one recursive frame is active; parents wait for child depths to return.",
     data: {
       frames: buildStackFrames(snapshot),
       topLabel: snapshot.stack.length > 0 ? "top of stack" : undefined,
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 220,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -342,10 +343,15 @@ function buildCallTreePrimitive(
   event: TraceEvent,
   snapshot: MaximumDepthSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(
+    recursiveMaximumDepthViewSpecs,
+    "execution-tree"
+  )
+
   return defineCallTreePrimitiveFrameState({
     id: "execution-tree",
     kind: "call-tree",
-    title: "Execution Tree",
+    title: viewSpec.title,
     subtitle:
       "Each node in the execution tree is one recursive call and the depth it eventually returns.",
     data: {
@@ -353,11 +359,7 @@ function buildCallTreePrimitive(
       rootId: snapshot.calls[0]?.callId ?? "call-1",
     },
     edgeHighlights: buildCallTreeEdges(event, snapshot),
-    viewport: {
-      role: "secondary",
-      preferredWidth: 340,
-      minHeight: 240,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -432,9 +434,9 @@ function buildPrimitiveStates(
   _mode: VisualizationMode
 ): PrimitiveFrameState[] {
   return [
-    buildTreePrimitive(event, snapshot),
-    buildStackPrimitive(snapshot),
     buildCallTreePrimitive(event, snapshot),
+    buildStackPrimitive(snapshot),
+    buildTreePrimitive(event, snapshot),
   ]
 }
 
