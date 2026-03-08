@@ -43,6 +43,16 @@ export interface RelatedIssueSummary {
   hiddenWarningCount: number
 }
 
+export interface AuthorTimelineEntry {
+  frameId: string
+  eventId: string
+  codeLine: string
+  eventType: TraceEvent["type"]
+  blockingIssueCount: number
+  warningIssueCount: number
+  isActive: boolean
+}
+
 const EMPTY_SUMMARY: FrameDiffSummary = {
   primitiveAdditions: 0,
   primitiveRemovals: 0,
@@ -238,4 +248,31 @@ export function summarizeNarrationBindings(
 
 export function formatAuthorValue(value: unknown) {
   return JSON.stringify(normalizeValue(value), null, 2)
+}
+
+export function buildAuthorTimeline(
+  trace: TraceEvent[],
+  frames: Frame[],
+  verification?: VerificationReport,
+  activeFrameId?: string
+): AuthorTimelineEntry[] {
+  const eventById = new Map(trace.map((event) => [event.id, event]))
+  const issues = [...(verification?.errors ?? []), ...(verification?.warnings ?? [])]
+
+  return frames.map((frame) => {
+    const event = eventById.get(frame.sourceEventId)
+    const relatedIssues = issues.filter(
+      (issue) => issue.frameId === frame.id || issue.eventId === frame.sourceEventId
+    )
+
+    return {
+      frameId: frame.id,
+      eventId: frame.sourceEventId,
+      codeLine: frame.codeLine,
+      eventType: event?.type ?? "custom",
+      blockingIssueCount: relatedIssues.filter((issue) => issue.severity === "error").length,
+      warningIssueCount: relatedIssues.filter((issue) => issue.severity === "warning").length,
+      isActive: frame.id === activeFrameId,
+    }
+  })
 }

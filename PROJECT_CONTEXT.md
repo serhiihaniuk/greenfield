@@ -166,6 +166,7 @@ Completed so far:
 - Phase 9 now adds successful custom-input replay QA across the full flagship set: valid custom inputs rebuild verified runtime state without reload in store tests and Playwright, while parse failures still surface live in the player
 - Phase 9 has started the shadcn shell audit: custom input now uses the shared dialog primitives with an accessible dialog contract and keyboard dismissal instead of a hand-rolled overlay
 - Phase 9 now adds clickable author-review navigation on the live runtime state: authors can step to previous or next frames from the drawer and jump directly from referenced issues to the linked frame or event
+- Phase 9 now deepens the author audit workflow on the same runtime state: the drawer exposes an issue inbox with filters, a full frame-backed event timeline, and primitive-focus controls that highlight the matching live stage view
 - Phase 9 now restores a sharper shell contract: lightweight code-state panels stay beside narration and code in the left support column, while stacks, queues, memo tables, outputs, and other execution visuals render inside the right-stage composition with the primary visual
 
 ## Immediate Next Step

@@ -56,6 +56,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/shared/ui/dialog"
+import { Kbd } from "@/shared/ui/kbd"
 import { ThemeToggle } from "@/shared/ui/theme-toggle"
 
 type LessonPlayerProps = {
@@ -79,17 +80,6 @@ const HOTKEYS = [
   { keys: ["Q"], label: "Toggle author mode" },
   { keys: ["/"], label: "Show keyboard shortcuts" },
 ] as const
-
-function Kbd({ children }: { children: React.ReactNode }) {
-  return (
-    <kbd
-      data-slot="kbd"
-      className="inline-flex h-5 min-w-5 items-center justify-center rounded bg-background/20 px-1 font-mono text-[10px] leading-none"
-    >
-      {children}
-    </kbd>
-  )
-}
 
 function splitPrimitives(primitives: PrimitiveFrameState[]) {
   const supportPrimitives = primitives.filter((primitive) => primitive.kind === "state")
@@ -176,6 +166,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const [codePresentation, setCodePresentation] = useState<CodePresentation>()
   const [inputModalOpen, setInputModalOpen] = useState(false)
   const [hotkeysOpen, setHotkeysOpen] = useState(false)
+  const [selectedPrimitiveId, setSelectedPrimitiveId] = useState<string>()
   const lessons = useMemo(() => listLessons(), [])
   const activeFrame = frames[currentFrameIndex]
   const previousVisibleFrame =
@@ -247,6 +238,15 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     if (failure?.kind === "input-parse") setInputModalOpen(true)
   }, [failure])
 
+  useEffect(() => {
+    if (
+      selectedPrimitiveId &&
+      !activePrimitives.some((primitive) => primitive.id === selectedPrimitiveId)
+    ) {
+      setSelectedPrimitiveId(undefined)
+    }
+  }, [activePrimitives, selectedPrimitiveId])
+
   const stepPlayback = useEffectEvent(() => {
     if (playbackStatus === "playing") nextFrame()
   })
@@ -315,6 +315,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                         key={primitive.id}
                         primitive={primitive}
                         role="secondary"
+                        selectedPrimitiveId={selectedPrimitiveId}
                       />
                     ))}
                   </div>
@@ -373,6 +374,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                       key={primitive.id}
                       primitive={primitive}
                       role="primary"
+                      selectedPrimitiveId={selectedPrimitiveId}
                     />
                   ))}
                 </div>
@@ -386,6 +388,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                         key={primitive.id}
                         primitive={primitive}
                         role="secondary"
+                        selectedPrimitiveId={selectedPrimitiveId}
                       />
                     ))}
                   </aside>
@@ -471,10 +474,14 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 nextFrame={nextVisibleFrame}
                 event={activeEvent}
                 verification={verification}
+                trace={trace}
+                frames={frames}
+                selectedPrimitiveId={selectedPrimitiveId}
                 onInspectPreviousFrame={previousFrame}
                 onInspectNextFrame={nextFrame}
                 onJumpToFrameId={inspectFrameById}
                 onJumpToEventId={inspectEventById}
+                onFocusPrimitiveId={setSelectedPrimitiveId}
               />
             </div>
           </div>
@@ -771,9 +778,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                       {index > 0 ? (
                         <span className="text-[10px] text-muted-foreground">/</span>
                       ) : null}
-                      <kbd className="inline-flex h-6 min-w-6 items-center justify-center rounded border border-border/60 bg-muted/40 px-1.5 font-mono text-[11px] text-foreground/70">
-                        {key}
-                      </kbd>
+                      <Kbd>{key}</Kbd>
                     </span>
                   ))}
                 </span>

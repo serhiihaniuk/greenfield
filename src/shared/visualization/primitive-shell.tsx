@@ -6,6 +6,7 @@ import { cn } from "@/shared/lib/utils"
 export type PrimitiveRole = "primary" | "secondary" | "reference"
 
 export const PrimitiveRoleContext = createContext<PrimitiveRole | undefined>(undefined)
+export const SelectedPrimitiveIdContext = createContext<string | undefined>(undefined)
 
 type PrimitiveShellProps = PropsWithChildren<{
   primitive: PrimitiveFrameState
@@ -20,18 +21,22 @@ export function PrimitiveShell({
   children,
 }: PrimitiveShellProps) {
   const role = useContext(PrimitiveRoleContext)
+  const selectedPrimitiveId = useContext(SelectedPrimitiveIdContext)
+  const isSelected = selectedPrimitiveId === primitive.id
   const showHeader = role !== "reference" && (primitive.title || primitive.subtitle)
 
   return (
     <section
       data-testid={`primitive-${primitive.id}`}
       data-primitive-kind={primitive.kind}
+      data-selected-primitive={isSelected ? "true" : "false"}
       className={cn(
         role === "primary" && "p-2",
         role === "secondary" && "rounded-xl border border-border/50 bg-card/60 p-3",
         role === "reference" && "flex flex-1 flex-col p-2",
         !role &&
           "rounded-2xl border border-border/80 bg-card/90 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
+        isSelected && "rounded-2xl ring-2 ring-cyan-400/60 ring-offset-2 ring-offset-background",
         className
       )}
     >

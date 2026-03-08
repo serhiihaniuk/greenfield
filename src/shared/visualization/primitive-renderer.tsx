@@ -15,6 +15,7 @@ import type { PrimitiveFrameState } from "@/entities/visualization/types"
 import {
   PrimitiveRoleContext,
   PrimitiveShell,
+  SelectedPrimitiveIdContext,
   type PrimitiveRole,
 } from "@/shared/visualization/primitive-shell"
 import { CallTreeView } from "@/shared/visualization/views/call-tree-view"
@@ -32,9 +33,14 @@ import { TreeView } from "@/shared/visualization/views/tree-view"
 type PrimitiveRendererProps = {
   primitive: PrimitiveFrameState
   role?: PrimitiveRole
+  selectedPrimitiveId?: string
 }
 
-export function PrimitiveRenderer({ primitive, role }: PrimitiveRendererProps) {
+export function PrimitiveRenderer({
+  primitive,
+  role,
+  selectedPrimitiveId,
+}: PrimitiveRendererProps) {
   let content: React.ReactNode
 
   switch (primitive.kind) {
@@ -92,8 +98,10 @@ export function PrimitiveRenderer({ primitive, role }: PrimitiveRendererProps) {
   }
 
   return (
-    <PrimitiveRoleContext.Provider value={role}>
-      {content}
-    </PrimitiveRoleContext.Provider>
+    <SelectedPrimitiveIdContext.Provider value={selectedPrimitiveId}>
+      <PrimitiveRoleContext.Provider value={role}>
+        {content}
+      </PrimitiveRoleContext.Provider>
+    </SelectedPrimitiveIdContext.Provider>
   )
 }

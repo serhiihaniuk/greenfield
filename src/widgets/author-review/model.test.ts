@@ -4,6 +4,7 @@ import type { Frame } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import type { VerificationReport } from "@/domains/verification/types"
 import {
+  buildAuthorTimeline,
   collectRelatedIssues,
   summarizeFrameDiff,
   summarizeNarrationBindings,
@@ -142,5 +143,66 @@ describe("author review model", () => {
     expect(bindings.synchronizedToEvent).toBe(false)
     expect(bindings.missingNarrationKeys).toEqual(["decision"])
     expect(bindings.extraNarrationKeys).toEqual(["step"])
+  })
+
+  it("builds an author timeline with issue counts on frame-backed events", () => {
+    const verification = {
+      isValid: false,
+      errors: [
+        {
+          code: "FRAME",
+          kind: "frame",
+          severity: "error",
+          message: "frame issue",
+          frameId: "frame-2",
+        },
+      ],
+      warnings: [
+        {
+          code: "EVENT",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: "event warning",
+          eventId: "event-2",
+        },
+      ],
+    } as VerificationReport
+
+    const timeline = buildAuthorTimeline(
+      [
+        {
+          id: "event-1",
+          type: "mutate",
+          codeLine: "L1",
+          payload: {},
+          snapshot: {},
+        },
+        event,
+      ] as TraceEvent[],
+      [previousFrame, currentFrame],
+      verification,
+      "frame-2"
+    )
+
+    expect(timeline).toEqual([
+      {
+        frameId: "frame-1",
+        eventId: "event-1",
+        codeLine: "L1",
+        eventType: "mutate",
+        blockingIssueCount: 0,
+        warningIssueCount: 0,
+        isActive: false,
+      },
+      {
+        frameId: "frame-2",
+        eventId: "event-2",
+        codeLine: "L2",
+        eventType: "compare",
+        blockingIssueCount: 1,
+        warningIssueCount: 1,
+        isActive: true,
+      },
+    ])
   })
 })

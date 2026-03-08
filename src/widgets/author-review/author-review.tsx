@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import type { Frame } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import type { VerificationIssue, VerificationReport } from "@/domains/verification/types"
@@ -12,6 +14,7 @@ import {
 } from "@/shared/ui/card"
 import { Separator } from "@/shared/ui/separator"
 import {
+  buildAuthorTimeline,
   collectRelatedIssues,
   formatAuthorValue,
   summarizeFrameDiff,
@@ -24,10 +27,14 @@ type AuthorReviewProps = {
   nextFrame?: Frame
   event?: TraceEvent
   verification?: VerificationReport
+  trace: TraceEvent[]
+  frames: Frame[]
+  selectedPrimitiveId?: string
   onInspectPreviousFrame?: () => void
   onInspectNextFrame?: () => void
   onJumpToFrameId?: (frameId: string) => void
   onJumpToEventId?: (eventId: string) => void
+  onFocusPrimitiveId?: (primitiveId: string) => void
 }
 
 function StatBadge({
@@ -163,10 +170,14 @@ function DiffPanel({
   diff,
   title,
   emptyText,
+  selectedPrimitiveId,
+  onFocusPrimitiveId,
 }: {
   diff: ReturnType<typeof summarizeFrameDiff>
   title: string
   emptyText: string
+  selectedPrimitiveId?: string
+  onFocusPrimitiveId?: (primitiveId: string) => void
 }) {
   return (
     <div className="space-y-2.5 rounded-lg border border-border/50 bg-background/55 p-3">
@@ -199,6 +210,19 @@ function DiffPanel({
                   <span className="text-muted-foreground">
                     {change.changeKinds.join(", ")}
                   </span>
+                  <Button
+                    size="xs"
+                    variant={
+                      selectedPrimitiveId === change.primitiveId
+                        ? "secondary"
+                        : "outline"
+                    }
+                    onClick={() => onFocusPrimitiveId?.(change.primitiveId)}
+                  >
+                    {selectedPrimitiveId === change.primitiveId
+                      ? "Focused"
+                      : "Focus primitive"}
+                  </Button>
                 </div>
               ))}
             </div>
@@ -221,20 +245,32 @@ export function AuthorReview({
   nextFrame,
   event,
   verification,
+  trace,
+  frames,
+  selectedPrimitiveId,
   onInspectPreviousFrame,
   onInspectNextFrame,
   onJumpToFrameId,
   onJumpToEventId,
+  onFocusPrimitiveId,
 }: AuthorReviewProps) {
+  const [issueFilter, setIssueFilter] = useState<"all" | "blocking" | "warnings">("all")
   const issueSummary = collectRelatedIssues(verification, frame, event)
   const narrationBindings = summarizeNarrationBindings(frame, event)
   const diffFromPrevious = summarizeFrameDiff(previousFrame, frame)
   const diffToNext = summarizeFrameDiff(frame, nextFrame)
+  const timeline = buildAuthorTimeline(trace, frames, verification, frame?.id)
   const frameCheckCounts = {
     pass: frame?.checks.filter((check) => check.status === "pass").length ?? 0,
     warn: frame?.checks.filter((check) => check.status === "warn").length ?? 0,
     fail: frame?.checks.filter((check) => check.status === "fail").length ?? 0,
   }
+  const filteredIssues =
+    issueFilter === "blocking"
+      ? issueSummary.blocking
+      : issueFilter === "warnings"
+        ? issueSummary.warnings
+        : [...issueSummary.blocking, ...issueSummary.warnings]
 
   return (
     <div className="grid gap-3 xl:grid-cols-2">
@@ -365,11 +401,15 @@ export function AuthorReview({
             diff={diffFromPrevious}
             title="previous -> current"
             emptyText="No previous frame is available."
+            selectedPrimitiveId={selectedPrimitiveId}
+            onFocusPrimitiveId={onFocusPrimitiveId}
           />
           <DiffPanel
             diff={diffToNext}
             title="current -> next"
             emptyText="No next frame is available."
+            selectedPrimitiveId={selectedPrimitiveId}
+            onFocusPrimitiveId={onFocusPrimitiveId}
           />
         </CardContent>
       </Card>
@@ -450,28 +490,92 @@ export function AuthorReview({
 
       <Card size="sm" className="xl:col-span-2">
         <CardHeader>
-          <CardTitle>Verification Context</CardTitle>
+          <CardTitle>Issue Inbox</CardTitle>
           <CardDescription>
-            Global issues are shown together with the active frame or event issues so author mode fails loudly.
+            Filter the relevant issues for this runtime state, then jump directly to the linked frame or event.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 lg:grid-cols-2">
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            <Button
+              size="xs"
+              variant={issueFilter === "all" ? "secondary" : "outline"}
+              onClick={() => setIssueFilter("all")}
+            >
+              All {issueSummary.blocking.length + issueSummary.warnings.length}
+            </Button>
+            <Button
+              size="xs"
+              variant={issueFilter === "blocking" ? "secondary" : "outline"}
+              onClick={() => setIssueFilter("blocking")}
+            >
+              Blocking {issueSummary.blocking.length}
+            </Button>
+            <Button
+              size="xs"
+              variant={issueFilter === "warnings" ? "secondary" : "outline"}
+              onClick={() => setIssueFilter("warnings")}
+            >
+              Warnings {issueSummary.warnings.length}
+            </Button>
+          </div>
           <IssueList
-            issues={issueSummary.blocking}
-            emptyText="No blocking issues are attached to this frame, event, or the global runtime report."
-            hiddenCount={issueSummary.hiddenBlockingCount}
-            title="Blocking Issues"
+            issues={filteredIssues}
+            emptyText="No relevant issues are attached to this frame, event, or the global runtime report."
+            hiddenCount={
+              issueFilter === "blocking"
+                ? issueSummary.hiddenBlockingCount
+                : issueFilter === "warnings"
+                  ? issueSummary.hiddenWarningCount
+                  : issueSummary.hiddenBlockingCount + issueSummary.hiddenWarningCount
+            }
+            title={issueFilter === "all" ? "Relevant Issues" : issueFilter === "blocking" ? "Blocking Issues" : "Warnings"}
             onJumpToFrameId={onJumpToFrameId}
             onJumpToEventId={onJumpToEventId}
           />
-          <IssueList
-            issues={issueSummary.warnings}
-            emptyText="No warnings are attached to this frame, event, or the global runtime report."
-            hiddenCount={issueSummary.hiddenWarningCount}
-            title="Warnings"
-            onJumpToFrameId={onJumpToFrameId}
-            onJumpToEventId={onJumpToEventId}
-          />
+        </CardContent>
+      </Card>
+
+      <Card size="sm" className="xl:col-span-2">
+        <CardHeader>
+          <CardTitle>Event Timeline</CardTitle>
+          <CardDescription>
+            Audit the full frame-backed event stream and jump the live player to any step.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="max-h-64 space-y-2 overflow-y-auto">
+            {timeline.map((entry, index) => (
+              <div
+                key={entry.frameId}
+                className="flex flex-wrap items-center gap-2 rounded-lg border border-border/50 bg-background/60 p-2.5"
+              >
+                <Badge variant={entry.isActive ? "secondary" : "outline"}>
+                  {entry.isActive ? "active" : `step ${index + 1}`}
+                </Badge>
+                <Badge variant="outline">{entry.eventType}</Badge>
+                <Badge variant="outline">{entry.codeLine}</Badge>
+                {entry.blockingIssueCount > 0 ? (
+                  <Badge variant="destructive">errors {entry.blockingIssueCount}</Badge>
+                ) : null}
+                {entry.warningIssueCount > 0 ? (
+                  <Badge variant="secondary">warnings {entry.warningIssueCount}</Badge>
+                ) : null}
+                <span className="font-mono text-xs text-muted-foreground">
+                  {entry.eventId}
+                </span>
+                <div className="ml-auto flex flex-wrap gap-2">
+                  <Button
+                    size="xs"
+                    variant={entry.isActive ? "secondary" : "outline"}
+                    onClick={() => onJumpToFrameId?.(entry.frameId)}
+                  >
+                    {entry.isActive ? "Inspecting" : "Inspect"}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>

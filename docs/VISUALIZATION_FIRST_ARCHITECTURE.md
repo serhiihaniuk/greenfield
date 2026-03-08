@@ -641,10 +641,13 @@ Author mode exists because the learner often cannot tell whether the AI is wrong
 Author mode should show:
 - source semantic event
 - current code line
+- full frame-backed event timeline
 - previous frame to next frame diff
 - invariant checks
 - pointer continuity checks
 - narration-bound values
+- issue filtering across active and global runtime failures
+- primitive focus controls that highlight the same live stage primitives the learner sees
 - direct navigation back to referenced or adjacent frames and events on the same runtime state
 - warning if more than one visual change occurred
 - warning if a material state element disappeared without an explicit visual handoff

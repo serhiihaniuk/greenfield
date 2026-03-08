@@ -137,10 +137,13 @@ Author mode is a runtime view over the same lesson state.
 It must expose:
 - current frame index
 - current semantic event
+- full frame-backed event timeline
 - previous frame to next frame diff summary
 - verification errors and warnings
+- issue filtering over the active frame, active event, and global runtime report
 - frame checks
 - narration payload source values
+- direct primitive focus on the live rendered stage
 - pedagogical warnings such as skipped micro-steps, hidden state loss, or overloaded frames
 
 Author mode must not have a separate lesson state machine.
