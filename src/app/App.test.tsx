@@ -12,14 +12,10 @@ describe("App", () => {
     window.history.replaceState({}, "", "/")
   })
 
-  it("renders the lesson controls heading", () => {
+  it("renders the lesson player toolbar", () => {
     render(<App />)
 
-    expect(
-      screen.getByRole("heading", {
-        name: /lesson controls/i,
-      })
-    ).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument()
   })
 
   it("renders the primitive audit surface when requested by query param", () => {

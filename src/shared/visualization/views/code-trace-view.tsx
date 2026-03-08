@@ -1,5 +1,7 @@
+import { useContext } from "react"
+
 import type { CodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
-import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { PrimitiveRoleContext, PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import { cn } from "@/shared/lib/utils"
 
 export function CodeTraceView({
@@ -7,13 +9,19 @@ export function CodeTraceView({
 }: {
   primitive: CodeTracePrimitiveFrameState
 }) {
+  const role = useContext(PrimitiveRoleContext)
   const waiting = new Set(primitive.data.waitingLineIds ?? [])
   const returned = new Set(primitive.data.returnedLineIds ?? [])
 
   return (
     <PrimitiveShell primitive={primitive}>
       <div
-        className="h-[19rem] overflow-auto rounded-2xl border border-border/70 p-3 font-mono text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] xl:h-[23rem]"
+        className={cn(
+          "overflow-auto rounded-lg border border-border/70 p-3 font-mono text-sm",
+          role === "reference"
+            ? "flex-1 min-h-0"
+            : "h-[19rem] xl:h-[23rem]"
+        )}
         style={{
           background:
             primitive.data.background ??
@@ -25,7 +33,7 @@ export function CodeTraceView({
             <div
               key={line.id}
               className={cn(
-                "rounded-xl px-2.5 py-1.5 whitespace-pre",
+                "rounded-md px-2.5 py-1.5 whitespace-pre",
                 primitive.data.activeLineId === line.id &&
                   "border border-white/10 bg-white/8 shadow-[0_0_0_1px_rgba(56,189,248,0.18)]",
                 waiting.has(line.id) && "bg-white/5",

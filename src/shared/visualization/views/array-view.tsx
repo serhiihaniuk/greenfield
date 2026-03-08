@@ -76,10 +76,9 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
   const annotationMap = groupByTarget(primitive.annotations ?? [])
 
   return (
-    <PrimitiveShell primitive={primitive} className="min-h-[18rem]">
-      <div className="rounded-[1.35rem] border border-border/60 bg-muted/18 p-5">
-        <div className="overflow-x-auto pb-1">
-          <div className="flex min-w-max gap-4">
+    <PrimitiveShell primitive={primitive}>
+      <div className="overflow-x-auto pb-1">
+        <div className="flex min-w-max gap-4">
           {primitive.data.cells.map((cell) => {
             const pointers = pointerMap.get(cell.id) ?? []
             const highlight = highlightMap.get(cell.id)
@@ -142,7 +141,6 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
           })}
           </div>
         </div>
-      </div>
     </PrimitiveShell>
   )
 }

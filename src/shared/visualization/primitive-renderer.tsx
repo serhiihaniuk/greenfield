@@ -9,7 +9,11 @@ import type {
   TreePrimitiveFrameState,
 } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
-import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import {
+  PrimitiveRoleContext,
+  PrimitiveShell,
+  type PrimitiveRole,
+} from "@/shared/visualization/primitive-shell"
 import { CallTreeView } from "@/shared/visualization/views/call-tree-view"
 import { ArrayView } from "@/shared/visualization/views/array-view"
 import { CodeTraceView } from "@/shared/visualization/views/code-trace-view"
@@ -21,28 +25,43 @@ import { TreeView } from "@/shared/visualization/views/tree-view"
 
 type PrimitiveRendererProps = {
   primitive: PrimitiveFrameState
+  role?: PrimitiveRole
 }
 
-export function PrimitiveRenderer({ primitive }: PrimitiveRendererProps) {
+export function PrimitiveRenderer({ primitive, role }: PrimitiveRendererProps) {
+  let content: React.ReactNode
+
   switch (primitive.kind) {
     case "array":
-      return <ArrayView primitive={primitive as ArrayPrimitiveFrameState} />
+      content = <ArrayView primitive={primitive as ArrayPrimitiveFrameState} />
+      break
     case "state":
-      return <StateView primitive={primitive as StatePrimitiveFrameState} />
+      content = <StateView primitive={primitive as StatePrimitiveFrameState} />
+      break
     case "stack":
-      return <StackView primitive={primitive as StackPrimitiveFrameState} />
+      content = <StackView primitive={primitive as StackPrimitiveFrameState} />
+      break
     case "hash-map":
-      return <HashMapView primitive={primitive as HashMapPrimitiveFrameState} />
+      content = <HashMapView primitive={primitive as HashMapPrimitiveFrameState} />
+      break
     case "tree":
-      return <TreeView primitive={primitive as TreePrimitiveFrameState} />
+      content = <TreeView primitive={primitive as TreePrimitiveFrameState} />
+      break
     case "call-tree":
-      return <CallTreeView primitive={primitive as CallTreePrimitiveFrameState} />
+      content = <CallTreeView primitive={primitive as CallTreePrimitiveFrameState} />
+      break
     case "code-trace":
-      return <CodeTraceView primitive={primitive as CodeTracePrimitiveFrameState} />
+      content = (
+        <CodeTraceView primitive={primitive as CodeTracePrimitiveFrameState} />
+      )
+      break
     case "narration":
-      return <NarrationView primitive={primitive as NarrationPrimitiveFrameState} />
+      content = (
+        <NarrationView primitive={primitive as NarrationPrimitiveFrameState} />
+      )
+      break
     default:
-      return (
+      content = (
         <PrimitiveShell primitive={primitive}>
           <pre className="overflow-auto rounded-xl border border-border/70 bg-muted/25 p-3 text-xs text-muted-foreground">
             {JSON.stringify(primitive.data, null, 2)}
@@ -50,4 +69,10 @@ export function PrimitiveRenderer({ primitive }: PrimitiveRendererProps) {
         </PrimitiveShell>
       )
   }
+
+  return (
+    <PrimitiveRoleContext.Provider value={role}>
+      {content}
+    </PrimitiveRoleContext.Provider>
+  )
 }

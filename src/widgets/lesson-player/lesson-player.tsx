@@ -1,48 +1,33 @@
-import { useEffect, useEffectEvent, useMemo, useState } from "react"
+import { useEffect, useEffectEvent, useMemo, useState, useCallback } from "react"
 import {
   ChevronFirstIcon,
   ChevronLastIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ChevronsDownUpIcon,
+  ChevronsUpDownIcon,
   FileJsonIcon,
-  GaugeIcon,
+  KeyboardIcon,
   ListTreeIcon,
   PauseIcon,
   PlayIcon,
   RotateCcwIcon,
+  XIcon,
 } from "lucide-react"
+
+import { useHotkey } from "@tanstack/react-hotkeys"
 
 import { listLessons } from "@/domains/lessons/loaders"
 import type { VisualizationMode } from "@/domains/lessons/types"
-import {
-  defineCodeTracePrimitiveFrameState,
-  defineNarrationPrimitiveFrameState,
-} from "@/entities/visualization/primitives"
+import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
 import { tokenizeCodeTemplate, type CodePresentation } from "@/features/player/code"
 import { PLAYBACK_SPEED_MS } from "@/features/player/runtime"
 import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/shared/ui/card"
 import { Button } from "@/shared/ui/button"
 import { Badge } from "@/shared/ui/badge"
-import {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldTitle,
-} from "@/shared/ui/field"
 import {
   Select,
   SelectContent,
@@ -52,8 +37,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select"
-import { Separator } from "@/shared/ui/separator"
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/shared/ui/resizable"
 import { Textarea } from "@/shared/ui/textarea"
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/shared/ui/tooltip"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/shared/ui/dialog"
 
 type LessonPlayerProps = {
   lessonId?: string
@@ -61,6 +58,32 @@ type LessonPlayerProps = {
 
 const MODE_OPTIONS: VisualizationMode[] = ["focus", "full", "code", "compare"]
 const PLAYBACK_SPEED_OPTIONS = ["0.5x", "1x", "1.5x", "2x"] as const
+
+const HOTKEYS = [
+  { keys: ["Space"], label: "Play / Pause" },
+  { keys: ["W"], label: "Play" },
+  { keys: ["S"], label: "Stop" },
+  { keys: ["←", "A"], label: "Previous frame" },
+  { keys: ["→", "D"], label: "Next frame" },
+  { keys: ["Home"], label: "Jump to first frame" },
+  { keys: ["End"], label: "Jump to last frame" },
+  { keys: ["R"], label: "Reset" },
+  { keys: ["]"], label: "Speed up" },
+  { keys: ["["], label: "Speed down" },
+  { keys: ["Q"], label: "Toggle author mode" },
+  { keys: ["/"], label: "Show keyboard shortcuts" },
+] as const
+
+function Kbd({ children }: { children: React.ReactNode }) {
+  return (
+    <kbd
+      data-slot="kbd"
+      className="inline-flex h-5 min-w-5 items-center justify-center rounded bg-background/20 px-1 font-mono text-[10px] leading-none"
+    >
+      {children}
+    </kbd>
+  )
+}
 
 function splitPrimitives(primitives: PrimitiveFrameState[]) {
   const primaryPrimitives = primitives.filter(
@@ -105,30 +128,6 @@ function buildCodeTracePrimitive(
   })
 }
 
-function buildNarrationPrimitive(
-  summary: string | undefined,
-  codeLine: string | undefined,
-  visualChange: string | undefined
-) {
-  return defineNarrationPrimitiveFrameState({
-    id: "narration",
-    kind: "narration",
-    title: "Narration",
-    subtitle: "Short prose should explain the visual change, not replace it.",
-    data: {
-      summary: summary ?? "No active narration.",
-      segments: [],
-      codeLine,
-      visualChange,
-    },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 220,
-    },
-  })
-}
-
 export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const {
     lesson,
@@ -167,430 +166,488 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   } = useLessonPlayerStore((state) => state)
 
   const [codePresentation, setCodePresentation] = useState<CodePresentation>()
-  const [showInputEditor, setShowInputEditor] = useState(false)
+  const [inputModalOpen, setInputModalOpen] = useState(false)
+  const [stateCollapsed, setStateCollapsed] = useState(false)
+  const [hotkeysOpen, setHotkeysOpen] = useState(false)
   const lessons = useMemo(() => listLessons(), [])
   const activeFrame = frames[currentFrameIndex]
   const activeEvent = trace.find((event) => event.id === activeFrame?.sourceEventId)
   const activePrimitives = activeFrame?.primitives ?? []
   const { primaryPrimitives, secondaryPrimitives } = splitPrimitives(activePrimitives)
   const hasSecondaryStage = secondaryPrimitives.length > 0
-  const selectedPresetLabel =
-    approach?.presets.find((preset) => preset.id === selectedPresetId)?.label ??
-    "No preset"
   const currentFrameLabel =
-    frames.length === 0 ? "0 / 0" : `${currentFrameIndex + 1} / ${frames.length}`
+    frames.length === 0 ? "0/0" : `${currentFrameIndex + 1}/${frames.length}`
   const visualChangeLabel = activeFrame?.visualChangeType ?? "—"
-  const forcedInputEditorVisible =
-    inputSource === "custom" || failure?.kind === "input-parse"
-  const inputEditorVisible = showInputEditor || forcedInputEditorVisible
   const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame?.codeLine)
-  const narrationPrimitive = buildNarrationPrimitive(
-    activeFrame?.narration.summary,
-    activeFrame?.codeLine,
-    visualChangeLabel
-  )
 
   useEffect(() => {
     initialize(lessonId)
   }, [initialize, lessonId])
 
   useEffect(() => {
-    if (!approach) {
-      return
-    }
-
+    if (!approach) return
     let cancelled = false
     tokenizeCodeTemplate(approach.codeTemplate).then((presentation) => {
-      if (!cancelled) {
-        setCodePresentation(presentation)
-      }
+      if (!cancelled) setCodePresentation(presentation)
     })
-
     return () => {
       cancelled = true
     }
   }, [approach])
 
+  useEffect(() => {
+    if (failure?.kind === "input-parse") setInputModalOpen(true)
+  }, [failure])
+
   const stepPlayback = useEffectEvent(() => {
-    if (playbackStatus === "playing") {
-      nextFrame()
-    }
+    if (playbackStatus === "playing") nextFrame()
   })
 
   useEffect(() => {
-    if (playbackStatus !== "playing") {
-      return
-    }
-
+    if (playbackStatus !== "playing") return
     const timer = window.setTimeout(stepPlayback, PLAYBACK_SPEED_MS[playbackSpeed])
     return () => {
       window.clearTimeout(timer)
     }
   }, [currentFrameIndex, playbackSpeed, playbackStatus])
 
+  // ─── Keyboard Shortcuts ───
+  const togglePlayback = useCallback(
+    () => (playbackStatus === "playing" ? pause() : play()),
+    [playbackStatus, pause, play]
+  )
+
+  const cycleSpeed = useCallback(
+    (direction: 1 | -1) => {
+      const idx = PLAYBACK_SPEED_OPTIONS.indexOf(playbackSpeed)
+      const next = PLAYBACK_SPEED_OPTIONS[idx + direction]
+      if (next) setPlaybackSpeed(next)
+    },
+    [playbackSpeed, setPlaybackSpeed]
+  )
+
+  useHotkey("Space", togglePlayback)
+  useHotkey("W", play)
+  useHotkey("S", pause)
+  useHotkey("ArrowLeft", previousFrame)
+  useHotkey("A", previousFrame)
+  useHotkey("ArrowRight", nextFrame)
+  useHotkey("D", nextFrame)
+  useHotkey("Home", jumpToFirst)
+  useHotkey("End", jumpToLast)
+  useHotkey("R", reset)
+  useHotkey("]", () => cycleSpeed(1))
+  useHotkey("[", () => cycleSpeed(-1))
+  useHotkey("Q", toggleAuthorMode)
+  useHotkey("/", () => setHotkeysOpen((v) => !v))
+
   return (
-    <main className="bg-background text-foreground min-h-svh">
-      <div className="min-h-svh bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_20%),radial-gradient(circle_at_top_right,rgba(251,191,36,0.08),transparent_18%),linear-gradient(180deg,rgba(9,14,23,0.96)_0%,rgba(9,14,23,1)_100%)]">
-        <div className="mx-auto flex w-full max-w-[1620px] flex-col gap-4 px-4 py-5 xl:px-6">
-          <Card
-            size="sm"
-            className="border border-border/60 bg-card/70 shadow-[0_18px_70px_rgba(2,8,23,0.42)] backdrop-blur"
+    <main className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
+      {/* ─── Narration Strip ─── */}
+      <div className="flex h-9 shrink-0 items-center gap-3 border-b border-border/20 px-4">
+        <p className="flex-1 truncate text-sm text-foreground/80">
+          {activeFrame?.narration.summary ?? "Load a lesson to begin playback."}
+        </p>
+        {activeFrame?.codeLine ? (
+          <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+            L{activeFrame.codeLine}
+          </span>
+        ) : null}
+      </div>
+
+      {/* ─── Main Content ─── */}
+      <div className="relative flex-1 min-h-0">
+        <ResizablePanelGroup orientation="horizontal">
+          {/* Left panel — state (top) + code trace (bottom) */}
+          <ResizablePanel
+            id="left"
+            defaultSize="27%"
+            minSize="12%"
+            maxSize="45%"
+            collapsible
+            collapsedSize="0%"
           >
-            <CardHeader className="gap-1 pb-0">
-              <CardAction className="col-start-1 row-start-2 flex flex-wrap justify-start gap-2 self-start justify-self-start xl:col-start-2 xl:row-start-1 xl:justify-end xl:justify-self-end">
-                <Badge variant="outline">change {visualChangeLabel}</Badge>
-                <Badge variant="outline">status {playbackStatus}</Badge>
-                <Badge
-                  variant={verification?.isValid === false ? "destructive" : "outline"}
-                >
-                  verification {verification?.isValid === false ? "blocked" : "ok"}
-                </Badge>
-              </CardAction>
-              <div className="flex flex-col gap-0.5">
-                <CardTitle>
-                  <h1 className="text-sm">Lesson Controls</h1>
-                </CardTitle>
-                <CardDescription className="text-[11px]">
-                  Select lesson state, then keep the stage in view.
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-3">
-              <FieldGroup className="gap-3">
-                <div className="grid gap-2 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)_minmax(0,0.8fr)_minmax(0,0.95fr)]">
-                  <Field orientation="horizontal" className="items-center gap-3">
-                    <FieldTitle className="w-14 shrink-0 text-xs uppercase tracking-wide text-muted-foreground">
-                      Lesson
-                    </FieldTitle>
-                    <FieldContent>
-                      <Select
-                        value={activeLessonId || null}
-                        onValueChange={(value) => value && setLessonId(value)}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a lesson" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Lessons</SelectLabel>
-                            {lessons.map((entry) => (
-                              <SelectItem key={entry.id} value={entry.id}>
-                                {entry.title}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FieldContent>
-                  </Field>
-                  <Field orientation="horizontal" className="items-center gap-3">
-                    <FieldTitle className="w-18 shrink-0 text-xs uppercase tracking-wide text-muted-foreground">
-                      Approach
-                    </FieldTitle>
-                    <FieldContent>
-                      <Select
-                        value={approachId || null}
-                        onValueChange={(value) => value && setApproachId(value)}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select an approach" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Approaches</SelectLabel>
-                            {lesson?.approaches.map((entry) => (
-                              <SelectItem key={entry.id} value={entry.id}>
-                                {entry.label}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FieldContent>
-                  </Field>
-                  <Field orientation="horizontal" className="items-center gap-3">
-                    <FieldTitle className="w-12 shrink-0 text-xs uppercase tracking-wide text-muted-foreground">
-                      Mode
-                    </FieldTitle>
-                    <FieldContent>
-                      <Select
-                        value={mode || null}
-                        onValueChange={(value) => value && setMode(value)}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a mode" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Modes</SelectLabel>
-                            {MODE_OPTIONS.map((entry) => (
-                              <SelectItem key={entry} value={entry}>
-                                {entry}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FieldContent>
-                  </Field>
-                  <Field orientation="horizontal" className="items-center gap-3">
-                    <FieldTitle className="w-14 shrink-0 text-xs uppercase tracking-wide text-muted-foreground">
-                      Preset
-                    </FieldTitle>
-                    <FieldContent>
-                      <Select
-                        value={selectedPresetId ?? null}
-                        onValueChange={(value) => value && selectPreset(value)}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a preset" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Presets</SelectLabel>
-                            {approach?.presets.map((preset) => (
-                              <SelectItem key={preset.id} value={preset.id}>
-                                {preset.label}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FieldContent>
-                  </Field>
-                </div>
-              </FieldGroup>
-              <Separator />
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Button size="sm" variant="outline" onClick={jumpToFirst}>
-                    <ChevronFirstIcon data-icon="inline-start" />
-                    First
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={previousFrame}>
-                    <ChevronLeftIcon data-icon="inline-start" />
-                    Prev
-                  </Button>
-                  <Button size="sm" onClick={playbackStatus === "playing" ? pause : play}>
-                    {playbackStatus === "playing" ? (
-                      <PauseIcon data-icon="inline-start" />
+            <div className="flex h-full flex-col min-h-0">
+              {/* State — top, content-sized, collapsible */}
+              {hasSecondaryStage ? (
+                <div className="shrink-0 border-b border-border/30">
+                  <button
+                    className="flex w-full items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setStateCollapsed((v) => !v)}
+                  >
+                    {stateCollapsed ? (
+                      <ChevronsUpDownIcon className="size-3" />
                     ) : (
-                      <PlayIcon data-icon="inline-start" />
+                      <ChevronsDownUpIcon className="size-3" />
                     )}
-                    {playbackStatus === "playing" ? "Pause" : "Play"}
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={nextFrame}>
-                    <ChevronRightIcon data-icon="inline-start" />
-                    Next
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={jumpToLast}>
-                    <ChevronLastIcon data-icon="inline-start" />
-                    Last
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={reset}>
-                    <RotateCcwIcon data-icon="inline-start" />
-                    Reset
-                  </Button>
-                </div>
-                <div className="flex flex-wrap items-center justify-end gap-2">
-                  <Badge variant="secondary">{selectedPresetLabel}</Badge>
-                  <Badge variant="outline">input {inputSource}</Badge>
-                  <Badge variant="outline">{currentFrameLabel}</Badge>
-                  <Button
-                    disabled={forcedInputEditorVisible}
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setShowInputEditor((current) => !current)}
-                  >
-                    <FileJsonIcon data-icon="inline-start" />
-                    {forcedInputEditorVisible
-                      ? "Input active"
-                      : inputEditorVisible
-                        ? "Hide input"
-                        : "Edit input"}
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={toggleAuthorMode}>
-                    <ListTreeIcon data-icon="inline-start" />
-                    {authorMode ? "Hide author review" : "Author review"}
-                  </Button>
-                  <Select
-                    value={playbackSpeed}
-                    onValueChange={(value) => value && setPlaybackSpeed(value)}
-                  >
-                    <SelectTrigger className="w-[5.5rem]">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Speed</SelectLabel>
-                        {PLAYBACK_SPEED_OPTIONS.map((entry) => (
-                          <SelectItem key={entry} value={entry}>
-                            {entry}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex w-full items-center gap-3">
-                <div className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                  Timeline
-                </div>
-                <input
-                  aria-label="Timeline"
-                  className="accent-primary w-full"
-                  disabled={frames.length <= 1}
-                  max={Math.max(frames.length - 1, 0)}
-                  min={0}
-                  onChange={(event) => scrubTo(Number(event.currentTarget.value))}
-                  step={1}
-                  type="range"
-                  value={Math.min(currentFrameIndex, Math.max(frames.length - 1, 0))}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid gap-4 xl:grid-cols-[minmax(0,1.9fr)_21.5rem]">
-            <div className="flex flex-col gap-5">
-              <Card className="border border-cyan-500/12 bg-card/72 shadow-[0_20px_90px_rgba(2,8,23,0.45)] backdrop-blur">
-                <CardHeader className="gap-2">
-                  <CardAction className="col-start-1 row-start-2 flex flex-wrap gap-2 self-start justify-self-start xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:justify-self-end">
-                    <Badge variant="outline">code {activeFrame?.codeLine ?? "—"}</Badge>
-                    <Badge variant="outline">event {activeEvent?.type ?? "—"}</Badge>
-                    <Badge variant="outline">
-                      view {primaryPrimitives.length + secondaryPrimitives.length}
-                    </Badge>
-                  </CardAction>
-                  <div className="grid gap-1">
-                    <CardTitle>Frame {currentFrameLabel}</CardTitle>
-                    <CardDescription className="text-base leading-snug text-foreground/82">
-                      {activeFrame?.narration.summary ??
-                        "Load a lesson to begin playback."}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div
-                    className={
-                      hasSecondaryStage
-                        ? "grid gap-4 xl:grid-cols-[minmax(0,1fr)_19rem]"
-                        : "grid gap-4"
-                    }
-                  >
-                    <div className="rounded-[1.5rem] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.88)_0%,rgba(10,15,25,0.96)_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                      <div className="grid auto-rows-max gap-4">
-                        {primaryPrimitives.map((primitive) => (
-                          <PrimitiveRenderer key={primitive.id} primitive={primitive} />
-                        ))}
-                      </div>
+                    State
+                  </button>
+                  {!stateCollapsed ? (
+                    <div className="grid auto-rows-max gap-2 px-3 pb-3">
+                      {secondaryPrimitives.map((primitive) => (
+                        <PrimitiveRenderer
+                          key={primitive.id}
+                          primitive={primitive}
+                          role="secondary"
+                        />
+                      ))}
                     </div>
-                    {hasSecondaryStage ? (
-                      <div className="rounded-[1.35rem] border border-border/60 bg-muted/12 p-3">
-                        <div className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                          <GaugeIcon />
-                          Support Views
-                        </div>
-                        <div className="grid auto-rows-max gap-4">
-                          {secondaryPrimitives.map((primitive) => (
-                            <PrimitiveRenderer key={primitive.id} primitive={primitive} />
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* Code trace — fills remaining space */}
+              <div className="flex flex-1 flex-col min-h-0 overflow-hidden">
+                <PrimitiveRenderer primitive={codeTracePrimitive} role="reference" />
+                {failure ? (
+                  <div className="shrink-0 border-t border-destructive/30 bg-destructive/8 px-3 py-2">
+                    <div className="text-xs font-medium text-destructive">
+                      Runtime failure · {failure.kind}
+                    </div>
+                    <p className="mt-1 text-xs text-destructive/80">{failure.message}</p>
                   </div>
-                </CardContent>
-              </Card>
+                ) : null}
+              </div>
             </div>
-            <div className="flex flex-col gap-4 xl:sticky xl:top-5 xl:self-start">
-              <Card className="border border-border/60 bg-card/72 shadow-[0_18px_70px_rgba(2,8,23,0.36)] backdrop-blur">
-                <CardHeader className="gap-1 pb-3">
-                  <CardTitle className="text-sm">Reference</CardTitle>
-                  <CardDescription className="text-[11px]">
-                    Code and review stay docked here.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                  <PrimitiveRenderer primitive={codeTracePrimitive} />
-                  <PrimitiveRenderer primitive={narrationPrimitive} />
+          </ResizablePanel>
 
-                  {failure ? (
-                    <>
-                      <Separator />
-                      <Card size="sm" className="border border-destructive/30 bg-destructive/8">
-                        <CardHeader>
-                          <CardTitle>Runtime failure</CardTitle>
-                          <CardDescription>{failure.kind}</CardDescription>
-                        </CardHeader>
-                        <CardContent>{failure.message}</CardContent>
-                      </Card>
-                    </>
-                  ) : null}
+          <ResizableHandle withHandle />
 
-                  {inputEditorVisible ? (
-                    <>
-                      <Separator />
-                      <Card size="sm">
-                        <CardHeader>
-                          <CardAction>
-                            <Badge variant="outline">{inputSource}</Badge>
-                          </CardAction>
-                          <CardTitle>Custom Input</CardTitle>
-                          <CardDescription>
-                            Use JSON input, then rebuild the trace without leaving the player.
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <FieldGroup>
-                            <Field>
-                              <FieldLabel htmlFor="custom-input">Input JSON</FieldLabel>
-                              <FieldContent>
-                                <Textarea
-                                  id="custom-input"
-                                  value={rawInput}
-                                  onChange={(event) => setRawInput(event.target.value)}
-                                  rows={10}
-                                />
-                                <FieldDescription>
-                                  Keep editing docked to the side so the stage remains visible.
-                                </FieldDescription>
-                              </FieldContent>
-                            </Field>
-                          </FieldGroup>
-                        </CardContent>
-                        <CardFooter className="flex flex-wrap gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => selectedPresetId && selectPreset(selectedPresetId)}
-                          >
-                            Use preset
-                          </Button>
-                          <Button size="sm" onClick={applyCustomInput}>
-                            Apply custom input
-                          </Button>
-                        </CardFooter>
-                      </Card>
-                    </>
-                  ) : null}
+          {/* Stage — primary visualization */}
+          <ResizablePanel id="stage" defaultSize="73%" minSize="30%">
+            <section className="flex h-full flex-col overflow-auto p-4">
+              <div className="grid auto-rows-max gap-4">
+                {primaryPrimitives.map((primitive) => (
+                  <PrimitiveRenderer
+                    key={primitive.id}
+                    primitive={primitive}
+                    role="primary"
+                  />
+                ))}
+              </div>
+            </section>
+          </ResizablePanel>
+        </ResizablePanelGroup>
 
-                  {authorMode ? (
-                    <>
-                      <Separator />
-                      <AuthorReview
-                        frame={activeFrame}
-                        event={activeEvent}
-                        verification={verification}
-                      />
-                    </>
-                  ) : null}
-                </CardContent>
-              </Card>
+        {/* Author Mode Drawer */}
+        {authorMode ? (
+          <div className="absolute inset-x-0 bottom-0 z-10 border-t border-border/40 bg-card/95 backdrop-blur-sm">
+            <div className="flex items-center gap-2 border-b border-border/20 px-4 py-1.5">
+              <Badge variant="outline">change {visualChangeLabel}</Badge>
+              <Badge variant="outline">status {playbackStatus}</Badge>
+              <Badge
+                variant={
+                  verification?.isValid === false ? "destructive" : "outline"
+                }
+              >
+                verification{" "}
+                {verification?.isValid === false ? "blocked" : "ok"}
+              </Badge>
+              <Badge variant="outline">
+                code {activeFrame?.codeLine ?? "—"}
+              </Badge>
+              <Badge variant="outline">
+                views {primaryPrimitives.length + secondaryPrimitives.length}
+              </Badge>
+            </div>
+            <div className="max-h-[260px] overflow-y-auto p-4">
+              <AuthorReview
+                frame={activeFrame}
+                event={activeEvent}
+                verification={verification}
+              />
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      {/* ─── Bottom Toolbar ─── */}
+      <footer className="flex h-12 shrink-0 items-center gap-1 border-t border-border/40 px-2">
+        <Select
+          value={activeLessonId || null}
+          onValueChange={(value) => value && setLessonId(value)}
+        >
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Lesson" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Lessons</SelectLabel>
+              {lessons.map((entry) => (
+                <SelectItem key={entry.id} value={entry.id}>
+                  {entry.title}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={approachId || null}
+          onValueChange={(value) => value && setApproachId(value)}
+        >
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Approach" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Approaches</SelectLabel>
+              {lesson?.approaches.map((entry) => (
+                <SelectItem key={entry.id} value={entry.id}>
+                  {entry.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={mode || null}
+          onValueChange={(value) => value && setMode(value)}
+        >
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Mode" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Modes</SelectLabel>
+              {MODE_OPTIONS.map((entry) => (
+                <SelectItem key={entry} value={entry}>
+                  {entry}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={selectedPresetId ?? null}
+          onValueChange={(value) => value && selectPreset(value)}
+        >
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Preset" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Presets</SelectLabel>
+              {approach?.presets.map((preset) => (
+                <SelectItem key={preset.id} value={preset.id}>
+                  {preset.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <div className="mx-1 h-5 border-l border-border/30" />
+
+        <div className="flex items-center gap-0.5">
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={jumpToFirst} />}>
+              <ChevronFirstIcon />
+            </TooltipTrigger>
+            <TooltipContent>First frame <Kbd>Home</Kbd></TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={previousFrame} />}>
+              <ChevronLeftIcon />
+            </TooltipTrigger>
+            <TooltipContent>Previous <Kbd>←</Kbd> <Kbd>A</Kbd></TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="xs" onClick={playbackStatus === "playing" ? pause : play} />}>
+              {playbackStatus === "playing" ? (
+                <PauseIcon data-icon="inline-start" />
+              ) : (
+                <PlayIcon data-icon="inline-start" />
+              )}
+              {playbackStatus === "playing" ? "Pause" : "Play"}
+            </TooltipTrigger>
+            <TooltipContent>{playbackStatus === "playing" ? "Pause" : "Play"} <Kbd>Space</Kbd></TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={nextFrame} />}>
+              <ChevronRightIcon />
+            </TooltipTrigger>
+            <TooltipContent>Next <Kbd>→</Kbd> <Kbd>D</Kbd></TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={jumpToLast} />}>
+              <ChevronLastIcon />
+            </TooltipTrigger>
+            <TooltipContent>Last frame <Kbd>End</Kbd></TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={reset} />}>
+              <RotateCcwIcon />
+            </TooltipTrigger>
+            <TooltipContent>Reset <Kbd>R</Kbd></TooltipContent>
+          </Tooltip>
+        </div>
+
+        <div className="mx-1 h-5 border-l border-border/30" />
+
+        <input
+          aria-label="Timeline"
+          className="h-1 min-w-0 flex-1 accent-primary"
+          disabled={frames.length <= 1}
+          max={Math.max(frames.length - 1, 0)}
+          min={0}
+          onChange={(event) => scrubTo(Number(event.currentTarget.value))}
+          step={1}
+          type="range"
+          value={Math.min(currentFrameIndex, Math.max(frames.length - 1, 0))}
+        />
+        <span className="ml-1.5 shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">
+          {currentFrameLabel}
+        </span>
+
+        <div className="mx-1 h-5 border-l border-border/30" />
+
+        <Select
+          value={playbackSpeed}
+          onValueChange={(value) => value && setPlaybackSpeed(value)}
+        >
+          <SelectTrigger size="sm" className="w-[4.5rem]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Speed</SelectLabel>
+              {PLAYBACK_SPEED_OPTIONS.map((entry) => (
+                <SelectItem key={entry} value={entry}>
+                  {entry}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Button
+                size="icon-xs"
+                variant={inputModalOpen ? "secondary" : "ghost"}
+                onClick={() => setInputModalOpen((v) => !v)}
+              />
+            }
+          >
+            <FileJsonIcon />
+          </TooltipTrigger>
+          <TooltipContent>Custom input</TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Button
+                size="xs"
+                variant={authorMode ? "secondary" : "ghost"}
+                onClick={toggleAuthorMode}
+              />
+            }
+          >
+            <ListTreeIcon data-icon="inline-start" />
+            Author
+          </TooltipTrigger>
+          <TooltipContent>Author mode <Kbd>Q</Kbd></TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Button
+                size="icon-xs"
+                variant="ghost"
+                onClick={() => setHotkeysOpen(true)}
+              />
+            }
+          >
+            <KeyboardIcon />
+          </TooltipTrigger>
+          <TooltipContent>Keyboard shortcuts <Kbd>/</Kbd></TooltipContent>
+        </Tooltip>
+      </footer>
+
+      {/* Hotkeys Dialog */}
+      <Dialog open={hotkeysOpen} onOpenChange={setHotkeysOpen}>
+        <DialogContent className="sm:max-w-xs">
+          <DialogHeader>
+            <DialogTitle>Keyboard Shortcuts</DialogTitle>
+            <DialogDescription className="sr-only">
+              List of available keyboard shortcuts for the lesson player.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-1">
+            {HOTKEYS.map(({ keys, label }) => (
+              <div
+                key={label}
+                className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm hover:bg-muted/50"
+              >
+                <span className="text-muted-foreground">{label}</span>
+                <span className="flex items-center gap-1">
+                  {keys.map((k, i) => (
+                    <span key={k} className="flex items-center gap-1">
+                      {i > 0 ? <span className="text-[10px] text-muted-foreground">/</span> : null}
+                      <kbd className="inline-flex h-6 min-w-6 items-center justify-center rounded border border-border/60 bg-muted/40 px-1.5 font-mono text-[11px] text-foreground/70">
+                        {k}
+                      </kbd>
+                    </span>
+                  ))}
+                </span>
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Input Editor Modal */}
+      {inputModalOpen ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          onClick={() => setInputModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-lg rounded-lg border border-border/60 bg-card p-4 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="text-sm font-medium">Custom Input</h2>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">{inputSource}</Badge>
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={() => setInputModalOpen(false)}
+                >
+                  <XIcon />
+                </Button>
+              </div>
+            </div>
+            <Textarea
+              value={rawInput}
+              onChange={(event) => setRawInput(event.target.value)}
+              rows={12}
+              className="font-mono text-xs"
+            />
+            <div className="mt-3 flex justify-end gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() =>
+                  selectedPresetId && selectPreset(selectedPresetId)
+                }
+              >
+                Use preset
+              </Button>
+              <Button size="sm" onClick={applyCustomInput}>
+                Apply
+              </Button>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </main>
   )
 }
