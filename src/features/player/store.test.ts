@@ -80,6 +80,17 @@ describe("lesson player store", () => {
     expect(state.failure).toBeUndefined()
   })
 
+  it("loads the tree dfs traversal lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("tree-dfs-traversal")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("tree-dfs-traversal")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
   it("rebuilds from custom input without a page reload", () => {
     const store = createLessonPlayerStore()
     store.getState().initialize("binary-search")

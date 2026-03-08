@@ -14,6 +14,7 @@ import { heapTopKLesson } from "../../../content/lessons/heap-top-k/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
+import { treeDfsTraversalLesson } from "../../../content/lessons/tree-dfs-traversal/lesson"
 
 describe("runtime goldens", () => {
   it("matches the checked-in binary-search focus golden", () => {
@@ -232,6 +233,39 @@ describe("runtime goldens", () => {
         path.resolve(
           process.cwd(),
           "content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens/focus-classic-five.json"
+        ),
+        "utf8"
+      )
+    ) as RuntimeGoldenSnapshot
+
+    const comparison = compareRuntimeGoldenSnapshots(actual, expected)
+
+    expect(comparison.matches).toBe(true)
+    expect(comparison.differences).toEqual([])
+  })
+
+  it("matches the checked-in tree-dfs-traversal focus golden", () => {
+    const approach = treeDfsTraversalLesson.approaches[0]
+    const preset = approach?.presets.find(
+      (entry) => entry.id === "balanced-six"
+    )
+
+    if (!approach || !preset) {
+      throw new Error("Tree DFS traversal golden fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: treeDfsTraversalLesson,
+      approach,
+      mode: "focus",
+      rawInput: preset.rawInput,
+    })
+    const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
+    const expected = JSON.parse(
+      readFileSync(
+        path.resolve(
+          process.cwd(),
+          "content/lessons/tree-dfs-traversal/approaches/iterative-stack/goldens/focus-balanced-six.json"
         ),
         "utf8"
       )

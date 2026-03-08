@@ -7,6 +7,7 @@ import { heapTopKLesson } from "./heap-top-k/lesson"
 import { houseRobberLesson } from "./house-robber/lesson"
 import { maximumDepthLesson } from "./maximum-depth/lesson"
 import { slidingWindowMaximumLesson } from "./sliding-window-maximum/lesson"
+import { treeDfsTraversalLesson } from "./tree-dfs-traversal/lesson"
 
 export const lessonDefinitions: AnyLessonDefinition[] = [
   binarySearchLesson,
@@ -16,6 +17,7 @@ export const lessonDefinitions: AnyLessonDefinition[] = [
   houseRobberLesson,
   maximumDepthLesson,
   slidingWindowMaximumLesson,
+  treeDfsTraversalLesson,
 ]
 
 export const lessonRegistry = createLessonRegistry(lessonDefinitions)

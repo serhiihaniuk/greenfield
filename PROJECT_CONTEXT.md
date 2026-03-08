@@ -112,7 +112,8 @@ Phase 4 primitive foundation is complete.
 Phase 5 verification layer is complete.
 Phase 6 shell refinement is complete.
 Phase 7 author-mode foundation is complete.
-Phase 8 flagship lesson expansion is now active.
+Phase 8 flagship lesson expansion is complete.
+Phase 9 hardening is now active.
 
 Completed so far:
 
@@ -151,15 +152,16 @@ Completed so far:
 - Phase 8 now includes a dense-window flagship lesson: Sliding Window Maximum is implemented as a registered, verified monotonic-deque lesson with array, sequence, and window-state views plus a checked-in focus golden under `content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens`
 - Phase 8 now includes a memoization flagship lesson: Coin Change Memo DFS is implemented as a registered, verified memoized recursion lesson with call-tree, call-stack, and memo-table views plus a checked-in focus golden under `content/lessons/coin-change/approaches/memo-dfs/goldens`
 - Phase 8 now includes a priority-structure flagship lesson: Heap Top K is implemented as a registered, verified min-heap lesson with heap tree, input scan, and threshold state views plus a checked-in focus golden under `content/lessons/heap-top-k/approaches/min-heap/goldens`
+- Phase 8 now includes the explicit stack-execution flagship lesson: Tree DFS Traversal with Stack is implemented as a registered, verified iterative preorder lesson with tree, stack, and visit-order views plus a checked-in focus golden under `content/lessons/tree-dfs-traversal/approaches/iterative-stack/goldens`
 
 ## Immediate Next Step
 
-Continue Phase 8 from the plan:
+Continue Phase 9 from the plan:
 
-1. add the next flagship lesson that exercises a remaining confusion family beyond memoization reuse, recursion, rolling state, and frontier traversal
-2. finish Phase 8 by adding the remaining explicit tree DFS traversal lesson with a visible call stack, since priority-structure is now covered by Heap Top K
-3. keep every new lesson on the same verification bar: runtime checks, lesson-specific verification, and checked-in JSON goldens
-4. use Heap Top K, Coin Change, Sliding Window Maximum, House Robber, Maximum Depth, and Graph BFS as the templates for how new flagship lessons should be registered and hardened
+1. start the hardening pass now that all eight flagship lesson families are implemented and verified
+2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
+3. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
+4. treat large production chunks from the current Shiki payload as the most obvious platform-level cleanup after lesson QA
 
 ## Canonical Files
 

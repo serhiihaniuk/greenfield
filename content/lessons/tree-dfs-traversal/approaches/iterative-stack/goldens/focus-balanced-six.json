@@ -1,0 +1,3302 @@
+{
+  "frames": [
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Initialize the DFS stack with the root node.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-0",
+                "label": "node 8",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Initialize the preorder output list.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-0",
+                "label": "node 8",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "The stack still has work, so node 8 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "next",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-0",
+                "label": "node 8",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Pop node 8 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "pop",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-5",
+      "narrationSummary": "Visit node 8 and append it to preorder order [8].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "visit #1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "found"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-0",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-6",
+      "narrationSummary": "Push right child 12 first so left can still be visited next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "push right",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-0",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-7",
+      "narrationSummary": "Push left child 4; it is now on top, so preorder keeps moving left first.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "annotation": "push left",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-1",
+                "label": "node 4",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-0",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-8",
+      "narrationSummary": "The stack still has work, so node 4 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "active"
+              },
+              {
+                "annotation": "next",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-1",
+                "label": "node 4",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-0",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-9",
+      "narrationSummary": "Pop node 4 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "pop",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-0",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-10",
+      "narrationSummary": "Visit node 4 and append it to preorder order [8, 4].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "visit #2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "found"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-1",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-11",
+      "narrationSummary": "Push right child 6 first so left can still be visited next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "annotation": "push right",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-1",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-12",
+      "narrationSummary": "Push left child 2; it is now on top, so preorder keeps moving left first.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "push left",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "waiting"
+              },
+              {
+                "id": "node-3",
+                "label": "node 2",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-1",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-13",
+      "narrationSummary": "The stack still has work, so node 2 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "next",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "waiting"
+              },
+              {
+                "id": "node-3",
+                "label": "node 2",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-1",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-14",
+      "narrationSummary": "Pop node 2 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "pop",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-1",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-15",
+      "narrationSummary": "Visit node 2 and append it to preorder order [8, 4, 2].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "visit #3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "found"
+              },
+              {
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "default"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-2",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-16",
+      "narrationSummary": "The stack still has work, so node 6 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "annotation": "next",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "waiting"
+              },
+              {
+                "id": "node-4",
+                "label": "node 6",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-2",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-17",
+      "narrationSummary": "Pop node 6 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "pop",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-2",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-17",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-18",
+      "narrationSummary": "Visit node 6 and append it to preorder order [8, 4, 2, 6].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "default"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "visit #4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "found"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-3",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-18",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-19",
+      "narrationSummary": "The stack still has work, so node 12 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "next",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "active"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-2",
+                "label": "node 12",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-3",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-19",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-20",
+      "narrationSummary": "Pop node 12 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "pop",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-3",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-20",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-21",
+      "narrationSummary": "Visit node 12 and append it to preorder order [8, 4, 2, 6, 12].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "visit #5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "found"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "default"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-4",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-21",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-22",
+      "narrationSummary": "Push left child 10; it is now on top, so preorder keeps moving left first.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "push left",
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "active"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-5",
+                "label": "node 10",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-4",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-22",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-23",
+      "narrationSummary": "The stack still has work, so node 10 will be processed next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "active"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "next",
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "active"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": [
+              {
+                "id": "node-5",
+                "label": "node 10",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-4",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-23",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-24",
+      "narrationSummary": "Pop node 10 from the top of the stack.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "pop",
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "active"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-4",
+              "tone": "default"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-24",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-25",
+      "narrationSummary": "Visit node 10 and append it to preorder order [8, 4, 2, 6, 12, 10].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "visit #6",
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "found"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              },
+              {
+                "detail": "#6",
+                "id": "visit-5",
+                "label": "10"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-5",
+              "tone": "mutated"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-25",
+      "visualChangeType": "result"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L9",
+      "id": "frame-26",
+      "narrationSummary": "Return the completed preorder traversal [8, 4, 2, 6, 12, 10].",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "nodes": [
+              {
+                "annotation": "#1",
+                "depth": 0,
+                "id": "node-0",
+                "label": "8",
+                "status": "done"
+              },
+              {
+                "annotation": "#2",
+                "depth": 1,
+                "id": "node-1",
+                "label": "4",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#5",
+                "depth": 1,
+                "id": "node-2",
+                "label": "12",
+                "parentId": "node-0",
+                "status": "done"
+              },
+              {
+                "annotation": "#3",
+                "depth": 2,
+                "id": "node-3",
+                "label": "2",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#4",
+                "depth": 2,
+                "id": "node-4",
+                "label": "6",
+                "parentId": "node-1",
+                "status": "done"
+              },
+              {
+                "annotation": "#6",
+                "depth": 2,
+                "id": "node-5",
+                "label": "10",
+                "parentId": "node-2",
+                "status": "done"
+              }
+            ],
+            "rootId": "node-0"
+          },
+          "highlights": [],
+          "id": "tree",
+          "kind": "tree",
+          "pointers": [],
+          "title": "Traversal Tree",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "frames": []
+          },
+          "highlights": [],
+          "id": "dfs-stack",
+          "kind": "stack",
+          "pointers": [],
+          "title": "DFS Stack",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "detail": "#1",
+                "id": "visit-0",
+                "label": "8"
+              },
+              {
+                "detail": "#2",
+                "id": "visit-1",
+                "label": "4"
+              },
+              {
+                "detail": "#3",
+                "id": "visit-2",
+                "label": "2"
+              },
+              {
+                "detail": "#4",
+                "id": "visit-3",
+                "label": "6"
+              },
+              {
+                "detail": "#5",
+                "id": "visit-4",
+                "label": "12"
+              },
+              {
+                "detail": "#6",
+                "id": "visit-5",
+                "label": "10"
+              }
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "visit-5",
+              "tone": "found"
+            }
+          ],
+          "id": "visit-order",
+          "kind": "sequence",
+          "pointers": [],
+          "title": "Preorder Output",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-26",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-5",
+      "type": "result"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-6",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-7",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-8",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-9",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-10",
+      "type": "result"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-11",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-12",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-13",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-14",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-15",
+      "type": "result"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-16",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-17",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-18",
+      "type": "result"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-19",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-20",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-21",
+      "type": "result"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-22",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-23",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-24",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-25",
+      "type": "result"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-26",
+      "type": "result"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-27",
+      "type": "complete"
+    }
+  ]
+}
