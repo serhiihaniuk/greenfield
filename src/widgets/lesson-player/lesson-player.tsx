@@ -761,6 +761,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   size="icon-xs"
                   variant="ghost"
                   onClick={() => setInputModalOpen(false)}
+                  aria-label="Close custom input"
                 >
                   <XIcon />
                 </Button>

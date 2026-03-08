@@ -13,6 +13,12 @@ export async function openCustomInput(page: Page) {
   await page.getByRole("button", { name: "Custom input", exact: true }).click()
 }
 
+export async function applyCustomInput(page: Page, rawInput: string) {
+  await openCustomInput(page)
+  await customInputEditor(page).fill(rawInput)
+  await page.getByRole("button", { name: "Apply", exact: true }).click()
+}
+
 export function customInputEditor(page: Page): Locator {
   return page.getByLabel("Custom input editor", { exact: true })
 }

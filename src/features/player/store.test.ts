@@ -2,6 +2,71 @@ import { describe, expect, it } from "vitest"
 
 import { createLessonPlayerStore } from "@/features/player/store"
 
+const customInputMatrix = [
+  {
+    lessonId: "binary-search",
+    rawInput: JSON.stringify({
+      nums: [10, 20, 30, 42],
+      target: 42,
+    }),
+  },
+  {
+    lessonId: "house-robber",
+    rawInput: JSON.stringify({
+      nums: [21, 1, 34],
+    }),
+  },
+  {
+    lessonId: "maximum-depth",
+    rawInput: JSON.stringify({
+      values: [41, 19, 63, 88],
+    }),
+  },
+  {
+    lessonId: "graph-bfs",
+    rawInput: JSON.stringify({
+      nodes: [
+        { id: "S", x: 88, y: 140 },
+        { id: "A", x: 220, y: 92 },
+        { id: "ZQ", x: 352, y: 140 },
+      ],
+      edges: [
+        { sourceId: "S", targetId: "A" },
+        { sourceId: "A", targetId: "ZQ" },
+      ],
+      startId: "S",
+      targetId: "ZQ",
+    }),
+  },
+  {
+    lessonId: "sliding-window-maximum",
+    rawInput: JSON.stringify({
+      nums: [14, 2, 26, 4],
+      k: 2,
+    }),
+  },
+  {
+    lessonId: "coin-change",
+    rawInput: JSON.stringify({
+      coins: [5, 11],
+      amount: 22,
+    }),
+  },
+  {
+    lessonId: "heap-top-k",
+    rawInput: JSON.stringify({
+      nums: [17, 3, 25, 1],
+      k: 2,
+    }),
+  },
+  {
+    lessonId: "tree-dfs-traversal",
+    rawInput: JSON.stringify({
+      values: [21, 13, 34, null, 18],
+    }),
+  },
+] as const
+
 describe("lesson player store", () => {
   it("loads the binary search lesson end to end", () => {
     const store = createLessonPlayerStore()
@@ -121,4 +186,24 @@ describe("lesson player store", () => {
     expect(state.currentFrameIndex).toBe(0)
     expect(state.failure).toBeUndefined()
   })
+
+  for (const entry of customInputMatrix) {
+    it(`accepts valid custom input for ${entry.lessonId}`, () => {
+      const store = createLessonPlayerStore()
+      store.getState().initialize(entry.lessonId)
+
+      store.getState().setRawInput(entry.rawInput)
+      store.getState().applyCustomInput()
+
+      const state = store.getState()
+      expect(state.lesson?.id).toBe(entry.lessonId)
+      expect(state.inputSource).toBe("custom")
+      expect(state.rawInput).toBe(entry.rawInput)
+      expect(state.parsedInput).toEqual(JSON.parse(entry.rawInput))
+      expect(state.frames.length).toBeGreaterThan(0)
+      expect(state.currentFrameIndex).toBe(0)
+      expect(state.failure).toBeUndefined()
+      expect(state.verification?.isValid).toBe(true)
+    })
+  }
 })

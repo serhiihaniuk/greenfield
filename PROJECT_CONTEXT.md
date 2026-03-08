@@ -163,6 +163,7 @@ Completed so far:
 - Phase 9 now adds explicit desktop viewport and playback-behavior QA, covering no-page-scroll flagship presets plus deterministic stepping through pointer controls, keyboard shortcuts, and timeline scrubbing
 - Phase 9 now verifies dense presets at the shell-region level: stage and context columns stay within the desktop viewport contract, author review remains docked, and the secondary primitive stack is capped so code/reference space never collapses to zero height
 - Phase 9 now verifies primitive-level fit for the tallest primary renderers: tree, call-tree, and heap canvases expose stable test anchors and are checked to stay fully visible inside their own shells on dense desktop presets
+- Phase 9 now adds successful custom-input replay QA across the full flagship set: valid custom inputs rebuild verified runtime state without reload in store tests and Playwright, while parse failures still surface live in the player
 
 ## Immediate Next Step
 
@@ -170,7 +171,7 @@ Continue Phase 9 from the plan:
 
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
-3. expand custom-input QA from parse-failure smoke into successful replay coverage across representative flagship lesson families
+3. run the Phase 9 shadcn shell audit against remaining one-off shell surfaces, starting with custom-input and authoring-related overlays
 4. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
 
 ## Canonical Files
