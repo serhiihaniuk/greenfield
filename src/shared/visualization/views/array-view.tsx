@@ -107,7 +107,7 @@ export function ArrayView({
                   className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
                 >
                   <div
-                    className="flex min-h-10 min-w-max flex-nowrap items-end justify-center gap-1"
+                    className="flex min-h-10 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
                     data-testid={`pointer-stack-top-${cell.id}`}
                   >
                     <AnimatePresence initial={false}>
@@ -160,7 +160,7 @@ export function ArrayView({
                   </div>
 
                   <div
-                    className="flex min-h-10 min-w-max flex-nowrap items-start justify-center gap-1"
+                    className="flex min-h-10 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
                     data-testid={`pointer-stack-bottom-${cell.id}`}
                   >
                     <AnimatePresence initial={false}>

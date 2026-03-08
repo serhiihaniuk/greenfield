@@ -86,7 +86,7 @@ export function PointerChip({ pointer, scopeId }: PointerChipProps) {
       }
       transition={transitions.pointerTravel}
       className={cn(
-        "inline-flex flex-col items-center gap-0.5 font-mono leading-none whitespace-nowrap drop-shadow-[0_0_12px_rgba(8,145,178,0.18)] select-none",
+        "inline-flex w-8 flex-col items-center gap-0.5 font-mono leading-none whitespace-nowrap drop-shadow-[0_0_12px_rgba(8,145,178,0.18)] select-none",
         pointerToneClasses[pointer.tone],
         pointer.status === "done" && "opacity-70",
         pointer.status === "waiting" && "opacity-85"
@@ -137,10 +137,15 @@ function PointerArrow({
       >
         <motion.g
           animate={{
-            skewX: movement === "right" ? -10 : movement === "left" ? 10 : 0,
+            skewX:
+              movement === "right"
+                ? [-10, 0]
+                : movement === "left"
+                  ? [10, 0]
+                  : 0,
           }}
           style={{ originX: "12px", originY: "18px" }}
-          transition={transitions.pointerTravel}
+          transition={transitions.pointer}
         >
           <motion.circle
             cx="12"
