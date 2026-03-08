@@ -119,11 +119,39 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.4 0 0) transparent;
+  }
+  .dark * {
+    scrollbar-color: oklch(0.4 0 0) transparent;
+  }
+  :root * {
+    scrollbar-color: oklch(0.55 0 0) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: oklch(0.55 0 0);
+    border-radius: 3px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.45 0 0);
+  }
+  .dark *::-webkit-scrollbar-thumb {
+    background: oklch(0.4 0 0);
+  }
+  .dark *::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.5 0 0);
+  }
   body {
     @apply bg-background text-foreground;
-    }
+  }
   html {
     @apply font-sans;
-    }
+  }
 }

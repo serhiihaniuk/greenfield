@@ -91,12 +91,16 @@ Use a consistent size scale across primitives.
 
 ### Recommended defaults
 
-- array cell: `56 x 56`
-- compact array cell: `44 x 44`
-- tree node default: `56 x 56`
-- call-tree node default: `120 x 88`
-- compact call-tree node: `92 x 64`
+- array cell: `48 x 48`
+- compact array cell: `36 x 36`
+- tree node default: `48 x 48`
+- call-tree node default: `128 x auto`
+- compact call-tree node: `96 x auto`
 - hash-map row height: `44`
+- tree level spacing: `88`
+- tree sibling spacing: `96`
+- call-tree level spacing: `116`
+- call-tree sibling spacing: `152`
 - code line height: stable mono line height, not browser default drift
 
 These are starting contracts, not random values.
@@ -356,23 +360,51 @@ They should have:
 
 ## Composition With Main Lesson Surface
 
+### Stage structure
+
+The stage (right panel, ~73% width) uses independently scrolling regions:
+
+```
+div (grid h-full overflow-hidden, dynamic columns)
+  ├─ section (overflow-auto flex)          ← primary scrolls alone
+  │   └─ div.m-auto (grid auto-rows-max)  ← centers when content is small
+  └─ aside (overflow-y-auto border-l)     ← secondary scrolls alone
+      └─ div (grid auto-rows-max)
+```
+
+Primary content centers via `m-auto` on a flex child — when content is smaller than the container, margins distribute excess space. When content overflows, margins collapse to 0 and normal scrolling applies with no top-clipping.
+
+### Column strategy
+
+The stage picks columns based on what the secondary region contains:
+
+| Case | Condition | Columns |
+|------|-----------|---------|
+| No secondary | no secondary primitives | Single column |
+| Compact secondary | secondary has only flow views | `1fr + clamp(16rem, 22rem)` |
+| Expansive secondary | secondary has a canvas view | `1.2fr + 1fr` |
+
+Canvas views (`tree`, `call-tree`, `graph` — listed in `CANVAS_KINDS` set in `lesson-player.tsx`) use absolute positioning and have intrinsic minimum widths (300–360px). Flow views (array, sequence, stack, queue, hash-map) use CSS flex/grid and compress naturally into narrow columns.
+
 ### Primary / secondary / tertiary weights
 
-- primary primitive: largest area, strongest contrast
-- secondary primitives: supportive, still readable
-- tertiary elements: compact and quiet
+- primary primitive: largest area, strongest contrast, centered in stage
+- secondary primitives: supportive sidebar, independently scrollable
+- tertiary elements: compact and quiet, same sidebar as secondary
 
 ### Common compositions
 
-- array problems: array primary, code + state secondary
-- recursion lessons: call tree or structural tree primary, stack + code secondary
-- memoization lessons: call tree primary, stack + memo table secondary
+- array problems: array primary centered, code + state in left panel
+- recursion lessons: call tree or structural tree primary, stack + code secondary sidebar
+- memoization lessons: call tree primary, stack + memo table secondary sidebar
+- mixed canvas secondary: proportional 1.2fr:1fr split so canvas gets enough width
 
 ### Anti-rules
 
 - do not give every panel the same weight
-- do not leave large unused black areas that break the eye path
+- do not leave large unused void areas that break the eye path
 - do not place narration so far away that it feels disconnected from the active step
+- do not couple scroll regions — primary and secondary scroll independently
 
 ## Visual Done Criteria
 

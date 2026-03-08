@@ -279,6 +279,29 @@ Primitives do not appear alone. They appear as part of the lesson surface.
 - if the learner must compare two panels, align the related state spatially
 - if a primitive is not adding meaning for the current lesson, do not render it just because it exists
 
+### Viewport hint contract
+
+Each primitive declares `PrimitiveViewportSpec` with:
+
+- `role`: `"primary"` | `"secondary"` | `"tertiary"` — determines routing.
+- `preferredWidth`: ideal width in px — declared for every primitive in lesson data.
+- `minHeight`: minimum height constraint.
+
+### splitPrimitives() routing
+
+The `splitPrimitives()` function in `lesson-player.tsx` routes each primitive:
+
+- `kind === "state"` → support column (left panel)
+- `role === "primary"` or undefined non-state → stage primary (center, large area, flex centering)
+- `role === "secondary"` or `"tertiary"` → stage sidebar (compact or proportional column)
+
+### Independent scroll regions
+
+Primary and secondary regions scroll independently. The outer stage container uses `overflow-hidden` so no scroll leaks. Each region owns its own overflow:
+
+- Primary: `overflow-auto` with `m-auto` centering — content centers when smaller than viewport, scrolls normally when overflowing.
+- Secondary: `overflow-y-auto` — multiple secondaries stack vertically via `grid auto-rows-max`.
+
 ## Primitive-Specific Requirements
 
 ### ArrayView / SequenceView

@@ -20,8 +20,8 @@ export function CallTreeView({
   primitive: CallTreePrimitiveFrameState
 }) {
   const layout = layoutCallTree(primitive.data.nodes)
-  const canvasWidth = Math.max(layout.width + 180, 420)
-  const canvasHeight = Math.max(layout.height + 120, 320)
+  const canvasWidth = Math.max(layout.width + 136, 360)
+  const canvasHeight = Math.max(layout.height + 84, 280)
 
   return (
     <PrimitiveShell primitive={primitive}>
@@ -36,7 +36,7 @@ export function CallTreeView({
             style={{ width: canvasWidth, height: canvasHeight }}
           >
           <EdgeLayer
-            nodes={layout.nodes.map((node) => ({ id: node.id, x: node.x + 90, y: node.y + 54 }))}
+            nodes={layout.nodes.map((node) => ({ id: node.id, x: node.x + 68, y: node.y + 42 }))}
             edges={layout.edges}
             edgeHighlights={primitive.edgeHighlights}
             width={canvasWidth}
@@ -48,10 +48,10 @@ export function CallTreeView({
               <div
                 key={node.id}
                 className={cn(
-                  "absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-[1.35rem] border px-3 py-2.5 shadow-[0_18px_40px_rgba(2,8,23,0.2)]",
+                  "absolute w-32 -translate-x-1/2 -translate-y-1/2 rounded-xl border px-3 py-2.5 shadow-[0_18px_40px_rgba(2,8,23,0.2)]",
                   statusClasses[node.status]
                 )}
-                style={{ left: positioned.x + 90, top: positioned.y + 54 }}
+                style={{ left: positioned.x + 68, top: positioned.y + 42 }}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="font-mono text-[11px] uppercase tracking-[0.16em]">

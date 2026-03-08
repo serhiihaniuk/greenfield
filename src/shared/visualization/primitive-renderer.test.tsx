@@ -277,7 +277,7 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("dfs(3)")).toBeInTheDocument()
     expect(screen.getAllByText("front").length).toBeGreaterThan(0)
     expect(screen.getAllByText("A").length).toBeGreaterThan(1)
-    expect(screen.getByText("?")).toBeInTheDocument()
+    expect(screen.getByText("—")).toBeInTheDocument()
     expect(screen.getByText("return mid")).toBeInTheDocument()
     expect(screen.getByText("val 5")).toBeInTheDocument()
     expect(screen.getByText("push")).toBeInTheDocument()

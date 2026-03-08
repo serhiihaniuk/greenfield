@@ -78,7 +78,7 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
   return (
     <PrimitiveShell primitive={primitive}>
       <div className="overflow-x-auto pb-1">
-        <div className="flex min-w-max gap-4">
+        <div className="flex min-w-max gap-3">
           {primitive.data.cells.map((cell) => {
             const pointers = pointerMap.get(cell.id) ?? []
             const highlight = highlightMap.get(cell.id)
@@ -88,7 +88,7 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
             return (
               <div
                 key={cell.id}
-                className="flex w-16 shrink-0 flex-col items-center gap-2 overflow-visible"
+                className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
               >
                 <div
                   className="flex min-h-8 min-w-max flex-nowrap items-end justify-center gap-1"
@@ -101,7 +101,7 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
 
                 <div
                   className={cn(
-                    "flex size-16 flex-col items-center justify-center rounded-[1.1rem] border font-mono",
+                    "flex size-12 flex-col items-center justify-center rounded-xl border font-mono",
                     "transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
                     highlight
                       ? highlightToneClasses[highlight.tone]
@@ -112,7 +112,7 @@ export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }
                   )}
                   data-highlight-tone={highlight?.tone ?? "default"}
                 >
-                  <span className="text-lg leading-none font-semibold">
+                  <span className="text-sm leading-none font-semibold">
                     {cell.value}
                   </span>
                 </div>

@@ -9,7 +9,7 @@ export function layoutCallTree(
   }
 ) {
   return layoutTree(nodes, {
-    levelHeight: options?.levelHeight ?? 146,
-    siblingWidth: options?.siblingWidth ?? 188,
+    levelHeight: options?.levelHeight ?? 116,
+    siblingWidth: options?.siblingWidth ?? 152,
   })
 }

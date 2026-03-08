@@ -16,8 +16,8 @@ const nodeClasses = {
 
 export function TreeView({ primitive }: { primitive: TreePrimitiveFrameState }) {
   const layout = layoutTree(primitive.data.nodes)
-  const canvasWidth = Math.max(layout.width + 120, 360)
-  const canvasHeight = Math.max(layout.height + 120, 280)
+  const canvasWidth = Math.max(layout.width + 88, 300)
+  const canvasHeight = Math.max(layout.height + 88, 240)
 
   return (
     <PrimitiveShell primitive={primitive}>
@@ -32,7 +32,7 @@ export function TreeView({ primitive }: { primitive: TreePrimitiveFrameState }) 
             style={{ width: canvasWidth, height: canvasHeight }}
           >
           <EdgeLayer
-            nodes={layout.nodes.map((node) => ({ id: node.id, x: node.x + 60, y: node.y + 60 }))}
+            nodes={layout.nodes.map((node) => ({ id: node.id, x: node.x + 44, y: node.y + 44 }))}
             edges={layout.edges}
             edgeHighlights={primitive.edgeHighlights}
             width={canvasWidth}
@@ -44,10 +44,10 @@ export function TreeView({ primitive }: { primitive: TreePrimitiveFrameState }) 
               <div
                 key={node.id}
                 className={cn(
-                  "absolute flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[1.35rem] border font-mono text-sm font-medium shadow-[0_14px_28px_rgba(2,8,23,0.22)]",
+                  "absolute flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border font-mono text-sm font-medium shadow-[0_14px_28px_rgba(2,8,23,0.22)]",
                   nodeClasses[node.status]
                 )}
-                style={{ left: positioned.x + 60, top: positioned.y + 60 }}
+                style={{ left: positioned.x + 44, top: positioned.y + 44 }}
               >
                 {node.label}
                 {node.annotation ? (

@@ -146,7 +146,7 @@ test("keeps compact code-state panels in the support column", async ({ page }) =
   ).toBeVisible()
 })
 
-test("keeps the author drawer docked without forcing page scroll", async ({
+test("keeps the audit drawer docked without forcing page scroll", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 })
@@ -156,7 +156,7 @@ test("keeps the author drawer docked without forcing page scroll", async ({
   await selectFooterOption(page, "Preset", "Blocked Seven")
   await expectRuntimeReady(page, "Execution Tree", "Call Stack")
 
-  await page.getByRole("button", { name: /author/i }).click()
+  await page.getByRole("button", { name: /audit/i }).click()
 
   await expect(testRegion(page, "author-review-drawer")).toBeVisible()
   await expectNoVerticalPageScroll(page)

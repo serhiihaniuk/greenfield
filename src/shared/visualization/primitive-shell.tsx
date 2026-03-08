@@ -32,7 +32,7 @@ export function PrimitiveShell({
       data-selected-primitive={isSelected ? "true" : "false"}
       className={cn(
         role === "primary" && "p-2",
-        role === "secondary" && "rounded-xl border border-border/50 bg-card/60 p-3",
+        role === "secondary" && "p-2",
         role === "reference" && "flex flex-1 flex-col p-2",
         !role &&
           "rounded-2xl border border-border/80 bg-card/90 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",

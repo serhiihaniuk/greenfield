@@ -19,6 +19,16 @@ export type PositionedTreeEdge = {
   targetId: string
 }
 
+/**
+ * Compact tree layout — places leaves left-to-right and centers each
+ * parent over its children.  This produces tight layouts for both
+ * balanced binary trees and deep sparse chains (e.g. recursion trees
+ * where most nodes have a single child).
+ *
+ * When a node has exactly one child with an explicit `childSide`, a
+ * phantom slot is reserved on the opposite side so the left/right
+ * visual cue is preserved.
+ */
 export function layoutTree(
   nodes: FlatLayoutNode[],
   options?: {
@@ -26,11 +36,10 @@ export function layoutTree(
     siblingWidth?: number
   }
 ) {
-  const levelHeight = options?.levelHeight ?? 112
-  const siblingWidth = options?.siblingWidth ?? 120
+  const levelHeight = options?.levelHeight ?? 88
+  const siblingWidth = options?.siblingWidth ?? 96
   const nodeMap = new Map(nodes.map((node) => [node.id, node]))
   const childrenMap = new Map<string, FlatLayoutNode[]>()
-  const explicitDepthMax = Math.max(...nodes.map((node) => node.depth ?? 0), 0)
 
   for (const node of nodes) {
     if (!node.parentId) {
@@ -57,89 +66,70 @@ export function layoutTree(
     .filter((node) => !node.parentId || !nodeMap.has(node.parentId))
     .sort((left, right) => left.id.localeCompare(right.id))
 
-  const positioned: PositionedTreeNode[] = []
-  const rawPositions = new Map<string, number>()
-  const rawDepths = new Map<string, number>()
+  // Compact placement — post-order traversal.
+  // Leaves claim the next available slot; parents center over children.
+  const positions = new Map<string, number>()
+  const depths = new Map<string, number>()
+  let cursor = 0
 
-  function subtreeHeight(node: FlatLayoutNode): number {
+  function place(node: FlatLayoutNode, depth: number) {
+    depths.set(node.id, depth)
     const children = childrenMap.get(node.id) ?? []
+
+    // Leaf node — claim next slot
     if (children.length === 0) {
-      return node.depth ?? 0
-    }
-
-    return Math.max(...children.map((child) => subtreeHeight(child)))
-  }
-
-  function childOffset(depth: number) {
-    const remainingDepth = Math.max(explicitDepthMax - depth, 0)
-    return Math.max((2 ** remainingDepth * siblingWidth) / 2, siblingWidth / 2)
-  }
-
-  function placeNode(node: FlatLayoutNode, depth: number, x: number) {
-    rawPositions.set(node.id, x)
-    rawDepths.set(node.id, depth)
-    const children = childrenMap.get(node.id) ?? []
-
-    if (children.length === 2) {
-      const offset = childOffset(depth + 1)
-      const leftChild = children[0]
-      const rightChild = children[1]
-
-      placeNode(
-        leftChild,
-        leftChild.depth ?? depth + 1,
-        x - offset
-      )
-      placeNode(
-        rightChild,
-        rightChild.depth ?? depth + 1,
-        x + offset
-      )
+      positions.set(node.id, cursor)
+      cursor += siblingWidth
       return
     }
 
-    if (children.length === 1) {
+    // Single child with explicit childSide — reserve a phantom slot on
+    // the opposite side to preserve the left/right visual relationship.
+    if (children.length === 1 && children[0].childSide) {
       const child = children[0]
-      const offset = childOffset(depth + 1)
-      const direction = child.childSide === "right" ? 1 : -1
-      placeNode(
-        child,
-        child.depth ?? depth + 1,
-        x + direction * offset
-      )
+      if (child.childSide === "right") {
+        // phantom left slot, then real child
+        const phantomX = cursor
+        cursor += siblingWidth
+        place(child, child.depth ?? depth + 1)
+        const childX = positions.get(child.id)!
+        positions.set(node.id, (phantomX + childX) / 2)
+      } else {
+        // real child first, then phantom right slot
+        place(child, child.depth ?? depth + 1)
+        const childX = positions.get(child.id)!
+        const phantomX = cursor
+        cursor += siblingWidth
+        positions.set(node.id, (childX + phantomX) / 2)
+      }
+      return
     }
+
+    // General case — place all children, center parent over span
+    for (const child of children) {
+      place(child, child.depth ?? depth + 1)
+    }
+
+    const childXValues = children.map((c) => positions.get(c.id)!)
+    const center =
+      (Math.min(...childXValues) + Math.max(...childXValues)) / 2
+    positions.set(node.id, center)
   }
 
-  let rootCursor = 0
   roots.forEach((root, index) => {
-    const rootDepth = root.depth ?? 0
-    const rootMaxDepth = subtreeHeight(root)
-    const rootSpan = Math.max(
-      (2 ** Math.max(rootMaxDepth - rootDepth, 0)) * siblingWidth,
-      siblingWidth * 2
-    )
-    const rootCenter = rootCursor + rootSpan / 2
-
-    placeNode(root, rootDepth, rootCenter)
-    rootCursor += rootSpan
-
+    place(root, root.depth ?? 0)
     if (index < roots.length - 1) {
-      rootCursor += siblingWidth
+      cursor += siblingWidth
     }
   })
 
-  const minX = Math.min(...rawPositions.values(), 0)
-
-  for (const node of nodes) {
-    const depth = rawDepths.get(node.id) ?? node.depth ?? 0
-    positioned.push({
-      id: node.id,
-      x: (rawPositions.get(node.id) ?? 0) - minX,
-      y: depth * levelHeight,
-      depth,
-      parentId: node.parentId,
-    })
-  }
+  const positioned: PositionedTreeNode[] = nodes.map((node) => ({
+    id: node.id,
+    x: positions.get(node.id) ?? 0,
+    y: (depths.get(node.id) ?? node.depth ?? 0) * levelHeight,
+    depth: depths.get(node.id) ?? node.depth ?? 0,
+    parentId: node.parentId,
+  }))
 
   positioned.sort((left, right) => left.y - right.y || left.x - right.x)
 

@@ -98,7 +98,7 @@ export function SequenceView({
         <div className="overflow-x-auto pb-1">
           <div className="flex min-w-max items-start gap-2">
             {primitive.data.items.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-border/60 bg-muted/10 px-4 py-5 text-sm text-muted-foreground">
+              <div className="rounded-lg border border-dashed border-border/60 bg-muted/10 px-3 py-2 text-sm text-muted-foreground">
                 Sequence is empty
               </div>
             ) : (
@@ -111,7 +111,7 @@ export function SequenceView({
 
                 return (
                   <div key={item.id} className="flex items-start gap-2">
-                    <div className="flex w-28 shrink-0 flex-col items-center gap-2">
+                    <div className="flex w-14 shrink-0 flex-col items-center gap-2">
                       <div
                         className="flex min-h-8 min-w-max flex-nowrap items-end justify-center gap-1"
                         data-testid={`pointer-stack-top-${item.id}`}
@@ -123,7 +123,7 @@ export function SequenceView({
 
                       <div
                         className={cn(
-                          "flex min-h-20 w-full flex-col justify-center rounded-2xl border px-3 py-3 font-mono transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
+                          "flex min-h-12 w-full flex-col items-center justify-center rounded-xl border px-2 py-1.5 font-mono transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
                           highlight
                             ? highlightToneClasses[highlight.tone]
                             : highlightToneClasses.default,
@@ -133,11 +133,11 @@ export function SequenceView({
                         )}
                         data-highlight-tone={highlight?.tone ?? "default"}
                       >
-                        <span className="text-center text-lg leading-none font-semibold">
+                        <span className="text-center text-sm leading-none font-semibold">
                           {item.label}
                         </span>
                         {item.detail ? (
-                          <span className="mt-2 text-center text-[11px] leading-none text-muted-foreground">
+                          <span className="mt-1 text-center text-[10px] leading-none text-muted-foreground">
                             {item.detail}
                           </span>
                         ) : null}

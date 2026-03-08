@@ -22,9 +22,9 @@ export function GraphView({
   const minY = Math.min(...primitive.data.nodes.map((node) => node.y))
   const maxY = Math.max(...primitive.data.nodes.map((node) => node.y))
 
-  const padding = 84
-  const canvasWidth = Math.max(maxX - minX + padding * 2, 420)
-  const canvasHeight = Math.max(maxY - minY + padding * 2, 320)
+  const padding = 64
+  const canvasWidth = Math.max(maxX - minX + padding * 2, 360)
+  const canvasHeight = Math.max(maxY - minY + padding * 2, 280)
 
   return (
     <PrimitiveShell primitive={primitive}>
@@ -52,7 +52,7 @@ export function GraphView({
               <div
                 key={node.id}
                 className={cn(
-                  "absolute flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border font-mono text-sm font-semibold shadow-[0_14px_28px_rgba(2,8,23,0.22)]",
+                  "absolute flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border font-mono text-sm font-semibold shadow-[0_14px_28px_rgba(2,8,23,0.22)]",
                   nodeClasses[node.status]
                 )}
                 style={{
