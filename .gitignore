@@ -24,3 +24,8 @@ test-results
 *.njsproj
 *.sln
 *.sw?
+
+# Local visual QA artifacts
+playwright-*.png
+phase*.png
+primitive-*.png
