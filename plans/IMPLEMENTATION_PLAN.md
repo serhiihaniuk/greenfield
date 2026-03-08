@@ -66,11 +66,12 @@ Those are now fixed in the architecture and in this plan.
 
 ## Current Execution Status
 
-Phase 0 through Phase 6 are complete.
+Phase 0 through Phase 7 are complete.
 Phase 4 shipped the stateless primitive foundation: canonical array, state, stack, hash-map, tree, call-tree, code-trace, and narration renderers, plus shared edge/layout utilities and deterministic renderer tests.
 Phase 5 shipped the runtime verification layer: semantic/frame/code-line/pedagogical/viewport checks, author-review surfacing, and a checked-in JSON golden for the flagship binary-search focus path.
 Phase 6 shipped the visualization-first shell refinement: compact control band, dominant stage surface, docked context column, and responsive narrow-width header behavior.
-Phase 7 author mode is the next active phase.
+Phase 7 shipped the first real author-mode foundation: runtime-backed event inspection, frame diffs, narration binding inspection, grouped verification context, and learner-mode blocking when verification fails.
+Phase 8 is now active. House Robber has been added as the second flagship lesson with presets, lesson-specific verification, and a checked-in focus golden.
 
 ## Phase 0: Operating System
 

@@ -1,5 +1,6 @@
 import { useEffect, useEffectEvent, useMemo, useState, useCallback } from "react"
 import {
+  AlertTriangleIcon,
   ChevronFirstIcon,
   ChevronLastIcon,
   ChevronLeftIcon,
@@ -25,6 +26,7 @@ import { tokenizeCodeTemplate, type CodePresentation } from "@/features/player/c
 import { PLAYBACK_SPEED_MS } from "@/features/player/runtime"
 import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
+import { collectRelatedIssues } from "@/widgets/author-review/model"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
 import { Button } from "@/shared/ui/button"
 import { Badge } from "@/shared/ui/badge"
@@ -51,6 +53,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/shared/ui/dialog"
+import { ThemeToggle } from "@/shared/ui/theme-toggle"
 
 type LessonPlayerProps = {
   lessonId?: string
@@ -63,8 +66,8 @@ const HOTKEYS = [
   { keys: ["Space"], label: "Play / Pause" },
   { keys: ["W"], label: "Play" },
   { keys: ["S"], label: "Stop" },
-  { keys: ["←", "A"], label: "Previous frame" },
-  { keys: ["→", "D"], label: "Next frame" },
+  { keys: ["Left", "A"], label: "Previous frame" },
+  { keys: ["Right", "D"], label: "Next frame" },
   { keys: ["Home"], label: "Jump to first frame" },
   { keys: ["End"], label: "Jump to last frame" },
   { keys: ["R"], label: "Reset" },
@@ -171,13 +174,20 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const [hotkeysOpen, setHotkeysOpen] = useState(false)
   const lessons = useMemo(() => listLessons(), [])
   const activeFrame = frames[currentFrameIndex]
+  const previousVisibleFrame =
+    currentFrameIndex > 0 ? frames[currentFrameIndex - 1] : undefined
+  const nextVisibleFrame =
+    currentFrameIndex + 1 < frames.length ? frames[currentFrameIndex + 1] : undefined
   const activeEvent = trace.find((event) => event.id === activeFrame?.sourceEventId)
   const activePrimitives = activeFrame?.primitives ?? []
   const { primaryPrimitives, secondaryPrimitives } = splitPrimitives(activePrimitives)
   const hasSecondaryStage = secondaryPrimitives.length > 0
   const currentFrameLabel =
     frames.length === 0 ? "0/0" : `${currentFrameIndex + 1}/${frames.length}`
-  const visualChangeLabel = activeFrame?.visualChangeType ?? "—"
+  const visualChangeLabel = activeFrame?.visualChangeType ?? "-"
+  const verificationBlocked = verification?.isValid === false
+  const learnerModeBlocked = verificationBlocked && !authorMode
+  const blockingIssues = collectRelatedIssues(verification, activeFrame, activeEvent, 3)
   const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame?.codeLine)
 
   useEffect(() => {
@@ -211,7 +221,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     }
   }, [currentFrameIndex, playbackSpeed, playbackStatus])
 
-  // ─── Keyboard Shortcuts ───
   const togglePlayback = useCallback(
     () => (playbackStatus === "playing" ? pause() : play()),
     [playbackStatus, pause, play]
@@ -239,26 +248,12 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   useHotkey("]", () => cycleSpeed(1))
   useHotkey("[", () => cycleSpeed(-1))
   useHotkey("Q", toggleAuthorMode)
-  useHotkey("/", () => setHotkeysOpen((v) => !v))
+  useHotkey("/", () => setHotkeysOpen((value) => !value))
 
   return (
     <main className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
-      {/* ─── Narration Strip ─── */}
-      <div className="flex h-9 shrink-0 items-center gap-3 border-b border-border/20 px-4">
-        <p className="flex-1 truncate text-sm text-foreground/80">
-          {activeFrame?.narration.summary ?? "Load a lesson to begin playback."}
-        </p>
-        {activeFrame?.codeLine ? (
-          <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
-            L{activeFrame.codeLine}
-          </span>
-        ) : null}
-      </div>
-
-      {/* ─── Main Content ─── */}
-      <div className="relative flex-1 min-h-0">
+      <div className="relative min-h-0 flex-1">
         <ResizablePanelGroup orientation="horizontal">
-          {/* Left panel — state (top) + code trace (bottom) */}
           <ResizablePanel
             id="left"
             defaultSize="27%"
@@ -267,13 +262,12 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             collapsible
             collapsedSize="0%"
           >
-            <div className="flex h-full flex-col min-h-0">
-              {/* State — top, content-sized, collapsible */}
+            <div className="flex h-full min-h-0 flex-col">
               {hasSecondaryStage ? (
                 <div className="shrink-0 border-b border-border/30">
                   <button
-                    className="flex w-full items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
-                    onClick={() => setStateCollapsed((v) => !v)}
+                    className="flex w-full items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+                    onClick={() => setStateCollapsed((value) => !value)}
                   >
                     {stateCollapsed ? (
                       <ChevronsUpDownIcon className="size-3" />
@@ -296,8 +290,15 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </div>
               ) : null}
 
-              {/* Code trace — fills remaining space */}
-              <div className="flex flex-1 flex-col min-h-0 overflow-hidden">
+              <div className="shrink-0 border-b border-border/20 px-3 py-1.5">
+                <p className="text-xs leading-relaxed text-foreground/80">
+                  {learnerModeBlocked
+                    ? "Learner mode is blocked until verification issues are inspected in author mode."
+                    : activeFrame?.narration.summary ?? "Load a lesson to begin playback."}
+                </p>
+              </div>
+
+              <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                 <PrimitiveRenderer primitive={codeTracePrimitive} role="reference" />
                 {failure ? (
                   <div className="shrink-0 border-t border-destructive/30 bg-destructive/8 px-3 py-2">
@@ -313,7 +314,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
 
           <ResizableHandle withHandle />
 
-          {/* Stage — primary visualization */}
           <ResizablePanel id="stage" defaultSize="73%" minSize="30%">
             <section className="flex h-full flex-col overflow-auto p-4">
               <div className="grid auto-rows-max gap-4">
@@ -329,30 +329,77 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           </ResizablePanel>
         </ResizablePanelGroup>
 
-        {/* Author Mode Drawer */}
+        {learnerModeBlocked ? (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/96 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-2xl rounded-2xl border border-destructive/30 bg-card p-5 shadow-2xl">
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="destructive">learner mode blocked</Badge>
+                <Badge variant="outline">errors {verification?.errors.length ?? 0}</Badge>
+                <Badge variant="outline">warnings {verification?.warnings.length ?? 0}</Badge>
+              </div>
+              <h2 className="mt-3 flex items-center gap-2 text-lg font-medium text-foreground">
+                <AlertTriangleIcon className="size-5 text-destructive" />
+                Verification failed before learner mode could be trusted.
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                This lesson output still has blocking verification issues. Open author mode to inspect the same runtime state with frame diffs, narration bindings, and verification context instead of relying on plausible visuals.
+              </p>
+              {failure ? (
+                <div className="mt-3 rounded-lg border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
+                  {failure.message}
+                </div>
+              ) : null}
+              <div className="mt-4 grid gap-2">
+                {blockingIssues.blocking.map((issue) => (
+                  <div
+                    key={`${issue.code}-${issue.frameId ?? issue.eventId ?? issue.message}`}
+                    className="rounded-lg border border-border/50 bg-background/60 p-3"
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-xs text-foreground/90">{issue.code}</span>
+                      <Badge variant="outline">{issue.kind}</Badge>
+                      {issue.pedagogicalCheck ? (
+                        <Badge variant="outline">{issue.pedagogicalCheck}</Badge>
+                      ) : null}
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {issue.message}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Button size="sm" variant="secondary" onClick={toggleAuthorMode}>
+                  Open author mode
+                </Button>
+                <Button size="sm" variant="outline" onClick={() => setInputModalOpen(true)}>
+                  Inspect input
+                </Button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
         {authorMode ? (
           <div className="absolute inset-x-0 bottom-0 z-10 border-t border-border/40 bg-card/95 backdrop-blur-sm">
             <div className="flex items-center gap-2 border-b border-border/20 px-4 py-1.5">
               <Badge variant="outline">change {visualChangeLabel}</Badge>
               <Badge variant="outline">status {playbackStatus}</Badge>
               <Badge
-                variant={
-                  verification?.isValid === false ? "destructive" : "outline"
-                }
+                variant={verification?.isValid === false ? "destructive" : "outline"}
               >
-                verification{" "}
-                {verification?.isValid === false ? "blocked" : "ok"}
+                verification {verification?.isValid === false ? "blocked" : "ok"}
               </Badge>
-              <Badge variant="outline">
-                code {activeFrame?.codeLine ?? "—"}
-              </Badge>
+              <Badge variant="outline">code {activeFrame?.codeLine ?? "-"}</Badge>
               <Badge variant="outline">
                 views {primaryPrimitives.length + secondaryPrimitives.length}
               </Badge>
             </div>
-            <div className="max-h-[260px] overflow-y-auto p-4">
+            <div className="max-h-[320px] overflow-y-auto p-4">
               <AuthorReview
                 frame={activeFrame}
+                previousFrame={previousVisibleFrame}
+                nextFrame={nextVisibleFrame}
                 event={activeEvent}
                 verification={verification}
               />
@@ -361,7 +408,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         ) : null}
       </div>
 
-      {/* ─── Bottom Toolbar ─── */}
       <footer className="flex h-12 shrink-0 items-center gap-1 border-t border-border/40 px-2">
         <Select
           value={activeLessonId || null}
@@ -401,10 +447,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           </SelectContent>
         </Select>
 
-        <Select
-          value={mode || null}
-          onValueChange={(value) => value && setMode(value)}
-        >
+        <Select value={mode || null} onValueChange={(value) => value && setMode(value)}>
           <SelectTrigger size="sm">
             <SelectValue placeholder="Mode" />
           </SelectTrigger>
@@ -443,19 +486,45 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
 
         <div className="flex items-center gap-0.5">
           <Tooltip>
-            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={jumpToFirst} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={jumpToFirst}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               <ChevronFirstIcon />
             </TooltipTrigger>
             <TooltipContent>First frame <Kbd>Home</Kbd></TooltipContent>
           </Tooltip>
           <Tooltip>
-            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={previousFrame} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={previousFrame}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               <ChevronLeftIcon />
             </TooltipTrigger>
-            <TooltipContent>Previous <Kbd>←</Kbd> <Kbd>A</Kbd></TooltipContent>
+            <TooltipContent>Previous <Kbd>Left</Kbd> <Kbd>A</Kbd></TooltipContent>
           </Tooltip>
           <Tooltip>
-            <TooltipTrigger render={<Button size="xs" onClick={playbackStatus === "playing" ? pause : play} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="xs"
+                  onClick={playbackStatus === "playing" ? pause : play}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               {playbackStatus === "playing" ? (
                 <PauseIcon data-icon="inline-start" />
               ) : (
@@ -463,22 +532,51 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               )}
               {playbackStatus === "playing" ? "Pause" : "Play"}
             </TooltipTrigger>
-            <TooltipContent>{playbackStatus === "playing" ? "Pause" : "Play"} <Kbd>Space</Kbd></TooltipContent>
+            <TooltipContent>
+              {playbackStatus === "playing" ? "Pause" : "Play"} <Kbd>Space</Kbd>
+            </TooltipContent>
           </Tooltip>
           <Tooltip>
-            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={nextFrame} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={nextFrame}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               <ChevronRightIcon />
             </TooltipTrigger>
-            <TooltipContent>Next <Kbd>→</Kbd> <Kbd>D</Kbd></TooltipContent>
+            <TooltipContent>Next <Kbd>Right</Kbd> <Kbd>D</Kbd></TooltipContent>
           </Tooltip>
           <Tooltip>
-            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={jumpToLast} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={jumpToLast}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               <ChevronLastIcon />
             </TooltipTrigger>
             <TooltipContent>Last frame <Kbd>End</Kbd></TooltipContent>
           </Tooltip>
           <Tooltip>
-            <TooltipTrigger render={<Button size="icon-xs" variant="ghost" onClick={reset} />}>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  onClick={reset}
+                  disabled={learnerModeBlocked}
+                />
+              }
+            >
               <RotateCcwIcon />
             </TooltipTrigger>
             <TooltipContent>Reset <Kbd>R</Kbd></TooltipContent>
@@ -490,7 +588,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         <input
           aria-label="Timeline"
           className="h-1 min-w-0 flex-1 accent-primary"
-          disabled={frames.length <= 1}
+          disabled={frames.length <= 1 || learnerModeBlocked}
           max={Math.max(frames.length - 1, 0)}
           min={0}
           onChange={(event) => scrubTo(Number(event.currentTarget.value))}
@@ -529,7 +627,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <Button
                 size="icon-xs"
                 variant={inputModalOpen ? "secondary" : "ghost"}
-                onClick={() => setInputModalOpen((v) => !v)}
+                onClick={() => setInputModalOpen((value) => !value)}
               />
             }
           >
@@ -543,7 +641,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             render={
               <Button
                 size="xs"
-                variant={authorMode ? "secondary" : "ghost"}
+                variant={learnerModeBlocked ? "destructive" : authorMode ? "secondary" : "ghost"}
                 onClick={toggleAuthorMode}
               />
             }
@@ -568,9 +666,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           </TooltipTrigger>
           <TooltipContent>Keyboard shortcuts <Kbd>/</Kbd></TooltipContent>
         </Tooltip>
+
+        <ThemeToggle className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground" />
       </footer>
 
-      {/* Hotkeys Dialog */}
       <Dialog open={hotkeysOpen} onOpenChange={setHotkeysOpen}>
         <DialogContent className="sm:max-w-xs">
           <DialogHeader>
@@ -587,11 +686,13 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               >
                 <span className="text-muted-foreground">{label}</span>
                 <span className="flex items-center gap-1">
-                  {keys.map((k, i) => (
-                    <span key={k} className="flex items-center gap-1">
-                      {i > 0 ? <span className="text-[10px] text-muted-foreground">/</span> : null}
+                  {keys.map((key, index) => (
+                    <span key={key} className="flex items-center gap-1">
+                      {index > 0 ? (
+                        <span className="text-[10px] text-muted-foreground">/</span>
+                      ) : null}
                       <kbd className="inline-flex h-6 min-w-6 items-center justify-center rounded border border-border/60 bg-muted/40 px-1.5 font-mono text-[11px] text-foreground/70">
-                        {k}
+                        {key}
                       </kbd>
                     </span>
                   ))}
@@ -602,7 +703,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         </DialogContent>
       </Dialog>
 
-      {/* Input Editor Modal */}
       {inputModalOpen ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
@@ -635,9 +735,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <Button
                 size="sm"
                 variant="outline"
-                onClick={() =>
-                  selectedPresetId && selectPreset(selectedPresetId)
-                }
+                onClick={() => selectedPresetId && selectPreset(selectedPresetId)}
               >
                 Use preset
               </Button>

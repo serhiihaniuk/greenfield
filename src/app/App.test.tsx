@@ -2,6 +2,15 @@ import { render, screen } from "@testing-library/react"
 import { afterEach, beforeEach } from "vitest"
 
 import App from "@/app/App"
+import { ThemeProvider } from "@/app/providers/theme-provider"
+
+function renderApp() {
+  return render(
+    <ThemeProvider defaultTheme="dark" storageKey="greenfield-theme">
+      <App />
+    </ThemeProvider>
+  )
+}
 
 describe("App", () => {
   beforeEach(() => {
@@ -13,7 +22,7 @@ describe("App", () => {
   })
 
   it("renders the lesson player toolbar", () => {
-    render(<App />)
+    renderApp()
 
     expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument()
   })
@@ -21,7 +30,7 @@ describe("App", () => {
   it("renders the primitive audit surface when requested by query param", () => {
     window.history.replaceState({}, "", "/?audit=primitives")
 
-    render(<App />)
+    renderApp()
 
     expect(
       screen.getByRole("heading", {

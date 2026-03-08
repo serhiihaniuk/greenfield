@@ -1,0 +1,3724 @@
+{
+  "frames": [
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Initialize prevTwo at 0 so the take option has a clean base value.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": "-",
+              "index": "-",
+              "prevOne": "-",
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Initialize prevOne at 0 so the best-so-far total also starts empty.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": "-",
+              "index": "-",
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "Check whether house 0 is the next transition to evaluate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Move the focus to house 0 with value 2.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-5",
+      "narrationSummary": "Compute take = prevTwo + nums[index] = 2.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": 2
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-6",
+      "narrationSummary": "Compute skip = prevOne = 0.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": 0,
+              "take": 2
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-7",
+      "narrationSummary": "Compare take 2 against skip 0; choose take.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-7-decision",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "take 2",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 2,
+              "decision": "take",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": 0,
+              "take": 2
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-8",
+      "narrationSummary": "Shift prevTwo forward to the old prevOne value 0.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-8-shift",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "shift prevTwo",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 2,
+              "decision": "take",
+              "house": 2,
+              "index": 0,
+              "prevOne": 0,
+              "prevTwo": 0,
+              "skip": 0,
+              "take": 2
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-9",
+      "narrationSummary": "Commit prevOne = best = 2.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-9-commit",
+              "kind": "badge",
+              "targetId": "cell-0",
+              "text": "commit prevOne",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "strong",
+              "targetId": "cell-0",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 2,
+              "decision": "take",
+              "house": 2,
+              "index": 0,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": 0,
+              "take": 2
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-10",
+      "narrationSummary": "Check whether house 1 is the next transition to evaluate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-11",
+      "narrationSummary": "Move the focus to house 1 with value 7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-12",
+      "narrationSummary": "Compute take = prevTwo + nums[index] = 7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": "-",
+              "take": 7
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-13",
+      "narrationSummary": "Compute skip = prevOne = 2.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": 2,
+              "take": 7
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-14",
+      "narrationSummary": "Compare take 7 against skip 2; choose take.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-14-decision",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "take 7",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 7,
+              "decision": "take",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 0,
+              "skip": 2,
+              "take": 7
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-15",
+      "narrationSummary": "Shift prevTwo forward to the old prevOne value 2.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-15-shift",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "shift prevTwo",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 7,
+              "decision": "take",
+              "house": 7,
+              "index": 1,
+              "prevOne": 2,
+              "prevTwo": 2,
+              "skip": 2,
+              "take": 7
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-16",
+      "narrationSummary": "Commit prevOne = best = 7.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-16-commit",
+              "kind": "badge",
+              "targetId": "cell-1",
+              "text": "commit prevOne",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-1",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 7,
+              "decision": "take",
+              "house": 7,
+              "index": 1,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": 2,
+              "take": 7
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-17",
+      "narrationSummary": "Check whether house 2 is the next transition to evaluate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-17",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-18",
+      "narrationSummary": "Move the focus to house 2 with value 9.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-18",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-19",
+      "narrationSummary": "Compute take = prevTwo + nums[index] = 11.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": "-",
+              "take": 11
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-19",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-20",
+      "narrationSummary": "Compute skip = prevOne = 7.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": 7,
+              "take": 11
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-20",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-21",
+      "narrationSummary": "Compare take 11 against skip 7; choose take.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-21-decision",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "take 11",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "take",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 2,
+              "skip": 7,
+              "take": 11
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-21",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-22",
+      "narrationSummary": "Shift prevTwo forward to the old prevOne value 7.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-22-shift",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "shift prevTwo",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "take",
+              "house": 9,
+              "index": 2,
+              "prevOne": 7,
+              "prevTwo": 7,
+              "skip": 7,
+              "take": 11
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-22",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-23",
+      "narrationSummary": "Commit prevOne = best = 11.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-23-commit",
+              "kind": "badge",
+              "targetId": "cell-2",
+              "text": "commit prevOne",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "take",
+              "house": 9,
+              "index": 2,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": 7,
+              "take": 11
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-23",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-24",
+      "narrationSummary": "Check whether house 3 is the next transition to evaluate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-24",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-25",
+      "narrationSummary": "Move the focus to house 3 with value 3.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "active"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-25",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-26",
+      "narrationSummary": "Compute take = prevTwo + nums[index] = 10.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": "-",
+              "take": 10
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-26",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-27",
+      "narrationSummary": "Compute skip = prevOne = 11.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": 11,
+              "take": 10
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-27",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-28",
+      "narrationSummary": "Compare take 10 against skip 11; choose skip.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-28-decision",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "skip 11",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "skip",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 7,
+              "skip": 11,
+              "take": 10
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-28",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-29",
+      "narrationSummary": "Shift prevTwo forward to the old prevOne value 11.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-29-shift",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "shift prevTwo",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "skip",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 10
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-29",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-30",
+      "narrationSummary": "Commit prevOne = best = 11.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-30-commit",
+              "kind": "badge",
+              "targetId": "cell-3",
+              "text": "commit prevOne",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 11,
+              "decision": "skip",
+              "house": 3,
+              "index": 3,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 10
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-30",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-31",
+      "narrationSummary": "Check whether house 4 is the next transition to evaluate.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-31",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-32",
+      "narrationSummary": "Move the focus to house 4 with value 1.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "active"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-32",
+      "visualChangeType": "move"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L4",
+      "id": "frame-33",
+      "narrationSummary": "Compute take = prevTwo + nums[index] = 12.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": "-",
+              "take": 12
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-33",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L5",
+      "id": "frame-34",
+      "narrationSummary": "Compute skip = prevOne = 11.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 12
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-34",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L6",
+      "id": "frame-35",
+      "narrationSummary": "Compare take 12 against skip 11; choose take.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-35-decision",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "take 12",
+              "tone": "active"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "compare"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 12,
+              "decision": "take",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 12
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-35",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L7",
+      "id": "frame-36",
+      "narrationSummary": "Shift prevTwo forward to the old prevOne value 11.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-36-shift",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "shift prevTwo",
+              "tone": "warning"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "mutated"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 12,
+              "decision": "take",
+              "house": 1,
+              "index": 4,
+              "prevOne": 11,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 12
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-36",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L8",
+      "id": "frame-37",
+      "narrationSummary": "Commit prevOne = best = 12.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-37-commit",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "commit prevOne",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "mutated"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": 12,
+              "decision": "take",
+              "house": 1,
+              "index": 4,
+              "prevOne": 12,
+              "prevTwo": 11,
+              "skip": 11,
+              "take": 12
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-37",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L3",
+      "id": "frame-38",
+      "narrationSummary": "Every house has been processed, so the rolling state now holds the answer.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "best": "-",
+              "decision": "-",
+              "house": "-",
+              "index": "-",
+              "prevOne": 12,
+              "prevTwo": 11,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-38",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
+      "codeLine": "L10",
+      "id": "frame-39",
+      "narrationSummary": "Return the best non-adjacent total 12.",
+      "primitives": [
+        {
+          "annotations": [
+            {
+              "id": "event-39-answer",
+              "kind": "badge",
+              "targetId": "cell-4",
+              "text": "ans 12",
+              "tone": "success"
+            }
+          ],
+          "data": {
+            "cellValues": [
+              2,
+              7,
+              9,
+              3,
+              1
+            ]
+          },
+          "highlights": [
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "done"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "done"
+            }
+          ],
+          "id": "houses",
+          "kind": "array",
+          "pointers": [],
+          "title": "House Values",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": 12,
+              "best": "-",
+              "decision": "-",
+              "house": "-",
+              "index": "-",
+              "prevOne": 12,
+              "prevTwo": 11,
+              "skip": "-",
+              "take": "-"
+            }
+          },
+          "highlights": [],
+          "id": "rolling-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "DP State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-39",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-5",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-6",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-7",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-8",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-9",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-10",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-11",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-12",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-13",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-14",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-15",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-16",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-17",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-18",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-19",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-20",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-21",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-22",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-23",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-24",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-25",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-26",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-27",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-28",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-29",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-30",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-31",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-32",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-33",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-34",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-35",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-36",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-37",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-38",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L10",
+      "id": "event-39",
+      "type": "result"
+    },
+    {
+      "codeLine": "L10",
+      "id": "event-40",
+      "type": "complete"
+    }
+  ]
+}

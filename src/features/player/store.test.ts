@@ -14,6 +14,17 @@ describe("lesson player store", () => {
     expect(state.failure).toBeUndefined()
   })
 
+  it("loads the house robber lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("house-robber")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("house-robber")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
   it("rebuilds from custom input without a page reload", () => {
     const store = createLessonPlayerStore()
     store.getState().initialize("binary-search")

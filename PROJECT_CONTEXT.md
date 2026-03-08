@@ -104,6 +104,8 @@ Phase 3 runtime core is complete.
 Phase 4 primitive foundation is complete.
 Phase 5 verification layer is complete.
 Phase 6 shell refinement is complete.
+Phase 7 author-mode foundation is complete.
+Phase 8 flagship lesson expansion is now active.
 
 Completed so far:
 - greenfield workspace created
@@ -132,14 +134,17 @@ Completed so far:
 - binary-search projection was tightened so early frames and compare/decision frames now produce distinct learner-visible changes instead of relying on narration-only differences
 - shell refinement completed: the top slab is now a denser instrument bar, the stage reads as one dominant surface, and the docked context column is visually subordinate but still synchronized
 - responsive shell behavior was tightened so the top header and badges no longer collapse into broken narrow-column layouts on mobile-width screens
+- Phase 7 author-mode foundation shipped: author review now exposes event payloads, snapshots, adjacent frame diffs, narration bindings, and grouped verification issues on the same runtime state
+- learner mode is now blocked behind a verification overlay when a lesson fails checks, instead of showing plausible but untrusted visuals
+- Phase 8 started with a second flagship lesson: House Robber is now implemented as a registered, verified rolling-DP lesson with presets, lesson-specific verification, and a checked-in focus golden under `content/lessons/house-robber/approaches/rolling-dp/goldens`
 
 ## Immediate Next Step
 
-Begin Phase 7 from the plan:
-1. deepen author mode beyond counts and frame checks into event, diff, invariant, and narration-binding inspection
-2. make verification failures and broken contracts louder than plausible-looking visuals
-3. keep author inspection on the same runtime state rather than introducing a second state machine
-4. use the now-verified shell and runtime as the base for lesson auditing rather than inventing new author-only abstractions
+Continue Phase 8 from the plan:
+1. add the next flagship lesson that exercises a new primitive family instead of only array/state reuse
+2. prioritize a stack-execution or recursion lesson so the call-tree and stack views are proven in real content
+3. keep every new lesson on the same verification bar: runtime checks, lesson-specific verification, and checked-in JSON goldens
+4. use House Robber as the template for how new flagship lessons should be registered and hardened
 
 ## Canonical Files
 
