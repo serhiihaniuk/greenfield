@@ -93,8 +93,8 @@ interface PrimitiveFrameState<TData = unknown> {
 
 ## Pointer System
 
-Pointers are first-class semantic objects.
-They are not ad hoc labels.
+Pointers are not the root semantic object.
+They are one visual projection of a deeper execution-token system.
 
 ### Pointer contract
 
@@ -112,10 +112,11 @@ interface PointerSpec {
 
 ### Pointer rules
 
+- pointer specs are the current compatibility contract for lesson authors
 - pointers have stable ids across adjacent frames
 - pointers move; they do not disappear unless the semantic model explicitly ends them
 - multiple pointers may target the same element
-- pointer tone is semantic, not decorative
+- pointer tone is a compatibility bridge into the shared execution-token visual system
 - pointer labels must stay short and algorithm-real when possible: `i`, `j`, `lo`, `hi`, `mid`, `curr`
 - pointer placement must be deterministic so the same state renders the same way every time
 
@@ -128,6 +129,150 @@ interface PointerSpec {
 - `error`
 - `done`
 - `special`
+
+## Execution Token System
+
+Execution tokens are the shared semantic execution objects that the learner should
+recognize across synchronized views.
+
+They answer:
+
+- which execution object is this?
+- where does it appear in the current frame?
+- how should the learner recognize it across stage, state, narration, and code?
+
+Examples:
+
+- `lo`
+- `hi`
+- `mid`
+- `i`
+- `j`
+- `front`
+- `back`
+- `curr`
+- `best`
+
+An execution token may project into different views as:
+
+- a stage pointer
+- a state-row accent
+- a narration inline token chip
+- a code-trace variable emphasis
+- a compact annotation or badge in a structural or execution view
+
+### Token contract
+
+The long-term runtime model should treat tokens as first-class frame-level objects.
+The current system may derive them from `PointerSpec` as a compatibility bridge,
+but the target architecture is:
+
+```ts
+interface ExecutionTokenSpec {
+  id: string
+  label: string
+  role: 'cursor' | 'bound' | 'candidate' | 'active' | 'result' | 'frontier' | 'state-variable'
+  style: 'accent-1' | 'accent-2' | 'accent-3' | 'accent-4' | 'success' | 'warning' | 'error' | 'muted'
+  status?: 'active' | 'waiting' | 'done'
+}
+```
+
+### Token rules
+
+- execution token identity is shared across synchronized views
+- token identity is not owned by any one primitive
+- if the same execution object appears in multiple views, those views should render the same token identity
+- token continuity across adjacent frames matters even when its view projection changes
+- token style is shared across views; representation is view-specific
+
+## Pointer As Token Projection
+
+A pointer is one spatial projection of an execution token onto a primitive target.
+
+That means:
+
+- token identity is the semantic source of truth
+- pointer overlay is the spatial rendering of that token
+- pointer continuity is token continuity expressed through motion
+
+The system should eventually model this as:
+
+```ts
+interface PointerProjection {
+  tokenId: string
+  targetId: string
+  placement?: PointerPlacement
+  priority?: number
+}
+```
+
+The current `PointerSpec` remains the authored compatibility contract until the
+token registry is promoted into runtime frame data.
+
+## Token Identity Vs Primitive Semantic Tone
+
+These two concepts solve different problems and must stay separate.
+
+### Token identity answers
+
+- which execution object is this?
+- how should the learner recognize it in other views?
+
+### Primitive semantic tone answers
+
+- what state is this visual element in right now?
+- is it active, compared, found, memoized, done, base, or dim?
+
+Example:
+
+- token `mid` may use a shared token style such as `accent-2`
+- the array cell under `mid` may use highlight tone `compare`
+- the state row for `mid` may use token-aware emphasis plus local active styling
+- narration may render `mid` as an inline token chip with the same shared identity
+
+Do not collapse these two systems into one color-only abstraction.
+
+## Anchor Contract
+
+Pointer geometry belongs to the renderer layer, not to lesson data.
+
+Primitives should expose renderer-only anchors for pointer-capable targets.
+The pointer layer resolves pointer projections against those anchors.
+
+Target architecture:
+
+```ts
+interface PointerAnchor {
+  targetId: string
+  placement: PointerPlacement
+  x: number
+  y: number
+}
+```
+
+Rules:
+
+- anchors are internal renderer geometry, not authored lesson data
+- primitives own target geometry
+- pointer overlays resolve against anchors
+- pointer overlays must not perturb layout
+- pointer mount, movement, stacking, and exit may not change primitive width or height
+
+## Cross-View Projection Rule
+
+This system should behave like technical drawings:
+
+- multiple projections
+- one underlying execution object
+- stable recognizable identity across views
+
+So:
+
+- synchronized views are not independent decorations
+- they are different projections of the same execution state
+- if narration, state, stage, and code all mention the same execution object, they should do so through one shared token identity
+
+This is a hard architectural direction, not an optional polish layer.
 
 ## Highlight System
 
@@ -211,6 +356,7 @@ The primitive system needs a global semantic token layer.
 
 ### Required token groups
 
+- execution token styles
 - surfaces
 - text
 - node tones
@@ -239,6 +385,21 @@ At minimum the token system must support:
 
 Raw colors are not the contract.
 Semantic names are the contract.
+
+Execution token styles should also use semantic or indexed names such as:
+
+- `accent-1`
+- `accent-2`
+- `accent-3`
+- `accent-4`
+- `success`
+- `warning`
+- `error`
+- `muted`
+
+Those styles are shared across views.
+The same token style may render differently in a pointer, state row, narration chip,
+or code-trace emphasis, but it should still be recognized as the same execution object.
 
 ## Primitive Sizing And Density
 
@@ -308,7 +469,8 @@ Primary and secondary regions scroll independently. The outer stage container us
 
 Must support:
 - stable cell ids
-- pointer stacking
+- renderer-owned anchors for pointer targets
+- pointer stacking without layout reflow
 - range highlights
 - compared cells
 - mutated cells

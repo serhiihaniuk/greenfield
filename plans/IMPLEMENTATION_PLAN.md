@@ -80,6 +80,7 @@ Phase 9 now also includes the first motion-system slice: a canonical motion cont
 Phase 9 now also includes the first explicit continuity guard for tracked signals: runtime verification warns when pointers blink out between adjacent non-terminal frames, and House Robber has been corrected to keep its focus pointer visible across the loop-check step.
 Phase 9 now also extends the motion pilot into recursion: Maximum Depth of Binary Tree now animates execution-tree node promotion, call-stack push/pop handoff, and return-value commitment as the first non-array motion pass.
 Phase 9 now also upgrades the shared pointer system: array and sequence pointers are rendered as animated arrow primitives rather than bordered chips, with movement bias driven by tracked pointer continuity.
+Phase 9 now also has a documented follow-up architecture for cross-view execution tokens: pointers are no longer the intended root semantic object, and the next hardening slice is to make important execution objects recognizable across stage, state, narration, and later code through one shared token identity.
 
 ## Phase 0: Operating System
 
@@ -280,12 +281,50 @@ Primitive implementation must follow both `docs/PRIMITIVE_SYSTEM_SPEC.md` and `d
 - doc updates based on real implementation friction
 - shadcn shell audit for composition and semantic styling compliance
 - optional screenshot regression layer for the most important lessons
+- docs-first execution-token architecture and pointer-overlay rollout plan
+- compatibility bridge from current pointer specs into shared execution tokens
+- pointer-overlay migration for array and sequence primitives
+- Binary Search token pilot across stage, state, and narration
 
 ### Acceptance criteria
 
 - the system can add a new lesson without architectural improvisation
 - doc gaps found during implementation are promoted into canonical docs
 - shell UI stays inside `shadcn/ui` conventions
+- pointer rendering no longer perturbs primitive layout
+- important execution objects can become recognizable across multiple synchronized views instead of only inside a pointer renderer
+
+### Phase 9.x: Cross-View Execution Tokens And Pointer Overlay
+
+Why this exists:
+
+- pointer work was exposing a deeper product need
+- the learner should recognize the same execution object across stage, state, and narration
+- pointers are only one projection of that object, not the semantic root
+- geometry and pointer rendering must stop living inside cell layout
+
+Decision:
+
+- document the architecture first in canonical docs
+- keep current `PointerSpec` as the authored compatibility contract
+- derive shared execution-token identity internally as the migration bridge
+- move pointer rendering to overlay layers backed by primitive-owned anchors
+
+Rollout order:
+
+1. internal token compatibility bridge from current pointer specs
+2. shared pointer-overlay infrastructure
+3. array and sequence migration
+4. Binary Search pilot for stage + state + narration token identity
+5. QA and verification hardening
+6. later expansion to tree, call-tree, graph, queue, stack, and code-trace projections
+
+Acceptance criteria:
+
+- the canonical docs explicitly define execution tokens as the primary semantic object
+- pointer overlays do not change primitive width, height, or scroll behavior
+- Binary Search demonstrates one shared execution-token identity across stage pointer, state row, and narration
+- the rollout is compatibility-based rather than a breaking lesson-authoring rewrite
 
 ## Sequencing Rules
 

@@ -86,6 +86,37 @@ Rules:
 - motion must never hide verification failures or make blocked learner mode feel playable
 - tracked explanatory signals such as pointers should persist and move between adjacent frames when the underlying tracked object still exists; dropping and recreating them should be treated as a continuity bug
 
+## Frame-Level Execution Token Continuity
+
+The runtime should increasingly treat important execution objects as shared tokens,
+not as view-local decorations.
+
+Rules:
+
+- token identity persists across adjacent frames even when its visual projection changes
+- the same execution token may appear in stage, state, narration, and later code trace
+- pointer continuity is one visible symptom of token continuity, not the whole contract
+- view changes must not imply token death unless the semantic model explicitly ends the token
+
+The current runtime may derive token identity from existing pointer specs as a
+compatibility bridge, but the architectural direction is a frame-level token system.
+
+## Projection Synchronization
+
+The runtime is synchronizing semantic objects across views, not just synchronizing widgets.
+
+That means:
+
+- narration, state, stage, and code may reference the same execution token
+- those projections may differ visually, but should preserve recognizable identity
+- synchronized views should feel like different projections of the same execution state
+
+Binary Search is the intended first pilot for this token-aware synchronization:
+
+- stage pointer for `lo`, `hi`, `mid`
+- matching state-row identity
+- inline narration token rendering
+
 ## Speed Model
 
 Use a small fixed speed set for MVP:
@@ -179,6 +210,32 @@ It must expose:
 
 Author mode must not have a separate lesson state machine.
 It inspects the normal player state.
+
+## Pointer Overlay Runtime
+
+Pointer overlays should be driven by token-aware pointer projections against
+renderer-owned anchors.
+
+Rules:
+
+- pointer geometry belongs to primitive renderers, not lesson data
+- pointer overlays should resolve semantic targets against primitive-owned anchors
+- pointer overlays must not perturb primitive layout or stage composition
+- pointer enter, travel, stacking, and exit must not introduce scrollbars or reflow
+
+The first rollout should use a compatibility bridge from current `PointerSpec`
+data into the future execution-token model rather than forcing an immediate lesson rewrite.
+
+## Author And Audit Expectations
+
+Audit should eventually be able to inspect shared execution tokens, not only
+pointers, highlights, and primitive-local diffs.
+
+Direction:
+
+- author tooling should explain which execution object is being tracked
+- it should be possible to relate stage pointers, state rows, and narration references back to the same token identity
+- future audit workflows should surface token continuity issues as a first-class diagnostic
 
 ## Command And Shortcut Contract
 

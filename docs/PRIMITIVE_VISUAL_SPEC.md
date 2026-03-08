@@ -108,16 +108,57 @@ Use a consistent size scale across primitives.
 These are starting contracts, not random values.
 If changed globally, update this spec.
 
-## Pointer Visual Grammar
+## Execution Token Visual Grammar
 
-Pointers must be visually consistent across all primitives.
+Execution tokens are the learner-recognition layer shared across views.
+
+They are not a pointer-only styling trick.
+They are how the learner should recognize that the same execution object appears in:
+
+- the stage
+- the state panel
+- step narration
+- later, code trace and author tooling
+
+### Token style slots
+
+Use shared style slots rather than raw colors:
+
+- `accent-1`
+- `accent-2`
+- `accent-3`
+- `accent-4`
+- `success`
+- `warning`
+- `error`
+- `muted`
+
+These styles are shared across views.
+The exact shape differs by view, but the identity should remain recognizable.
+
+### Same token, different projection
+
+The same execution token may render as:
+
+- an arrow pointer in the stage
+- an accented state row
+- an inline narration token chip
+- a code-trace variable emphasis
+
+This is intentional.
+The system should feel like technical drawings of the same object from different angles.
+
+## Pointer Projection Grammar
+
+Pointers are one visual projection of execution tokens onto spatial targets.
+They must be visually consistent across all primitives.
 
 ### Pointer anatomy
 
 - compact arrow glyph with chevron tip, stem, and small anchor dot
 - short mono label attached to the arrow, not a bordered pill
 - thin connector or anchor relationship to target when needed
-- semantic tone color
+- token-derived style
 - stable placement around the target
 
 ### Pointer placement rules
@@ -134,6 +175,7 @@ Pointers must be visually consistent across all primitives.
 - the arrow itself is the pointer; do not wrap it in a badge or pill
 - no cartoon arrows
 - if a line is needed, keep it thin and precise
+- pointer rendering is overlay-rendered and may not change layout
 
 ### Pointer stacking
 
@@ -142,6 +184,52 @@ When multiple pointers target the same element:
 - stack them deterministically
 - preserve a stable order by priority then id
 - do not let them overlap unreadably
+- do not widen or heighten the primitive because they appeared
+
+## Narration Token Grammar
+
+Narration should be able to render inline execution-token chips.
+
+Example:
+
+- `mid` appears as a compact inline token
+- the same token identity is used by the stage pointer and the state row
+
+Rules:
+
+- narration token chips should stay compact and mono-friendly
+- they should not become large decorative badges
+- they should preserve the same token identity as the synchronized visual state
+- narration may mention a token without showing every local semantic tone that other views carry
+
+## State And Code Token Grammar
+
+State and code views should eventually support token-aware rendering.
+
+### StateView
+
+- state rows representing a shared execution token should use the same token identity as the stage projection
+- this does not mean state rows should look like pointers
+- it does mean the learner should recognize `mid` in state as the same `mid` seen in the stage and narration
+
+### CodeTraceView
+
+- code trace may later render token-aware variable emphasis
+- code should remain readable first; token rendering is supportive, not noisy
+- token identity should be reused when it improves learner recognition, not sprayed onto every variable indiscriminately
+
+## Token Vs Highlight
+
+Do not collapse token identity and highlight tone into one visual system.
+
+- token identity is cross-view and answers: which execution object is this?
+- highlight tone is local to the primitive and answers: what state is this element in right now?
+
+Example:
+
+- `mid` can keep one token identity across views
+- the array cell it targets can still be in `compare`
+- the narration token chip can stay visually stable even while local cell semantics change
 
 ## State Continuity Rules
 
@@ -177,9 +265,11 @@ Default timing:
 
 First-pass primitive guidance:
 
-- `ArrayView`: pointer chips should travel between cells; strongly emphasized cells may scale slightly on compare/found/commit
+- `ArrayView`: token-projected pointers should travel between cells; strongly emphasized cells may scale slightly on compare/found/commit
 - `StateView`: changing values should commit with a short vertical handoff rather than hard-swap instantly
 - `CodeTraceView`: the active line should hand off through a sliding highlight instead of blinking between rows
+
+Pointer movement should be read as token travel or token handoff, not as a local arrow gimmick.
 
 ## Semantic Color Usage
 
@@ -386,6 +476,7 @@ They should have:
 ### Visual behavior
 
 - semantic colored segments match the on-screen state
+- when narration names a shared execution token, it should render that token with the same token identity used in synchronized views
 - narration must describe only the one learner-visible change in the current frame
 - avoid large paragraphs
 - keep line length compact for fast scanning

@@ -41,6 +41,10 @@ A learner opening a lesson should immediately understand:
 - what code line is active
 - what the broader execution picture looks like
 
+Synchronized views should not feel like unrelated panels.
+They should feel like technical drawings of the same execution state from
+different angles.
+
 ## Core Constraints
 
 ### Visualization-first
@@ -164,6 +168,7 @@ It is not the visualization primitive system.
 - narration explains why the change happened
 - the right synchronized views are present for the problem
 - the visualization has no visual lies, no missing state, and no ambiguous transitions
+- the same important execution object is recognizable across views
 
 ### Confusion types the system must support
 
@@ -437,6 +442,13 @@ Global rules:
 - repeated states should support compact representation when full-size rendering harms comprehension
 - pointer continuity beats ornamental animation
 
+Execution-token identity is a separate layer from primitive-local tone.
+That means:
+
+- token identity answers which execution object the learner is tracking
+- primitive-local highlight tone answers what local state that visual element is in
+- multiple views should be able to project the same token identity without becoming visually identical widgets
+
 ## Application UI Rules
 
 For app-level UI, follow `shadcn/ui` conventions:
@@ -543,6 +555,57 @@ Shell rules:
 - compact code-state panels may stay beside narration and code when that keeps variable state tightly coupled to the active line
 - dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
+
+## Cross-View Execution Objects
+
+The product should treat important execution objects as shared semantic tokens.
+
+Examples:
+
+- `lo`
+- `hi`
+- `mid`
+- `i`
+- `front`
+- `curr`
+
+These tokens are not owned by the stage.
+They may appear in:
+
+- pointer overlays in the stage
+- state or code-status rows
+- narration text
+- later, code trace and audit tooling
+
+The user should recognize them as the same object across these views.
+
+This is the architectural reason pointer work should not remain a pointer-only refactor.
+
+## Pointer Projection Architecture
+
+Pointers are one spatial projection of shared execution tokens.
+
+The chosen rendering direction is:
+
+- execution token identity is shared across synchronized views
+- pointers are overlay-rendered against primitive-owned anchors
+- primitive renderers own geometry
+- the pointer layer owns spatial pointer rendering and motion
+- pointer overlays must not perturb layout
+
+The first rollout should be compatibility-based:
+
+- keep current `PointerSpec` authoring
+- derive token identity from that contract internally
+- migrate array and sequence views first
+- use Binary Search as the first cross-view token pilot
+
+This is intentionally more grounded than the older iterative app:
+
+- no lesson-owned geometry hacks
+- no pointer rows as the architectural model
+- no view-local color meanings pretending to be shared semantics
+- no undocumented coupling between pointer rendering and content layout
 
 ## Motion Contract
 

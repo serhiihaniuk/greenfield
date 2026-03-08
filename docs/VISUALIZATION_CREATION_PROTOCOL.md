@@ -77,6 +77,13 @@ That means:
 The point is not decoration.
 The point is to help the learner immediately understand what kind of scenario they are selecting.
 
+Presets should also exercise token continuity.
+At minimum, flagship presets should expose:
+
+- a success path where the main execution tokens are easy to follow
+- a failure path where those tokens remain legible through the negative outcome
+- edge cases that prove tokens do not blink out, drift semantically, or become ambiguous under boundary conditions
+
 ## Canonical Lesson Workflow
 
 1. Define the lesson.
@@ -271,6 +278,40 @@ Minimum:
 - if algorithmic correctness cannot be verified, the lesson is not done
 - if pedagogical integrity cannot be verified, the lesson is not done
 
+## Execution Token Authoring Guidance
+
+Important moving execution objects should be designed as reusable execution tokens.
+
+Examples:
+
+- `lo`
+- `hi`
+- `mid`
+- `i`
+- `front`
+- `curr`
+- `best`
+
+Guidance:
+
+- define the important execution objects once at the semantic level
+- reuse the same token identity in stage, narration, and state or code-status views where pedagogically useful
+- do not invent separate labels or colors independently in each view
+- prefer one recognizable token identity projected across views over ad hoc local styling
+- keep token labels short and algorithm-real
+
+Execution-token identity and primitive-local semantic tone are different:
+
+- token identity answers which object the learner is tracking
+- primitive-local tone answers what local state that object or target is in right now
+
+Both may be present at once.
+
+Example:
+
+- token `mid` stays recognizable in stage, state, and narration
+- the array cell under `mid` may still use local highlight tone `compare`
+
 ## Definition Of Done
 
 A new lesson is done only when all are true:
@@ -282,6 +323,7 @@ A new lesson is done only when all are true:
 - code-line mapping is valid
 - no required learner-visible micro-step is skipped
 - important state is never lost silently between adjacent frames
+- important execution tokens remain recognizable across the synchronized views that render them
 - required synchronized views are present
 - custom input parsing works
 - normal presets are readable on desktop without unnecessary scrolling
