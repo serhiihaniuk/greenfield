@@ -17,6 +17,10 @@ export function customInputEditor(page: Page): Locator {
   return page.getByLabel("Custom input editor", { exact: true })
 }
 
+export function timelineSlider(page: Page): Locator {
+  return page.getByLabel("Timeline", { exact: true })
+}
+
 export async function expectRuntimeReady(
   page: Page,
   primaryHeading: string,
@@ -32,4 +36,13 @@ export async function expectRuntimeReady(
     page.getByRole("heading", { name: secondaryHeading, exact: true })
   ).toBeVisible()
   await expect(page.getByText(/Runtime failure/i)).toHaveCount(0)
+}
+
+export async function expectNoVerticalPageScroll(page: Page) {
+  const metrics = await page.evaluate(() => ({
+    viewportHeight: window.innerHeight,
+    docHeight: document.documentElement.scrollHeight,
+  }))
+
+  expect(metrics.docHeight).toBeLessThanOrEqual(metrics.viewportHeight + 1)
 }

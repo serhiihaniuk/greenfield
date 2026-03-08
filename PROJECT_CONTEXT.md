@@ -160,6 +160,7 @@ Completed so far:
 - Phase 9 now replaces the stale scaffold smoke test with real Playwright runtime coverage for learner-mode load, author-mode inspection, lesson and preset switching, and custom-input parse-failure surfacing
 - Phase 9 now adds a broader Playwright lesson matrix across all eight flagship lessons plus alternate-preset coverage for memoization, priority-structure, and stack-execution lessons
 - Coin Change verification was hardened so impossible-target presets no longer fail for lacking a `remainder 0` base case; terminal-state checks now only require learner-visible outcomes that actually occur in the trace
+- Phase 9 now adds explicit desktop viewport and playback-behavior QA, covering no-page-scroll flagship presets plus deterministic stepping through pointer controls, keyboard shortcuts, and timeline scrubbing
 
 ## Immediate Next Step
 
@@ -167,7 +168,7 @@ Continue Phase 9 from the plan:
 
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
-3. extend Playwright from lesson-load coverage into viewport and interaction assertions, especially around no-scroll desktop contracts and playback stepping
+3. extend viewport QA from page-level no-scroll checks into primitive-level overflow and stage-height assertions for the densest lessons
 4. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode or verification gaps discovered during hardening
 
 ## Canonical Files
