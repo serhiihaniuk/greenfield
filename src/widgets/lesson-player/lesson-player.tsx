@@ -5,8 +5,6 @@ import {
   ChevronLastIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ChevronsDownUpIcon,
-  ChevronsUpDownIcon,
   FileJsonIcon,
   KeyboardIcon,
   ListTreeIcon,
@@ -94,6 +92,7 @@ function Kbd({ children }: { children: React.ReactNode }) {
 }
 
 function splitPrimitives(primitives: PrimitiveFrameState[]) {
+  const supportPrimitives = primitives.filter((primitive) => primitive.kind === "state")
   const primaryPrimitives = primitives.filter(
     (primitive) =>
       primitive.viewport?.role === "primary" ||
@@ -101,14 +100,15 @@ function splitPrimitives(primitives: PrimitiveFrameState[]) {
   )
   const secondaryPrimitives = primitives.filter(
     (primitive) =>
-      primitive.viewport?.role === "secondary" ||
-      primitive.viewport?.role === "tertiary" ||
-      (!primitive.viewport?.role && primitive.kind === "state")
+      primitive.kind !== "state" &&
+      (primitive.viewport?.role === "secondary" ||
+        primitive.viewport?.role === "tertiary")
   )
 
   return {
     primaryPrimitives:
       primaryPrimitives.length > 0 ? primaryPrimitives : primitives,
+    supportPrimitives,
     secondaryPrimitives,
   }
 }
@@ -175,7 +175,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
 
   const [codePresentation, setCodePresentation] = useState<CodePresentation>()
   const [inputModalOpen, setInputModalOpen] = useState(false)
-  const [stateCollapsed, setStateCollapsed] = useState(false)
   const [hotkeysOpen, setHotkeysOpen] = useState(false)
   const lessons = useMemo(() => listLessons(), [])
   const activeFrame = frames[currentFrameIndex]
@@ -185,7 +184,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     currentFrameIndex + 1 < frames.length ? frames[currentFrameIndex + 1] : undefined
   const activeEvent = trace.find((event) => event.id === activeFrame?.sourceEventId)
   const activePrimitives = activeFrame?.primitives ?? []
-  const { primaryPrimitives, secondaryPrimitives } = splitPrimitives(activePrimitives)
+  const { primaryPrimitives, supportPrimitives, secondaryPrimitives } =
+    splitPrimitives(activePrimitives)
+  const hasSupportPrimitives = supportPrimitives.length > 0
   const hasSecondaryStage = secondaryPrimitives.length > 0
   const currentFrameLabel =
     frames.length === 0 ? "0/0" : `${currentFrameIndex + 1}/${frames.length}`
@@ -300,46 +301,30 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             collapsedSize="0%"
           >
             <div
-              data-testid="context-column"
+              data-testid="support-column"
               className="flex h-full min-h-0 flex-col"
             >
-              {hasSecondaryStage ? (
+              {hasSupportPrimitives ? (
                 <div
-                  data-testid="secondary-primitives-region"
-                  className="shrink-0 border-b border-border/30"
+                  data-testid="support-primitives-region"
+                  className="shrink-0 border-b border-border/20 px-3 py-3"
                 >
-                  <button
-                    className="flex w-full items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
-                    onClick={() => setStateCollapsed((value) => !value)}
-                  >
-                    {stateCollapsed ? (
-                      <ChevronsUpDownIcon className="size-3" />
-                    ) : (
-                      <ChevronsDownUpIcon className="size-3" />
-                    )}
-                    State
-                  </button>
-                  {!stateCollapsed ? (
-                    <div
-                      data-testid="secondary-primitives-scroll"
-                      className="overflow-y-auto px-3 pb-3"
-                      style={{ maxHeight: "min(32rem, 58vh)" }}
-                    >
-                      <div className="grid auto-rows-max gap-2">
-                        {secondaryPrimitives.map((primitive) => (
-                          <PrimitiveRenderer
-                            key={primitive.id}
-                            primitive={primitive}
-                            role="secondary"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
+                  <div className="grid auto-rows-max gap-2">
+                    {supportPrimitives.map((primitive) => (
+                      <PrimitiveRenderer
+                        key={primitive.id}
+                        primitive={primitive}
+                        role="secondary"
+                      />
+                    ))}
+                  </div>
                 </div>
               ) : null}
 
-              <div className="shrink-0 border-b border-border/20 px-3 py-1.5">
+              <div className="shrink-0 border-b border-border/20 px-3 py-2">
+                <div className="mb-1 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Support
+                </div>
                 <p className="text-xs leading-relaxed text-foreground/80">
                   {learnerModeBlocked
                     ? "Learner mode is blocked until verification issues are inspected in author mode."
@@ -371,14 +356,40 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               data-testid="stage-scroll-region"
               className="flex h-full flex-col overflow-auto p-4"
             >
-              <div className="grid auto-rows-max gap-4">
-                {primaryPrimitives.map((primitive) => (
-                  <PrimitiveRenderer
-                    key={primitive.id}
-                    primitive={primitive}
-                    role="primary"
-                  />
-                ))}
+              <div
+                data-testid="stage-visual-grid"
+                className={
+                  hasSecondaryStage
+                    ? "grid auto-rows-max items-start gap-4 xl:grid-cols-[minmax(0,1.9fr)_minmax(18rem,24rem)]"
+                    : "grid auto-rows-max gap-4"
+                }
+              >
+                <div
+                  data-testid="stage-primary-region"
+                  className="grid auto-rows-max gap-4"
+                >
+                  {primaryPrimitives.map((primitive) => (
+                    <PrimitiveRenderer
+                      key={primitive.id}
+                      primitive={primitive}
+                      role="primary"
+                    />
+                  ))}
+                </div>
+                {hasSecondaryStage ? (
+                  <aside
+                    data-testid="stage-secondary-region"
+                    className="grid auto-rows-max gap-3"
+                  >
+                    {secondaryPrimitives.map((primitive) => (
+                      <PrimitiveRenderer
+                        key={primitive.id}
+                        primitive={primitive}
+                        role="secondary"
+                      />
+                    ))}
+                  </aside>
+                ) : null}
               </div>
             </section>
           </ResizablePanel>

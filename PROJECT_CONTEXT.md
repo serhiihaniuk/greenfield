@@ -166,6 +166,7 @@ Completed so far:
 - Phase 9 now adds successful custom-input replay QA across the full flagship set: valid custom inputs rebuild verified runtime state without reload in store tests and Playwright, while parse failures still surface live in the player
 - Phase 9 has started the shadcn shell audit: custom input now uses the shared dialog primitives with an accessible dialog contract and keyboard dismissal instead of a hand-rolled overlay
 - Phase 9 now adds clickable author-review navigation on the live runtime state: authors can step to previous or next frames from the drawer and jump directly from referenced issues to the linked frame or event
+- Phase 9 now restores a sharper shell contract: lightweight code-state panels stay beside narration and code in the left support column, while stacks, queues, memo tables, outputs, and other execution visuals render inside the right-stage composition with the primary visual
 
 ## Immediate Next Step
 
@@ -174,7 +175,7 @@ Continue Phase 9 from the plan:
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
 3. continue the Phase 9 shadcn shell audit on the remaining verification blocker surface that still uses custom chrome
-4. use the new stack-execution and priority-structure lessons to tighten any remaining author-mode issue-jump and failure-state workflows discovered during hardening
+4. retune dense lesson stage composition now that execution visuals share the stage while code-state panels stay beside code
 
 ## Canonical Files
 

@@ -512,10 +512,10 @@ The shell must be designed for high-intensity study, not editorial reading.
 
 Default desktop composition:
 - compact top utility bar
-- dominant central visualization canvas
-- side panels only when they add real explanatory value
+- dominant central visualization stage that holds both primary and secondary synchronized primitives
+- a narrower support column for narration, code trace, compact code-state panels, and lightweight runtime status
 - short narration near the active flow
-- code trace docked into the same lesson surface
+- code trace docked beside, not inside, the main stage
 - almost no decorative whitespace that pushes meaning off-screen
 
 Shell rules:
@@ -523,7 +523,9 @@ Shell rules:
 - vertical sprawl is a product bug
 - the active state should stay near the visual center
 - archived or low-importance states should be compacted
-- dense secondary stacks must be height-capped before they can starve narration or code/reference space
+- structural and execution-oriented secondary views belong inside the stage composition, not the support column
+- compact code-state panels may stay beside narration and code when that keeps variable state tightly coupled to the active line
+- dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
 
 ## Workspace Structure

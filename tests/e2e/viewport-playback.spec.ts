@@ -104,9 +104,46 @@ test("keeps dense presets inside stage and context regions on desktop", async ({
     await expectRuntimeReady(page, entry.primaryHeading, entry.secondaryHeading)
     await expectNoVerticalPageScroll(page)
     await expectNoVerticalRegionOverflow(page, "stage-scroll-region")
-    await expectNoVerticalRegionOverflow(page, "context-column")
+    await expectNoVerticalRegionOverflow(page, "support-column")
     await expectRegionMinHeight(page, "reference-column", 120)
   }
+})
+
+test("keeps synchronized secondary visuals inside the stage instead of the support column", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await selectFooterOption(page, "Lesson", "Tree DFS Traversal with Stack")
+  await expectRuntimeReady(page, "Traversal Tree", "DFS Stack")
+
+  await expect(
+    testRegion(page, "stage-secondary-region").getByRole("heading", {
+      name: "DFS Stack",
+      exact: true,
+    })
+  ).toBeVisible()
+  await expect(
+    testRegion(page, "stage-secondary-region").getByRole("heading", {
+      name: "Preorder Output",
+      exact: true,
+    })
+  ).toBeVisible()
+})
+
+test("keeps compact code-state panels in the support column", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await expectRuntimeReady(page, "Search Interval", "State")
+
+  await expect(
+    testRegion(page, "support-primitives-region").getByRole("heading", {
+      name: "State",
+      exact: true,
+    })
+  ).toBeVisible()
 })
 
 test("keeps the author drawer docked without forcing page scroll", async ({
