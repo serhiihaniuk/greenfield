@@ -11,12 +11,14 @@ It is a dark, desktop-first, visualization-heavy study tool for the moment when 
 
 The previous product was an interactive algorithm visualizer built iteratively.
 It was strongest when the concept could be explained by a few synchronized views such as:
+
 - two pointers over an array
 - sliding window boundaries and conditions
 - binary search on a sorted array
 - basic tree traversal with a visible tree plus stack
 
 The old product had:
+
 - a dark UI
 - a large central visualization area
 - step playback controls
@@ -32,6 +34,7 @@ It did not scale cleanly to harder recursive, DP, and structural lessons.
 We are building a stricter and more trustworthy version of that product.
 
 The new app should feel like this on desktop:
+
 - a compact top bar
 - one dominant central visualization surface
 - synchronized side panels only when they improve understanding
@@ -40,6 +43,7 @@ The new app should feel like this on desktop:
 - almost no unnecessary prose or decorative whitespace
 
 The learner should be able to open one lesson and immediately see:
+
 - what changed
 - why it changed
 - what is waiting now
@@ -49,6 +53,7 @@ The learner should be able to open one lesson and immediately see:
 ## Primary User Behavior
 
 The user:
+
 - opens the app only when deeply confused
 - uses almost only the visualization
 - reads step narration, not long prose
@@ -59,6 +64,7 @@ The user:
 
 The earlier product was not precise enough as an implementation system.
 Main reasons for the rebuild:
+
 - primitives were not designed as a coherent system
 - some visualizations became too tall, too sparse, or too hard to trust
 - steps often skipped learner-visible micro-transitions or did too much work at once
@@ -70,6 +76,7 @@ Main reasons for the rebuild:
 ## Product Thesis
 
 This project must be:
+
 - visualization-first
 - confusion-first
 - AI-authored but verification-gated
@@ -108,6 +115,7 @@ Phase 7 author-mode foundation is complete.
 Phase 8 flagship lesson expansion is now active.
 
 Completed so far:
+
 - greenfield workspace created
 - canonical architecture written
 - primitive system spec written
@@ -137,18 +145,21 @@ Completed so far:
 - Phase 7 author-mode foundation shipped: author review now exposes event payloads, snapshots, adjacent frame diffs, narration bindings, and grouped verification issues on the same runtime state
 - learner mode is now blocked behind a verification overlay when a lesson fails checks, instead of showing plausible but untrusted visuals
 - Phase 8 started with a second flagship lesson: House Robber is now implemented as a registered, verified rolling-DP lesson with presets, lesson-specific verification, and a checked-in focus golden under `content/lessons/house-robber/approaches/rolling-dp/goldens`
+- Phase 8 now includes a recursion-first flagship lesson: Maximum Depth of Binary Tree is implemented as a registered, verified recursive DFS lesson with structural tree, call-stack, and execution-tree views plus a checked-in focus golden under `content/lessons/maximum-depth/approaches/recursive-dfs/goldens`
 
 ## Immediate Next Step
 
 Continue Phase 8 from the plan:
-1. add the next flagship lesson that exercises a new primitive family instead of only array/state reuse
-2. prioritize a stack-execution or recursion lesson so the call-tree and stack views are proven in real content
+
+1. add the next flagship lesson that exercises a new confusion family beyond recursion and rolling state, ideally a frontier or priority-structure lesson
+2. prioritize sliding window maximum, graph BFS frontier, or heap-based top-k so queue/frontier and heap-like teaching surfaces are proven in real content
 3. keep every new lesson on the same verification bar: runtime checks, lesson-specific verification, and checked-in JSON goldens
-4. use House Robber as the template for how new flagship lessons should be registered and hardened
+4. use House Robber and Maximum Depth as the templates for how new flagship lessons should be registered and hardened
 
 ## Canonical Files
 
 Read these before making major changes:
+
 - `CODEX.md`
 - `docs/VISUALIZATION_FIRST_ARCHITECTURE.md`
 - `docs/PRIMITIVE_SYSTEM_SPEC.md`

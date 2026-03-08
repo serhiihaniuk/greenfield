@@ -9,11 +9,14 @@ import {
 import { buildLessonRuntime } from "@/features/player/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
+import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 
 describe("runtime goldens", () => {
   it("matches the checked-in binary-search focus golden", () => {
     const approach = binarySearchLesson.approaches[0]
-    const preset = approach?.presets.find((entry) => entry.id === "found-middle")
+    const preset = approach?.presets.find(
+      (entry) => entry.id === "found-middle"
+    )
 
     if (!approach || !preset) {
       throw new Error("Binary search golden fixture is not available.")
@@ -44,7 +47,9 @@ describe("runtime goldens", () => {
 
   it("matches the checked-in house-robber focus golden", () => {
     const approach = houseRobberLesson.approaches[0]
-    const preset = approach?.presets.find((entry) => entry.id === "classic-five")
+    const preset = approach?.presets.find(
+      (entry) => entry.id === "classic-five"
+    )
 
     if (!approach || !preset) {
       throw new Error("House robber golden fixture is not available.")
@@ -62,6 +67,39 @@ describe("runtime goldens", () => {
         path.resolve(
           process.cwd(),
           "content/lessons/house-robber/approaches/rolling-dp/goldens/focus-classic-five.json"
+        ),
+        "utf8"
+      )
+    ) as RuntimeGoldenSnapshot
+
+    const comparison = compareRuntimeGoldenSnapshots(actual, expected)
+
+    expect(comparison.matches).toBe(true)
+    expect(comparison.differences).toEqual([])
+  })
+
+  it("matches the checked-in maximum-depth focus golden", () => {
+    const approach = maximumDepthLesson.approaches[0]
+    const preset = approach?.presets.find(
+      (entry) => entry.id === "balanced-five"
+    )
+
+    if (!approach || !preset) {
+      throw new Error("Maximum depth golden fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: maximumDepthLesson,
+      approach,
+      mode: "focus",
+      rawInput: preset.rawInput,
+    })
+    const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
+    const expected = JSON.parse(
+      readFileSync(
+        path.resolve(
+          process.cwd(),
+          "content/lessons/maximum-depth/approaches/recursive-dfs/goldens/focus-balanced-five.json"
         ),
         "utf8"
       )

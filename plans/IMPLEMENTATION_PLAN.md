@@ -8,6 +8,7 @@ The product must be optimized for AI-driven lesson creation and must be trustwor
 ## Delivery Strategy
 
 This plan assumes:
+
 - the new app is the real project and is built independently at this workspace root
 - the new app is a Vite React TypeScript app
 - `shadcn/ui` is bootstrapped from the start for shell and utility UI
@@ -52,6 +53,7 @@ This plan assumes:
 
 The earlier plan still left too much to be invented during implementation.
 These were the main missing items:
+
 - no exact router choice
 - no exact animation technology for diagram transitions
 - no rendering model for nodes versus edges
@@ -71,7 +73,7 @@ Phase 4 shipped the stateless primitive foundation: canonical array, state, stac
 Phase 5 shipped the runtime verification layer: semantic/frame/code-line/pedagogical/viewport checks, author-review surfacing, and a checked-in JSON golden for the flagship binary-search focus path.
 Phase 6 shipped the visualization-first shell refinement: compact control band, dominant stage surface, docked context column, and responsive narrow-width header behavior.
 Phase 7 shipped the first real author-mode foundation: runtime-backed event inspection, frame diffs, narration binding inspection, grouped verification context, and learner-mode blocking when verification fails.
-Phase 8 is now active. House Robber has been added as the second flagship lesson with presets, lesson-specific verification, and a checked-in focus golden.
+Phase 8 is now active. House Robber has been added as the second flagship lesson with presets, lesson-specific verification, and a checked-in focus golden. Maximum Depth of Binary Tree is now added as the third flagship lesson, proving the structural tree, stack, and call-tree primitives in a verified recursive DFS path with its own checked-in focus golden.
 
 ## Phase 0: Operating System
 
@@ -291,6 +293,7 @@ Primitive implementation must follow both `docs/PRIMITIVE_SYSTEM_SPEC.md` and `d
 ## PO Priorities
 
 When tradeoffs appear, prefer this order:
+
 1. correctness, pedagogical integrity, and trust
 2. clarity of the learner surface
 3. authoring reliability for AI
