@@ -78,8 +78,9 @@ function verifyDecisionFrames(frames: Frame[]): VerificationReport {
 
     const housesPrimitive = findPrimitive(frame, "houses")
     const hasDecisionAnnotation =
-      housesPrimitive?.annotations?.some((annotation) => annotation.kind === "badge") ??
-      false
+      housesPrimitive?.annotations?.some(
+        (annotation) => annotation.kind === "badge"
+      ) ?? false
 
     if (!hasDecisionAnnotation) {
       issues.push({
@@ -108,6 +109,44 @@ function verifyDecisionFrames(frames: Frame[]): VerificationReport {
   return createVerificationReport(issues)
 }
 
+function verifyIndexPointerContinuity(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+
+  for (let index = 1; index < frames.length; index += 1) {
+    const previousFrame = frames[index - 1]
+    const frame = frames[index]
+    if (!previousFrame || !frame) {
+      continue
+    }
+
+    const previousHouses = findPrimitive(previousFrame, "houses")
+    const currentHouses = findPrimitive(frame, "houses")
+    const previousIndexPointer = previousHouses?.pointers?.find(
+      (pointer) => pointer.id === "index"
+    )
+    const currentIndexPointer = currentHouses?.pointers?.find(
+      (pointer) => pointer.id === "index"
+    )
+
+    if (
+      previousIndexPointer &&
+      !currentIndexPointer &&
+      frame.visualChangeType !== "result"
+    ) {
+      issues.push({
+        code: "HOUSE_ROBBER_INDEX_POINTER_DISAPPEARS",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should keep the house pointer visible and move it forward instead of dropping it between steps.`,
+        frameId: frame.id,
+        pedagogicalCheck: "hidden-state-loss",
+      })
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 function verifyFinalFrame(frames: Frame[]): VerificationReport {
   const issues: VerificationIssue[] = []
   const finalFrame = frames.at(-1)
@@ -128,7 +167,8 @@ function verifyFinalFrame(frames: Frame[]): VerificationReport {
       code: "HOUSE_ROBBER_FINAL_FRAME_NOT_RESULT",
       kind: "pedagogical-integrity",
       severity: "error",
-      message: "The final learner-visible frame should communicate the returned result.",
+      message:
+        "The final learner-visible frame should communicate the returned result.",
       frameId: finalFrame.id,
       pedagogicalCheck: "scope-handoff",
     })
@@ -153,7 +193,8 @@ function verifyFinalFrame(frames: Frame[]): VerificationReport {
       code: "HOUSE_ROBBER_FINAL_ANSWER_MISMATCH",
       kind: "pedagogical-integrity",
       severity: "error",
-      message: "The final answer should match prevOne, which holds the rolling optimum.",
+      message:
+        "The final answer should match prevOne, which holds the rolling optimum.",
       frameId: finalFrame.id,
       pedagogicalCheck: "code-line-mismatch",
     })
@@ -170,6 +211,7 @@ export function verifyRollingDpHouseRobber(
   return mergeVerificationReports(
     verifyTraceShape(events, frames, codeTemplate),
     verifyDecisionFrames(frames),
+    verifyIndexPointerContinuity(frames),
     verifyFinalFrame(frames)
   )
 }

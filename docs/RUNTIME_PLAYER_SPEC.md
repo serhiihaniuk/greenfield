@@ -84,6 +84,7 @@ Rules:
 - when autoplay advances, primitive motion should complete within the selected frame dwell time instead of spilling into the next frame
 - reduced-motion mode keeps synchronization but removes travel-heavy animation
 - motion must never hide verification failures or make blocked learner mode feel playable
+- tracked explanatory signals such as pointers should persist and move between adjacent frames when the underlying tracked object still exists; dropping and recreating them should be treated as a continuity bug
 
 ## Speed Model
 

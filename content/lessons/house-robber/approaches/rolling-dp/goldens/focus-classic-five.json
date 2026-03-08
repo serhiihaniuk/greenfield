@@ -210,7 +210,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },
@@ -848,7 +857,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },
@@ -1486,7 +1504,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },
@@ -2124,7 +2151,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },
@@ -2762,7 +2798,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },
@@ -3400,7 +3445,16 @@
           ],
           "id": "houses",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "done",
+              "targetId": "cell-4",
+              "tone": "done"
+            }
+          ],
           "title": "House Values",
           "viewportRole": "primary"
         },

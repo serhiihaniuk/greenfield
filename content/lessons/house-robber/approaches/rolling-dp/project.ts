@@ -50,13 +50,15 @@ function buildNarration(
   switch (event.codeLine) {
     case "L1":
       return {
-        summary: "Initialize prevTwo at 0 so the take option has a clean base value.",
+        summary:
+          "Initialize prevTwo at 0 so the take option has a clean base value.",
         segments: [],
         sourceValues: event.payload,
       }
     case "L2":
       return {
-        summary: "Initialize prevOne at 0 so the best-so-far total also starts empty.",
+        summary:
+          "Initialize prevOne at 0 so the best-so-far total also starts empty.",
         segments: [],
         sourceValues: event.payload,
       }
@@ -197,18 +199,32 @@ function buildPointers(
   event: TraceEvent,
   snapshot: HouseRobberSnapshot
 ): PointerSpec[] {
-  if (snapshot.index === undefined || event.codeLine === "L3") {
+  const targetIndex =
+    snapshot.index ??
+    (event.codeLine === "L3" &&
+    event.payload.result === false &&
+    snapshot.nums.length > 0
+      ? snapshot.nums.length - 1
+      : undefined)
+
+  if (targetIndex === undefined) {
     return []
   }
 
   return [
     {
       id: "index",
-      targetId: `cell-${snapshot.index}`,
+      targetId: `cell-${targetIndex}`,
       label: "i",
-      tone: "primary",
+      tone:
+        event.codeLine === "L3" && event.payload.result === false
+          ? "done"
+          : "primary",
       placement: "top",
-      status: "active",
+      status:
+        event.codeLine === "L3" && event.payload.result === false
+          ? "done"
+          : "active",
     },
   ]
 }
@@ -293,7 +309,8 @@ function buildPrimitiveStates(
     id: "houses",
     kind: "array",
     title: "House Values",
-    subtitle: "The current house competes against the best total from skipping it.",
+    subtitle:
+      "The current house competes against the best total from skipping it.",
     data: {
       cells: snapshot.nums.map((value, index) => ({
         id: `cell-${index}`,
@@ -371,7 +388,8 @@ export function projectRollingDpHouseRobber(
             id: `frame-${index + 1}-viewport`,
             kind: "viewport",
             status: "pass",
-            message: "Frame stays inside the desktop playback viewport contract.",
+            message:
+              "Frame stays inside the desktop playback viewport contract.",
           },
         ],
       })

@@ -641,6 +641,48 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
         })
       )
     }
+
+    const previousPrimitiveMap = new Map(
+      previousFrame.primitives.map((primitive) => [primitive.id, primitive])
+    )
+
+    for (const primitive of frame.primitives) {
+      const previousPrimitive = previousPrimitiveMap.get(primitive.id)
+      if (!previousPrimitive) {
+        continue
+      }
+
+      const currentPointerIds = new Set(
+        (primitive.pointers ?? []).map((pointer) => pointer.id)
+      )
+
+      for (const pointer of previousPrimitive.pointers ?? []) {
+        if (
+          pointer.status === "done" ||
+          currentPointerIds.has(pointer.id) ||
+          frame.visualChangeType === "exit" ||
+          frame.visualChangeType === "result"
+        ) {
+          continue
+        }
+
+        issues.push(
+          createIssue({
+            code: "FRAME_POINTER_CONTINUITY_LOSS",
+            kind: "pedagogical-integrity",
+            severity: "warning",
+            message: `Frame "${frame.id}" drops pointer "${pointer.id}" from primitive "${primitive.id}" instead of moving it or handing it off explicitly.`,
+            frameId: frame.id,
+            pedagogicalCheck: "hidden-state-loss",
+            meta: {
+              primitiveId: primitive.id,
+              pointerId: pointer.id,
+              previousFrameId: previousFrame.id,
+            },
+          })
+        )
+      }
+    }
   }
 
   return createVerificationReport(issues)

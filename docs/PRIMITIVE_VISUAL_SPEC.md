@@ -153,6 +153,7 @@ Global rules:
 - if a frame exits a scope, the learner must still be able to see what completed and where control returned
 - compacting archived state is allowed, but silent disappearance is not
 - the active object, waiting object, and result object must not visually swap roles without a clear handoff
+- tracked explanatory signals such as pointers, active markers, and current-frame tokens should move or hand off instead of blinking out and reappearing
 
 ## Motion Rules
 

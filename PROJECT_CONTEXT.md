@@ -176,6 +176,7 @@ Completed so far:
 - lesson view weighting now has a shared authoring contract: approach `requiredViews` and projector viewport roles can be derived from one view-spec definition instead of drifting apart across lesson files
 - Maximum Depth of Binary Tree now treats the recursive execution tree as the primary teaching surface, while the structural binary tree stays visible only as supporting context
 - a first motion contract now exists in the canonical docs, and the initial runtime pilot is Binary Search: pointer travel, active code-line handoff, and code-state value commits are now animated under reduced-motion-safe rules
+- runtime verification now includes a pointer-continuity guard, and House Robber has been corrected so its index pointer stays visible and moves instead of blinking out between steps
 
 ## Immediate Next Step
 
