@@ -10,6 +10,7 @@ It is the system that guarantees the learner sees one coherent state at a time.
 ## Runtime Responsibilities
 
 The runtime must:
+
 - load a lesson and chosen approach
 - parse preset or custom input
 - generate the semantic trace
@@ -33,14 +34,14 @@ interface LessonPlayerState {
   lessonId: string
   approachId: string
   mode: VisualizationMode
-  inputSource: 'preset' | 'custom'
+  inputSource: "preset" | "custom"
   selectedPresetId?: string
   rawInput: string
   parsedInput?: ParsedInput
   trace: TraceEvent[]
   frames: Frame[]
   currentFrameIndex: number
-  playbackStatus: 'idle' | 'playing' | 'paused' | 'ended' | 'error'
+  playbackStatus: "idle" | "playing" | "paused" | "ended" | "error"
   playbackSpeed: PlaybackSpeed
   verification?: VerificationReport
   authorMode: boolean
@@ -51,6 +52,7 @@ interface LessonPlayerState {
 ## Playback Controls
 
 The player must support:
+
 - play
 - pause
 - next step
@@ -71,15 +73,29 @@ The player must support:
 - changing approach invalidates current trace and frames and rebuilds them
 - changing input rebuilds parsed input, trace, frames, and verification
 
+## Motion Synchronization Rules
+
+Runtime motion must still obey frame determinism.
+
+Rules:
+
+- motion is derived only from the previous visible frame and the current visible frame
+- the runtime may not synthesize extra intermediate algorithm states for animation purposes
+- when autoplay advances, primitive motion should complete within the selected frame dwell time instead of spilling into the next frame
+- reduced-motion mode keeps synchronization but removes travel-heavy animation
+- motion must never hide verification failures or make blocked learner mode feel playable
+
 ## Speed Model
 
 Use a small fixed speed set for MVP:
+
 - `0.5x`
 - `1x`
 - `1.5x`
 - `2x`
 
 Autoplay should be paused automatically when:
+
 - the last frame is reached
 - trace or projection fails
 - input validation fails
@@ -89,6 +105,7 @@ Autoplay should be paused automatically when:
 The runtime must preserve teaching integrity, not just state transport.
 
 Hard rules:
+
 - only one visual change type may be active per frame
 - the runtime may not merge adjacent frames for convenience during autoplay
 - if a frame enters or exits a scope, related waiting or completed state must remain visible according to the frame payload
@@ -101,6 +118,7 @@ A frame is complete and self-sufficient.
 At any frame index, the runtime must be able to render the lesson from frame data only.
 
 Every frame must include:
+
 - source event id
 - code line reference
 - declared visual change type
@@ -126,6 +144,7 @@ The runtime should not infer hidden state outside the frame.
 ## Custom Input Flow
 
 When custom input changes:
+
 1. parse raw input
 2. if parse fails, show input error and do not build trace
 3. if parse succeeds, rebuild trace
@@ -135,6 +154,7 @@ When custom input changes:
 
 Preset selection and custom input should share one shell surface.
 The player should expose a dedicated preset studio dialog where the learner can:
+
 - inspect what makes each verified preset special before running it
 - compare lightweight input snapshots without leaving the player
 - jump from a verified preset into editable custom input
@@ -144,6 +164,7 @@ The player should expose a dedicated preset studio dialog where the learner can:
 
 Author mode, presented in-product as lesson audit, is a runtime QA view over the same lesson state.
 It must expose:
+
 - current frame index
 - current semantic event
 - full frame-backed event timeline
@@ -163,6 +184,7 @@ It inspects the normal player state.
 The runtime shell should treat buttons, hotkeys, and the command palette as different inputs for the same command layer.
 
 That command layer should:
+
 - define shared action ids, labels, shortcuts, and enablement rules
 - gate shortcut execution with the same learner-mode and dialog-state rules as pointer controls
 - provide the same actions to the command palette and hotkey help surface
@@ -173,6 +195,7 @@ That command layer should:
 ## Runtime Error States
 
 The runtime must distinguish these failure classes:
+
 - input parse error
 - trace generation error
 - semantic verification error
@@ -187,18 +210,21 @@ When learner mode is blocked by verification failure, that blocker should use th
 ## Persistence Rules
 
 Persist locally:
+
 - last used approach per lesson
 - last used mode per lesson
 - recent custom input per lesson
 - playback speed preference
 
 Do not persist:
+
 - current frame index across sessions for MVP
 - author mode enabled state
 
 ## Runtime Done Criteria
 
 The runtime is not done until:
+
 - one lesson can load end to end from registry to playback
 - frame synchronization is deterministic
 - custom input rebuild works without page reload
@@ -206,5 +232,3 @@ The runtime is not done until:
 - runtime failures are surfaced clearly
 - author mode exposes pedagogical integrity failures clearly
 - all controls work from keyboard and pointer input
-
-

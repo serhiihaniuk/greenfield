@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { AnimatePresence, LayoutGroup, motion } from "motion/react"
 
 import type { ArrayPrimitiveFrameState } from "@/entities/visualization/primitives"
 import type {
@@ -7,6 +8,7 @@ import type {
   PointerSpec,
 } from "@/entities/visualization/types"
 import { cn } from "@/shared/lib/utils"
+import { useMotionContract } from "@/shared/motion/contract"
 import { PointerChip } from "@/shared/visualization/pointer-chip"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import {
@@ -39,7 +41,9 @@ function groupByTarget<T extends { targetId: string }>(entries: T[]) {
   return grouped
 }
 
-function renderAnnotations(annotations: AnnotationSpec[] | undefined): ReactNode {
+function renderAnnotations(
+  annotations: AnnotationSpec[] | undefined
+): ReactNode {
   if (!annotations || annotations.length === 0) {
     return null
   }
@@ -68,79 +72,105 @@ function splitPointersByPlacement(pointers: PointerSpec[]) {
   }
 }
 
-export function ArrayView({ primitive }: { primitive: ArrayPrimitiveFrameState }) {
+export function ArrayView({
+  primitive,
+}: {
+  primitive: ArrayPrimitiveFrameState
+}) {
+  const { animateTravel, transitions } = useMotionContract()
   const pointerMap = groupByTarget(sortPointers(primitive.pointers ?? []))
   const highlightMap = new Map<string, HighlightSpec>(
-    (primitive.highlights ?? []).map((highlight) => [highlight.targetId, highlight])
+    (primitive.highlights ?? []).map((highlight) => [
+      highlight.targetId,
+      highlight,
+    ])
   )
   const annotationMap = groupByTarget(primitive.annotations ?? [])
 
   return (
     <PrimitiveShell primitive={primitive}>
       <div className="overflow-x-auto pb-1">
-        <div className="flex min-w-max gap-3">
-          {primitive.data.cells.map((cell) => {
-            const pointers = pointerMap.get(cell.id) ?? []
-            const highlight = highlightMap.get(cell.id)
-            const annotations = annotationMap.get(cell.id)
-            const { topPointers, bottomPointers } = splitPointersByPlacement(pointers)
+        <LayoutGroup id={`${primitive.id}-array`}>
+          <div className="flex min-w-max gap-3">
+            {primitive.data.cells.map((cell) => {
+              const pointers = pointerMap.get(cell.id) ?? []
+              const highlight = highlightMap.get(cell.id)
+              const annotations = annotationMap.get(cell.id)
+              const { topPointers, bottomPointers } =
+                splitPointersByPlacement(pointers)
 
-            return (
-              <div
-                key={cell.id}
-                className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
-              >
-                <div
-                  className="flex min-h-8 min-w-max flex-nowrap items-end justify-center gap-1"
-                  data-testid={`pointer-stack-top-${cell.id}`}
+              return (
+                <motion.div
+                  key={cell.id}
+                  layout={animateTravel}
+                  transition={transitions.layout}
+                  className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
                 >
-                  {topPointers.map((pointer) => (
-                    <PointerChip key={pointer.id} pointer={pointer} />
-                  ))}
-                </div>
+                  <div
+                    className="flex min-h-8 min-w-max flex-nowrap items-end justify-center gap-1"
+                    data-testid={`pointer-stack-top-${cell.id}`}
+                  >
+                    <AnimatePresence initial={false}>
+                      {topPointers.map((pointer) => (
+                        <PointerChip key={pointer.id} pointer={pointer} />
+                      ))}
+                    </AnimatePresence>
+                  </div>
 
-                <div
-                  className={cn(
-                    "flex size-12 flex-col items-center justify-center rounded-xl border font-mono",
-                    "transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
-                    highlight
-                      ? highlightToneClasses[highlight.tone]
-                      : highlightToneClasses.default,
-                    highlight?.emphasis
-                      ? emphasisClasses[highlight.emphasis]
-                      : emphasisClasses.normal
-                  )}
-                  data-highlight-tone={highlight?.tone ?? "default"}
-                >
-                  <span className="text-sm leading-none font-semibold">
-                    {cell.value}
-                  </span>
-                </div>
+                  <motion.div
+                    layout={animateTravel}
+                    transition={transitions.highlight}
+                    animate={
+                      animateTravel
+                        ? { scale: highlight?.emphasis === "strong" ? 1.06 : 1 }
+                        : undefined
+                    }
+                    className={cn(
+                      "flex size-12 flex-col items-center justify-center rounded-xl border font-mono",
+                      "transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
+                      highlight
+                        ? highlightToneClasses[highlight.tone]
+                        : highlightToneClasses.default,
+                      highlight?.emphasis
+                        ? emphasisClasses[highlight.emphasis]
+                        : emphasisClasses.normal
+                    )}
+                    data-highlight-tone={highlight?.tone ?? "default"}
+                  >
+                    <span className="text-sm leading-none font-semibold">
+                      {cell.value}
+                    </span>
+                  </motion.div>
 
-                <div className="text-[11px] font-mono leading-none text-muted-foreground">
-                  {cell.index}
-                </div>
+                  <div className="font-mono text-[11px] leading-none text-muted-foreground">
+                    {cell.index}
+                  </div>
 
-                <div
-                  className="flex min-h-5 max-w-full flex-wrap items-center justify-center gap-1"
-                  data-testid={`annotation-stack-${cell.id}`}
-                >
-                  {renderAnnotations(annotations)}
-                </div>
+                  <div
+                    className="flex min-h-5 max-w-full flex-wrap items-center justify-center gap-1"
+                    data-testid={`annotation-stack-${cell.id}`}
+                  >
+                    <AnimatePresence initial={false}>
+                      {renderAnnotations(annotations)}
+                    </AnimatePresence>
+                  </div>
 
-                <div
-                  className="flex min-h-8 min-w-max flex-nowrap items-start justify-center gap-1"
-                  data-testid={`pointer-stack-bottom-${cell.id}`}
-                >
-                  {bottomPointers.map((pointer) => (
-                    <PointerChip key={pointer.id} pointer={pointer} />
-                  ))}
-                </div>
-              </div>
-            )
-          })}
+                  <div
+                    className="flex min-h-8 min-w-max flex-nowrap items-start justify-center gap-1"
+                    data-testid={`pointer-stack-bottom-${cell.id}`}
+                  >
+                    <AnimatePresence initial={false}>
+                      {bottomPointers.map((pointer) => (
+                        <PointerChip key={pointer.id} pointer={pointer} />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
-        </div>
+        </LayoutGroup>
+      </div>
     </PrimitiveShell>
   )
 }

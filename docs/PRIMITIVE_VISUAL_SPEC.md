@@ -6,6 +6,7 @@ This document defines how primitives should look.
 
 The primitive system is not complete with data contracts alone.
 A fresh implementation chat also needs the visual grammar:
+
 - orientation
 - sizing
 - spacing
@@ -25,6 +26,7 @@ The product should look like a dense, deliberate study instrument.
 Not like a dashboard kit and not like a playful toy.
 
 Visual character:
+
 - dark base
 - strong semantic contrast
 - low decoration
@@ -135,6 +137,7 @@ Pointers must be visually consistent across all primitives.
 ### Pointer stacking
 
 When multiple pointers target the same element:
+
 - stack them deterministically
 - preserve a stable order by priority then id
 - do not let them overlap unreadably
@@ -145,10 +148,36 @@ Visual correctness is not enough.
 State must also remain trackable across adjacent frames.
 
 Global rules:
+
 - a materially important state object may not vanish without an explicit done, archived, transferred, or returned representation
 - if a frame exits a scope, the learner must still be able to see what completed and where control returned
 - compacting archived state is allowed, but silent disappearance is not
 - the active object, waiting object, and result object must not visually swap roles without a clear handoff
+
+## Motion Rules
+
+Motion is part of visual continuity.
+It should explain the next change, not add mood.
+
+Global rules:
+
+- animate only adjacent-frame change
+- keep one dominant motion event per frame
+- prefer movement for movement semantics, and fades or color shifts for commitment semantics
+- never use bounce or elastic springs on learner-facing primitives
+- reduced-motion mode keeps state continuity through color and opacity changes, not travel-heavy motion
+
+Default timing:
+
+- color and highlight transitions: `160-220ms`
+- pointer travel: `220-320ms`
+- layout motion: `260-360ms`
+
+First-pass primitive guidance:
+
+- `ArrayView`: pointer chips should travel between cells; strongly emphasized cells may scale slightly on compare/found/commit
+- `StateView`: changing values should commit with a short vertical handoff rather than hard-swap instantly
+- `CodeTraceView`: the active line should hand off through a sliding highlight instead of blinking between rows
 
 ## Semantic Color Usage
 
@@ -285,6 +314,7 @@ Color is semantic, not decorative.
 
 Call-tree nodes are richer than structural tree nodes.
 They should have:
+
 - function label or state label at top
 - large primary state value
 - optional badge such as `CURR`, `MEMO`, `BASE`, `DEAD`
@@ -378,11 +408,11 @@ Primary content centers via `m-auto` on a flex child — when content is smaller
 
 The stage picks columns based on what the secondary region contains:
 
-| Case | Condition | Columns |
-|------|-----------|---------|
-| No secondary | no secondary primitives | Single column |
-| Compact secondary | secondary has only flow views | `1fr + clamp(16rem, 22rem)` |
-| Expansive secondary | secondary has a canvas view | `1.2fr + 1fr` |
+| Case                | Condition                     | Columns                     |
+| ------------------- | ----------------------------- | --------------------------- |
+| No secondary        | no secondary primitives       | Single column               |
+| Compact secondary   | secondary has only flow views | `1fr + clamp(16rem, 22rem)` |
+| Expansive secondary | secondary has a canvas view   | `1.2fr + 1fr`               |
 
 Canvas views (`tree`, `call-tree`, `graph` — listed in `CANVAS_KINDS` set in `lesson-player.tsx`) use absolute positioning and have intrinsic minimum widths (300–360px). Flow views (array, sequence, stack, queue, hash-map) use CSS flex/grid and compress naturally into narrow columns.
 
@@ -409,6 +439,7 @@ Canvas views (`tree`, `call-tree`, `graph` — listed in `CANVAS_KINDS` set in `
 ## Visual Done Criteria
 
 A primitive is not visually done until:
+
 - orientation is defined
 - default size is defined
 - compact size is defined if needed
@@ -418,5 +449,3 @@ A primitive is not visually done until:
 - important state continuity is preserved across adjacent frames
 - composition role is defined
 - it still reads clearly in the main lesson shell
-
-

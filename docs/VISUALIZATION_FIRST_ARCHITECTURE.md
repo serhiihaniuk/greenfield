@@ -544,6 +544,41 @@ Shell rules:
 - dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
 
+## Motion Contract
+
+Motion is explanatory, not decorative.
+It exists to make the adjacent-frame change legible when the learner is already confused.
+
+Global motion rules:
+
+- every animation must answer "what changed?"
+- each frame gets one dominant motion event; supporting fades and color transitions may exist, but they must not compete with it
+- motion is adjacent-frame only; the runtime does not invent catch-up movement across hidden state
+- autoplay does not skip motion-important intermediate frames
+- no ambient looping, bouncing, or theatrical spring motion on learner-facing primitives
+
+Motion layers:
+
+- shell motion: dialogs, drawers, tooltips, and command surfaces use short standard transitions
+- stage motion: primitives explain movement, promotion, commitment, and return flow
+- emphasis motion: a brief pulse, settle, or highlight shift may confirm a change, but should not become a second primary animation
+
+Default timing scale:
+
+- shell micro transitions: `120-200ms`
+- highlight and color transitions: `160-220ms`
+- pointer travel: `220-320ms`
+- layout and node moves: `260-360ms`
+
+Accessibility rule:
+
+- `prefers-reduced-motion` disables travel-heavy motion and keeps only low-travel fades and color changes needed to preserve state continuity
+
+Initial flagship interpretation:
+
+- Binary Search should animate pointer travel, candidate-cell emphasis, code-line handoff, and code-state value commits
+- recursion, memoization, and aggregation lessons should later animate stack push/pop, active call promotion, and return-value commitment using the same timing scale
+
 ### Viewport hint contract
 
 Each primitive declares `PrimitiveViewportSpec` in its lesson `project.ts`:
