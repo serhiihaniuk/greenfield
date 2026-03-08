@@ -287,7 +287,7 @@ function buildAnnotations(
 function buildPrimitiveStates(
   event: TraceEvent,
   snapshot: HouseRobberSnapshot,
-  mode: VisualizationMode
+  _mode: VisualizationMode
 ): PrimitiveFrameState[] {
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "houses",
@@ -314,7 +314,7 @@ function buildPrimitiveStates(
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "rolling-state",
     kind: "state",
-    title: mode === "code" ? "Rolling Values" : "DP State",
+    title: "DP State",
     data: {
       values: [
         { label: "index", value: snapshot.index ?? "-" },
@@ -335,7 +335,7 @@ function buildPrimitiveStates(
     },
   })
 
-  return mode === "code" ? [arrayPrimitive] : [arrayPrimitive, statePrimitive]
+  return [arrayPrimitive, statePrimitive]
 }
 
 export function projectRollingDpHouseRobber(

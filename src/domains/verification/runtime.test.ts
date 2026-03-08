@@ -16,7 +16,7 @@ describe("verifyRuntimeOutputs", () => {
     const runtime = buildLessonRuntime({
       lesson: binarySearchLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: foundMiddlePreset.rawInput,
     })
 
@@ -28,7 +28,7 @@ describe("verifyRuntimeOutputs", () => {
     const runtime = buildLessonRuntime({
       lesson: binarySearchLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: foundMiddlePreset.rawInput,
     })
 

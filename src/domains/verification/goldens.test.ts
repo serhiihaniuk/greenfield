@@ -30,7 +30,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: binarySearchLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -63,7 +63,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: houseRobberLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -94,7 +94,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: coinChangeLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -125,7 +125,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: graphBfsLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -158,7 +158,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: heapTopKLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -191,7 +191,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: maximumDepthLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -224,7 +224,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: slidingWindowMaximumLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
@@ -257,7 +257,7 @@ describe("runtime goldens", () => {
     const runtime = buildLessonRuntime({
       lesson: treeDfsTraversalLesson,
       approach,
-      mode: "focus",
+      mode: "full",
       rawInput: preset.rawInput,
     })
     const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)

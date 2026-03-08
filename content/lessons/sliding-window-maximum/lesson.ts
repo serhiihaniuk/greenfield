@@ -57,7 +57,7 @@ export const slidingWindowMaximumLesson = defineLessonDefinition({
   shortPatternNote: monotonicDequeSlidingWindowMaximumNotes.shortPatternNote,
   approaches: [monotonicDequeApproach],
   defaultApproachId: monotonicDequeApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

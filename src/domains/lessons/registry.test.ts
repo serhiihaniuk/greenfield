@@ -79,7 +79,7 @@ function createLesson(
     shortPatternNote: "Shrink the sorted search interval around the target.",
     approaches: [baseApproach],
     defaultApproachId: "iterative",
-    defaultMode: "focus",
+    defaultMode: "full",
     viewportContract: {
       desktopMinWidth: 1280,
       desktopMinHeight: 720,

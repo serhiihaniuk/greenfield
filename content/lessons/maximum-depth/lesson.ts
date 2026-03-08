@@ -57,7 +57,7 @@ export const maximumDepthLesson = defineLessonDefinition({
   shortPatternNote: recursiveMaximumDepthNotes.shortPatternNote,
   approaches: [recursiveDfsApproach],
   defaultApproachId: recursiveDfsApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

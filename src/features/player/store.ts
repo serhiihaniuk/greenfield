@@ -2,7 +2,6 @@ import { useStore } from "zustand"
 import { createStore } from "zustand/vanilla"
 
 import { resolveApproach, resolvePreset } from "@/domains/lessons/loaders"
-import type { VisualizationMode } from "@/domains/lessons/types"
 import {
   buildLessonRuntime,
   DEFAULT_PLAYBACK_SPEED,
@@ -51,7 +50,7 @@ function createBaseState(): LessonPlayerState {
     lesson: undefined,
     approachId: "",
     approach: undefined,
-    mode: "focus",
+    mode: "full",
     inputSource: "preset",
     selectedPresetId: undefined,
     rawInput: "",
@@ -106,7 +105,6 @@ export function createLessonPlayerStore() {
 
       persistPreference(selection.lesson.id, {
         approachId: selection.approach.id,
-        mode: selection.mode,
         selectedPresetId: selection.selectedPresetId,
         rawInput: selection.rawInput,
         inputSource: selection.inputSource,
@@ -154,33 +152,6 @@ export function createLessonPlayerStore() {
         rawInput,
         inputSource: state.inputSource,
       })
-    },
-    setMode: (mode: VisualizationMode) => {
-      const state = get()
-      if (!state.lesson || !state.approach || !state.rawInput) {
-        return
-      }
-
-      const runtime = buildLessonRuntime({
-        lesson: state.lesson,
-        approach: state.approach,
-        mode,
-        rawInput: state.rawInput,
-      })
-
-      set({
-        mode,
-        frames: runtime.frames,
-        currentFrameIndex: 0,
-        parsedInput: runtime.parsedInput,
-        trace: runtime.trace,
-        playbackStatus: runtime.failure ? "error" : "idle",
-        verification: runtime.verification,
-        selectedEventId: runtime.trace[0]?.id,
-        failure: runtime.failure,
-      })
-
-      persistPreference(state.lesson.id, { mode })
     },
     selectPreset: (presetId) => {
       const state = get()

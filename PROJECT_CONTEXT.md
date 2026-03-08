@@ -141,19 +141,19 @@ Completed so far:
 - primitive renderer tests added and passing
 - runtime verification completed: semantic/frame/code-line/pedagogical/viewport checks run before learner mode is shown
 - author review now surfaces frame checks and related verification issues instead of only aggregate counts
-- flagship binary-search focus mode is locked to a checked-in JSON golden under `content/lessons/binary-search/approaches/iterative/goldens`
+- flagship binary-search runtime is locked to a checked-in JSON golden under `content/lessons/binary-search/approaches/iterative/goldens`
 - binary-search projection was tightened so early frames and compare/decision frames now produce distinct learner-visible changes instead of relying on narration-only differences
 - shell refinement completed: the top slab is now a denser instrument bar, the stage reads as one dominant surface, and the docked context column is visually subordinate but still synchronized
 - responsive shell behavior was tightened so the top header and badges no longer collapse into broken narrow-column layouts on mobile-width screens
 - Phase 7 author-mode foundation shipped: author review now exposes event payloads, snapshots, adjacent frame diffs, narration bindings, and grouped verification issues on the same runtime state
 - learner mode is now blocked behind a verification overlay when a lesson fails checks, instead of showing plausible but untrusted visuals
-- Phase 8 started with a second flagship lesson: House Robber is now implemented as a registered, verified rolling-DP lesson with presets, lesson-specific verification, and a checked-in focus golden under `content/lessons/house-robber/approaches/rolling-dp/goldens`
-- Phase 8 now includes a recursion-first flagship lesson: Maximum Depth of Binary Tree is implemented as a registered, verified recursive DFS lesson with structural tree, call-stack, and execution-tree views plus a checked-in focus golden under `content/lessons/maximum-depth/approaches/recursive-dfs/goldens`
-- Phase 8 now includes a frontier-traversal flagship lesson: Graph BFS Frontier is implemented as a registered, verified queue-based BFS lesson with graph, queue, and traversal-state views plus a checked-in focus golden under `content/lessons/graph-bfs/approaches/queue-bfs/goldens`
-- Phase 8 now includes a dense-window flagship lesson: Sliding Window Maximum is implemented as a registered, verified monotonic-deque lesson with array, sequence, and window-state views plus a checked-in focus golden under `content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens`
-- Phase 8 now includes a memoization flagship lesson: Coin Change Memo DFS is implemented as a registered, verified memoized recursion lesson with call-tree, call-stack, and memo-table views plus a checked-in focus golden under `content/lessons/coin-change/approaches/memo-dfs/goldens`
-- Phase 8 now includes a priority-structure flagship lesson: Heap Top K is implemented as a registered, verified min-heap lesson with heap tree, input scan, and threshold state views plus a checked-in focus golden under `content/lessons/heap-top-k/approaches/min-heap/goldens`
-- Phase 8 now includes the explicit stack-execution flagship lesson: Tree DFS Traversal with Stack is implemented as a registered, verified iterative preorder lesson with tree, stack, and visit-order views plus a checked-in focus golden under `content/lessons/tree-dfs-traversal/approaches/iterative-stack/goldens`
+- Phase 8 started with a second flagship lesson: House Robber is now implemented as a registered, verified rolling-DP lesson with presets, lesson-specific verification, and a checked-in golden under `content/lessons/house-robber/approaches/rolling-dp/goldens`
+- Phase 8 now includes a recursion-first flagship lesson: Maximum Depth of Binary Tree is implemented as a registered, verified recursive DFS lesson with structural tree, call-stack, and execution-tree views plus a checked-in golden under `content/lessons/maximum-depth/approaches/recursive-dfs/goldens`
+- Phase 8 now includes a frontier-traversal flagship lesson: Graph BFS Frontier is implemented as a registered, verified queue-based BFS lesson with graph, queue, and traversal-state views plus a checked-in golden under `content/lessons/graph-bfs/approaches/queue-bfs/goldens`
+- Phase 8 now includes a dense-window flagship lesson: Sliding Window Maximum is implemented as a registered, verified monotonic-deque lesson with array, sequence, and window-state views plus a checked-in golden under `content/lessons/sliding-window-maximum/approaches/monotonic-deque/goldens`
+- Phase 8 now includes a memoization flagship lesson: Coin Change Memo DFS is implemented as a registered, verified memoized recursion lesson with call-tree, call-stack, and memo-table views plus a checked-in golden under `content/lessons/coin-change/approaches/memo-dfs/goldens`
+- Phase 8 now includes a priority-structure flagship lesson: Heap Top K is implemented as a registered, verified min-heap lesson with heap tree, input scan, and threshold state views plus a checked-in golden under `content/lessons/heap-top-k/approaches/min-heap/goldens`
+- Phase 8 now includes the explicit stack-execution flagship lesson: Tree DFS Traversal with Stack is implemented as a registered, verified iterative preorder lesson with tree, stack, and visit-order views plus a checked-in golden under `content/lessons/tree-dfs-traversal/approaches/iterative-stack/goldens`
 - Phase 9 hardening has started with a shared binary-tree-array model utility and direct tests, replacing duplicated tree-building logic across the maximum-depth and tree-dfs-traversal lessons while also catching disconnected descendants beneath null parents
 - Phase 9 now also hardens the client bundle: code highlighting is lazy-loaded through a fine-grained Shiki path, the primitive audit harness is on-demand, lesson content is chunked separately, and the production build no longer emits oversized chunk warnings
 - all current flagship lessons use TypeScript code templates, so the client bundle only ships TypeScript highlighting; other lesson languages currently fall back to plain text until they are explicitly added back as a verified bundle decision
@@ -172,6 +172,7 @@ Completed so far:
 - Phase 9 now introduces a command-driven shell pass: the lesson picker moved to a command palette trigger, hotkeys are defined through shared app commands instead of scattered callbacks, and the old learner-facing `Author` label is now presented as `Audit` to make the QA purpose explicit
 - Phase 9 now replaces the bare preset dropdown with a richer preset studio: verified scenarios open in a dedicated dialog with descriptions, input snapshots, sticky run actions, and an in-place path into custom input
 - shortcut presentation is now centralized through the shared `Kbd` contract, so combinations render as one chip like `Ctrl + K` while alternative bindings render as separate chips like `Left / A`
+- the player now ships one projection mode only: `full`; mode switching has been removed from the shell, command palette, and persisted preferences
 
 ## Immediate Next Step
 

@@ -50,7 +50,7 @@ export const houseRobberLesson = defineLessonDefinition({
   shortPatternNote: rollingDpHouseRobberNotes.shortPatternNote,
   approaches: [rollingDpApproach],
   defaultApproachId: rollingDpApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1280,
     desktopMinHeight: 720,

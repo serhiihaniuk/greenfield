@@ -28,6 +28,7 @@ On desktop, the default lesson experience should look like:
 - synchronized secondary panels only when they improve understanding
 - narration anchored close to the active step
 - code trace docked into the same surface as the visualization
+- a command palette entry point for task and shell actions instead of a dense row of global selectors
 - dark theme, low chrome, and minimal wasted space
 
 A learner opening a lesson should immediately understand:
@@ -431,23 +432,13 @@ For app-level UI, follow `shadcn/ui` conventions:
 
 This rule applies to the shell and utility UI, not to the algorithm primitives themselves.
 
-## Visualization Modes
+## Visualization Mode
 
-The system must support multiple modes because the learner does not always know which view will unlock understanding.
+The current product ships one projection mode only: `full`.
 
-Required modes at system level:
-- `focus`
-- `full`
-- `code`
-
-Optional mode:
-- `compare`
-
-Mode rules:
-- `focus` is the default for hard lessons
-- `full` is inspection, not the default teaching surface
-- `code` increases code prominence without breaking synchronized state
-- `compare` is post-MVP unless a flagship lesson proves it is necessary earlier
+The runtime still projects semantic traces into learner-visible frames,
+but mode switching is no longer part of the learner shell, command palette,
+or persisted preferences.
 
 ## Required Synchronized Views By Lesson Type
 
@@ -527,6 +518,36 @@ Shell rules:
 - compact code-state panels may stay beside narration and code when that keeps variable state tightly coupled to the active line
 - dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
+
+### Viewport hint contract
+
+Each primitive declares `PrimitiveViewportSpec` in its lesson `project.ts`:
+
+- `role`: routes the primitive to a region — `"primary"` → stage center, `"secondary"`/`"tertiary"` → stage sidebar, `kind === "state"` → left support column.
+- `preferredWidth`: ideal width in px (900–980 primary, 280–420 secondary). Declared for every primitive in lesson data. Not yet consumed for dynamic column sizing but available for future use.
+- `minHeight`: minimum height constraint.
+
+The `splitPrimitives()` function in `lesson-player.tsx` reads `role` and `kind` to route primitives to regions.
+
+### View rendering categories
+
+Views fall into two categories that affect layout behavior:
+
+**Canvas views** (tree, call-tree, graph) — use absolute positioning on a computed-size div. They have intrinsic minimum widths (300–360px). They handle horizontal overflow internally via `overflow-x-auto`. These are listed in the `CANVAS_KINDS` set in `lesson-player.tsx`. Adding a new canvas-based kind requires adding it to this set.
+
+**Flow views** (array, sequence, stack, queue, hash-map) — use CSS flex/grid with content-driven sizing. They compress naturally into narrow columns without breaking.
+
+When a canvas view appears in the secondary column, the stage switches from a narrow sidebar (`16–22rem`) to a proportional split (`1.2fr : 1fr`) so the canvas gets enough width.
+
+### Extending the system
+
+Adding a new primitive kind:
+
+1. Define the view in `src/shared/visualization/views/` — own its cell sizing and internal overflow.
+2. Register in `PrimitiveRenderer` — add a case to the switch.
+3. Declare viewport hints in lesson `project.ts` — set `role`, `preferredWidth`, `minHeight`.
+4. If the view is canvas-based (absolute positioning, intrinsic min width) → add the kind to `CANVAS_KINDS` in `lesson-player.tsx`.
+5. No other layout changes needed. The stage composition adapts automatically.
 
 ## Workspace Structure
 
@@ -636,7 +657,7 @@ Notes:
 
 ## Author Mode And Quality Gates
 
-Author mode exists because the learner often cannot tell whether the AI is wrong.
+Author mode, surfaced in the UI as lesson audit, exists because the learner often cannot tell whether the AI is wrong.
 
 Author mode should show:
 - source semantic event
@@ -652,6 +673,12 @@ Author mode should show:
 - warning if more than one visual change occurred
 - warning if a material state element disappeared without an explicit visual handoff
 - warning if narration and visual change classify different learner-visible actions
+
+The shell should not treat hotkeys as component-local callbacks.
+Commands should be defined once, then exposed through:
+- keyboard shortcuts
+- the command palette
+- visible footer or shell controls
 
 A lesson is not ready until it passes:
 - semantic trace verification

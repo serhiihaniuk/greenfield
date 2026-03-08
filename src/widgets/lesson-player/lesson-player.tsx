@@ -15,7 +15,6 @@ import {
 
 import { useTheme } from "@/app/providers/theme-provider"
 import { listLessons } from "@/domains/lessons/loaders"
-import type { VisualizationMode } from "@/domains/lessons/types"
 import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
 import { useCommandHotkeys } from "@/features/commands/use-command-hotkeys"
@@ -79,7 +78,6 @@ type LessonPlayerProps = {
   lessonId?: string
 }
 
-const MODE_OPTIONS: VisualizationMode[] = ["focus", "full", "code", "compare"]
 const PLAYBACK_SPEED_OPTIONS = ["0.5x", "1x", "1.5x", "2x"] as const
 const CANVAS_KINDS = new Set(["tree", "call-tree", "graph"])
 const STATIC_COMMANDS = getStaticLessonCommands()
@@ -135,7 +133,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     lesson,
     approach,
     approachId,
-    mode,
     inputSource,
     selectedPresetId,
     rawInput,
@@ -150,7 +147,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     initialize,
     setLessonId,
     setApproachId,
-    setMode,
     selectPreset,
     setRawInput,
     applyCustomInput,
@@ -290,7 +286,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       lessons,
       lesson,
       approachId,
-      mode,
       selectedPresetId,
       playbackSpeed,
       playbackStatus,
@@ -304,7 +299,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       hasNextFrame: currentFrameIndex + 1 < frames.length,
       setLessonId,
       setApproachId,
-      setMode,
       selectPreset,
       setPlaybackSpeed,
       play,
@@ -335,7 +329,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       learnerModeBlocked,
       lesson,
       lessons,
-      mode,
       nextFrame,
       pause,
       playbackSpeed,
@@ -348,7 +341,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       selectedPresetId,
       setApproachId,
       setLessonId,
-      setMode,
       setPlaybackSpeed,
       theme,
       toggleAuthorMode,
@@ -619,22 +611,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               {lesson?.approaches.map((entry) => (
                 <SelectItem key={entry.id} value={entry.id}>
                   {entry.label}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        <Select value={mode || null} onValueChange={(value) => value && setMode(value)}>
-          <SelectTrigger size="sm" aria-label="Mode">
-            <SelectValue placeholder="Mode" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Modes</SelectLabel>
-              {MODE_OPTIONS.map((entry) => (
-                <SelectItem key={entry} value={entry}>
-                  {entry}
                 </SelectItem>
               ))}
             </SelectGroup>

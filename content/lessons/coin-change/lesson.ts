@@ -53,7 +53,7 @@ export const coinChangeLesson = defineLessonDefinition({
   shortPatternNote: memoDfsCoinChangeNotes.shortPatternNote,
   approaches: [memoDfsApproach],
   defaultApproachId: memoDfsApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

@@ -24,7 +24,6 @@ export const PLAYBACK_SPEED_MS: Record<PlaybackSpeed, number> = {
 
 export interface PersistedLessonPreference {
   approachId?: string
-  mode?: VisualizationMode
   selectedPresetId?: string
   rawInput?: string
   inputSource?: InputSource
@@ -55,6 +54,10 @@ function buildRuntimeFailure(
     frames: [],
     failure: { kind, message },
   }
+}
+
+function resolveVisualizationMode(): VisualizationMode {
+  return "full"
 }
 
 export function buildLessonRuntime({
@@ -129,7 +132,7 @@ export function resolvePlayerSelection(
     lesson,
     approach,
     preset,
-    mode: preference?.mode ?? lesson.defaultMode,
+    mode: resolveVisualizationMode(),
     selectedPresetId: preset?.id,
     inputSource: preference?.inputSource ?? "preset",
     rawInput: preference?.inputSource === "custom"

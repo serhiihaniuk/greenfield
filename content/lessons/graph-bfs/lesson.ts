@@ -50,7 +50,7 @@ export const graphBfsLesson = defineLessonDefinition({
   shortPatternNote: queueBfsNotes.shortPatternNote,
   approaches: [queueBfsApproach],
   defaultApproachId: queueBfsApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

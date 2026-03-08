@@ -49,7 +49,6 @@ export interface LessonPlayerActions {
   initialize: (lessonIdOrSlug?: string) => void
   setLessonId: (lessonIdOrSlug: string) => void
   setApproachId: (approachId: string) => void
-  setMode: (mode: VisualizationMode) => void
   selectPreset: (presetId: string) => void
   setRawInput: (rawInput: string) => void
   applyCustomInput: () => void

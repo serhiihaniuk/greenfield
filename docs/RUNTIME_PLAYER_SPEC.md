@@ -16,10 +16,13 @@ The runtime must:
 - project trace events into frames
 - hold the active frame index
 - synchronize all primitives to the same frame
-- support playback controls and modes
+- support playback controls
 - expose author-mode inspection state
 - preserve determinism across replay and reset
 - surface pedagogical integrity failures before learner trust is asked
+
+The current product ships one projection mode only: `full`.
+Mode switching is no longer a learner-facing feature.
 
 ## Runtime State Model
 
@@ -66,7 +69,6 @@ The player must support:
 - runtime playback must not synthesize combined learner-visible changes that were not present in the projected frames
 - replay after reset must produce identical frames
 - changing approach invalidates current trace and frames and rebuilds them
-- changing mode reprojects from the same semantic trace when possible
 - changing input rebuilds parsed input, trace, frames, and verification
 
 ## Speed Model
@@ -164,7 +166,7 @@ That command layer should:
 - define shared action ids, labels, shortcuts, and enablement rules
 - gate shortcut execution with the same learner-mode and dialog-state rules as pointer controls
 - provide the same actions to the command palette and hotkey help surface
-- keep lesson, approach, preset, and mode switching reachable through the command palette instead of only through footer-local controls
+- keep lesson, approach, and preset switching reachable through the command palette instead of only through footer-local controls
 - keep preset selection reachable through the preset studio as well as direct command actions
 - store shortcut display data in a structured form so combinations and alternatives are rendered consistently by one shared `Kbd` component
 

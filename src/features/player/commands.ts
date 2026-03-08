@@ -1,4 +1,4 @@
-import type { AnyLessonDefinition, VisualizationMode } from "@/domains/lessons/types"
+import type { AnyLessonDefinition } from "@/domains/lessons/types"
 import type { PlaybackSpeed, PlaybackStatus } from "@/features/player/types"
 import {
   isCommandEnabled,
@@ -10,7 +10,6 @@ export type LessonPlayerCommandContext = {
   lessons: AnyLessonDefinition[]
   lesson?: AnyLessonDefinition
   approachId?: string
-  mode: VisualizationMode
   selectedPresetId?: string
   playbackSpeed: PlaybackSpeed
   playbackStatus: PlaybackStatus
@@ -24,7 +23,6 @@ export type LessonPlayerCommandContext = {
   hasNextFrame: boolean
   setLessonId: (lessonId: string) => void
   setApproachId: (approachId: string) => void
-  setMode: (mode: VisualizationMode) => void
   selectPreset: (presetId: string) => void
   setPlaybackSpeed: (speed: PlaybackSpeed) => void
   play: () => void
@@ -44,7 +42,6 @@ export type LessonPlayerCommandContext = {
 }
 
 const PLAYBACK_SPEED_OPTIONS: PlaybackSpeed[] = ["0.5x", "1x", "1.5x", "2x"]
-const MODE_OPTIONS: VisualizationMode[] = ["focus", "full", "code", "compare"]
 
 function playerCommandsEnabled(context: LessonPlayerCommandContext) {
   return (
@@ -331,24 +328,10 @@ export function buildLessonCommandPalette(
         },
       })) ?? []
 
-  const modeCommands = MODE_OPTIONS.map((mode) => ({
-    id: `mode:${mode}`,
-    group: "Modes",
-    title: `${mode[0].toUpperCase()}${mode.slice(1)} mode`,
-    description: `Project the active lesson in ${mode} mode.`,
-    keywords: [mode],
-    isEnabled: (current: LessonPlayerCommandContext) => current.mode !== mode,
-    run: (current: LessonPlayerCommandContext) => {
-      current.setMode(mode)
-      current.closeCommandPalette()
-    },
-  }))
-
   return [
     ...lessonCommands,
     ...approachCommands,
     ...presetCommands,
-    ...modeCommands,
     ...STATIC_COMMANDS.filter((command) => command.id !== "open-command-palette"),
   ]
 }

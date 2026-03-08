@@ -53,7 +53,7 @@ export const heapTopKLesson = defineLessonDefinition({
   shortPatternNote: minHeapTopKNotes.shortPatternNote,
   approaches: [minHeapApproach],
   defaultApproachId: minHeapApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

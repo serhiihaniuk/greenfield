@@ -18,12 +18,7 @@ export const confusionTypeSchema = z.enum([
 
 export type ConfusionType = z.infer<typeof confusionTypeSchema>
 
-export const visualizationModeSchema = z.enum([
-  "focus",
-  "full",
-  "code",
-  "compare",
-])
+export const visualizationModeSchema = z.enum(["full"])
 
 export type VisualizationMode = z.infer<typeof visualizationModeSchema>
 

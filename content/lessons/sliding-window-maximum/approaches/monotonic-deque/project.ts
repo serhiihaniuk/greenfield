@@ -473,7 +473,7 @@ function buildDequeAnnotations(
 function buildPrimitiveStates(
   event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot,
-  mode: VisualizationMode
+  _mode: VisualizationMode
 ): PrimitiveFrameState[] {
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "window-array",
@@ -528,7 +528,7 @@ function buildPrimitiveStates(
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "window-state",
     kind: "state",
-    title: mode === "code" ? "Deque State" : "Window State",
+    title: "Window State",
     data: {
       values: [
         { label: "index", value: snapshot.index ?? "-" },
@@ -562,9 +562,7 @@ function buildPrimitiveStates(
     },
   })
 
-  return mode === "code"
-    ? [arrayPrimitive, dequePrimitive]
-    : [arrayPrimitive, dequePrimitive, statePrimitive]
+  return [arrayPrimitive, dequePrimitive, statePrimitive]
 }
 
 export function projectMonotonicDequeSlidingWindowMaximum(

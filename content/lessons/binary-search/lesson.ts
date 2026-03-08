@@ -50,7 +50,7 @@ export const binarySearchLesson = defineLessonDefinition({
   shortPatternNote: iterativeBinarySearchNotes.shortPatternNote,
   approaches: [iterativeApproach],
   defaultApproachId: iterativeApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1280,
     desktopMinHeight: 720,

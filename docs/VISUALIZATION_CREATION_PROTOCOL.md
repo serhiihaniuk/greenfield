@@ -38,7 +38,7 @@ A lesson creation request must provide or derive these fields:
 - `primary confusion type`
 - `approach list`
 - `default approach`
-- `default visualization mode`
+- `default visualization mode` (currently always `full`)
 - `at least 2 presets`
 - `code template per approach`
 - `required synchronized views`
@@ -239,7 +239,7 @@ Minimum:
 - every learner-visible step maps to a real code line
 - primitives are stateless renderers
 - semantic meaning must not live only in color or styling
-- focus mode is the default for hard lessons unless there is a stronger reason not to
+- the lesson should project through the single shipped `full` mode
 - desktop playback should avoid unnecessary scrolling on normal presets
 - if algorithmic correctness cannot be verified, the lesson is not done
 - if pedagogical integrity cannot be verified, the lesson is not done

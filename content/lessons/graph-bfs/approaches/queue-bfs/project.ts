@@ -266,7 +266,7 @@ function buildNarration(
 function buildPrimitiveStates(
   event: TraceEvent,
   snapshot: GraphBfsSnapshot,
-  mode: VisualizationMode
+  _mode: VisualizationMode
 ): PrimitiveFrameState[] {
   const graphPrimitive = defineGraphPrimitiveFrameState({
     id: "graph",
@@ -307,7 +307,7 @@ function buildPrimitiveStates(
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "frontier-state",
     kind: "state",
-    title: mode === "code" ? "BFS State" : "Traversal State",
+    title: "Traversal State",
     data: {
       values: [
         { label: "start", value: snapshot.startId },

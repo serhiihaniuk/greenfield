@@ -57,7 +57,7 @@ export const treeDfsTraversalLesson = defineLessonDefinition({
   shortPatternNote: iterativeStackTreeDfsNotes.shortPatternNote,
   approaches: [iterativeStackApproach],
   defaultApproachId: iterativeStackApproach.id,
-  defaultMode: "focus",
+  defaultMode: "full",
   viewportContract: {
     desktopMinWidth: 1366,
     desktopMinHeight: 768,

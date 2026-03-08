@@ -248,7 +248,7 @@ function buildAnnotations(
 function buildPrimitiveStates(
   event: TraceEvent,
   snapshot: BinarySearchSnapshot,
-  mode: VisualizationMode
+  _mode: VisualizationMode
 ): PrimitiveFrameState[] {
   const pointers: PointerSpec[] = []
   if (snapshot.lo !== undefined) {
@@ -308,7 +308,7 @@ function buildPrimitiveStates(
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "state",
     kind: "state",
-    title: mode === "code" ? "Active Variables" : "State",
+    title: "State",
     data: {
       values: [
         { label: "target", value: snapshot.target },
@@ -326,7 +326,7 @@ function buildPrimitiveStates(
     },
   })
 
-  return mode === "code" ? [arrayPrimitive] : [arrayPrimitive, statePrimitive]
+  return [arrayPrimitive, statePrimitive]
 }
 
 export function projectIterativeBinarySearch(
