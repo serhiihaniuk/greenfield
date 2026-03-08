@@ -167,6 +167,7 @@ Completed so far:
 - Phase 9 has started the shadcn shell audit: custom input now uses the shared dialog primitives with an accessible dialog contract and keyboard dismissal instead of a hand-rolled overlay
 - Phase 9 now adds clickable author-review navigation on the live runtime state: authors can step to previous or next frames from the drawer and jump directly from referenced issues to the linked frame or event
 - Phase 9 now deepens the author audit workflow on the same runtime state: the drawer exposes an issue inbox with filters, a full frame-backed event timeline, and primitive-focus controls that highlight the matching live stage view
+- Phase 9 now completes the remaining blocker-shell audit: learner-mode verification failures render through the shared dialog shell instead of a custom overlay, while still forcing authors into the same runtime-backed inspection workflow
 - Phase 9 now restores a sharper shell contract: lightweight code-state panels stay beside narration and code in the left support column, while stacks, queues, memo tables, outputs, and other execution visuals render inside the right-stage composition with the primary visual
 
 ## Immediate Next Step
@@ -175,8 +176,8 @@ Continue Phase 9 from the plan:
 
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
-3. continue the Phase 9 shadcn shell audit on the remaining verification blocker surface that still uses custom chrome
-4. retune dense lesson stage composition now that execution visuals share the stage while code-state panels stay beside code
+3. retune dense lesson stage composition now that execution visuals share the stage while code-state panels stay beside code
+4. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
 
 ## Canonical Files
 

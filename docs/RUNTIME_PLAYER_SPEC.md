@@ -161,6 +161,7 @@ The runtime must distinguish these failure classes:
 
 Each should render a clear developer-facing message in author mode.
 Only input parse errors should be exposed in learner mode in a user-facing way.
+When learner mode is blocked by verification failure, that blocker should use the shared shell dialog contract rather than page-local custom overlay chrome.
 
 ## Persistence Rules
 

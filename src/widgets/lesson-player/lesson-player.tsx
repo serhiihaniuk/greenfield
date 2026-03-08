@@ -1,6 +1,5 @@
 import { useEffect, useEffectEvent, useMemo, useState, useCallback } from "react"
 import {
-  AlertTriangleIcon,
   ChevronFirstIcon,
   ChevronLastIcon,
   ChevronLeftIcon,
@@ -27,6 +26,7 @@ import {
 } from "@/features/player/code-presentation"
 import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
+import { VerificationBlockerDialog } from "@/widgets/lesson-player/verification-blocker-dialog"
 import { collectRelatedIssues } from "@/widgets/author-review/model"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
 import { Button } from "@/shared/ui/button"
@@ -184,6 +184,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const visualChangeLabel = activeFrame?.visualChangeType ?? "-"
   const verificationBlocked = verification?.isValid === false
   const learnerModeBlocked = verificationBlocked && !authorMode
+  const verificationBlockerOpen = learnerModeBlocked && !inputModalOpen
   const blockingIssues = collectRelatedIssues(verification, activeFrame, activeEvent, 3)
   const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame?.codeLine)
 
@@ -398,56 +399,14 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           </ResizablePanel>
         </ResizablePanelGroup>
 
-        {learnerModeBlocked ? (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/96 px-4 backdrop-blur-sm">
-            <div className="w-full max-w-2xl rounded-2xl border border-destructive/30 bg-card p-5 shadow-2xl">
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="destructive">learner mode blocked</Badge>
-                <Badge variant="outline">errors {verification?.errors.length ?? 0}</Badge>
-                <Badge variant="outline">warnings {verification?.warnings.length ?? 0}</Badge>
-              </div>
-              <h2 className="mt-3 flex items-center gap-2 text-lg font-medium text-foreground">
-                <AlertTriangleIcon className="size-5 text-destructive" />
-                Verification failed before learner mode could be trusted.
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                This lesson output still has blocking verification issues. Open author mode to inspect the same runtime state with frame diffs, narration bindings, and verification context instead of relying on plausible visuals.
-              </p>
-              {failure ? (
-                <div className="mt-3 rounded-lg border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
-                  {failure.message}
-                </div>
-              ) : null}
-              <div className="mt-4 grid gap-2">
-                {blockingIssues.blocking.map((issue) => (
-                  <div
-                    key={`${issue.code}-${issue.frameId ?? issue.eventId ?? issue.message}`}
-                    className="rounded-lg border border-border/50 bg-background/60 p-3"
-                  >
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-xs text-foreground/90">{issue.code}</span>
-                      <Badge variant="outline">{issue.kind}</Badge>
-                      {issue.pedagogicalCheck ? (
-                        <Badge variant="outline">{issue.pedagogicalCheck}</Badge>
-                      ) : null}
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {issue.message}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Button size="sm" variant="secondary" onClick={toggleAuthorMode}>
-                  Open author mode
-                </Button>
-                <Button size="sm" variant="outline" onClick={() => setInputModalOpen(true)}>
-                  Inspect input
-                </Button>
-              </div>
-            </div>
-          </div>
-        ) : null}
+        <VerificationBlockerDialog
+          open={verificationBlockerOpen}
+          verification={verification}
+          failure={failure}
+          blockingIssues={blockingIssues.blocking}
+          onOpenAuthorMode={toggleAuthorMode}
+          onInspectInput={() => setInputModalOpen(true)}
+        />
 
         {authorMode ? (
           <div
