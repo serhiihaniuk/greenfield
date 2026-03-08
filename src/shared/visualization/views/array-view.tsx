@@ -100,17 +100,15 @@ export function ArrayView({
                 splitPointersByPlacement(pointers)
 
               return (
-                <motion.div
+                <div
                   key={cell.id}
-                  layout={animateTravel}
-                  transition={transitions.layout}
                   className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
                 >
                   <div
-                    className="flex min-h-10 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
+                    className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
                     data-testid={`pointer-stack-top-${cell.id}`}
                   >
-                    <AnimatePresence initial={false}>
+                    <AnimatePresence initial={false} mode="popLayout">
                       {topPointers.map((pointer) => (
                         <PointerChip
                           key={pointer.id}
@@ -122,7 +120,6 @@ export function ArrayView({
                   </div>
 
                   <motion.div
-                    layout={animateTravel}
                     transition={transitions.highlight}
                     animate={
                       animateTravel
@@ -160,10 +157,10 @@ export function ArrayView({
                   </div>
 
                   <div
-                    className="flex min-h-10 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
+                    className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
                     data-testid={`pointer-stack-bottom-${cell.id}`}
                   >
-                    <AnimatePresence initial={false}>
+                    <AnimatePresence initial={false} mode="popLayout">
                       {bottomPointers.map((pointer) => (
                         <PointerChip
                           key={pointer.id}
@@ -173,7 +170,7 @@ export function ArrayView({
                       ))}
                     </AnimatePresence>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>

@@ -113,7 +113,7 @@ export function SequenceView({
                   <div key={item.id} className="flex items-start gap-2">
                     <div className="flex w-14 shrink-0 flex-col items-center gap-2">
                       <div
-                        className="flex min-h-10 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
+                        className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
                         data-testid={`pointer-stack-top-${item.id}`}
                       >
                         {topPointers.map((pointer) => (
@@ -155,7 +155,7 @@ export function SequenceView({
                       </div>
 
                       <div
-                        className="flex min-h-10 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
+                        className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
                         data-testid={`pointer-stack-bottom-${item.id}`}
                       >
                         {bottomPointers.map((pointer) => (

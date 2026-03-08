@@ -67,23 +67,26 @@ export function PointerChip({ pointer, scopeId }: PointerChipProps) {
   const pointsUp = isBottomPlacement(pointer)
   const verticalOffset = pointsUp ? 6 : -6
 
+  // Pointer already existed in a different cell — it's moving, not new.
+  // Let layoutId handle the smooth cross-cell transition instead of
+  // playing fade-in/out that causes a visible blink.
+  const isMoving =
+    previousTargetId !== undefined && previousTargetId !== pointer.targetId
+
   useEffect(() => {
     pointerTargetMemory.set(memoryKey, pointer.targetId)
   }, [memoryKey, pointer.targetId])
 
   return (
     <motion.span
-      layout={animateTravel}
       layoutId={animateTravel ? `pointer-${memoryKey}` : undefined}
       initial={
-        animateTravel ? { opacity: 0, y: verticalOffset, scale: 0.92 } : false
+        animateTravel && !isMoving
+          ? { opacity: 0, y: verticalOffset, scale: 0.92 }
+          : false
       }
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={
-        animateTravel
-          ? { opacity: 0, y: verticalOffset, scale: 0.92 }
-          : { opacity: 0 }
-      }
+      exit={animateTravel ? { opacity: 0 } : { opacity: 0 }}
       transition={transitions.pointerTravel}
       className={cn(
         "inline-flex w-8 flex-col items-center gap-0.5 font-mono leading-none whitespace-nowrap drop-shadow-[0_0_12px_rgba(8,145,178,0.18)] select-none",
