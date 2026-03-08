@@ -3,6 +3,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { cn } from "@/shared/lib/utils"
 import { Button } from "@/shared/ui/button"
+import { Kbd } from "@/shared/ui/kbd"
 import { XIcon } from "lucide-react"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
@@ -19,6 +20,33 @@ function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
 
 function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
+}
+
+function DialogHeaderClose({
+  className,
+  srLabel = "Close dialog",
+  ...props
+}: DialogPrimitive.Close.Props & {
+  srLabel?: string
+}) {
+  return (
+    <DialogPrimitive.Close
+      data-slot="dialog-header-close"
+      render={
+        <Button
+          size="sm"
+          variant="ghost"
+          className={cn("gap-2 text-muted-foreground hover:text-foreground", className)}
+          aria-label={srLabel}
+        />
+      }
+      {...props}
+    >
+      <XIcon data-icon="inline-start" />
+      <Kbd keys={["Esc"]} />
+      <span className="sr-only">{srLabel}</span>
+    </DialogPrimitive.Close>
+  )
 }
 
 function DialogOverlay({
@@ -147,6 +175,7 @@ export {
   DialogContent,
   DialogDescription,
   DialogFooter,
+  DialogHeaderClose,
   DialogHeader,
   DialogOverlay,
   DialogPortal,

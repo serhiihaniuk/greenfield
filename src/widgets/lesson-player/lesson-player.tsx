@@ -17,6 +17,10 @@ import { useTheme } from "@/app/providers/theme-provider"
 import { listLessons } from "@/domains/lessons/loaders"
 import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
+import {
+  CommandShortcutHints,
+  CommandTooltipShortcut,
+} from "@/features/commands/shortcut-presentation"
 import { useCommandHotkeys } from "@/features/commands/use-command-hotkeys"
 import { isCommandEnabled, type AppCommand } from "@/features/commands/types"
 import {
@@ -68,10 +72,10 @@ import {
   Dialog,
   DialogDescription,
   DialogContent,
+  DialogHeaderClose,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { KbdGroup } from "@/shared/ui/kbd"
 import { ThemeToggle } from "@/shared/ui/theme-toggle"
 
 type LessonPlayerProps = {
@@ -551,7 +555,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   views {primaryPrimitives.length + secondaryPrimitives.length}
                 </Badge>
                 <Button size="xs" variant="ghost" onClick={toggleAuthorMode}>
-                  <KbdGroup shortcuts={[["Q"]]} />
+                  <CommandShortcutHints command={auditCommand} />
                   Close
                 </Button>
               </div>
@@ -593,9 +597,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <BookOpenIcon data-icon="inline-start" />
             <span className="truncate">{lesson?.title ?? "Current task"}</span>
           </span>
-          {taskPaletteCommand?.shortcutHints ? (
-            <KbdGroup shortcuts={taskPaletteCommand.shortcutHints} className="shrink-0" />
-          ) : null}
+          <CommandShortcutHints command={taskPaletteCommand} className="shrink-0" />
         </Button>
 
         <Select
@@ -636,9 +638,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <Badge variant={inputSource === "custom" ? "secondary" : "outline"}>
               {inputSource}
             </Badge>
-            {presetStudioCommand?.shortcutHints ? (
-              <KbdGroup shortcuts={presetStudioCommand.shortcutHints} />
-            ) : null}
+            <CommandShortcutHints command={presetStudioCommand} />
           </span>
         </Button>
 
@@ -660,7 +660,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <ChevronFirstIcon />
             </TooltipTrigger>
             <TooltipContent>
-              First frame <KbdGroup shortcuts={[["Home"]]} />
+              <CommandTooltipShortcut command={firstFrameCommand}>
+                First frame
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -678,7 +680,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <ChevronLeftIcon />
             </TooltipTrigger>
             <TooltipContent>
-              Previous <KbdGroup shortcuts={[["Left"], ["A"]]} />
+              <CommandTooltipShortcut command={previousFrameCommand}>
+                Previous
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -699,8 +703,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               {playbackStatus === "playing" ? "Pause" : "Play"}
             </TooltipTrigger>
             <TooltipContent>
-              {playbackStatus === "playing" ? "Pause" : "Play"}{" "}
-              <KbdGroup shortcuts={[["Space"]]} />
+              <CommandTooltipShortcut command={playPauseCommand}>
+                {playbackStatus === "playing" ? "Pause" : "Play"}
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -718,7 +723,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <ChevronRightIcon />
             </TooltipTrigger>
             <TooltipContent>
-              Next <KbdGroup shortcuts={[["Right"], ["D"]]} />
+              <CommandTooltipShortcut command={nextFrameCommand}>
+                Next
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -736,7 +743,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <ChevronLastIcon />
             </TooltipTrigger>
             <TooltipContent>
-              Last frame <KbdGroup shortcuts={[["End"]]} />
+              <CommandTooltipShortcut command={lastFrameCommand}>
+                Last frame
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -754,7 +763,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <RotateCcwIcon />
             </TooltipTrigger>
             <TooltipContent>
-              Reset <KbdGroup shortcuts={[["R"]]} />
+              <CommandTooltipShortcut command={resetPlaybackCommand}>
+                Reset
+              </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
         </div>
@@ -829,7 +840,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             Audit
           </TooltipTrigger>
           <TooltipContent>
-            Lesson audit <KbdGroup shortcuts={[["Q"]]} />
+            <CommandTooltipShortcut command={auditCommand}>
+              Lesson audit
+            </CommandTooltipShortcut>
           </TooltipContent>
         </Tooltip>
 
@@ -848,7 +861,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <KeyboardIcon />
           </TooltipTrigger>
           <TooltipContent>
-            Keyboard shortcuts <KbdGroup shortcuts={[["/"]]} />
+            <CommandTooltipShortcut command={shortcutsCommand}>
+              Keyboard shortcuts
+            </CommandTooltipShortcut>
           </TooltipContent>
         </Tooltip>
 
@@ -887,7 +902,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   </div>
                   {command.shortcutHints?.length ? (
                     <CommandShortcut>
-                      <KbdGroup shortcuts={command.shortcutHints} />
+                      <CommandShortcutHints command={command} />
                     </CommandShortcut>
                   ) : null}
                 </CommandItem>
@@ -898,28 +913,39 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       </CommandDialog>
 
       <Dialog open={hotkeysOpen} onOpenChange={setHotkeysOpen}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle>Commands & Shortcuts</DialogTitle>
-            <DialogDescription>
-              The command layer drives buttons, hotkeys, and the task palette from the same action registry.
-            </DialogDescription>
+        <DialogContent
+          className="flex max-h-[min(90vh,40rem)] flex-col overflow-hidden p-0 sm:max-w-lg"
+          showCloseButton={false}
+        >
+          <DialogHeader className="border-b border-border/30 px-4 py-4">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 space-y-1">
+                <DialogTitle>Commands & Shortcuts</DialogTitle>
+                <DialogDescription>
+                  The command layer drives buttons, hotkeys, and the task palette from the same action registry.
+                </DialogDescription>
+              </div>
+              <DialogHeaderClose srLabel="Close keyboard shortcuts" />
+            </div>
           </DialogHeader>
-          <div className="grid gap-1">
+          <div className="grid max-h-[28rem] gap-1 overflow-y-auto p-3">
             {hotkeyHelpCommands.map((command) => (
               <div
                 key={command.id}
-                className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm hover:bg-muted/50"
+                className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 rounded-lg px-2 py-2 text-sm hover:bg-muted/50"
               >
-                <div className="min-w-0">
-                  <div className="text-muted-foreground">{command.title}</div>
+                <div className="min-w-0 space-y-0.5">
+                  <div className="text-foreground">{command.title}</div>
                   {command.description ? (
-                    <div className="truncate text-xs text-muted-foreground/70">
+                    <div className="text-xs leading-relaxed text-muted-foreground">
                       {command.description}
                     </div>
                   ) : null}
                 </div>
-                <KbdGroup shortcuts={command.shortcutHints} />
+                <CommandShortcutHints
+                  command={command}
+                  className="shrink-0 justify-end self-start"
+                />
               </div>
             ))}
           </div>
@@ -934,6 +960,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         selectedPresetId={selectedPresetId}
         rawInput={rawInput}
         preferredView={presetStudioView}
+        shortcutHints={presetStudioCommand?.shortcutHints}
         onSelectPreset={selectPreset}
         onApplyCustomInput={(nextRawInput) => {
           setRawInput(nextRawInput)

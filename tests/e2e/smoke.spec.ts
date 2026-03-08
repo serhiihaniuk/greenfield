@@ -99,7 +99,7 @@ test("opens task search through the command palette hotkey", async ({ page }) =>
   await page.goto("/")
   await expectRuntimeReady(page, "Search Interval", "State")
 
-  await page.keyboard.press("Control+k")
+  await page.keyboard.press("Control+e")
   const dialog = page.getByRole("dialog", { name: "Command Palette" })
   await expect(dialog).toBeVisible()
   await dialog.getByPlaceholder(/search tasks, playback, audit, and workspace actions/i).fill("House Robber")
@@ -120,7 +120,7 @@ test("ignores global shortcuts while editing custom input", async ({ page }) => 
 
   await page.keyboard.press("Q")
   await page.keyboard.press("W")
-  await page.keyboard.press("Control+k")
+  await page.keyboard.press("Control+e")
 
   await expect(customInputEditor(page)).toBeFocused()
   await expect(timeline).toHaveValue("0")

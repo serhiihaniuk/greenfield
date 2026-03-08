@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { FileJsonIcon, PlayIcon, SparklesIcon } from "lucide-react"
 
 import type { ApproachDefinition, PresetDefinition } from "@/domains/lessons/types"
+import { CommandShortcutHints } from "@/features/commands/shortcut-presentation"
 import type { InputSource } from "@/features/player/types"
 import { Badge } from "@/shared/ui/badge"
 import { Button } from "@/shared/ui/button"
@@ -15,10 +16,10 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogHeaderClose,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { KbdGroup } from "@/shared/ui/kbd"
 import { Separator } from "@/shared/ui/separator"
 import { Textarea } from "@/shared/ui/textarea"
 import { cn } from "@/shared/lib/utils"
@@ -35,6 +36,7 @@ type PresetStudioDialogProps = {
   selectedPresetId?: string
   rawInput: string
   preferredView: PresetStudioView
+  shortcutHints?: readonly (readonly string[])[]
   onSelectPreset: (presetId: string) => void
   onApplyCustomInput: (rawInput: string) => void
 }
@@ -129,7 +131,7 @@ function semanticBadgeVariant(tone: PresetSemanticTone) {
       return "outline"
     case "success":
     default:
-      return "secondary"
+      return "success"
   }
 }
 
@@ -141,6 +143,7 @@ export function PresetStudioDialog({
   selectedPresetId,
   rawInput,
   preferredView,
+  shortcutHints,
   onSelectPreset,
   onApplyCustomInput,
 }: PresetStudioDialogProps) {
@@ -183,7 +186,10 @@ export function PresetStudioDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="overflow-hidden p-0 sm:max-w-5xl">
+      <DialogContent
+        className="flex h-[min(94vh,52rem)] flex-col overflow-hidden p-0 sm:max-w-5xl"
+        showCloseButton={false}
+      >
         <DialogHeader className="border-b border-border/30 px-5 py-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="space-y-1">
@@ -192,74 +198,81 @@ export function PresetStudioDialog({
                 Compare verified scenarios, see what makes each one special, and switch into custom input without leaving the player.
               </DialogDescription>
             </div>
-            <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <span>Shortcut</span>
-              <KbdGroup shortcuts={[["P"]]} />
+            <div className="flex shrink-0 items-center gap-3">
+              {shortcutHints?.length ? (
+                <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                  <span>Shortcut</span>
+                  <CommandShortcutHints shortcutHints={shortcutHints} />
+                </div>
+              ) : null}
+              <DialogHeaderClose srLabel="Close preset studio" />
             </div>
           </div>
         </DialogHeader>
 
-        <div className="grid min-h-[34rem] overflow-hidden xl:grid-cols-[minmax(18rem,21rem)_1fr]">
-          <aside className="overflow-y-auto border-b border-border/30 p-4 xl:border-r xl:border-b-0">
-            <div className="space-y-4">
-              <div className="space-y-1">
-                <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  Verified presets
+        <div className="grid min-h-0 flex-1 overflow-hidden xl:grid-cols-[minmax(20rem,23rem)_1fr]">
+          <aside className="min-h-0 border-b border-border/30 p-4 xl:border-r xl:border-b-0">
+            <div className="flex h-full min-h-0 flex-col gap-3">
+              <div className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
+                <div className="space-y-1">
+                  <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    Verified presets
+                  </div>
+                  <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                    Pick the scenario with the clearest teaching value. Presets are organized by explanation quality, not internal ids.
+                  </p>
                 </div>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Pick the scenario that best explains the algorithm. Presets are organized around teaching value, not internal ids.
-                </p>
-              </div>
 
-              <div className="grid gap-3">
-                {approach?.presets.map((preset) => {
-                  const isActive = preset.id === selectedPresetId && presetModeActive
-                  const isSelected = preset.id === selectedEntryId
-                  const semantic = classifyPreset(preset)
+                <div className="grid gap-2.5">
+                  {approach?.presets.map((preset) => {
+                    const isActive = preset.id === selectedPresetId && presetModeActive
+                    const isSelected = preset.id === selectedEntryId
+                    const semantic = classifyPreset(preset)
 
-                  return (
-                    <button
+                    return (
+                      <button
                       key={preset.id}
                       type="button"
                       onClick={() => setSelectedEntryId(preset.id)}
                       aria-pressed={isSelected}
-                      className={cn("text-left outline-none", isSelected && "rounded-xl")}
+                      className={cn("w-full text-left outline-none", isSelected && "rounded-xl")}
                     >
                       <Card
                         size="sm"
                         className={cn(
-                          "gap-2 ring-1 transition-colors",
+                          "w-full gap-2 ring-1 transition-colors",
                           isSelected ? "ring-primary/50" : "ring-foreground/10",
                           !isSelected && "hover:ring-foreground/20"
                         )}
-                      >
-                        <CardHeader className="gap-2">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <CardTitle className="truncate">{preset.label}</CardTitle>
-                            <Badge variant={semanticBadgeVariant(semantic.tone)}>
-                              {semantic.label}
-                            </Badge>
-                            {isActive ? <Badge variant="secondary">active</Badge> : null}
-                          </div>
-                          <CardDescription className="line-clamp-3">
-                            {getPresetDescription(preset)}
-                          </CardDescription>
-                        </CardHeader>
-                      </Card>
-                    </button>
-                  )
-                })}
+                        >
+                          <CardHeader className="gap-1.5">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <CardTitle className="truncate">{preset.label}</CardTitle>
+                              <Badge variant={semanticBadgeVariant(semantic.tone)}>
+                                {semantic.label}
+                              </Badge>
+                              {isActive ? <Badge variant="secondary">active</Badge> : null}
+                            </div>
+                            <CardDescription className="line-clamp-1">
+                              {getPresetDescription(preset)}
+                            </CardDescription>
+                          </CardHeader>
+                        </Card>
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
 
               <Separator />
 
-              <div className="space-y-3">
+              <div className="shrink-0 space-y-2">
                 <div className="space-y-1">
                   <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                     Custom runs
                   </div>
-                  <p className="text-xs leading-relaxed text-muted-foreground">
-                    Start from a preset or paste your own JSON when you need to inspect a real failed attempt.
+                  <p className="line-clamp-1 text-xs leading-relaxed text-muted-foreground">
+                    Branch from a preset or paste your own JSON when you need to inspect a failed attempt.
                   </p>
                 </div>
 
@@ -267,26 +280,23 @@ export function PresetStudioDialog({
                   type="button"
                   onClick={() => setSelectedEntryId(CUSTOM_ENTRY_ID)}
                   aria-pressed={selectedEntryId === CUSTOM_ENTRY_ID}
-                  className="text-left outline-none"
+                  className="w-full text-left outline-none"
                 >
                   <Card
                     size="sm"
                     className={cn(
-                      "gap-2 ring-1 transition-colors",
+                      "w-full gap-2 ring-1 transition-colors",
                       selectedEntryId === CUSTOM_ENTRY_ID
                         ? "ring-primary/50"
                         : "ring-foreground/10 hover:ring-foreground/20"
                     )}
                   >
-                    <CardHeader className="gap-2">
+                    <CardHeader className="gap-1 py-3">
                       <div className="flex flex-wrap items-center gap-2">
                         <CardTitle>Custom input</CardTitle>
                         <Badge variant="outline">explore</Badge>
                         {customModeActive ? <Badge variant="secondary">active</Badge> : null}
                       </div>
-                      <CardDescription>
-                        Paste a failed interview example or branch off an existing preset into a new runtime.
-                      </CardDescription>
                     </CardHeader>
                   </Card>
                 </button>
