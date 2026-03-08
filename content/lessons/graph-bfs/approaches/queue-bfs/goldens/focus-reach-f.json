@@ -1,0 +1,6358 @@
+{
+  "frames": [
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L1",
+      "id": "frame-1",
+      "narrationSummary": "Seed the frontier queue with start node A.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "frontier",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-A-0",
+                "label": "A",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "A",
+              "neighbor": "-",
+              "order": "-",
+              "start": "A",
+              "target": "F",
+              "visited": "-"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-1",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L2",
+      "id": "frame-2",
+      "narrationSummary": "Mark A visited immediately so BFS never enqueues it again.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "frontier",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-A-0",
+                "label": "A",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "A",
+              "neighbor": "-",
+              "order": "-",
+              "start": "A",
+              "target": "F",
+              "visited": "A"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-2",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-3",
+      "narrationSummary": "The frontier is not empty, so BFS can expand A next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "annotation": "front",
+                "id": "A",
+                "label": "A",
+                "status": "frontier",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-A-0",
+                "label": "A",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "A",
+              "neighbor": "-",
+              "order": "-",
+              "start": "A",
+              "target": "F",
+              "visited": "A"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-3",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-4",
+      "narrationSummary": "Dequeue A; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "-",
+              "neighbor": "-",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-4",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-5",
+      "narrationSummary": "A is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "annotation": "not target",
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "-",
+              "neighbor": "-",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-5",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-6",
+      "narrationSummary": "Neighbor B is unseen and should join the frontier.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "unseen",
+                "id": "B",
+                "label": "B",
+                "status": "default",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "-",
+              "neighbor": "B",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-6",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L8",
+      "id": "frame-7",
+      "narrationSummary": "Add B to the visited set before enqueuing it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "mark visited",
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "-",
+              "neighbor": "B",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-7",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L9",
+      "id": "frame-8",
+      "narrationSummary": "Enqueue B at the back of the frontier queue.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "enqueue",
+                "id": "B",
+                "label": "B",
+                "status": "frontier",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-B-0",
+                "label": "B",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "B",
+              "neighbor": "B",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-8",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-9",
+      "narrationSummary": "Neighbor C is unseen and should join the frontier.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "frontier",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "unseen",
+                "id": "C",
+                "label": "C",
+                "status": "default",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-B-0",
+                "label": "B",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "B",
+              "neighbor": "C",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-9",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L8",
+      "id": "frame-10",
+      "narrationSummary": "Add C to the visited set before enqueuing it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "frontier",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "mark visited",
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-B-0",
+                "label": "B",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "B",
+              "neighbor": "C",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-10",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L9",
+      "id": "frame-11",
+      "narrationSummary": "Enqueue C at the back of the frontier queue.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "active",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "frontier",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "enqueue",
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-B-0",
+                "label": "B",
+                "status": "active"
+              },
+              {
+                "id": "queue-C-1",
+                "label": "C",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "A",
+              "frontier": "B -> C",
+              "neighbor": "C",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-11",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-12",
+      "narrationSummary": "The frontier is not empty, so BFS can expand B next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "front",
+                "id": "B",
+                "label": "B",
+                "status": "frontier",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-B-0",
+                "label": "B",
+                "status": "active"
+              },
+              {
+                "id": "queue-C-1",
+                "label": "C",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "B -> C",
+              "neighbor": "-",
+              "order": "A",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-12",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-13",
+      "narrationSummary": "Dequeue B; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C",
+              "neighbor": "-",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-13",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-14",
+      "narrationSummary": "B is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "not target",
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C",
+              "neighbor": "-",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-14",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-15",
+      "narrationSummary": "Neighbor A was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "annotation": "visited",
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C",
+              "neighbor": "A",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-15",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-16",
+      "narrationSummary": "Neighbor D is unseen and should join the frontier.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "unseen",
+                "id": "D",
+                "label": "D",
+                "status": "default",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C",
+              "neighbor": "D",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-16",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L8",
+      "id": "frame-17",
+      "narrationSummary": "Add D to the visited set before enqueuing it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "mark visited",
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C",
+              "neighbor": "D",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-17",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L9",
+      "id": "frame-18",
+      "narrationSummary": "Enqueue D at the back of the frontier queue.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "active",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "enqueue",
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              },
+              {
+                "id": "queue-D-1",
+                "label": "D",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "B",
+              "frontier": "C -> D",
+              "neighbor": "D",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-18",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-19",
+      "narrationSummary": "The frontier is not empty, so BFS can expand C next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "front",
+                "id": "C",
+                "label": "C",
+                "status": "frontier",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-C-0",
+                "label": "C",
+                "status": "active"
+              },
+              {
+                "id": "queue-D-1",
+                "label": "D",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "C -> D",
+              "neighbor": "-",
+              "order": "A, B",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-19",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-20",
+      "narrationSummary": "Dequeue C; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "-",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-20",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-21",
+      "narrationSummary": "C is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "not target",
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "-",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-21",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-22",
+      "narrationSummary": "Neighbor A was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "annotation": "visited",
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "A",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-22",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-23",
+      "narrationSummary": "Neighbor D was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "visited",
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "D",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-23",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-24",
+      "narrationSummary": "Neighbor E is unseen and should join the frontier.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "annotation": "unseen",
+                "id": "E",
+                "label": "E",
+                "status": "default",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "E",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-24",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L8",
+      "id": "frame-25",
+      "narrationSummary": "Add E to the visited set before enqueuing it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "annotation": "mark visited",
+                "id": "E",
+                "label": "E",
+                "status": "visited",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D",
+              "neighbor": "E",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-25",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L9",
+      "id": "frame-26",
+      "narrationSummary": "Enqueue E at the back of the frontier queue.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "active",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "annotation": "enqueue",
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              },
+              {
+                "id": "queue-E-1",
+                "label": "E",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "C",
+              "frontier": "D -> E",
+              "neighbor": "E",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-26",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-27",
+      "narrationSummary": "The frontier is not empty, so BFS can expand D next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "front",
+                "id": "D",
+                "label": "D",
+                "status": "frontier",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-D-0",
+                "label": "D",
+                "status": "active"
+              },
+              {
+                "id": "queue-E-1",
+                "label": "E",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "D -> E",
+              "neighbor": "-",
+              "order": "A, B, C",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-27",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-28",
+      "narrationSummary": "Dequeue D; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "-",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-28",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-29",
+      "narrationSummary": "D is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "annotation": "not target",
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "-",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-29",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-30",
+      "narrationSummary": "Neighbor B was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "annotation": "visited",
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "B",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-30",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-31",
+      "narrationSummary": "Neighbor C was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "visited",
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "C",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-31",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-32",
+      "narrationSummary": "Neighbor F is unseen and should join the frontier.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "unseen",
+                "id": "F",
+                "label": "F",
+                "status": "default",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "F",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-32",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L8",
+      "id": "frame-33",
+      "narrationSummary": "Add F to the visited set before enqueuing it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "mark visited",
+                "id": "F",
+                "label": "F",
+                "status": "visited",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E",
+              "neighbor": "F",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-33",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L9",
+      "id": "frame-34",
+      "narrationSummary": "Enqueue F at the back of the frontier queue.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "active",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "enqueue",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              },
+              {
+                "id": "queue-F-1",
+                "label": "F",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "D",
+              "frontier": "E -> F",
+              "neighbor": "F",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-34",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-35",
+      "narrationSummary": "The frontier is not empty, so BFS can expand E next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "annotation": "front",
+                "id": "E",
+                "label": "E",
+                "status": "frontier",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-E-0",
+                "label": "E",
+                "status": "active"
+              },
+              {
+                "id": "queue-F-1",
+                "label": "F",
+                "status": "waiting"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "E -> F",
+              "neighbor": "-",
+              "order": "A, B, C, D",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-35",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-36",
+      "narrationSummary": "Dequeue E; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "active",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-F-0",
+                "label": "F",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "E",
+              "frontier": "F",
+              "neighbor": "-",
+              "order": "A, B, C, D, E",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-36",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-37",
+      "narrationSummary": "E is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "annotation": "not target",
+                "id": "E",
+                "label": "E",
+                "status": "active",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-F-0",
+                "label": "F",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "E",
+              "frontier": "F",
+              "neighbor": "-",
+              "order": "A, B, C, D, E",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-37",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-38",
+      "narrationSummary": "Neighbor C was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "annotation": "visited",
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "active",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-F-0",
+                "label": "F",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "E",
+              "frontier": "F",
+              "neighbor": "C",
+              "order": "A, B, C, D, E",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-38",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L7",
+      "id": "frame-39",
+      "narrationSummary": "Neighbor F was already visited, so BFS skips it.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "active",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "visited",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-F-0",
+                "label": "F",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "E",
+              "frontier": "F",
+              "neighbor": "F",
+              "order": "A, B, C, D, E",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-39",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L3",
+      "id": "frame-40",
+      "narrationSummary": "The frontier is not empty, so BFS can expand F next.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "visited",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "front",
+                "id": "F",
+                "label": "F",
+                "status": "frontier",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": [
+              {
+                "id": "queue-F-0",
+                "label": "F",
+                "status": "active"
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "-",
+              "frontier": "F",
+              "neighbor": "-",
+              "order": "A, B, C, D, E",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-40",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L4",
+      "id": "frame-41",
+      "narrationSummary": "Dequeue F; it is now the node BFS expands.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "visited",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "goal",
+                "id": "F",
+                "label": "F",
+                "status": "active",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "F",
+              "frontier": "-",
+              "neighbor": "-",
+              "order": "A, B, C, D, E, F",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-41",
+      "visualChangeType": "mutate"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-42",
+      "narrationSummary": "F matches the target, so BFS stops.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "visited",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "target",
+                "id": "F",
+                "label": "F",
+                "status": "active",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "-",
+              "current": "F",
+              "frontier": "-",
+              "neighbor": "-",
+              "order": "A, B, C, D, E, F",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-42",
+      "visualChangeType": "compare"
+    },
+    {
+      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "codeLine": "L5",
+      "id": "frame-43",
+      "narrationSummary": "undefined is not the target, so inspect its neighbors.",
+      "primitives": [
+        {
+          "annotations": [],
+          "data": {
+            "edges": [
+              {
+                "id": "A-B",
+                "sourceId": "A",
+                "targetId": "B"
+              },
+              {
+                "id": "A-C",
+                "sourceId": "A",
+                "targetId": "C"
+              },
+              {
+                "id": "B-D",
+                "sourceId": "B",
+                "targetId": "D"
+              },
+              {
+                "id": "C-D",
+                "sourceId": "C",
+                "targetId": "D"
+              },
+              {
+                "id": "C-E",
+                "sourceId": "C",
+                "targetId": "E"
+              },
+              {
+                "id": "D-F",
+                "sourceId": "D",
+                "targetId": "F"
+              },
+              {
+                "id": "E-F",
+                "sourceId": "E",
+                "targetId": "F"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "A",
+                "label": "A",
+                "status": "visited",
+                "x": 120,
+                "y": 96
+              },
+              {
+                "id": "B",
+                "label": "B",
+                "status": "visited",
+                "x": 44,
+                "y": 212
+              },
+              {
+                "id": "C",
+                "label": "C",
+                "status": "visited",
+                "x": 190,
+                "y": 214
+              },
+              {
+                "id": "D",
+                "label": "D",
+                "status": "visited",
+                "x": 298,
+                "y": 108
+              },
+              {
+                "id": "E",
+                "label": "E",
+                "status": "visited",
+                "x": 292,
+                "y": 264
+              },
+              {
+                "annotation": "found",
+                "id": "F",
+                "label": "F",
+                "status": "found",
+                "x": 414,
+                "y": 190
+              }
+            ]
+          },
+          "highlights": [],
+          "id": "graph",
+          "kind": "graph",
+          "pointers": [],
+          "title": "Graph Frontier",
+          "viewportRole": "primary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "items": []
+          },
+          "highlights": [],
+          "id": "frontier-queue",
+          "kind": "queue",
+          "pointers": [],
+          "title": "Frontier Queue",
+          "viewportRole": "secondary"
+        },
+        {
+          "annotations": [],
+          "data": {
+            "values": {
+              "answer": "F",
+              "current": "F",
+              "frontier": "-",
+              "neighbor": "-",
+              "order": "A, B, C, D, E, F",
+              "start": "A",
+              "target": "F",
+              "visited": "A, B, C, D, E, F"
+            }
+          },
+          "highlights": [],
+          "id": "frontier-state",
+          "kind": "state",
+          "pointers": [],
+          "title": "Traversal State",
+          "viewportRole": "secondary"
+        }
+      ],
+      "sourceEventId": "event-43",
+      "visualChangeType": "result"
+    }
+  ],
+  "trace": [
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-5",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-6",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-7",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-8",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-9",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-10",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-11",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-12",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-13",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-14",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-15",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-16",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-17",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-18",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-19",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-20",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-21",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-22",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-23",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-24",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-25",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-26",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-27",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-28",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-29",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-30",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-31",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-32",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L8",
+      "id": "event-33",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-34",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-35",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-36",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-37",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-38",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-39",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-40",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-41",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-42",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-43",
+      "type": "result"
+    },
+    {
+      "codeLine": "L5",
+      "id": "event-44",
+      "type": "complete"
+    }
+  ]
+}

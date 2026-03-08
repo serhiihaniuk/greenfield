@@ -134,6 +134,7 @@ Completed so far:
 - first end-to-end lesson runtime path implemented with loader, trace, projector, verification, player state, code highlighting, and author review surfaces
 - Phase 3 verification gate passing for typecheck, lint, unit tests, and production build
 - primitive foundation completed: semantic tone mapping, shared primitive shell, shared SVG edge layer, deterministic tree and call-tree layouts, pointer chips, and stateless `ArrayView`, `StateView`, `StackView`, `HashMapView`, `TreeView`, `CallTreeView`, `CodeTraceView`, and `NarrationView` renderers
+- primitive coverage now also includes stateless `QueueView` and `GraphView` renderers, so frontier lessons can use first-class primitives instead of page-local markup
 - runtime shell now renders canonical primitives instead of the debug preview widget
 - primitive renderer tests added and passing
 - runtime verification completed: semantic/frame/code-line/pedagogical/viewport checks run before learner mode is shown
@@ -146,15 +147,16 @@ Completed so far:
 - learner mode is now blocked behind a verification overlay when a lesson fails checks, instead of showing plausible but untrusted visuals
 - Phase 8 started with a second flagship lesson: House Robber is now implemented as a registered, verified rolling-DP lesson with presets, lesson-specific verification, and a checked-in focus golden under `content/lessons/house-robber/approaches/rolling-dp/goldens`
 - Phase 8 now includes a recursion-first flagship lesson: Maximum Depth of Binary Tree is implemented as a registered, verified recursive DFS lesson with structural tree, call-stack, and execution-tree views plus a checked-in focus golden under `content/lessons/maximum-depth/approaches/recursive-dfs/goldens`
+- Phase 8 now includes a frontier-traversal flagship lesson: Graph BFS Frontier is implemented as a registered, verified queue-based BFS lesson with graph, queue, and traversal-state views plus a checked-in focus golden under `content/lessons/graph-bfs/approaches/queue-bfs/goldens`
 
 ## Immediate Next Step
 
 Continue Phase 8 from the plan:
 
-1. add the next flagship lesson that exercises a new confusion family beyond recursion and rolling state, ideally a frontier or priority-structure lesson
-2. prioritize sliding window maximum, graph BFS frontier, or heap-based top-k so queue/frontier and heap-like teaching surfaces are proven in real content
+1. add the next flagship lesson that exercises a remaining confusion family beyond recursion, rolling state, and frontier traversal
+2. prioritize sliding window maximum or heap-based top-k so the next lesson proves either dense window state transitions or priority-structure behavior in real content
 3. keep every new lesson on the same verification bar: runtime checks, lesson-specific verification, and checked-in JSON goldens
-4. use House Robber and Maximum Depth as the templates for how new flagship lessons should be registered and hardened
+4. use House Robber, Maximum Depth, and Graph BFS as the templates for how new flagship lessons should be registered and hardened
 
 ## Canonical Files
 

@@ -1,0 +1,380 @@
+import type { VisualizationMode } from "@/domains/lessons/types"
+import {
+  defineFrame,
+  type Frame,
+  type NarrationPayload,
+  type VisualChangeType,
+} from "@/domains/projection/types"
+import type { TraceEvent } from "@/domains/tracing/types"
+import {
+  defineGraphPrimitiveFrameState,
+  defineQueuePrimitiveFrameState,
+  defineStatePrimitiveFrameState,
+  type GraphNode,
+  type QueueItem,
+} from "@/entities/visualization/primitives"
+import type {
+  EdgeHighlightSpec,
+  PrimitiveFrameState,
+} from "@/entities/visualization/types"
+
+type GraphSnapshotNode = {
+  id: string
+  x: number
+  y: number
+}
+
+type GraphSnapshotEdge = {
+  id: string
+  sourceId: string
+  targetId: string
+}
+
+type GraphBfsSnapshot = {
+  nodes: GraphSnapshotNode[]
+  edges: GraphSnapshotEdge[]
+  startId: string
+  targetId: string
+  queue: string[]
+  visited: string[]
+  order: string[]
+  currentId?: string
+  inspectingNeighborId?: string
+  answer?: string | null
+}
+
+function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
+  switch (event.type) {
+    case "compare":
+      return "compare"
+    case "result":
+      return "result"
+    default:
+      return "mutate"
+  }
+}
+
+function findEdgeId(
+  snapshot: GraphBfsSnapshot,
+  sourceId: string | undefined,
+  targetId: string | undefined
+) {
+  if (!sourceId || !targetId) {
+    return undefined
+  }
+
+  return snapshot.edges.find(
+    (edge) =>
+      (edge.sourceId === sourceId && edge.targetId === targetId) ||
+      (edge.sourceId === targetId && edge.targetId === sourceId)
+  )?.id
+}
+
+function buildEdgeHighlights(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot
+): EdgeHighlightSpec[] {
+  const currentId =
+    "currentId" in event.payload
+      ? String(event.payload.currentId)
+      : snapshot.currentId
+  const neighborId =
+    "neighborId" in event.payload
+      ? String(event.payload.neighborId)
+      : snapshot.inspectingNeighborId
+  const edgeId = findEdgeId(snapshot, currentId, neighborId)
+
+  if (!edgeId || !currentId || !neighborId) {
+    return []
+  }
+
+  return [
+    {
+      id: edgeId,
+      sourceId: currentId,
+      targetId: neighborId,
+      tone:
+        event.codeLine === "L7"
+          ? "compare"
+          : event.codeLine === "L8" || event.codeLine === "L9"
+            ? "active"
+            : "default",
+      emphasis: event.codeLine === "L7" ? "strong" : "normal",
+    },
+  ]
+}
+
+function buildGraphNodes(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot
+): GraphNode[] {
+  const currentId =
+    "currentId" in event.payload
+      ? String(event.payload.currentId)
+      : snapshot.currentId
+  const inspectingNeighborId =
+    "neighborId" in event.payload
+      ? String(event.payload.neighborId)
+      : snapshot.inspectingNeighborId
+  const found =
+    event.codeLine === "L5" && "found" in event.payload
+      ? Boolean(event.payload.found)
+      : false
+
+  return snapshot.nodes.map((node) => {
+    let status: GraphNode["status"] = "default"
+    if (snapshot.answer && snapshot.answer === node.id) {
+      status = "found"
+    } else if (currentId === node.id) {
+      status = "active"
+    } else if (snapshot.queue.includes(node.id)) {
+      status = "frontier"
+    } else if (snapshot.visited.includes(node.id)) {
+      status = "visited"
+    }
+
+    let annotation: string | undefined
+    if (
+      node.id === snapshot.targetId &&
+      snapshot.answer === null &&
+      event.codeLine === "L12"
+    ) {
+      annotation = "unreached"
+    } else if (node.id === snapshot.targetId && snapshot.answer === node.id) {
+      annotation = "found"
+    } else if (event.codeLine === "L5" && currentId === node.id) {
+      annotation = found ? "target" : "not target"
+    } else if (event.codeLine === "L7" && inspectingNeighborId === node.id) {
+      annotation = Boolean(event.payload.alreadyVisited) ? "visited" : "unseen"
+    } else if (event.codeLine === "L8" && inspectingNeighborId === node.id) {
+      annotation = "mark visited"
+    } else if (event.codeLine === "L9" && inspectingNeighborId === node.id) {
+      annotation = "enqueue"
+    } else if (event.codeLine === "L3" && event.payload.frontId === node.id) {
+      annotation = "front"
+    } else if (node.id === snapshot.targetId) {
+      annotation = "goal"
+    }
+
+    return {
+      id: node.id,
+      label: node.id,
+      x: node.x,
+      y: node.y,
+      annotation,
+      status,
+    }
+  })
+}
+
+function buildQueueItems(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot
+): QueueItem[] {
+  return snapshot.queue.map((nodeId, index) => ({
+    id: `queue-${nodeId}-${index}`,
+    label: nodeId,
+    status: index === 0 ? "active" : "waiting",
+    annotation:
+      event.codeLine === "L3" && index === 0
+        ? "check"
+        : event.codeLine === "L9" &&
+            event.payload.neighborId === nodeId &&
+            index === snapshot.queue.length - 1
+          ? "new"
+          : undefined,
+  }))
+}
+
+function buildNarration(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot
+): NarrationPayload {
+  switch (event.codeLine) {
+    case "L1":
+      return {
+        summary: `Seed the frontier queue with start node ${snapshot.startId}.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L2":
+      return {
+        summary: `Mark ${snapshot.startId} visited immediately so BFS never enqueues it again.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L3":
+      return {
+        summary: Boolean(event.payload.hasFrontier)
+          ? `The frontier is not empty, so BFS can expand ${event.payload.frontId} next.`
+          : "The frontier is empty, so the target cannot be reached from the start node.",
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L4":
+      return {
+        summary: `Dequeue ${event.payload.currentId}; it is now the node BFS expands.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L5":
+      return {
+        summary: Boolean(event.payload.found)
+          ? `${event.payload.currentId} matches the target, so BFS stops.`
+          : `${event.payload.currentId} is not the target, so inspect its neighbors.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L7":
+      return {
+        summary: Boolean(event.payload.alreadyVisited)
+          ? `Neighbor ${event.payload.neighborId} was already visited, so BFS skips it.`
+          : `Neighbor ${event.payload.neighborId} is unseen and should join the frontier.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L8":
+      return {
+        summary: `Add ${event.payload.neighborId} to the visited set before enqueuing it.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L9":
+      return {
+        summary: `Enqueue ${event.payload.neighborId} at the back of the frontier queue.`,
+        segments: [],
+        sourceValues: event.payload,
+      }
+    case "L12":
+      return {
+        summary:
+          "Return null because BFS exhausted the frontier without finding the target.",
+        segments: [],
+        sourceValues: event.payload,
+      }
+    default:
+      return {
+        summary: snapshot.answer
+          ? `Return found node ${snapshot.answer}.`
+          : "Advance the BFS frontier.",
+        segments: [],
+        sourceValues: event.payload,
+      }
+  }
+}
+
+function buildPrimitiveStates(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot,
+  mode: VisualizationMode
+): PrimitiveFrameState[] {
+  const graphPrimitive = defineGraphPrimitiveFrameState({
+    id: "graph",
+    kind: "graph",
+    title: "Graph Frontier",
+    subtitle:
+      "Visited nodes stay behind the frontier while BFS expands the oldest queued node first.",
+    data: {
+      nodes: buildGraphNodes(event, snapshot),
+      edges: snapshot.edges,
+    },
+    edgeHighlights: buildEdgeHighlights(event, snapshot),
+    viewport: {
+      role: "primary",
+      preferredWidth: 960,
+      minHeight: 360,
+    },
+  })
+
+  const queuePrimitive = defineQueuePrimitiveFrameState({
+    id: "frontier-queue",
+    kind: "queue",
+    title: "Frontier Queue",
+    subtitle:
+      "The front dequeues first and newly discovered nodes enter at the back.",
+    data: {
+      items: buildQueueItems(event, snapshot),
+      frontLabel: "front",
+      backLabel: "back",
+    },
+    viewport: {
+      role: "secondary",
+      preferredWidth: 340,
+      minHeight: 180,
+    },
+  })
+
+  const statePrimitive = defineStatePrimitiveFrameState({
+    id: "frontier-state",
+    kind: "state",
+    title: mode === "code" ? "BFS State" : "Traversal State",
+    data: {
+      values: [
+        { label: "start", value: snapshot.startId },
+        { label: "target", value: snapshot.targetId },
+        { label: "current", value: snapshot.currentId ?? "-" },
+        { label: "neighbor", value: snapshot.inspectingNeighborId ?? "-" },
+        { label: "frontier", value: snapshot.queue.join(" -> ") || "-" },
+        { label: "visited", value: snapshot.visited.join(", ") || "-" },
+        { label: "order", value: snapshot.order.join(", ") || "-" },
+        {
+          label: "answer",
+          value:
+            snapshot.answer === undefined
+              ? "-"
+              : snapshot.answer === null
+                ? "null"
+                : snapshot.answer,
+        },
+      ],
+    },
+    viewport: {
+      role: "secondary",
+      preferredWidth: 320,
+      minHeight: 220,
+    },
+  })
+
+  return [graphPrimitive, queuePrimitive, statePrimitive]
+}
+
+export function projectQueueBfs(
+  events: TraceEvent[],
+  mode: VisualizationMode
+): Frame[] {
+  return events
+    .filter((event) => event.type !== "complete")
+    .map((event, index) => {
+      const snapshot = event.snapshot as GraphBfsSnapshot
+
+      return defineFrame({
+        id: `frame-${index + 1}`,
+        sourceEventId: event.id,
+        codeLine: event.codeLine,
+        visualChangeType: mapEventToVisualChange(event),
+        narration: buildNarration(event, snapshot),
+        primitives: buildPrimitiveStates(event, snapshot, mode),
+        checks: [
+          {
+            id: `frame-${index + 1}-sync`,
+            kind: "code-line-sync",
+            status: "pass",
+            message: "Frame is aligned to a single code line.",
+          },
+          {
+            id: `frame-${index + 1}-single-change`,
+            kind: "one-visual-change",
+            status: "pass",
+            message: "Frame declares a single learner-visible change category.",
+          },
+          {
+            id: `frame-${index + 1}-viewport`,
+            kind: "viewport",
+            status: "pass",
+            message:
+              "Frame stays inside the desktop playback viewport contract.",
+          },
+        ],
+      })
+    })
+}

@@ -19,9 +19,10 @@ export const arrayPrimitiveDataSchema = z.object({
 
 export type ArrayPrimitiveData = z.infer<typeof arrayPrimitiveDataSchema>
 
-export type ArrayPrimitiveFrameState = PrimitiveFrameState<ArrayPrimitiveData> & {
-  kind: "array"
-}
+export type ArrayPrimitiveFrameState =
+  PrimitiveFrameState<ArrayPrimitiveData> & {
+    kind: "array"
+  }
 
 export function defineArrayPrimitiveFrameState(
   state: ArrayPrimitiveFrameState
@@ -46,9 +47,10 @@ export const statePrimitiveDataSchema = z.object({
 
 export type StatePrimitiveData = z.infer<typeof statePrimitiveDataSchema>
 
-export type StatePrimitiveFrameState = PrimitiveFrameState<StatePrimitiveData> & {
-  kind: "state"
-}
+export type StatePrimitiveFrameState =
+  PrimitiveFrameState<StatePrimitiveData> & {
+    kind: "state"
+  }
 
 export function defineStatePrimitiveFrameState(
   state: StatePrimitiveFrameState
@@ -77,9 +79,10 @@ export const stackPrimitiveDataSchema = z.object({
 
 export type StackPrimitiveData = z.infer<typeof stackPrimitiveDataSchema>
 
-export type StackPrimitiveFrameState = PrimitiveFrameState<StackPrimitiveData> & {
-  kind: "stack"
-}
+export type StackPrimitiveFrameState =
+  PrimitiveFrameState<StackPrimitiveData> & {
+    kind: "stack"
+  }
 
 export function defineStackPrimitiveFrameState(
   state: StackPrimitiveFrameState
@@ -89,6 +92,39 @@ export function defineStackPrimitiveFrameState(
     ...state,
     data,
   }) as StackPrimitiveFrameState
+}
+
+export const queueItemSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  detail: z.string().optional(),
+  status: z.enum(["active", "waiting", "done", "archived"]).default("waiting"),
+  annotation: z.string().optional(),
+})
+
+export type QueueItem = z.infer<typeof queueItemSchema>
+
+export const queuePrimitiveDataSchema = z.object({
+  items: z.array(queueItemSchema),
+  frontLabel: z.string().optional(),
+  backLabel: z.string().optional(),
+})
+
+export type QueuePrimitiveData = z.infer<typeof queuePrimitiveDataSchema>
+
+export type QueuePrimitiveFrameState =
+  PrimitiveFrameState<QueuePrimitiveData> & {
+    kind: "queue"
+  }
+
+export function defineQueuePrimitiveFrameState(
+  state: QueuePrimitiveFrameState
+): QueuePrimitiveFrameState {
+  const data = queuePrimitiveDataSchema.parse(state.data)
+  return definePrimitiveFrameState({
+    ...state,
+    data,
+  }) as QueuePrimitiveFrameState
 }
 
 export const hashMapEntrySchema = z.object({
@@ -158,6 +194,49 @@ export function defineTreePrimitiveFrameState(
   }) as TreePrimitiveFrameState
 }
 
+export const graphNodeSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  x: z.number(),
+  y: z.number(),
+  annotation: z.string().optional(),
+  status: z
+    .enum(["default", "frontier", "active", "visited", "found", "dim"])
+    .default("default"),
+})
+
+export type GraphNode = z.infer<typeof graphNodeSchema>
+
+export const graphEdgeSchema = z.object({
+  id: z.string().min(1),
+  sourceId: z.string().min(1),
+  targetId: z.string().min(1),
+})
+
+export type GraphEdge = z.infer<typeof graphEdgeSchema>
+
+export const graphPrimitiveDataSchema = z.object({
+  nodes: z.array(graphNodeSchema),
+  edges: z.array(graphEdgeSchema),
+})
+
+export type GraphPrimitiveData = z.infer<typeof graphPrimitiveDataSchema>
+
+export type GraphPrimitiveFrameState =
+  PrimitiveFrameState<GraphPrimitiveData> & {
+    kind: "graph"
+  }
+
+export function defineGraphPrimitiveFrameState(
+  state: GraphPrimitiveFrameState
+): GraphPrimitiveFrameState {
+  const data = graphPrimitiveDataSchema.parse(state.data)
+  return definePrimitiveFrameState({
+    ...state,
+    data,
+  }) as GraphPrimitiveFrameState
+}
+
 export const callTreeNodeSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),
@@ -219,7 +298,9 @@ export const codeTracePrimitiveDataSchema = z.object({
   foreground: z.string().optional(),
 })
 
-export type CodeTracePrimitiveData = z.infer<typeof codeTracePrimitiveDataSchema>
+export type CodeTracePrimitiveData = z.infer<
+  typeof codeTracePrimitiveDataSchema
+>
 
 export type CodeTracePrimitiveFrameState =
   PrimitiveFrameState<CodeTracePrimitiveData> & {
@@ -266,7 +347,9 @@ export const narrationPrimitiveDataSchema = z.object({
   visualChange: z.string().optional(),
 })
 
-export type NarrationPrimitiveData = z.infer<typeof narrationPrimitiveDataSchema>
+export type NarrationPrimitiveData = z.infer<
+  typeof narrationPrimitiveDataSchema
+>
 
 export type NarrationPrimitiveFrameState =
   PrimitiveFrameState<NarrationPrimitiveData> & {

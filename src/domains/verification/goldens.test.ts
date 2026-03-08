@@ -8,6 +8,7 @@ import {
 } from "@/domains/verification/goldens"
 import { buildLessonRuntime } from "@/features/player/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
+import { graphBfsLesson } from "../../../content/lessons/graph-bfs/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 
@@ -67,6 +68,37 @@ describe("runtime goldens", () => {
         path.resolve(
           process.cwd(),
           "content/lessons/house-robber/approaches/rolling-dp/goldens/focus-classic-five.json"
+        ),
+        "utf8"
+      )
+    ) as RuntimeGoldenSnapshot
+
+    const comparison = compareRuntimeGoldenSnapshots(actual, expected)
+
+    expect(comparison.matches).toBe(true)
+    expect(comparison.differences).toEqual([])
+  })
+
+  it("matches the checked-in graph-bfs focus golden", () => {
+    const approach = graphBfsLesson.approaches[0]
+    const preset = approach?.presets.find((entry) => entry.id === "reach-f")
+
+    if (!approach || !preset) {
+      throw new Error("Graph BFS golden fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: graphBfsLesson,
+      approach,
+      mode: "focus",
+      rawInput: preset.rawInput,
+    })
+    const actual = createRuntimeGoldenSnapshot(runtime.trace, runtime.frames)
+    const expected = JSON.parse(
+      readFileSync(
+        path.resolve(
+          process.cwd(),
+          "content/lessons/graph-bfs/approaches/queue-bfs/goldens/focus-reach-f.json"
         ),
         "utf8"
       )

@@ -2,8 +2,10 @@ import type {
   ArrayPrimitiveFrameState,
   CallTreePrimitiveFrameState,
   CodeTracePrimitiveFrameState,
+  GraphPrimitiveFrameState,
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
+  QueuePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
   TreePrimitiveFrameState,
@@ -17,8 +19,10 @@ import {
 import { CallTreeView } from "@/shared/visualization/views/call-tree-view"
 import { ArrayView } from "@/shared/visualization/views/array-view"
 import { CodeTraceView } from "@/shared/visualization/views/code-trace-view"
+import { GraphView } from "@/shared/visualization/views/graph-view"
 import { HashMapView } from "@/shared/visualization/views/hash-map-view"
 import { NarrationView } from "@/shared/visualization/views/narration-view"
+import { QueueView } from "@/shared/visualization/views/queue-view"
 import { StackView } from "@/shared/visualization/views/stack-view"
 import { StateView } from "@/shared/visualization/views/state-view"
 import { TreeView } from "@/shared/visualization/views/tree-view"
@@ -41,14 +45,24 @@ export function PrimitiveRenderer({ primitive, role }: PrimitiveRendererProps) {
     case "stack":
       content = <StackView primitive={primitive as StackPrimitiveFrameState} />
       break
+    case "queue":
+      content = <QueueView primitive={primitive as QueuePrimitiveFrameState} />
+      break
     case "hash-map":
-      content = <HashMapView primitive={primitive as HashMapPrimitiveFrameState} />
+      content = (
+        <HashMapView primitive={primitive as HashMapPrimitiveFrameState} />
+      )
       break
     case "tree":
       content = <TreeView primitive={primitive as TreePrimitiveFrameState} />
       break
+    case "graph":
+      content = <GraphView primitive={primitive as GraphPrimitiveFrameState} />
+      break
     case "call-tree":
-      content = <CallTreeView primitive={primitive as CallTreePrimitiveFrameState} />
+      content = (
+        <CallTreeView primitive={primitive as CallTreePrimitiveFrameState} />
+      )
       break
     case "code-trace":
       content = (

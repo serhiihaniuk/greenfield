@@ -67,15 +67,17 @@ function summarizePrimitiveData(primitive: PrimitiveFrameState) {
   switch (primitive.kind) {
     case "array":
       return {
-        cellValues: (primitive.data as { cells: Array<{ value: string | number }> }).cells.map(
-          (cell) => cell.value
-        ),
+        cellValues: (
+          primitive.data as { cells: Array<{ value: string | number }> }
+        ).cells.map((cell) => cell.value),
       }
     case "state":
       return {
         values: Object.fromEntries(
           (
-            primitive.data as { values: Array<{ label: string; value: string | number }> }
+            primitive.data as {
+              values: Array<{ label: string; value: string | number }>
+            }
           ).values.map((entry) => [entry.label, entry.value])
         ),
       }
@@ -91,11 +93,27 @@ function summarizePrimitiveData(primitive: PrimitiveFrameState) {
           status: frame.status,
         })),
       }
+    case "queue":
+      return {
+        items: (
+          primitive.data as {
+            items: Array<{ id: string; label: string; status: string }>
+          }
+        ).items.map((item) => ({
+          id: item.id,
+          label: item.label,
+          status: item.status,
+        })),
+      }
     case "hash-map":
       return {
         entries: (
           primitive.data as {
-            entries: Array<{ key: string; value: string | number | null; status: string }>
+            entries: Array<{
+              key: string
+              value: string | number | null
+              status: string
+            }>
           }
         ).entries.map((entry) => ({
           key: entry.key,
@@ -105,12 +123,16 @@ function summarizePrimitiveData(primitive: PrimitiveFrameState) {
       }
     case "tree":
     case "call-tree":
+    case "graph":
       return primitive.data
     case "code-trace":
       return {
-        activeLineId: (primitive.data as { activeLineId?: string }).activeLineId,
+        activeLineId: (primitive.data as { activeLineId?: string })
+          .activeLineId,
         lines: (
-          primitive.data as { lines: Array<{ id: string; lineNumber: number; text: string }> }
+          primitive.data as {
+            lines: Array<{ id: string; lineNumber: number; text: string }>
+          }
         ).lines.map((line) => ({
           id: line.id,
           lineNumber: line.lineNumber,
@@ -156,12 +178,16 @@ export function createRuntimeGoldenSnapshot(
       visualChangeType: frame.visualChangeType,
       narrationSummary: frame.narration.summary,
       checks: frame.checks.map((check) => check.kind),
-      primitives: frame.primitives.map((primitive) => summarizePrimitive(primitive)),
+      primitives: frame.primitives.map((primitive) =>
+        summarizePrimitive(primitive)
+      ),
     })),
   }) as RuntimeGoldenSnapshot
 }
 
-export function serializeRuntimeGoldenSnapshot(snapshot: RuntimeGoldenSnapshot) {
+export function serializeRuntimeGoldenSnapshot(
+  snapshot: RuntimeGoldenSnapshot
+) {
   return JSON.stringify(snapshot, null, 2)
 }
 

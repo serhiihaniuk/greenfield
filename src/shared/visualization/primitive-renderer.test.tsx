@@ -3,9 +3,11 @@ import { render, screen, within } from "@testing-library/react"
 import {
   defineCallTreePrimitiveFrameState,
   defineCodeTracePrimitiveFrameState,
+  defineGraphPrimitiveFrameState,
   defineHashMapPrimitiveFrameState,
   defineNarrationPrimitiveFrameState,
   defineArrayPrimitiveFrameState,
+  defineQueuePrimitiveFrameState,
   defineStackPrimitiveFrameState,
   defineStatePrimitiveFrameState,
   defineTreePrimitiveFrameState,
@@ -71,10 +73,9 @@ describe("PrimitiveRenderer", () => {
 
     expect(pointerLabels).toEqual(["lo", "mid"])
     expect(screen.getByText("candidate")).toBeInTheDocument()
-    expect(screen.getByText("3").closest("[data-highlight-tone]")).toHaveAttribute(
-      "data-highlight-tone",
-      "compare"
-    )
+    expect(
+      screen.getByText("3").closest("[data-highlight-tone]")
+    ).toHaveAttribute("data-highlight-tone", "compare")
   })
 
   it("renders state primitives as labeled rows", () => {
@@ -97,7 +98,7 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("5")).toBeInTheDocument()
   })
 
-  it("renders stack, hash-map, tree, call-tree, code-trace, and narration primitives", () => {
+  it("renders stack, queue, hash-map, tree, graph, call-tree, code-trace, and narration primitives", () => {
     const stackPrimitive = defineStackPrimitiveFrameState({
       id: "stack",
       kind: "stack",
@@ -107,6 +108,19 @@ describe("PrimitiveRenderer", () => {
         frames: [
           { id: "f1", label: "dfs(3)", status: "active" },
           { id: "f2", label: "dfs(2)", status: "waiting" },
+        ],
+      },
+    })
+    const queuePrimitive = defineQueuePrimitiveFrameState({
+      id: "queue",
+      kind: "queue",
+      title: "Frontier",
+      data: {
+        frontLabel: "front",
+        backLabel: "back",
+        items: [
+          { id: "q1", label: "A", status: "active" },
+          { id: "q2", label: "B", status: "waiting" },
         ],
       },
     })
@@ -134,6 +148,18 @@ describe("PrimitiveRenderer", () => {
         ],
       },
     })
+    const graphPrimitive = defineGraphPrimitiveFrameState({
+      id: "graph",
+      kind: "graph",
+      title: "Graph",
+      data: {
+        nodes: [
+          { id: "a", label: "A", x: 80, y: 80, status: "active" },
+          { id: "b", label: "B", x: 200, y: 160, status: "frontier" },
+        ],
+        edges: [{ id: "a-b", sourceId: "a", targetId: "b" }],
+      },
+    })
     const callTreePrimitive = defineCallTreePrimitiveFrameState({
       id: "call-tree",
       kind: "call-tree",
@@ -159,8 +185,18 @@ describe("PrimitiveRenderer", () => {
       data: {
         activeLineId: "L2",
         lines: [
-          { id: "L1", lineNumber: 1, text: "let lo = 0", tokens: [{ content: "let lo = 0" }] },
-          { id: "L2", lineNumber: 2, text: "return mid", tokens: [{ content: "return mid" }] },
+          {
+            id: "L1",
+            lineNumber: 1,
+            text: "let lo = 0",
+            tokens: [{ content: "let lo = 0" }],
+          },
+          {
+            id: "L2",
+            lineNumber: 2,
+            text: "return mid",
+            tokens: [{ content: "return mid" }],
+          },
         ],
       },
     })
@@ -179,8 +215,10 @@ describe("PrimitiveRenderer", () => {
     render(
       <div>
         <PrimitiveRenderer primitive={stackPrimitive} />
+        <PrimitiveRenderer primitive={queuePrimitive} />
         <PrimitiveRenderer primitive={hashMapPrimitive} />
         <PrimitiveRenderer primitive={treePrimitive} />
+        <PrimitiveRenderer primitive={graphPrimitive} />
         <PrimitiveRenderer primitive={callTreePrimitive} />
         <PrimitiveRenderer primitive={codeTracePrimitive} />
         <PrimitiveRenderer primitive={narrationPrimitive} />
@@ -188,12 +226,16 @@ describe("PrimitiveRenderer", () => {
     )
 
     expect(screen.getByText("Call Stack")).toBeInTheDocument()
+    expect(screen.getByText("Frontier")).toBeInTheDocument()
     expect(screen.getByText("Memo")).toBeInTheDocument()
     expect(screen.getByText("Tree")).toBeInTheDocument()
+    expect(screen.getByText("Graph")).toBeInTheDocument()
     expect(screen.getByText("Execution")).toBeInTheDocument()
     expect(screen.getAllByText("Code Trace")).toHaveLength(1)
     expect(screen.getByText("Narration")).toBeInTheDocument()
     expect(screen.getByText("dfs(3)")).toBeInTheDocument()
+    expect(screen.getByText("front")).toBeInTheDocument()
+    expect(screen.getAllByText("A").length).toBeGreaterThan(1)
     expect(screen.getByText("?")).toBeInTheDocument()
     expect(screen.getByText("return mid")).toBeInTheDocument()
   })
@@ -209,7 +251,11 @@ describe("PrimitiveRenderer", () => {
       { id: "child", parentId: "root" },
     ])
 
-    expect(structural.nodes.map((node) => node.id)).toEqual(["root", "left", "right"])
+    expect(structural.nodes.map((node) => node.id)).toEqual([
+      "root",
+      "left",
+      "right",
+    ])
     expect(structural.edges).toHaveLength(2)
     expect(execution.nodes[1]?.y).toBeGreaterThan(execution.nodes[0]?.y ?? 0)
   })

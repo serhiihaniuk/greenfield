@@ -73,7 +73,7 @@ Phase 4 shipped the stateless primitive foundation: canonical array, state, stac
 Phase 5 shipped the runtime verification layer: semantic/frame/code-line/pedagogical/viewport checks, author-review surfacing, and a checked-in JSON golden for the flagship binary-search focus path.
 Phase 6 shipped the visualization-first shell refinement: compact control band, dominant stage surface, docked context column, and responsive narrow-width header behavior.
 Phase 7 shipped the first real author-mode foundation: runtime-backed event inspection, frame diffs, narration binding inspection, grouped verification context, and learner-mode blocking when verification fails.
-Phase 8 is now active. House Robber has been added as the second flagship lesson with presets, lesson-specific verification, and a checked-in focus golden. Maximum Depth of Binary Tree is now added as the third flagship lesson, proving the structural tree, stack, and call-tree primitives in a verified recursive DFS path with its own checked-in focus golden.
+Phase 8 is now active. House Robber has been added as the second flagship lesson with presets, lesson-specific verification, and a checked-in focus golden. Maximum Depth of Binary Tree is now added as the third flagship lesson, proving the structural tree, stack, and call-tree primitives in a verified recursive DFS path with its own checked-in focus golden. Graph BFS Frontier is now added as the fourth flagship lesson, proving the graph and queue primitives in a verified frontier-traversal path with its own checked-in focus golden.
 
 ## Phase 0: Operating System
 

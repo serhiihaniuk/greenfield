@@ -9,16 +9,15 @@ import type {
   ArrayPrimitiveFrameState,
   CallTreePrimitiveFrameState,
   CodeTracePrimitiveFrameState,
+  GraphPrimitiveFrameState,
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
+  QueuePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
   TreePrimitiveFrameState,
 } from "@/entities/visualization/primitives"
-import type {
-  FrameCheck,
-  FrameCheckKind,
-} from "@/domains/projection/types"
+import type { FrameCheck, FrameCheckKind } from "@/domains/projection/types"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
 import {
   createVerificationReport,
@@ -37,9 +36,7 @@ type FrameDiffSummary = {
   viewportChanges: number
 }
 
-function createIssue(
-  issue: VerificationIssue
-): VerificationIssue {
+function createIssue(issue: VerificationIssue): VerificationIssue {
   return issue
 }
 
@@ -75,23 +72,39 @@ function collectDuplicateIds(ids: string[]): string[] {
     .map(([id]) => id)
 }
 
-function collectPrimitiveTargetIds(primitive: PrimitiveFrameState): Set<string> {
+function collectPrimitiveTargetIds(
+  primitive: PrimitiveFrameState
+): Set<string> {
   switch (primitive.kind) {
     case "array":
       return new Set(
-        (primitive as ArrayPrimitiveFrameState).data.cells.map((cell) => cell.id)
+        (primitive as ArrayPrimitiveFrameState).data.cells.map(
+          (cell) => cell.id
+        )
       )
     case "state":
       return new Set(
-        (primitive as StatePrimitiveFrameState).data.values.map((value) => value.label)
+        (primitive as StatePrimitiveFrameState).data.values.map(
+          (value) => value.label
+        )
       )
     case "stack":
       return new Set(
-        (primitive as StackPrimitiveFrameState).data.frames.map((frame) => frame.id)
+        (primitive as StackPrimitiveFrameState).data.frames.map(
+          (frame) => frame.id
+        )
+      )
+    case "queue":
+      return new Set(
+        (primitive as QueuePrimitiveFrameState).data.items.map(
+          (item) => item.id
+        )
       )
     case "hash-map":
       return new Set(
-        (primitive as HashMapPrimitiveFrameState).data.entries.map((entry) => entry.id)
+        (primitive as HashMapPrimitiveFrameState).data.entries.map(
+          (entry) => entry.id
+        )
       )
     case "tree":
       return new Set(
@@ -99,15 +112,27 @@ function collectPrimitiveTargetIds(primitive: PrimitiveFrameState): Set<string> 
       )
     case "call-tree":
       return new Set(
-        (primitive as CallTreePrimitiveFrameState).data.nodes.map((node) => node.id)
+        (primitive as CallTreePrimitiveFrameState).data.nodes.map(
+          (node) => node.id
+        )
+      )
+    case "graph":
+      return new Set(
+        (primitive as GraphPrimitiveFrameState).data.nodes.map(
+          (node) => node.id
+        )
       )
     case "code-trace":
       return new Set(
-        (primitive as CodeTracePrimitiveFrameState).data.lines.map((line) => line.id)
+        (primitive as CodeTracePrimitiveFrameState).data.lines.map(
+          (line) => line.id
+        )
       )
     case "narration":
       return new Set(
-        (primitive as NarrationPrimitiveFrameState).data.segments.map((segment) => segment.id)
+        (primitive as NarrationPrimitiveFrameState).data.segments.map(
+          (segment) => segment.id
+        )
       )
     default:
       return new Set()
@@ -163,7 +188,10 @@ function summarizeFrameDiff(previous: Frame, current: Frame): FrameDiffSummary {
       continue
     }
 
-    if (stableSerialize(previousPrimitive.data) !== stableSerialize(currentPrimitive.data)) {
+    if (
+      stableSerialize(previousPrimitive.data) !==
+      stableSerialize(currentPrimitive.data)
+    ) {
       dataChanges += 1
     }
 
@@ -209,7 +237,9 @@ function summarizeFrameDiff(previous: Frame, current: Frame): FrameDiffSummary {
   }
 }
 
-function mapFrameCheckKindToIssueKind(kind: FrameCheckKind): VerificationIssue["kind"] {
+function mapFrameCheckKindToIssueKind(
+  kind: FrameCheckKind
+): VerificationIssue["kind"] {
   switch (kind) {
     case "code-line-sync":
       return "code-line-sync"
@@ -249,97 +279,115 @@ function verifyTraceAndFrameReferences(
   const seenFrameSourceIds = new Set<string>()
 
   if (trace.length === 0) {
-    issues.push(createIssue({
-      code: "TRACE_EMPTY",
-      kind: "semantic",
-      severity: "error",
-      message: "The trace is empty.",
-    }))
+    issues.push(
+      createIssue({
+        code: "TRACE_EMPTY",
+        kind: "semantic",
+        severity: "error",
+        message: "The trace is empty.",
+      })
+    )
   }
 
   if (frames.length === 0) {
-    issues.push(createIssue({
-      code: "FRAMES_EMPTY",
-      kind: "frame",
-      severity: "error",
-      message: "The projected frame list is empty.",
-    }))
+    issues.push(
+      createIssue({
+        code: "FRAMES_EMPTY",
+        kind: "frame",
+        severity: "error",
+        message: "The projected frame list is empty.",
+      })
+    )
   }
 
   for (const eventId of duplicateEventIds) {
-    issues.push(createIssue({
-      code: "TRACE_EVENT_DUPLICATE_ID",
-      kind: "semantic",
-      severity: "error",
-      message: `Trace event id "${eventId}" is duplicated.`,
-      eventId,
-    }))
+    issues.push(
+      createIssue({
+        code: "TRACE_EVENT_DUPLICATE_ID",
+        kind: "semantic",
+        severity: "error",
+        message: `Trace event id "${eventId}" is duplicated.`,
+        eventId,
+      })
+    )
   }
 
   for (const frameId of duplicateFrameIds) {
-    issues.push(createIssue({
-      code: "FRAME_DUPLICATE_ID",
-      kind: "frame",
-      severity: "error",
-      message: `Frame id "${frameId}" is duplicated.`,
-      frameId,
-    }))
+    issues.push(
+      createIssue({
+        code: "FRAME_DUPLICATE_ID",
+        kind: "frame",
+        severity: "error",
+        message: `Frame id "${frameId}" is duplicated.`,
+        frameId,
+      })
+    )
   }
 
   for (const frame of frames) {
     if (!eventIds.has(frame.sourceEventId)) {
-      issues.push(createIssue({
-        code: "FRAME_SOURCE_EVENT_MISSING",
-        kind: "frame",
-        severity: "error",
-        message: `Frame "${frame.id}" references an event that does not exist.`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_SOURCE_EVENT_MISSING",
+          kind: "frame",
+          severity: "error",
+          message: `Frame "${frame.id}" references an event that does not exist.`,
+          frameId: frame.id,
+        })
+      )
     }
 
     if (!codeLines.has(frame.codeLine)) {
-      issues.push(createIssue({
-        code: "FRAME_CODE_LINE_MISSING",
-        kind: "code-line-sync",
-        severity: "error",
-        message: `Frame "${frame.id}" references unknown code line "${frame.codeLine}".`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_CODE_LINE_MISSING",
+          kind: "code-line-sync",
+          severity: "error",
+          message: `Frame "${frame.id}" references unknown code line "${frame.codeLine}".`,
+          frameId: frame.id,
+        })
+      )
     }
 
     const sourceEvent = trace.find((event) => event.id === frame.sourceEventId)
     if (sourceEvent && sourceEvent.codeLine !== frame.codeLine) {
-      issues.push(createIssue({
-        code: "FRAME_EVENT_CODE_LINE_MISMATCH",
-        kind: "code-line-sync",
-        severity: "error",
-        message: `Frame "${frame.id}" is bound to code line "${frame.codeLine}" but source event "${sourceEvent.id}" is on "${sourceEvent.codeLine}".`,
-        frameId: frame.id,
-        eventId: sourceEvent.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_EVENT_CODE_LINE_MISMATCH",
+          kind: "code-line-sync",
+          severity: "error",
+          message: `Frame "${frame.id}" is bound to code line "${frame.codeLine}" but source event "${sourceEvent.id}" is on "${sourceEvent.codeLine}".`,
+          frameId: frame.id,
+          eventId: sourceEvent.id,
+        })
+      )
     }
 
     if (seenFrameSourceIds.has(frame.sourceEventId)) {
-      issues.push(createIssue({
-        code: "FRAME_SOURCE_EVENT_DUPLICATED",
-        kind: "frame",
-        severity: "error",
-        message: `Multiple frames reference the same source event "${frame.sourceEventId}".`,
-        frameId: frame.id,
-        eventId: frame.sourceEventId,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_SOURCE_EVENT_DUPLICATED",
+          kind: "frame",
+          severity: "error",
+          message: `Multiple frames reference the same source event "${frame.sourceEventId}".`,
+          frameId: frame.id,
+          eventId: frame.sourceEventId,
+        })
+      )
     } else {
       seenFrameSourceIds.add(frame.sourceEventId)
     }
 
     if (frame.primitives.length === 0) {
-      issues.push(createIssue({
-        code: "FRAME_PRIMITIVES_EMPTY",
-        kind: "frame",
-        severity: "error",
-        message: `Frame "${frame.id}" does not contain any primitives.`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_PRIMITIVES_EMPTY",
+          kind: "frame",
+          severity: "error",
+          message: `Frame "${frame.id}" does not contain any primitives.`,
+          frameId: frame.id,
+        })
+      )
     }
   }
 
@@ -355,14 +403,16 @@ function verifyPrimitiveContracts(frames: Frame[]): VerificationReport {
     )
 
     for (const primitiveId of duplicatePrimitiveIds) {
-      issues.push(createIssue({
-        code: "FRAME_PRIMITIVE_DUPLICATE_ID",
-        kind: "frame",
-        severity: "error",
-        message: `Frame "${frame.id}" contains duplicate primitive id "${primitiveId}".`,
-        frameId: frame.id,
-        meta: { primitiveId },
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_PRIMITIVE_DUPLICATE_ID",
+          kind: "frame",
+          severity: "error",
+          message: `Frame "${frame.id}" contains duplicate primitive id "${primitiveId}".`,
+          frameId: frame.id,
+          meta: { primitiveId },
+        })
+      )
     }
 
     for (const primitive of frame.primitives) {
@@ -370,53 +420,61 @@ function verifyPrimitiveContracts(frames: Frame[]): VerificationReport {
 
       for (const pointer of primitive.pointers ?? []) {
         if (!targetIds.has(pointer.targetId)) {
-          issues.push(createIssue({
-            code: "PRIMITIVE_POINTER_TARGET_MISSING",
-            kind: "frame",
-            severity: "error",
-            message: `Pointer "${pointer.id}" in primitive "${primitive.id}" targets missing id "${pointer.targetId}".`,
-            frameId: frame.id,
-            meta: { primitiveId: primitive.id, pointerId: pointer.id },
-          }))
+          issues.push(
+            createIssue({
+              code: "PRIMITIVE_POINTER_TARGET_MISSING",
+              kind: "frame",
+              severity: "error",
+              message: `Pointer "${pointer.id}" in primitive "${primitive.id}" targets missing id "${pointer.targetId}".`,
+              frameId: frame.id,
+              meta: { primitiveId: primitive.id, pointerId: pointer.id },
+            })
+          )
         }
       }
 
       for (const highlight of primitive.highlights ?? []) {
         if (!targetIds.has(highlight.targetId)) {
-          issues.push(createIssue({
-            code: "PRIMITIVE_HIGHLIGHT_TARGET_MISSING",
-            kind: "frame",
-            severity: "error",
-            message: `Highlight in primitive "${primitive.id}" targets missing id "${highlight.targetId}".`,
-            frameId: frame.id,
-            meta: { primitiveId: primitive.id, targetId: highlight.targetId },
-          }))
+          issues.push(
+            createIssue({
+              code: "PRIMITIVE_HIGHLIGHT_TARGET_MISSING",
+              kind: "frame",
+              severity: "error",
+              message: `Highlight in primitive "${primitive.id}" targets missing id "${highlight.targetId}".`,
+              frameId: frame.id,
+              meta: { primitiveId: primitive.id, targetId: highlight.targetId },
+            })
+          )
         }
       }
 
       for (const annotation of primitive.annotations ?? []) {
         if (!targetIds.has(annotation.targetId)) {
-          issues.push(createIssue({
-            code: "PRIMITIVE_ANNOTATION_TARGET_MISSING",
-            kind: "frame",
-            severity: "error",
-            message: `Annotation "${annotation.id}" in primitive "${primitive.id}" targets missing id "${annotation.targetId}".`,
-            frameId: frame.id,
-            meta: { primitiveId: primitive.id, annotationId: annotation.id },
-          }))
+          issues.push(
+            createIssue({
+              code: "PRIMITIVE_ANNOTATION_TARGET_MISSING",
+              kind: "frame",
+              severity: "error",
+              message: `Annotation "${annotation.id}" in primitive "${primitive.id}" targets missing id "${annotation.targetId}".`,
+              frameId: frame.id,
+              meta: { primitiveId: primitive.id, annotationId: annotation.id },
+            })
+          )
         }
       }
 
       for (const edge of primitive.edgeHighlights ?? []) {
         if (!targetIds.has(edge.sourceId) || !targetIds.has(edge.targetId)) {
-          issues.push(createIssue({
-            code: "PRIMITIVE_EDGE_TARGET_MISSING",
-            kind: "frame",
-            severity: "error",
-            message: `Edge "${edge.id}" in primitive "${primitive.id}" references a missing source or target id.`,
-            frameId: frame.id,
-            meta: { primitiveId: primitive.id, edgeId: edge.id },
-          }))
+          issues.push(
+            createIssue({
+              code: "PRIMITIVE_EDGE_TARGET_MISSING",
+              kind: "frame",
+              severity: "error",
+              message: `Edge "${edge.id}" in primitive "${primitive.id}" references a missing source or target id.`,
+              frameId: frame.id,
+              meta: { primitiveId: primitive.id, edgeId: edge.id },
+            })
+          )
         }
       }
     }
@@ -430,13 +488,15 @@ function verifyFrameChecks(frames: Frame[]): VerificationReport {
 
   for (const frame of frames) {
     if (!frame.checks.some((check) => check.kind === "code-line-sync")) {
-      issues.push(createIssue({
-        code: "FRAME_CODE_LINE_CHECK_MISSING",
-        kind: "frame",
-        severity: "warning",
-        message: `Frame "${frame.id}" does not expose a code-line-sync frame check.`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_CODE_LINE_CHECK_MISSING",
+          kind: "frame",
+          severity: "warning",
+          message: `Frame "${frame.id}" does not expose a code-line-sync frame check.`,
+          frameId: frame.id,
+        })
+      )
     }
 
     for (const check of frame.checks) {
@@ -444,21 +504,23 @@ function verifyFrameChecks(frames: Frame[]): VerificationReport {
         continue
       }
 
-      issues.push(createIssue({
-        code:
-          check.status === "fail"
-            ? "FRAME_CHECK_FAILED"
-            : "FRAME_CHECK_WARNING",
-        kind: mapFrameCheckKindToIssueKind(check.kind),
-        severity: check.status === "fail" ? "error" : "warning",
-        message: `${frame.id}: ${check.message}`,
-        frameId: frame.id,
-        pedagogicalCheck: mapFrameCheckToPedagogicalCheck(check),
-        meta: {
-          checkId: check.id,
-          checkKind: check.kind,
-        },
-      }))
+      issues.push(
+        createIssue({
+          code:
+            check.status === "fail"
+              ? "FRAME_CHECK_FAILED"
+              : "FRAME_CHECK_WARNING",
+          kind: mapFrameCheckKindToIssueKind(check.kind),
+          severity: check.status === "fail" ? "error" : "warning",
+          message: `${frame.id}: ${check.message}`,
+          frameId: frame.id,
+          pedagogicalCheck: mapFrameCheckToPedagogicalCheck(check),
+          meta: {
+            checkId: check.id,
+            checkKind: check.kind,
+          },
+        })
+      )
     }
   }
 
@@ -486,35 +548,39 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
     ].filter((count) => count > 0).length
 
     if (changedGroups === 0) {
-      issues.push(createIssue({
-        code: "FRAME_NO_VISIBLE_CHANGE",
-        kind: "pedagogical-integrity",
-        severity: "error",
-        message: `Frame "${frame.id}" does not introduce a learner-visible change relative to "${previousFrame.id}".`,
-        frameId: frame.id,
-        pedagogicalCheck: "one-visual-change",
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_NO_VISIBLE_CHANGE",
+          kind: "pedagogical-integrity",
+          severity: "error",
+          message: `Frame "${frame.id}" does not introduce a learner-visible change relative to "${previousFrame.id}".`,
+          frameId: frame.id,
+          pedagogicalCheck: "one-visual-change",
+        })
+      )
     }
 
     if (changedGroups > 4) {
-      issues.push(createIssue({
-        code: "FRAME_OVERLOADED",
-        kind: "pedagogical-integrity",
-        severity: "warning",
-        message: `Frame "${frame.id}" changes too many primitive groups at once (${changedGroups}).`,
-        frameId: frame.id,
-        pedagogicalCheck: "overloaded-frame",
-        meta: {
-          changedGroups,
-          primitiveAdditions: diff.primitiveAdditions,
-          primitiveRemovals: diff.primitiveRemovals,
-          dataChanges: diff.dataChanges,
-          pointerChanges: diff.pointerChanges,
-          highlightChanges: diff.highlightChanges,
-          annotationChanges: diff.annotationChanges,
-          viewportChanges: diff.viewportChanges,
-        },
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_OVERLOADED",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: `Frame "${frame.id}" changes too many primitive groups at once (${changedGroups}).`,
+          frameId: frame.id,
+          pedagogicalCheck: "overloaded-frame",
+          meta: {
+            changedGroups,
+            primitiveAdditions: diff.primitiveAdditions,
+            primitiveRemovals: diff.primitiveRemovals,
+            dataChanges: diff.dataChanges,
+            pointerChanges: diff.pointerChanges,
+            highlightChanges: diff.highlightChanges,
+            annotationChanges: diff.annotationChanges,
+            viewportChanges: diff.viewportChanges,
+          },
+        })
+      )
     }
 
     if (
@@ -522,14 +588,16 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
       diff.pointerChanges === 0 &&
       diff.dataChanges === 0
     ) {
-      issues.push(createIssue({
-        code: "FRAME_MOVE_WITHOUT_POINTER_SIGNAL",
-        kind: "pedagogical-integrity",
-        severity: "warning",
-        message: `Frame "${frame.id}" is labeled as a move but does not visibly move a pointer or state value.`,
-        frameId: frame.id,
-        pedagogicalCheck: "one-visual-change",
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_MOVE_WITHOUT_POINTER_SIGNAL",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: `Frame "${frame.id}" is labeled as a move but does not visibly move a pointer or state value.`,
+          frameId: frame.id,
+          pedagogicalCheck: "one-visual-change",
+        })
+      )
     }
 
     if (
@@ -538,14 +606,16 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
       diff.annotationChanges === 0 &&
       diff.dataChanges === 0
     ) {
-      issues.push(createIssue({
-        code: "FRAME_COMPARE_WITHOUT_SIGNAL",
-        kind: "pedagogical-integrity",
-        severity: "error",
-        message: `Frame "${frame.id}" is labeled as a compare but does not visibly show the comparison.`,
-        frameId: frame.id,
-        pedagogicalCheck: "code-line-mismatch",
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_COMPARE_WITHOUT_SIGNAL",
+          kind: "pedagogical-integrity",
+          severity: "error",
+          message: `Frame "${frame.id}" is labeled as a compare but does not visibly show the comparison.`,
+          frameId: frame.id,
+          pedagogicalCheck: "code-line-mismatch",
+        })
+      )
     }
 
     if (
@@ -553,14 +623,16 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
       frame.visualChangeType !== "result" &&
       diff.primitiveRemovals > 0
     ) {
-      issues.push(createIssue({
-        code: "FRAME_HIDDEN_STATE_LOSS",
-        kind: "pedagogical-integrity",
-        severity: "warning",
-        message: `Frame "${frame.id}" removes visible primitive state without an explicit exit/result handoff.`,
-        frameId: frame.id,
-        pedagogicalCheck: "hidden-state-loss",
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_HIDDEN_STATE_LOSS",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: `Frame "${frame.id}" removes visible primitive state without an explicit exit/result handoff.`,
+          frameId: frame.id,
+          pedagogicalCheck: "hidden-state-loss",
+        })
+      )
     }
   }
 
@@ -582,25 +654,30 @@ function verifyViewportSanity(
     )
 
     if (primaryPrimitives.length === 0) {
-      issues.push(createIssue({
-        code: "FRAME_PRIMARY_VIEW_MISSING",
-        kind: "viewport",
-        severity: "error",
-        message: `Frame "${frame.id}" does not expose a primary visualization surface.`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_PRIMARY_VIEW_MISSING",
+          kind: "viewport",
+          severity: "error",
+          message: `Frame "${frame.id}" does not expose a primary visualization surface.`,
+          frameId: frame.id,
+        })
+      )
     }
 
     if (
-      secondaryPrimitives.length > lesson.viewportContract.maxVisibleSecondaryPanels
+      secondaryPrimitives.length >
+      lesson.viewportContract.maxVisibleSecondaryPanels
     ) {
-      issues.push(createIssue({
-        code: "FRAME_SECONDARY_PANEL_OVERFLOW",
-        kind: "viewport",
-        severity: "warning",
-        message: `Frame "${frame.id}" exposes ${secondaryPrimitives.length} secondary panels, exceeding the lesson contract of ${lesson.viewportContract.maxVisibleSecondaryPanels}.`,
-        frameId: frame.id,
-      }))
+      issues.push(
+        createIssue({
+          code: "FRAME_SECONDARY_PANEL_OVERFLOW",
+          kind: "viewport",
+          severity: "warning",
+          message: `Frame "${frame.id}" exposes ${secondaryPrimitives.length} secondary panels, exceeding the lesson contract of ${lesson.viewportContract.maxVisibleSecondaryPanels}.`,
+          frameId: frame.id,
+        })
+      )
     }
 
     if (lesson.viewportContract.avoidVerticalScroll) {
@@ -627,20 +704,20 @@ function verifyViewportSanity(
           ? Math.max(primaryHeight, secondaryHeight)
           : primaryHeight + secondaryHeight
 
-      if (
-        estimatedHeight > lesson.viewportContract.desktopMinHeight * 0.95
-      ) {
-        issues.push(createIssue({
-          code: "FRAME_VIEWPORT_HEIGHT_WARNING",
-          kind: "viewport",
-          severity: "warning",
-          message: `Frame "${frame.id}" is likely too tall for the lesson viewport contract (${estimatedHeight}px estimated vs ${lesson.viewportContract.desktopMinHeight}px target).`,
-          frameId: frame.id,
-          meta: {
-            estimatedHeight,
-            desktopMinHeight: lesson.viewportContract.desktopMinHeight,
-          },
-        }))
+      if (estimatedHeight > lesson.viewportContract.desktopMinHeight * 0.95) {
+        issues.push(
+          createIssue({
+            code: "FRAME_VIEWPORT_HEIGHT_WARNING",
+            kind: "viewport",
+            severity: "warning",
+            message: `Frame "${frame.id}" is likely too tall for the lesson viewport contract (${estimatedHeight}px estimated vs ${lesson.viewportContract.desktopMinHeight}px target).`,
+            frameId: frame.id,
+            meta: {
+              estimatedHeight,
+              desktopMinHeight: lesson.viewportContract.desktopMinHeight,
+            },
+          })
+        )
       }
     }
   }
@@ -666,14 +743,14 @@ export function verifyRuntimeOutputs(
     return baseReport
   }
 
-  const report = mergeVerificationReports(baseReport, approach.verify(trace, frames))
-  return createVerificationReport(
-    [...report.errors, ...report.warnings],
-    {
-      lessonId: lesson.id,
-      approachId: approach.id,
-      traceEventCount: trace.length,
-      frameCount: frames.length,
-    }
+  const report = mergeVerificationReports(
+    baseReport,
+    approach.verify(trace, frames)
   )
+  return createVerificationReport([...report.errors, ...report.warnings], {
+    lessonId: lesson.id,
+    approachId: approach.id,
+    traceEventCount: trace.length,
+    frameCount: frames.length,
+  })
 }
