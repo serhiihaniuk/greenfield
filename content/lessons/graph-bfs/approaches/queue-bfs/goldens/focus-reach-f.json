@@ -1,7 +1,11 @@
 {
   "frames": [
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L1",
       "id": "frame-1",
       "narrationSummary": "Seed the frontier queue with start node A.",
@@ -115,7 +119,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -136,14 +140,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-1",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L2",
       "id": "frame-2",
       "narrationSummary": "Mark A visited immediately so BFS never enqueues it again.",
@@ -257,7 +265,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -278,14 +286,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-2",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-3",
       "narrationSummary": "The frontier is not empty, so BFS can expand A next.",
@@ -400,7 +412,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -421,14 +433,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-3",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-4",
       "narrationSummary": "Dequeue A; it is now the node BFS expands.",
@@ -536,7 +552,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -557,14 +573,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-4",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-5",
       "narrationSummary": "A is not the target, so inspect its neighbors.",
@@ -673,7 +693,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -694,14 +714,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-5",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-6",
       "narrationSummary": "Neighbor B is unseen and should join the frontier.",
@@ -810,7 +834,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -831,14 +855,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-6",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-7",
       "narrationSummary": "Add B to the visited set before enqueuing it.",
@@ -947,7 +975,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -968,14 +996,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-7",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L9",
       "id": "frame-8",
       "narrationSummary": "Enqueue B at the back of the frontier queue.",
@@ -1090,7 +1122,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1111,14 +1143,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-8",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-9",
       "narrationSummary": "Neighbor C is unseen and should join the frontier.",
@@ -1233,7 +1269,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1254,14 +1290,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-9",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-10",
       "narrationSummary": "Add C to the visited set before enqueuing it.",
@@ -1376,7 +1416,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1397,14 +1437,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-10",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L9",
       "id": "frame-11",
       "narrationSummary": "Enqueue C at the back of the frontier queue.",
@@ -1524,7 +1568,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1545,14 +1589,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-11",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-12",
       "narrationSummary": "The frontier is not empty, so BFS can expand B next.",
@@ -1672,7 +1720,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1693,14 +1741,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-12",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-13",
       "narrationSummary": "Dequeue B; it is now the node BFS expands.",
@@ -1814,7 +1866,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1835,14 +1887,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-13",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-14",
       "narrationSummary": "B is not the target, so inspect its neighbors.",
@@ -1957,7 +2013,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1978,14 +2034,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-14",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-15",
       "narrationSummary": "Neighbor A was already visited, so BFS skips it.",
@@ -2100,7 +2160,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2121,14 +2181,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-15",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-16",
       "narrationSummary": "Neighbor D is unseen and should join the frontier.",
@@ -2243,7 +2307,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2264,14 +2328,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-16",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-17",
       "narrationSummary": "Add D to the visited set before enqueuing it.",
@@ -2386,7 +2454,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2407,14 +2475,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-17",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L9",
       "id": "frame-18",
       "narrationSummary": "Enqueue D at the back of the frontier queue.",
@@ -2534,7 +2606,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2555,14 +2627,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-18",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-19",
       "narrationSummary": "The frontier is not empty, so BFS can expand C next.",
@@ -2682,7 +2758,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2703,14 +2779,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-19",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-20",
       "narrationSummary": "Dequeue C; it is now the node BFS expands.",
@@ -2824,7 +2904,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2845,14 +2925,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-20",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-21",
       "narrationSummary": "C is not the target, so inspect its neighbors.",
@@ -2967,7 +3051,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2988,14 +3072,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-21",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-22",
       "narrationSummary": "Neighbor A was already visited, so BFS skips it.",
@@ -3110,7 +3198,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3131,14 +3219,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-22",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-23",
       "narrationSummary": "Neighbor D was already visited, so BFS skips it.",
@@ -3253,7 +3345,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3274,14 +3366,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-23",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-24",
       "narrationSummary": "Neighbor E is unseen and should join the frontier.",
@@ -3396,7 +3492,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3417,14 +3513,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-24",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-25",
       "narrationSummary": "Add E to the visited set before enqueuing it.",
@@ -3539,7 +3639,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3560,14 +3660,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-25",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L9",
       "id": "frame-26",
       "narrationSummary": "Enqueue E at the back of the frontier queue.",
@@ -3687,7 +3791,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3708,14 +3812,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-26",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-27",
       "narrationSummary": "The frontier is not empty, so BFS can expand D next.",
@@ -3835,7 +3943,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3856,14 +3964,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-27",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-28",
       "narrationSummary": "Dequeue D; it is now the node BFS expands.",
@@ -3977,7 +4089,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3998,14 +4110,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-28",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-29",
       "narrationSummary": "D is not the target, so inspect its neighbors.",
@@ -4120,7 +4236,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4141,14 +4257,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-29",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-30",
       "narrationSummary": "Neighbor B was already visited, so BFS skips it.",
@@ -4263,7 +4383,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4284,14 +4404,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-30",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-31",
       "narrationSummary": "Neighbor C was already visited, so BFS skips it.",
@@ -4406,7 +4530,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4427,14 +4551,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-31",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-32",
       "narrationSummary": "Neighbor F is unseen and should join the frontier.",
@@ -4548,7 +4676,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4569,14 +4697,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-32",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L8",
       "id": "frame-33",
       "narrationSummary": "Add F to the visited set before enqueuing it.",
@@ -4690,7 +4822,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4711,14 +4843,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-33",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L9",
       "id": "frame-34",
       "narrationSummary": "Enqueue F at the back of the frontier queue.",
@@ -4837,7 +4973,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4858,14 +4994,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-34",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-35",
       "narrationSummary": "The frontier is not empty, so BFS can expand E next.",
@@ -4985,7 +5125,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5006,14 +5146,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-35",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-36",
       "narrationSummary": "Dequeue E; it is now the node BFS expands.",
@@ -5127,7 +5271,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5148,14 +5292,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-36",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-37",
       "narrationSummary": "E is not the target, so inspect its neighbors.",
@@ -5270,7 +5418,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5291,14 +5439,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-37",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-38",
       "narrationSummary": "Neighbor C was already visited, so BFS skips it.",
@@ -5413,7 +5565,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5434,14 +5586,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-38",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L7",
       "id": "frame-39",
       "narrationSummary": "Neighbor F was already visited, so BFS skips it.",
@@ -5555,7 +5711,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5576,14 +5732,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-39",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L3",
       "id": "frame-40",
       "narrationSummary": "The frontier is not empty, so BFS can expand F next.",
@@ -5697,7 +5857,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5718,14 +5878,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-40",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L4",
       "id": "frame-41",
       "narrationSummary": "Dequeue F; it is now the node BFS expands.",
@@ -5833,7 +5997,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5854,14 +6018,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-41",
       "visualChangeType": "mutate"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-42",
       "narrationSummary": "F matches the target, so BFS stops.",
@@ -5969,7 +6137,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5990,14 +6158,18 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-42",
       "visualChangeType": "compare"
     },
     {
-      "checks": ["code-line-sync", "one-visual-change", "viewport"],
+      "checks": [
+        "code-line-sync",
+        "one-visual-change",
+        "viewport"
+      ],
       "codeLine": "L5",
       "id": "frame-43",
       "narrationSummary": "undefined is not the target, so inspect its neighbors.",
@@ -6105,7 +6277,7 @@
           "kind": "queue",
           "pointers": [],
           "title": "Frontier Queue",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6126,7 +6298,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Traversal State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-43",

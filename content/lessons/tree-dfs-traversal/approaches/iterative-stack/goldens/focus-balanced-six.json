@@ -86,7 +86,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -98,7 +98,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-1",
@@ -190,7 +190,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -202,7 +202,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-2",
@@ -295,7 +295,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -307,7 +307,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-3",
@@ -394,7 +394,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -406,7 +406,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-4",
@@ -493,7 +493,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -517,7 +517,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-5",
@@ -611,7 +611,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -635,7 +635,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-6",
@@ -734,7 +734,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -758,7 +758,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-7",
@@ -857,7 +857,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -881,7 +881,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-8",
@@ -975,7 +975,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -999,7 +999,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-9",
@@ -1093,7 +1093,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1122,7 +1122,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-10",
@@ -1222,7 +1222,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1251,7 +1251,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-11",
@@ -1356,7 +1356,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1385,7 +1385,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-12",
@@ -1490,7 +1490,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1519,7 +1519,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-13",
@@ -1619,7 +1619,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1648,7 +1648,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-14",
@@ -1748,7 +1748,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1782,7 +1782,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-15",
@@ -1883,7 +1883,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1917,7 +1917,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-16",
@@ -2013,7 +2013,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2047,7 +2047,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-17",
@@ -2143,7 +2143,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2182,7 +2182,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-18",
@@ -2279,7 +2279,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2318,7 +2318,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-19",
@@ -2409,7 +2409,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2448,7 +2448,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-20",
@@ -2539,7 +2539,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2583,7 +2583,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-21",
@@ -2681,7 +2681,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2725,7 +2725,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-22",
@@ -2823,7 +2823,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2867,7 +2867,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-23",
@@ -2959,7 +2959,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3003,7 +3003,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-24",
@@ -3095,7 +3095,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3144,7 +3144,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-25",
@@ -3236,7 +3236,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "DFS Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3285,7 +3285,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Preorder Output",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         }
       ],
       "sourceEventId": "event-26",

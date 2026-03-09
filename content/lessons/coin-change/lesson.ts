@@ -2,6 +2,7 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { memoDfsCoinChangeCodeTemplate } from "./approaches/memo-dfs/code"
 import { memoDfsCoinChangeNotes } from "./approaches/memo-dfs/notes"
@@ -11,6 +12,7 @@ import {
   traceMemoDfsCoinChange,
 } from "./approaches/memo-dfs/trace"
 import { verifyMemoDfsCoinChange } from "./approaches/memo-dfs/verify"
+import { memoDfsCoinChangeViewSpecs } from "./approaches/memo-dfs/views"
 import { coinChangePresets } from "./presets"
 
 const memoDfsApproach = defineApproachDefinition({
@@ -19,26 +21,7 @@ const memoDfsApproach = defineApproachDefinition({
   codeTemplate: memoDfsCoinChangeCodeTemplate,
   parseInput: parseCoinChangeInput,
   presets: coinChangePresets,
-  requiredViews: [
-    {
-      id: "execution-tree",
-      primitive: "call-tree",
-      role: "primary",
-      title: "Execution Tree",
-    },
-    {
-      id: "call-stack",
-      primitive: "stack",
-      role: "secondary",
-      title: "Call Stack",
-    },
-    {
-      id: "memo-table",
-      primitive: "hash-map",
-      role: "secondary",
-      title: "Memo Table",
-    },
-  ],
+  requiredViews: toRequiredViews(memoDfsCoinChangeViewSpecs),
   trace: traceMemoDfsCoinChange,
   project: projectMemoDfsCoinChange,
   verify: (events, frames) =>

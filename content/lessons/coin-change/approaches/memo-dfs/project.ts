@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -18,6 +19,7 @@ import type {
   EdgeHighlightSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { memoDfsCoinChangeViewSpecs } from "./views"
 
 const INF = "INF" as const
 type FiniteOrInf = number | typeof INF
@@ -202,10 +204,15 @@ function buildCallTreePrimitive(
   event: TraceEvent,
   snapshot: CoinChangeSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(
+    memoDfsCoinChangeViewSpecs,
+    "execution-tree"
+  )
+
   return defineCallTreePrimitiveFrameState({
     id: "execution-tree",
     kind: "call-tree",
-    title: "Execution Tree",
+    title: viewSpec.title,
     subtitle:
       "Each remainder is a recursive subproblem; solved remainders stay visible so memo reuse is explicit.",
     data: {
@@ -213,11 +220,7 @@ function buildCallTreePrimitive(
       rootId: snapshot.calls[0]?.callId ?? "call-1",
     },
     edgeHighlights: buildEdgeHighlights(event, snapshot),
-    viewport: {
-      role: "primary",
-      preferredWidth: 980,
-      minHeight: 380,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -279,20 +282,18 @@ function buildStackPrimitive(
   event: TraceEvent,
   snapshot: CoinChangeSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(memoDfsCoinChangeViewSpecs, "call-stack")
+
   return defineStackPrimitiveFrameState({
     id: "call-stack",
     kind: "stack",
-    title: "Call Stack",
+    title: viewSpec.title,
     subtitle: "Parents wait while one child remainder is explored at a time.",
     data: {
       frames: buildStackFrames(event, snapshot),
       topLabel: snapshot.stack.length > 0 ? "top of stack" : undefined,
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 240,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -340,20 +341,18 @@ function buildHashMapPrimitive(
   event: TraceEvent,
   snapshot: CoinChangeSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(memoDfsCoinChangeViewSpecs, "memo-table")
+
   return defineHashMapPrimitiveFrameState({
     id: "memo-table",
     kind: "hash-map",
-    title: "Memo Table",
+    title: viewSpec.title,
     subtitle:
       "Solved remainders are cached so repeated calls can return immediately.",
     data: {
       entries: buildHashMapEntries(event, snapshot),
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 340,
-      minHeight: 260,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 

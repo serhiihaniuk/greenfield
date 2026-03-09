@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -17,6 +18,7 @@ import type {
   EdgeHighlightSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { queueBfsViewSpecs } from "./views"
 
 type GraphSnapshotNode = {
   id: string
@@ -268,10 +270,11 @@ function buildPrimitiveStates(
   snapshot: GraphBfsSnapshot,
   _mode: VisualizationMode
 ): PrimitiveFrameState[] {
+  const graphView = getLessonViewSpec(queueBfsViewSpecs, "graph")
   const graphPrimitive = defineGraphPrimitiveFrameState({
     id: "graph",
     kind: "graph",
-    title: "Graph Frontier",
+    title: graphView.title,
     subtitle:
       "Visited nodes stay behind the frontier while BFS expands the oldest queued node first.",
     data: {
@@ -279,17 +282,14 @@ function buildPrimitiveStates(
       edges: snapshot.edges,
     },
     edgeHighlights: buildEdgeHighlights(event, snapshot),
-    viewport: {
-      role: "primary",
-      preferredWidth: 960,
-      minHeight: 360,
-    },
+    viewport: graphView.viewport,
   })
 
+  const queueView = getLessonViewSpec(queueBfsViewSpecs, "frontier-queue")
   const queuePrimitive = defineQueuePrimitiveFrameState({
     id: "frontier-queue",
     kind: "queue",
-    title: "Frontier Queue",
+    title: queueView.title,
     subtitle:
       "The front dequeues first and newly discovered nodes enter at the back.",
     data: {
@@ -297,17 +297,14 @@ function buildPrimitiveStates(
       frontLabel: "front",
       backLabel: "back",
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 340,
-      minHeight: 180,
-    },
+    viewport: queueView.viewport,
   })
 
+  const stateView = getLessonViewSpec(queueBfsViewSpecs, "frontier-state")
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "frontier-state",
     kind: "state",
-    title: "Traversal State",
+    title: stateView.title,
     data: {
       values: [
         { label: "start", value: snapshot.startId },
@@ -328,11 +325,7 @@ function buildPrimitiveStates(
         },
       ],
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 220,
-    },
+    viewport: stateView.viewport,
   })
 
   return [graphPrimitive, queuePrimitive, statePrimitive]

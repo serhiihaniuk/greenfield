@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -18,6 +19,7 @@ import type {
   EdgeHighlightSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { iterativeStackTreeDfsViewSpecs } from "./views"
 
 type TreeNodeSnapshot = {
   id: string
@@ -212,10 +214,12 @@ function buildTreePrimitive(
   event: TraceEvent,
   snapshot: TreeDfsTraversalSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(iterativeStackTreeDfsViewSpecs, "tree")
+
   return defineTreePrimitiveFrameState({
     id: "tree",
     kind: "tree",
-    title: "Traversal Tree",
+    title: viewSpec.title,
     subtitle:
       "The stack controls which node is processed next, while preorder records each visit immediately after pop.",
     data: {
@@ -223,11 +227,7 @@ function buildTreePrimitive(
       rootId: snapshot.rootId,
     },
     edgeHighlights: buildTreeEdgeHighlights(event),
-    viewport: {
-      role: "primary",
-      preferredWidth: 920,
-      minHeight: 340,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -249,21 +249,19 @@ function buildStackFrames(snapshot: TreeDfsTraversalSnapshot): StackFrame[] {
 function buildStackPrimitive(
   snapshot: TreeDfsTraversalSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(iterativeStackTreeDfsViewSpecs, "dfs-stack")
+
   return defineStackPrimitiveFrameState({
     id: "dfs-stack",
     kind: "stack",
-    title: "DFS Stack",
+    title: viewSpec.title,
     subtitle:
       "Right is pushed before left so the left child rises to the top of the stack.",
     data: {
       frames: buildStackFrames(snapshot),
       topLabel: snapshot.stack.length > 0 ? "top of stack" : undefined,
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 220,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -279,10 +277,15 @@ function buildOrderPrimitive(
   event: TraceEvent,
   snapshot: TreeDfsTraversalSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(
+    iterativeStackTreeDfsViewSpecs,
+    "visit-order"
+  )
+
   return defineSequencePrimitiveFrameState({
     id: "visit-order",
     kind: "sequence",
-    title: "Preorder Output",
+    title: viewSpec.title,
     subtitle: "Every pop is immediately committed to the traversal order.",
     data: {
       leadingLabel: "first",
@@ -304,11 +307,7 @@ function buildOrderPrimitive(
               emphasis: "strong",
             },
           ],
-    viewport: {
-      role: "secondary",
-      preferredWidth: 420,
-      minHeight: 220,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 

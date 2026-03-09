@@ -2,6 +2,7 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { iterativeStackTreeDfsCodeTemplate } from "./approaches/iterative-stack/code"
 import { iterativeStackTreeDfsNotes } from "./approaches/iterative-stack/notes"
@@ -11,6 +12,7 @@ import {
   traceIterativeStackTreeDfs,
 } from "./approaches/iterative-stack/trace"
 import { verifyIterativeStackTreeDfs } from "./approaches/iterative-stack/verify"
+import { iterativeStackTreeDfsViewSpecs } from "./approaches/iterative-stack/views"
 import { treeDfsTraversalPresets } from "./presets"
 
 const iterativeStackApproach = defineApproachDefinition({
@@ -19,26 +21,7 @@ const iterativeStackApproach = defineApproachDefinition({
   codeTemplate: iterativeStackTreeDfsCodeTemplate,
   parseInput: parseTreeDfsTraversalInput,
   presets: treeDfsTraversalPresets,
-  requiredViews: [
-    {
-      id: "tree",
-      primitive: "tree",
-      role: "primary",
-      title: "Traversal Tree",
-    },
-    {
-      id: "dfs-stack",
-      primitive: "stack",
-      role: "secondary",
-      title: "DFS Stack",
-    },
-    {
-      id: "visit-order",
-      primitive: "sequence",
-      role: "secondary",
-      title: "Visit Order",
-    },
-  ],
+  requiredViews: toRequiredViews(iterativeStackTreeDfsViewSpecs),
   trace: traceIterativeStackTreeDfs,
   project: projectIterativeStackTreeDfs,
   verify: (events, frames) =>

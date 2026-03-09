@@ -86,6 +86,7 @@ Phase 9 now also includes the first shared code-trace execution-token pass: the 
 Phase 9 now also makes author review token-aware at the active-frame level: audit can summarize shared execution tokens and which synchronized views currently project them, so token drift is inspectable instead of inferred.
 Phase 9 now also has a documented stage-composition correction: the old `primary` / `secondary` / `tertiary` routing is not enough for lessons with multiple mechanism views, so the next shell pass should evolve toward `primary`, `co-primary`, `context`, and `support`.
 Phase 9 now also has the first runtime implementation of that model: the player shell can route explicit `co-primary` views into the stage stack, keep explicit `context` views in a separate stage rail, and keep `support` panels out of the stage entirely.
+Graph BFS, Coin Change Memo DFS, and Tree DFS Traversal now also use shared lesson view specs so their stage composition is explicit in lesson metadata and projector viewport roles instead of relying on legacy `secondary` fallbacks.
 
 ## Phase 0: Operating System
 

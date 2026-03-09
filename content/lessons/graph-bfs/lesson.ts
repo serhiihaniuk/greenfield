@@ -2,12 +2,14 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { queueBfsCodeTemplate } from "./approaches/queue-bfs/code"
 import { queueBfsNotes } from "./approaches/queue-bfs/notes"
 import { projectQueueBfs } from "./approaches/queue-bfs/project"
 import { parseGraphBfsInput, traceQueueBfs } from "./approaches/queue-bfs/trace"
 import { verifyQueueBfs } from "./approaches/queue-bfs/verify"
+import { queueBfsViewSpecs } from "./approaches/queue-bfs/views"
 import { graphBfsPresets } from "./presets"
 
 const queueBfsApproach = defineApproachDefinition({
@@ -16,26 +18,7 @@ const queueBfsApproach = defineApproachDefinition({
   codeTemplate: queueBfsCodeTemplate,
   parseInput: parseGraphBfsInput,
   presets: graphBfsPresets,
-  requiredViews: [
-    {
-      id: "graph",
-      primitive: "graph",
-      role: "primary",
-      title: "Graph Frontier",
-    },
-    {
-      id: "frontier-queue",
-      primitive: "queue",
-      role: "secondary",
-      title: "Frontier Queue",
-    },
-    {
-      id: "frontier-state",
-      primitive: "state",
-      role: "secondary",
-      title: "Traversal State",
-    },
-  ],
+  requiredViews: toRequiredViews(queueBfsViewSpecs),
   trace: traceQueueBfs,
   project: projectQueueBfs,
   verify: (events, frames) =>
