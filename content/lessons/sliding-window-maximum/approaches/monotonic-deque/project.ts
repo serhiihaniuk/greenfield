@@ -135,14 +135,14 @@ function buildNarration(
       }
     case "L5":
       return {
-        summary: Boolean(event.payload.result)
+        summary: event.payload.result
           ? `Deque front index ${event.payload.frontIndex} is stale, so it must leave the window.`
           : "The deque front still belongs to the current window, so keep it.",
         segments: [
           tokenSegment("front", frontToken, "front"),
           textSegment(
             "t0",
-            Boolean(event.payload.result)
+            event.payload.result
               ? ` index ${event.payload.frontIndex} is stale, so it must leave the window.`
               : " still belongs to the current window, so keep it."
           ),
@@ -157,14 +157,14 @@ function buildNarration(
       }
     case "L8":
       return {
-        summary: Boolean(event.payload.result)
+        summary: event.payload.result
           ? `Deque back index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
           : "The deque back is larger than the current value, so it can stay as a candidate.",
         segments: [
           tokenSegment("back", backToken, "back"),
           textSegment(
             "t0",
-            Boolean(event.payload.result)
+            event.payload.result
               ? ` index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
               : " is larger than the current value, so it can stay as a candidate."
           ),
@@ -189,7 +189,7 @@ function buildNarration(
       }
     case "L12":
       return {
-        summary: Boolean(event.payload.result)
+        summary: event.payload.result
           ? "The first full window is ready, so emit its maximum."
           : "The window is not full yet, so do not emit an output.",
         segments: [],
@@ -542,8 +542,7 @@ function buildDequeAnnotations(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: SlidingWindowMaximumSnapshot,
-  _mode: VisualizationMode
+  snapshot: SlidingWindowMaximumSnapshot
 ): PrimitiveFrameState[] {
   const arrayViewSpec = getLessonViewSpec(
     monotonicDequeSlidingWindowViewSpecs,
@@ -660,6 +659,7 @@ export function projectMonotonicDequeSlidingWindowMaximum(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -671,7 +671,7 @@ export function projectMonotonicDequeSlidingWindowMaximum(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

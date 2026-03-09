@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { getHotkeyManager } from "@tanstack/hotkeys"
 
 import {
@@ -11,9 +11,6 @@ export function useCommandHotkeys<TContext>(
   commands: readonly AppCommand<TContext>[],
   context: TContext
 ) {
-  const contextRef = useRef(context)
-  contextRef.current = context
-
   useEffect(() => {
     const manager = getHotkeyManager()
     const handles = commands.flatMap((command) =>
@@ -21,7 +18,7 @@ export function useCommandHotkeys<TContext>(
         manager.register(
           shortcut,
           () => {
-            const currentContext = contextRef.current
+            const currentContext = context
 
             if (!isCommandVisible(command, currentContext)) {
               return
@@ -48,5 +45,5 @@ export function useCommandHotkeys<TContext>(
         handle.unregister()
       }
     }
-  }, [commands])
+  }, [commands, context])
 }

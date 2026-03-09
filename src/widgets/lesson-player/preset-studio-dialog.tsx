@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { FileJsonIcon, PlayIcon, SparklesIcon } from "lucide-react"
 
 import type { ApproachDefinition, PresetDefinition } from "@/domains/lessons/types"
@@ -141,8 +141,12 @@ export function PresetStudioDialog({
   onSelectPreset,
   onApplyCustomInput,
 }: PresetStudioDialogProps) {
-  const [selectedEntryId, setSelectedEntryId] = useState<string>(CUSTOM_ENTRY_ID)
-  const [customDraft, setCustomDraft] = useState(rawInput)
+  const [selectedEntryId, setSelectedEntryId] = useState<string>(() =>
+    preferredView === "custom"
+      ? CUSTOM_ENTRY_ID
+      : selectedPresetId ?? approach?.presets[0]?.id ?? CUSTOM_ENTRY_ID
+  )
+  const [customDraft, setCustomDraft] = useState(() => rawInput)
 
   const activePreset = useMemo(
     () => approach?.presets.find((preset) => preset.id === selectedPresetId),
@@ -163,20 +167,6 @@ export function PresetStudioDialog({
   const customFacts = useMemo(() => buildPresetFacts(customDraft), [customDraft])
   const customModeActive = inputSource === "custom"
   const presetModeActive = inputSource === "preset"
-
-  useEffect(() => {
-    if (!open) {
-      return
-    }
-
-    const nextEntryId =
-      preferredView === "custom"
-        ? CUSTOM_ENTRY_ID
-        : selectedPresetId ?? approach?.presets[0]?.id ?? CUSTOM_ENTRY_ID
-
-    setSelectedEntryId(nextEntryId)
-    setCustomDraft(rawInput)
-  }, [approach?.presets, open, preferredView, rawInput, selectedPresetId])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -248,6 +238,9 @@ export function PresetStudioDialog({
               ) : (
                 <div className="space-y-4 p-5">
                   <div className="space-y-2">
+                    <div className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                      What makes it special
+                    </div>
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-base font-semibold text-foreground">
                         {detailPreset?.label ?? "Preset"}

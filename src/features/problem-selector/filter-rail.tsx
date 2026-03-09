@@ -5,7 +5,7 @@ import {
   difficultyLabels,
   mechanismLabels,
 } from "@/domains/lessons/catalog"
-import type { LessonDifficulty } from "@/domains/lessons/types"
+import type { LessonDifficulty } from "@/domains/lessons/catalog-types"
 import { confusionTypeSchema, type ConfusionType } from "@/domains/lessons/types"
 import type { CatalogCountMaps, CatalogFilterState } from "@/features/problem-selector/catalog-query"
 import { FilterSection } from "@/features/problem-selector/filter-section"

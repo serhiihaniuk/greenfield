@@ -161,7 +161,7 @@ function buildGraphNodes(
       : snapshot.inspectingNeighborId
   const found =
     event.codeLine === "L5" && "found" in event.payload
-      ? Boolean(event.payload.found)
+      ? event.payload.found
       : false
 
   return snapshot.nodes.map((node) => {
@@ -188,7 +188,7 @@ function buildGraphNodes(
     } else if (event.codeLine === "L5" && currentId === node.id) {
       annotation = found ? "target" : "not target"
     } else if (event.codeLine === "L7" && inspectingNeighborId === node.id) {
-      annotation = Boolean(event.payload.alreadyVisited) ? "visited" : "unseen"
+      annotation = event.payload.alreadyVisited ? "visited" : "unseen"
     } else if (event.codeLine === "L8" && inspectingNeighborId === node.id) {
       annotation = "mark visited"
     } else if (event.codeLine === "L9" && inspectingNeighborId === node.id) {
@@ -298,10 +298,10 @@ function buildNarration(
       }
     case "L3":
       return {
-        summary: Boolean(event.payload.hasFrontier)
+        summary: event.payload.hasFrontier
           ? `The frontier is not empty, so BFS can expand ${event.payload.frontId} next.`
           : "The frontier is empty, so the target cannot be reached from the start node.",
-        segments: Boolean(event.payload.hasFrontier)
+        segments: event.payload.hasFrontier
           ? [
               textSegment("text-0", "The frontier is not empty, so "),
               tokenSegment(
@@ -341,10 +341,10 @@ function buildNarration(
       }
     case "L5":
       return {
-        summary: Boolean(event.payload.found)
+        summary: event.payload.found
           ? `${event.payload.currentId} matches the target, so BFS stops.`
           : `${event.payload.currentId} is not the target, so inspect its neighbors.`,
-        segments: Boolean(event.payload.found)
+        segments: event.payload.found
           ? [
               tokenSegment(
                 "token-current",
@@ -374,10 +374,10 @@ function buildNarration(
       }
     case "L7":
       return {
-        summary: Boolean(event.payload.alreadyVisited)
+        summary: event.payload.alreadyVisited
           ? `Neighbor ${event.payload.neighborId} was already visited, so BFS skips it.`
           : `Neighbor ${event.payload.neighborId} is unseen and should join the frontier.`,
-        segments: Boolean(event.payload.alreadyVisited)
+        segments: event.payload.alreadyVisited
           ? [
               tokenSegment(
                 "token-current",
@@ -499,8 +499,7 @@ function buildNarration(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: GraphBfsSnapshot,
-  _mode: VisualizationMode
+  snapshot: GraphBfsSnapshot
 ): PrimitiveFrameState[] {
   const graphView = getLessonViewSpec(queueBfsViewSpecs, "graph")
   const graphPrimitive = defineGraphPrimitiveFrameState({
@@ -587,6 +586,7 @@ export function projectQueueBfs(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -598,7 +598,7 @@ export function projectQueueBfs(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

@@ -96,8 +96,7 @@ export function traceMemoDfsCoinChange(input: CoinChangeInput): TraceEvent[] {
   const stack: string[] = []
   let callCounter = 0
   let eventCounter = 0
-  let answer: number | undefined
-
+  let answer: number | undefined = undefined
   const capture = (activeCallId?: string) =>
     snapshot(input, {
       memo: [...memo.entries()]

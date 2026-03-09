@@ -82,7 +82,7 @@ export function traceRecursiveMaximumDepth(
   const calls: CallSnapshot[] = []
   const stack: string[] = []
   const events: TraceEvent[] = []
-  let answer: number | undefined
+  let answer: number | undefined = undefined
   let callCounter = 0
   let eventCounter = 0
 

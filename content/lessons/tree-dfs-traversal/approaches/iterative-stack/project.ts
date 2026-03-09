@@ -313,8 +313,7 @@ function buildOrderPrimitive(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: TreeDfsTraversalSnapshot,
-  _mode: VisualizationMode
+  snapshot: TreeDfsTraversalSnapshot
 ): PrimitiveFrameState[] {
   return [
     buildTreePrimitive(event, snapshot),
@@ -327,6 +326,7 @@ export function projectIterativeStackTreeDfs(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -338,7 +338,7 @@ export function projectIterativeStackTreeDfs(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

@@ -69,7 +69,7 @@ function buildNarration(
       }
     case "L3":
       return {
-        summary: Boolean(event.payload.hasRoom)
+        summary: event.payload.hasRoom
           ? `The heap has room because size ${event.payload.heapSize} is still below k = ${snapshot.k}.`
           : `The heap is full at size ${snapshot.k}, so the new value must beat the root threshold to stay.`,
         segments: [],
@@ -84,7 +84,7 @@ function buildNarration(
     case "L5":
       return event.type === "compare"
         ? {
-            summary: Boolean(event.payload.shouldSwap)
+            summary: event.payload.shouldSwap
               ? `${event.payload.childValue} is smaller than parent ${event.payload.parentValue}, so bubble it up.`
               : `${event.payload.childValue} is not smaller than parent ${event.payload.parentValue}, so the min-heap order already holds.`,
             segments: [],
@@ -97,7 +97,7 @@ function buildNarration(
           }
     case "L6":
       return {
-        summary: Boolean(event.payload.shouldReplace)
+        summary: event.payload.shouldReplace
           ? `${event.payload.currentValue} beats the root threshold ${event.payload.rootValue}, so it enters the top-k set.`
           : `${event.payload.currentValue} does not beat the root threshold ${event.payload.rootValue}, so it is skipped.`,
         segments: [],
@@ -112,7 +112,7 @@ function buildNarration(
     case "L8":
       return event.type === "compare"
         ? {
-            summary: Boolean(event.payload.shouldSwap)
+            summary: event.payload.shouldSwap
               ? `The smaller child ${event.payload.chosenChildValue} is below parent ${event.payload.parentValue}, so sift the replacement down.`
               : `Parent ${event.payload.parentValue} is already below its smaller child ${event.payload.chosenChildValue}, so the heap is restored.`,
             segments: [],
@@ -439,8 +439,7 @@ function buildStatePrimitive(snapshot: HeapTopKSnapshot): PrimitiveFrameState {
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: HeapTopKSnapshot,
-  _mode: VisualizationMode
+  snapshot: HeapTopKSnapshot
 ): PrimitiveFrameState[] {
   return [
     buildHeapPrimitive(event, snapshot),
@@ -453,6 +452,7 @@ export function projectMinHeapTopK(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -464,7 +464,7 @@ export function projectMinHeapTopK(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

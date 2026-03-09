@@ -340,8 +340,7 @@ function buildAnnotations(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: HouseRobberSnapshot,
-  _mode: VisualizationMode
+  snapshot: HouseRobberSnapshot
 ): PrimitiveFrameState[] {
   const pointers = buildPointers(event, snapshot)
   const executionTokens = deriveExecutionTokensFromPointers(pointers)
@@ -404,6 +403,7 @@ export function projectRollingDpHouseRobber(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -415,7 +415,7 @@ export function projectRollingDpHouseRobber(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

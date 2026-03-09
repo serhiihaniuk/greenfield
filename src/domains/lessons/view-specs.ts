@@ -25,9 +25,11 @@ export function defineLessonViewSpecs<
 export function toRequiredViews(
   viewSpecs: readonly LessonViewSpec[]
 ): RequiredView[] {
-  return viewSpecs.map(
-    ({ viewport: _viewport, ...requiredView }) => requiredView
-  )
+  return viewSpecs.map((viewSpec) => {
+    const requiredView = { ...viewSpec }
+    delete requiredView.viewport
+    return requiredView
+  })
 }
 
 export function getLessonViewSpec(

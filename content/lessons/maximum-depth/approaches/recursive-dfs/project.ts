@@ -362,8 +362,7 @@ function buildNarration(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: MaximumDepthSnapshot,
-  _mode: VisualizationMode
+  snapshot: MaximumDepthSnapshot
 ): PrimitiveFrameState[] {
   return [
     buildCallTreePrimitive(event, snapshot),
@@ -375,6 +374,7 @@ export function projectRecursiveMaximumDepth(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -386,7 +386,7 @@ export function projectRecursiveMaximumDepth(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

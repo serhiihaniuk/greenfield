@@ -288,9 +288,7 @@ export function getStaticLessonCommands() {
   return STATIC_COMMANDS
 }
 
-export function buildLessonCommandPalette(
-  _context: LessonPlayerCommandContext
-): AppCommand<LessonPlayerCommandContext>[] {
+export function buildLessonCommandPalette(): AppCommand<LessonPlayerCommandContext>[] {
   return [
     ...STATIC_COMMANDS.filter((command) => command.id !== "open-problem-selector"),
   ]

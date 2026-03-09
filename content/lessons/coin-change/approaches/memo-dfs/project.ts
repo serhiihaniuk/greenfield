@@ -472,8 +472,7 @@ function buildNarration(
 
 function buildPrimitiveStates(
   event: TraceEvent,
-  snapshot: CoinChangeSnapshot,
-  _mode: VisualizationMode
+  snapshot: CoinChangeSnapshot
 ): PrimitiveFrameState[] {
   return [
     buildCallTreePrimitive(event, snapshot),
@@ -486,6 +485,7 @@ export function projectMemoDfsCoinChange(
   events: TraceEvent[],
   mode: VisualizationMode
 ): Frame[] {
+  void mode
   return events
     .filter((event) => event.type !== "complete")
     .map((event, index) => {
@@ -497,7 +497,7 @@ export function projectMemoDfsCoinChange(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-        primitives: buildPrimitiveStates(event, snapshot, mode),
+      primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

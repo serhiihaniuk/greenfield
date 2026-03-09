@@ -48,7 +48,6 @@ export function ProblemSelectorDialog({
     resetFilters,
   } = useCatalogFilter({
     entries,
-    open,
     activeLessonId,
   })
 

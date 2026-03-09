@@ -11,10 +11,7 @@ type FrameExecutionToken = {
 
 function splitTokenContent(
   content: string,
-  token: FrameExecutionToken,
-  _lineId: string,
-  _tokenIndex: number,
-  _partIndex: number
+  token: FrameExecutionToken
 ) {
   if (!content || !token.label) {
     return [{ content }]
@@ -64,22 +61,16 @@ function decorateLineTokens(
     return line
   }
 
-  const decoratedTokens = line.tokens.flatMap((token, tokenIndex) => {
+  const decoratedTokens = line.tokens.flatMap((token) => {
     let parts = [{ ...token }]
 
     for (const frameToken of frameTokens) {
-      parts = parts.flatMap((part, partIndex) => {
+      parts = parts.flatMap((part) => {
         if (part.tokenId || !part.content.trim()) {
           return [part]
         }
 
-        return splitTokenContent(
-          part.content,
-          frameToken,
-          line.id,
-          tokenIndex,
-          partIndex
-        ).map((splitPart) => ({
+        return splitTokenContent(part.content, frameToken).map((splitPart) => ({
           ...part,
           ...splitPart,
         }))

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
 import type { CatalogEntry } from "@/domains/lessons/catalog"
 import type {
@@ -16,7 +16,6 @@ import {
 
 type UseCatalogFilterOptions = {
   entries: CatalogEntry[]
-  open: boolean
   activeLessonId?: string
 }
 
@@ -34,16 +33,9 @@ function toggleInSet<T extends string>(current: Set<T>, value: T) {
 
 export function useCatalogFilter({
   entries,
-  open,
   activeLessonId,
 }: UseCatalogFilterOptions) {
   const [filter, setFilter] = useState<CatalogFilterState>(emptyCatalogFilter)
-
-  useEffect(() => {
-    if (!open) {
-      setFilter(emptyCatalogFilter)
-    }
-  }, [open])
 
   const results = useMemo(
     () =>

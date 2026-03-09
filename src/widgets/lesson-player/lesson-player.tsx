@@ -7,6 +7,8 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   KeyboardIcon,
+  PauseIcon,
+  PlayIcon,
   RotateCcwIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
@@ -243,7 +245,10 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const nextVisibleFrame =
     currentFrameIndex + 1 < frames.length ? frames[currentFrameIndex + 1] : undefined
   const activeEvent = trace.find((event) => event.id === activeFrame?.sourceEventId)
-  const activePrimitives = activeFrame?.primitives ?? []
+  const activePrimitives = useMemo(
+    () => activeFrame?.primitives ?? [],
+    [activeFrame]
+  )
   const {
     primaryPrimitives,
     supportPrimitives,
@@ -421,15 +426,14 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       setApproachId,
       setLessonId,
       setPlaybackSpeed,
-      theme,
       toggleAuthorMode,
       togglePlayback,
       toggleTheme,
     ]
   )
   const paletteCommands = useMemo(
-    () => buildLessonCommandPalette(commandContext),
-    [commandContext]
+    () => buildLessonCommandPalette(),
+    []
   )
   const paletteGroups = useMemo(
     () => Object.entries(groupVisibleCommands(paletteCommands, commandContext)),
@@ -465,7 +469,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   )
   const firstFrameCommand = commandById.get("jump-first")
   const previousFrameCommand = commandById.get("previous-frame")
-  const playPauseCommand = commandById.get("toggle-playback")
+  const togglePlaybackCommand = commandById.get("toggle-playback")
   const nextFrameCommand = commandById.get("next-frame")
   const lastFrameCommand = commandById.get("jump-last")
   const resetPlaybackCommand = commandById.get("reset-playback")
@@ -780,6 +784,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           <span className="truncate">
             {inputSource === "custom" ? "Custom input" : activePreset?.label ?? "Preset studio"}
           </span>
+          {inputSource === "custom" ? <Badge variant="secondary">custom</Badge> : null}
           <CommandShortcutHints command={presetStudioCommand} />
         </Button>
 
@@ -825,6 +830,36 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <TooltipContent>
               <CommandTooltipShortcut command={previousFrameCommand}>
                 Previous
+              </CommandTooltipShortcut>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => togglePlaybackCommand && runCommand(togglePlaybackCommand)}
+                  disabled={togglePlaybackCommand ? commandDisabled(togglePlaybackCommand, commandContext) : learnerModeBlocked}
+                  aria-label={playbackStatus === "playing" ? "Pause" : "Play"}
+                />
+              }
+            >
+              {playbackStatus === "playing" ? (
+                <>
+                  <PauseIcon className="!size-4 stroke-[2.5]" data-icon="inline-start" />
+                  Pause
+                </>
+              ) : (
+                <>
+                  <PlayIcon className="!size-4 fill-current stroke-[2.5]" data-icon="inline-start" />
+                  Play
+                </>
+              )}
+            </TooltipTrigger>
+            <TooltipContent>
+              <CommandTooltipShortcut command={togglePlaybackCommand}>
+                {playbackStatus === "playing" ? "Pause playback" : "Play"}
               </CommandTooltipShortcut>
             </TooltipContent>
           </Tooltip>
@@ -1074,33 +1109,37 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         </DialogContent>
       </Dialog>
 
-      <PresetStudioDialog
-        open={presetStudioOpen}
-        onOpenChange={setPresetStudioOpen}
-        approach={approach}
-        inputSource={inputSource}
-        selectedPresetId={selectedPresetId}
-        rawInput={rawInput}
-        preferredView={presetStudioView}
-        shortcutHints={presetStudioCommand?.shortcutHints}
-        onSelectPreset={selectPreset}
-        onApplyCustomInput={(nextRawInput) => {
-          setRawInput(nextRawInput)
-          applyCustomInput()
-        }}
-      />
+      {presetStudioOpen ? (
+        <PresetStudioDialog
+          open={presetStudioOpen}
+          onOpenChange={setPresetStudioOpen}
+          approach={approach}
+          inputSource={inputSource}
+          selectedPresetId={selectedPresetId}
+          rawInput={rawInput}
+          preferredView={presetStudioView}
+          shortcutHints={presetStudioCommand?.shortcutHints}
+          onSelectPreset={selectPreset}
+          onApplyCustomInput={(nextRawInput) => {
+            setRawInput(nextRawInput)
+            applyCustomInput()
+          }}
+        />
+      ) : null}
 
-      <ProblemSelectorDialog
-        open={problemSelectorOpen}
-        onOpenChange={setProblemSelectorOpen}
-        activeLessonId={lesson?.id}
-        entries={catalogEntries}
-        shortcutHints={problemSelectorCommand?.shortcutHints}
-        onSelectLesson={(slug) => {
-          navigate(`/lessons/${slug}`)
-          setProblemSelectorOpen(false)
-        }}
-      />
+      {problemSelectorOpen ? (
+        <ProblemSelectorDialog
+          open={problemSelectorOpen}
+          onOpenChange={setProblemSelectorOpen}
+          activeLessonId={lesson?.id}
+          entries={catalogEntries}
+          shortcutHints={problemSelectorCommand?.shortcutHints}
+          onSelectLesson={(slug) => {
+            navigate(`/lessons/${slug}`)
+            setProblemSelectorOpen(false)
+          }}
+        />
+      ) : null}
     </main>
   )
 }
