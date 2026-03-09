@@ -30,7 +30,8 @@ On desktop, the default lesson experience should look like:
 - synchronized auxiliary panels only when they improve understanding
 - narration anchored close to the active step
 - code trace docked into the same surface as the visualization
-- a command palette entry point for task and shell actions instead of a dense row of global selectors
+- a dedicated problem-selector modal for lesson discovery instead of a dense row of global selectors
+- a separate command palette path for shell and playback actions
 - dark theme, low chrome, and minimal wasted space
 
 A learner opening a lesson should immediately understand:
@@ -125,8 +126,24 @@ It is not the visualization primitive system.
 ### State and data modeling
 
 - pure TypeScript modules for lesson definitions, tracing, projection, and verification
-- `Zustand` for player state, shell state, and author-mode inspection state
+- `Zustand` for player runtime state and author-mode inspection state
+- route and dialog shell state kept local to the shell boundary unless it needs persistence or cross-surface coordination
 - `Zod` for lesson schema validation, preset parsing, and custom input parsing
+
+## Navigation Model
+
+Lesson identity should be path-based.
+
+Rules:
+
+- `/lessons/:slug` names what lesson the learner is studying
+- the URL is the only source of truth for active lesson identity
+- secondary lesson state such as approach or preset may layer on as query params later
+- selecting a lesson should navigate, not mutate a parallel lesson-selection store
+- invalid lesson slugs should redirect to the default registry lesson rather than leaving stale runtime mounted
+
+The problem selector is the learner-facing lesson catalog for this routing model.
+The command palette remains infrastructure for app actions, not lesson discovery.
 
 ### Code rendering and narration
 
@@ -944,6 +961,7 @@ Commands should be defined once, then exposed through:
 
 - keyboard shortcuts
 - the command palette
+- the problem selector for lesson discovery
 - visible footer or shell controls
 
 A lesson is not ready until it passes:

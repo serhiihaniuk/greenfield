@@ -1,4 +1,5 @@
 import { useEffect, useEffectEvent, useMemo, useState, useCallback } from "react"
+import { useNavigate } from "react-router"
 import {
   BookOpenIcon,
   ChevronFirstIcon,
@@ -15,6 +16,7 @@ import {
 
 import { useTheme } from "@/app/providers/theme-provider"
 import { listLessons } from "@/domains/lessons/loaders"
+import { listCatalogEntries } from "@/domains/lessons/catalog"
 import type { Frame } from "@/domains/projection/types"
 import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
@@ -41,6 +43,7 @@ import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
 import { PresetStudioDialog } from "@/widgets/lesson-player/preset-studio-dialog"
 import { VerificationBlockerDialog } from "@/widgets/lesson-player/verification-blocker-dialog"
+import { ProblemSelectorDialog } from "@/features/problem-selector/problem-selector-dialog"
 import { collectRelatedIssues } from "@/widgets/author-review/model"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
 import { NarrationSegments } from "@/shared/visualization/views/narration-view"
@@ -230,8 +233,11 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const [presetStudioView, setPresetStudioView] = useState<"presets" | "custom">("presets")
   const [hotkeysOpen, setHotkeysOpen] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
+  const [problemSelectorOpen, setProblemSelectorOpen] = useState(false)
   const [selectedPrimitiveId, setSelectedPrimitiveId] = useState<string>()
   const lessons = useMemo(() => listLessons(), [])
+  const catalogEntries = useMemo(() => listCatalogEntries(), [])
+  const navigate = useNavigate()
   const activeFrame = frames[currentFrameIndex]
   const previousVisibleFrame =
     currentFrameIndex > 0 ? frames[currentFrameIndex - 1] : undefined
@@ -362,6 +368,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       playbackStatus,
       learnerModeBlocked,
       authorMode,
+      problemSelectorOpen,
       commandOpen,
       hotkeysOpen,
       presetStudioOpen,
@@ -381,6 +388,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       jumpToLast,
       reset,
       toggleAudit: toggleAuthorMode,
+      openProblemSelector: () => setProblemSelectorOpen(true),
       openCommandPalette: () => setCommandOpen(true),
       closeCommandPalette: () => setCommandOpen(false),
       toggleHotkeys: () => setHotkeysOpen((value) => !value),
@@ -406,6 +414,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       playbackStatus,
       play,
       previousFrame,
+      problemSelectorOpen,
       presetStudioOpen,
       reset,
       selectPreset,
@@ -461,7 +470,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const nextFrameCommand = commandById.get("next-frame")
   const lastFrameCommand = commandById.get("jump-last")
   const resetPlaybackCommand = commandById.get("reset-playback")
-  const taskPaletteCommand = commandById.get("open-command-palette")
+  const problemSelectorCommand = commandById.get("open-problem-selector")
   const presetStudioCommand = commandById.get("open-preset-studio")
   const customInputCommand = commandById.get("open-custom-input")
   const auditCommand = commandById.get("toggle-audit")
@@ -726,19 +735,12 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       </div>
 
       <footer className="flex h-12 shrink-0 items-center gap-1 border-t border-border/40 px-2">
-        <Button
-          size="sm"
-          variant="outline"
-          className="w-[16rem] justify-between gap-2"
-          onClick={() => taskPaletteCommand && runCommand(taskPaletteCommand)}
-          aria-label="Open task command palette"
-        >
-          <span className="inline-flex min-w-0 items-center gap-2">
+        <div className="min-w-0 max-w-[15rem] px-1">
+          <div className="inline-flex max-w-full items-center gap-2 text-sm text-muted-foreground">
             <BookOpenIcon data-icon="inline-start" />
-            <span className="truncate">{lesson?.title ?? "Current task"}</span>
-          </span>
-          <CommandShortcutHints command={taskPaletteCommand} className="shrink-0" />
-        </Button>
+            <span className="truncate">{lesson?.title ?? "Current lesson"}</span>
+          </div>
+        </div>
 
         <Select
           value={approachId || null}
@@ -1014,11 +1016,11 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         open={commandOpen}
         onOpenChange={setCommandOpen}
         title="Command Palette"
-        description="Search tasks, approaches, presets, playback controls, and audit tools."
+        description="Run playback, audit, and workspace actions from the shared command registry."
       >
-        <CommandInput placeholder="Search tasks, playback, audit, and workspace actions..." />
+        <CommandInput placeholder="Search playback, audit, and workspace actions..." />
         <CommandList>
-          <CommandEmpty>No matching commands or tasks.</CommandEmpty>
+          <CommandEmpty>No matching workspace actions.</CommandEmpty>
           {paletteGroups.map(([group, commands]) => (
             <CommandGroup key={group} heading={group}>
               {commands.map((command) => (
@@ -1105,6 +1107,18 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         onApplyCustomInput={(nextRawInput) => {
           setRawInput(nextRawInput)
           applyCustomInput()
+        }}
+      />
+
+      <ProblemSelectorDialog
+        open={problemSelectorOpen}
+        onOpenChange={setProblemSelectorOpen}
+        activeLessonId={lesson?.id}
+        entries={catalogEntries}
+        shortcutHints={problemSelectorCommand?.shortcutHints}
+        onSelectLesson={(slug) => {
+          navigate(`/lessons/${slug}`)
+          setProblemSelectorOpen(false)
         }}
       />
     </main>

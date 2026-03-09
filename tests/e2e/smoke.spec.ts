@@ -30,6 +30,19 @@ test("switches lessons and presets through the footer controls", async ({ page }
   await expect(customInputEditor(page)).toContainText('"targetId": "Z"')
 })
 
+test("loads lessons from direct URLs and keeps browser navigation in sync", async ({
+  page,
+}) => {
+  await page.goto("/lessons/graph-bfs")
+  await expectRuntimeReady(page, "Graph Frontier", "Frontier Queue")
+
+  await selectFooterOption(page, "Lesson", "House Robber")
+  await expectRuntimeReady(page, "House Values", "DP State")
+
+  await page.goBack()
+  await expectRuntimeReady(page, "Graph Frontier", "Frontier Queue")
+})
+
 test("shows preset detail context before applying a scenario", async ({ page }) => {
   await page.goto("/")
 
@@ -95,15 +108,15 @@ test("audits the live runtime through the audit timeline and primitive focus con
   await expect(timeline).toHaveValue("1")
 })
 
-test("opens task search through the command palette hotkey", async ({ page }) => {
+test("opens the problem selector through the global hotkey", async ({ page }) => {
   await page.goto("/")
   await expectRuntimeReady(page, "Search Interval", "State")
 
   await page.keyboard.press("Control+e")
-  const dialog = page.getByRole("dialog", { name: "Command Palette" })
+  const dialog = page.getByRole("dialog", { name: "Choose a Problem" })
   await expect(dialog).toBeVisible()
-  await dialog.getByPlaceholder(/search tasks, playback, audit, and workspace actions/i).fill("House Robber")
-  await dialog.getByText("House Robber", { exact: true }).click()
+  await dialog.getByPlaceholder(/search lessons/i).fill("House Robber")
+  await dialog.getByRole("button", { name: /house robber/i }).click()
 
   await expectRuntimeReady(page, "House Values", "DP State")
 })
@@ -125,5 +138,5 @@ test("ignores global shortcuts while editing custom input", async ({ page }) => 
   await expect(customInputEditor(page)).toBeFocused()
   await expect(timeline).toHaveValue("0")
   await expect(page.getByTestId("author-review-drawer")).toHaveCount(0)
-  await expect(page.getByRole("dialog", { name: "Command Palette" })).toHaveCount(0)
+  await expect(page.getByRole("dialog", { name: "Choose a Problem" })).toHaveCount(0)
 })

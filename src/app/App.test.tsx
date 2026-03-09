@@ -44,7 +44,31 @@ describe("App", () => {
     await renderApp()
 
     expect(await screen.findByRole("button", { name: /^play$/i })).toBeInTheDocument()
-    expect(screen.getByRole("button", { name: /open task command palette/i })).toBeInTheDocument()
+    expect(screen.getByText("Binary Search", { exact: true })).toBeInTheDocument()
+    expect(
+      screen.getByRole("button", { name: /open preset studio/i })
+    ).toBeInTheDocument()
+  })
+
+  it("loads the lesson from the URL path", async () => {
+    window.history.replaceState({}, "", "/lessons/graph-bfs")
+
+    await renderApp()
+
+    expect(
+      await screen.findByRole("heading", { name: "Graph Frontier" })
+    ).toBeInTheDocument()
+  })
+
+  it("redirects invalid lesson slugs back to the default lesson", async () => {
+    window.history.replaceState({}, "", "/lessons/not-real")
+
+    await renderApp()
+
+    expect(
+      await screen.findByRole("heading", { name: "Search Interval" })
+    ).toBeInTheDocument()
+    expect(window.location.pathname).toBe("/lessons/binary-search")
   })
 
   it("opens custom input through the dialog shell", async () => {

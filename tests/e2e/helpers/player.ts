@@ -6,14 +6,16 @@ export async function selectFooterOption(
   option: string
 ) {
   if (label === "Lesson") {
-    await page
-      .getByRole("button", { name: "Open task command palette" })
-      .click({ force: true })
+    await expect(
+      page.getByRole("button", { name: "Play", exact: true })
+    ).toBeVisible()
+    await page.locator("body").click({ position: { x: 8, y: 8 } })
+    await page.keyboard.press("Control+e")
 
-    const dialog = page.getByRole("dialog", { name: "Command Palette" })
+    const dialog = page.getByRole("dialog", { name: "Choose a Problem" })
     await expect(dialog).toBeVisible()
-    await dialog.getByPlaceholder(/search tasks, playback, audit, and workspace actions/i).fill(option)
-    await dialog.getByText(option, { exact: true }).click()
+    await dialog.getByPlaceholder(/search lessons/i).fill(option)
+    await dialog.getByRole("button", { name: new RegExp(option, "i") }).click()
 
     await expect(dialog).toBeHidden()
     return

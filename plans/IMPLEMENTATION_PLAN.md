@@ -88,6 +88,7 @@ Phase 9 now also makes author review token-aware at the active-frame level: audi
 Phase 9 now also has a documented stage-composition correction: `secondary` is now reserved for true auxiliary aids such as recursive call stacks and memo tables, while arrays, queues, deques, heaps, graphs, trees, and output sequences stay in the main stage as `primary` or `co-primary`.
 Phase 9 now also has the runtime implementation of that model: the player shell routes `primary`, `co-primary`, and rare `context` views into the stage stack, renders only explicit `secondary` aids in the right auxiliary rail, and keeps `support` panels out of the stage entirely.
 Graph BFS, Coin Change Memo DFS, Heap Top K, Maximum Depth, Sliding Window Maximum, and Tree DFS Traversal now also use shared lesson view specs so their stage composition is explicit in lesson metadata and projector viewport roles instead of relying on legacy `secondary` fallbacks.
+Phase 9 now also moves lesson identity into the router: `/lessons/:slug` is the canonical lesson URL, `/` redirects to the default registry lesson, invalid slugs redirect safely, and the new problem-selector modal on `Ctrl + E` replaces generic lesson-switching commands with a typed learner-facing catalog filtered by category, difficulty, mechanism, confusion type, and flagship status.
 
 ## Phase 0: Operating System
 

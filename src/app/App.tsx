@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react"
 
-import { LessonPlayer } from "@/widgets/lesson-player/lesson-player"
+import { AppRouter } from "@/app/router"
 import { TooltipProvider } from "@/shared/ui/tooltip"
 
 const PrimitiveAudit = lazy(() =>
@@ -24,7 +24,7 @@ export function App() {
 
   return (
     <TooltipProvider>
-      <LessonPlayer lessonId="binary-search" />
+      <AppRouter />
     </TooltipProvider>
   )
 }

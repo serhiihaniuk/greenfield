@@ -15,6 +15,7 @@ export type LessonPlayerCommandContext = {
   playbackStatus: PlaybackStatus
   learnerModeBlocked: boolean
   authorMode: boolean
+  problemSelectorOpen: boolean
   commandOpen: boolean
   hotkeysOpen: boolean
   presetStudioOpen: boolean
@@ -34,6 +35,7 @@ export type LessonPlayerCommandContext = {
   jumpToLast: () => void
   reset: () => void
   toggleAudit: () => void
+  openProblemSelector: () => void
   openCommandPalette: () => void
   closeCommandPalette: () => void
   toggleHotkeys: () => void
@@ -45,6 +47,7 @@ const PLAYBACK_SPEED_OPTIONS: PlaybackSpeed[] = ["0.5x", "1x", "1.5x", "2x"]
 
 function playerCommandsEnabled(context: LessonPlayerCommandContext) {
   return (
+    !context.problemSelectorOpen &&
     !context.commandOpen &&
     !context.hotkeysOpen &&
     !context.presetStudioOpen &&
@@ -66,16 +69,20 @@ function cyclePlaybackSpeed(
 
 const STATIC_COMMANDS: readonly AppCommand<LessonPlayerCommandContext>[] = [
   {
-    id: "open-command-palette",
+    id: "open-problem-selector",
     group: "Workspace",
-    title: "Open command palette",
-    description: "Search lessons, approaches, presets, playback actions, and audit tools.",
-    keywords: ["search", "command", "palette", "task"],
+    title: "Open problem selector",
+    description: "Browse verified algorithm lessons by category, difficulty, mechanism, and confusion pattern.",
+    keywords: ["search", "problem", "lesson", "task", "catalog"],
     shortcuts: ["Mod+E"],
     shortcutHints: [["Ctrl", "E"]],
     scope: "global",
-    isEnabled: (context) => !context.hotkeysOpen && !context.presetStudioOpen,
-    run: (context) => context.openCommandPalette(),
+    isEnabled: (context) =>
+      !context.problemSelectorOpen &&
+      !context.commandOpen &&
+      !context.hotkeysOpen &&
+      !context.presetStudioOpen,
+    run: (context) => context.openProblemSelector(),
   },
   {
     id: "toggle-hotkeys",
@@ -282,57 +289,10 @@ export function getStaticLessonCommands() {
 }
 
 export function buildLessonCommandPalette(
-  context: LessonPlayerCommandContext
+  _context: LessonPlayerCommandContext
 ): AppCommand<LessonPlayerCommandContext>[] {
-  const lessonCommands = context.lessons.map((lesson) => ({
-    id: `lesson:${lesson.id}`,
-    group: "Tasks",
-    title: lesson.title,
-    description: lesson.shortPatternNote,
-    keywords: [lesson.id, lesson.slug, lesson.confusionType],
-    isEnabled: (current: LessonPlayerCommandContext) => current.lesson?.id !== lesson.id,
-    run: (current: LessonPlayerCommandContext) => {
-      current.setLessonId(lesson.id)
-      current.closeCommandPalette()
-    },
-  }))
-
-  const approachCommands =
-    context.lesson?.approaches.map((approach) => ({
-      id: `approach:${approach.id}`,
-      group: "Approaches",
-      title: approach.label,
-      description: `Switch ${context.lesson?.title ?? "task"} to the ${approach.label} approach.`,
-      keywords: [approach.id],
-      isEnabled: (current: LessonPlayerCommandContext) => current.approachId !== approach.id,
-      run: (current: LessonPlayerCommandContext) => {
-        current.setApproachId(approach.id)
-        current.closeCommandPalette()
-      },
-    })) ?? []
-
-  const presetCommands =
-    context.lesson?.approaches
-      .find((approach) => approach.id === context.approachId)
-      ?.presets.map((preset) => ({
-        id: `preset:${preset.id}`,
-        group: "Presets",
-        title: preset.label,
-        description: preset.description ?? `Replay the ${preset.label} preset.`,
-        keywords: [preset.id],
-        isEnabled: (current: LessonPlayerCommandContext) =>
-          current.selectedPresetId !== preset.id,
-        run: (current: LessonPlayerCommandContext) => {
-          current.selectPreset(preset.id)
-          current.closeCommandPalette()
-        },
-      })) ?? []
-
   return [
-    ...lessonCommands,
-    ...approachCommands,
-    ...presetCommands,
-    ...STATIC_COMMANDS.filter((command) => command.id !== "open-command-palette"),
+    ...STATIC_COMMANDS.filter((command) => command.id !== "open-problem-selector"),
   ]
 }
 

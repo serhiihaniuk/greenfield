@@ -247,10 +247,26 @@ That command layer should:
 
 - define shared action ids, labels, shortcuts, and enablement rules
 - gate shortcut execution with the same learner-mode and dialog-state rules as pointer controls
-- provide the same actions to the command palette and hotkey help surface
-- keep lesson, approach, and preset switching reachable through the command palette instead of only through footer-local controls
+- provide the same actions to the command palette and hotkey help surface where those actions belong
+- let the learner-facing problem selector own lesson discovery while the command palette remains an app-action surface
+- keep lesson switching URL-driven so command actions and selector actions both navigate to the lesson path instead of mutating parallel shell state
+- keep approach and preset switching reachable through dedicated lesson controls instead of forcing all lesson configuration through the command palette
 - keep preset selection reachable through the preset studio as well as direct command actions
 - store shortcut display data in a structured form so combinations and alternatives are rendered consistently by one shared `Kbd` component
+
+## Routing Contract
+
+The active lesson should be driven by the router, not by a hardcoded lesson id
+inside the shell.
+
+Rules:
+
+- `/` redirects to the default lesson slug from the lesson registry
+- `/lessons/:slug` is the canonical learner route
+- the route slug is the only source of truth for active lesson identity
+- runtime store initialization reacts to route changes
+- shell dialogs such as the problem selector should remain local shell state unless they need persistence
+- invalid lesson slugs should redirect to the default lesson and warn in development
 
 ## Runtime Error States
 

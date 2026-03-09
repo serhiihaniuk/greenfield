@@ -187,6 +187,9 @@ Completed so far:
 - Phase 9 now also has a stricter stage-composition rule: only recursive call stacks and memo tables may use the auxiliary rail, while arrays, queues, deques, heaps, graphs, trees, and output sequences stay in the main visualization stage
 - Phase 9 now implements that rule in code: the shell routes `primary`, `co-primary`, and rare `context` views into the main stage stack, while only explicit `secondary` aids render in the right auxiliary rail and `support` stays beside narration and code
 - Graph BFS, Coin Change Memo DFS, Heap Top K, Maximum Depth, Sliding Window Maximum, and Tree DFS Traversal now use explicit shared view-spec contracts for `primary` / `co-primary` / `secondary` / `support` instead of inheriting stage placement from legacy `secondary` fallbacks
+- lesson selection is now route-driven instead of hardcoded in the app shell: `/lessons/:slug` is the canonical lesson URL, `/` redirects to the default registry lesson, and invalid lesson slugs redirect safely instead of leaving stale runtime mounted
+- the learner-facing task switch has been replaced with a dedicated problem-selector modal on `Ctrl + E`, backed by a typed lesson catalog with category, difficulty, mechanism, confusion, and flagship-status metadata
+- the generic command palette remains as shell-action infrastructure, but it is no longer the primary lesson-discovery surface
 
 ## Immediate Next Step
 
@@ -198,6 +201,7 @@ Continue Phase 9 from the plan:
 4. audit all flagship lessons against the new pedagogical stage roles so the shell can stop treating mechanism views as generic side panels
 5. continue expanding cross-view execution tokens from the first array pilots into recursion, then into later code-trace rendering once the token contract feels stable
 6. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
+7. broaden the new problem-selector catalog once more lessons exist, while keeping the route slug as the only lesson-selection source of truth
 
 ## Canonical Files
 

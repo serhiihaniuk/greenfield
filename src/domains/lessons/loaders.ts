@@ -11,15 +11,27 @@ export function listLessons(): AnyLessonDefinition[] {
   return lessonRegistry.all
 }
 
+export function getDefaultLesson(): AnyLessonDefinition {
+  const firstLesson = lessonRegistry.all[0]
+
+  if (!firstLesson) {
+    throw new Error("No lessons are registered.")
+  }
+
+  return firstLesson
+}
+
+export function getDefaultLessonSlug() {
+  return getDefaultLesson().slug
+}
+
+export function hasLessonSlug(slug: string) {
+  return lessonRegistry.bySlug.has(slug)
+}
+
 export function resolveLesson(lessonIdOrSlug?: string): AnyLessonDefinition {
   if (!lessonIdOrSlug) {
-    const firstLesson = lessonRegistry.all[0]
-
-    if (!firstLesson) {
-      throw new Error("No lessons are registered.")
-    }
-
-    return firstLesson
+    return getDefaultLesson()
   }
 
   return lessonRegistry.byId.has(lessonIdOrSlug)
