@@ -7,6 +7,7 @@ import {
   buildAuthorTimeline,
   collectRelatedIssues,
   summarizeFrameDiff,
+  summarizeExecutionTokens,
   summarizeNarrationBindings,
 } from "@/widgets/author-review/model"
 
@@ -202,6 +203,73 @@ describe("author review model", () => {
         blockingIssueCount: 1,
         warningIssueCount: 1,
         isActive: true,
+      },
+    ])
+  })
+
+  it("summarizes shared execution tokens across synchronized frame views", () => {
+    const tokenFrame = {
+      ...currentFrame,
+      narration: {
+        ...currentFrame.narration,
+        segments: [
+          {
+            id: "segment-1",
+            text: "lo",
+            tokenId: "lo",
+            tokenStyle: "accent-1",
+          },
+        ],
+      },
+      primitives: [
+        {
+          id: "state",
+          kind: "state",
+          data: {
+            values: [
+              {
+                label: "lo",
+                value: 0,
+                tokenId: "lo",
+                tokenStyle: "accent-1",
+              },
+            ],
+          },
+        },
+        {
+          id: "code-trace",
+          kind: "code-trace",
+          data: {
+            lines: [
+              {
+                id: "L1",
+                lineNumber: 1,
+                text: "let lo = 0",
+                tokens: [
+                  { content: "let " },
+                  {
+                    content: "lo",
+                    tokenId: "lo",
+                    tokenStyle: "accent-1",
+                  },
+                  { content: " = 0" },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    } as Frame
+
+    const tokens = summarizeExecutionTokens(tokenFrame)
+
+    expect(tokens).toEqual([
+      {
+        id: "lo",
+        label: "lo",
+        style: "accent-1",
+        sourceCount: 3,
+        sources: ["state", "code-trace", "narration"],
       },
     ])
   })

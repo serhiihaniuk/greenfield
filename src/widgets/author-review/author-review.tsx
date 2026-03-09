@@ -3,6 +3,7 @@ import { useState } from "react"
 import type { Frame } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import type { VerificationIssue, VerificationReport } from "@/domains/verification/types"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { Badge } from "@/shared/ui/badge"
 import { Button } from "@/shared/ui/button"
 import {
@@ -18,6 +19,7 @@ import {
   collectRelatedIssues,
   formatAuthorValue,
   summarizeFrameDiff,
+  summarizeExecutionTokens,
   summarizeNarrationBindings,
 } from "@/widgets/author-review/model"
 
@@ -257,6 +259,7 @@ export function AuthorReview({
   const [issueFilter, setIssueFilter] = useState<"all" | "blocking" | "warnings">("all")
   const issueSummary = collectRelatedIssues(verification, frame, event)
   const narrationBindings = summarizeNarrationBindings(frame, event)
+  const executionTokens = summarizeExecutionTokens(frame)
   const diffFromPrevious = summarizeFrameDiff(previousFrame, frame)
   const diffToNext = summarizeFrameDiff(frame, nextFrame)
   const timeline = buildAuthorTimeline(trace, frames, verification, frame?.id)
@@ -391,6 +394,47 @@ export function AuthorReview({
 
       <Card size="sm">
         <CardHeader>
+          <CardTitle>Execution Tokens</CardTitle>
+          <CardDescription>
+            Shared execution objects should stay recognizable across the synchronized views in this frame.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap gap-1.5">
+            <StatBadge label="tokens" value={executionTokens.length} />
+          </div>
+          {executionTokens.length > 0 ? (
+            <div className="space-y-2">
+              {executionTokens.map((token) => (
+                <div
+                  key={token.id}
+                  className="rounded-lg border border-border/50 bg-background/60 p-2.5"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <ExecutionTokenMark label={token.label} style={token.style} />
+                    <Badge variant="outline">{token.id}</Badge>
+                    <Badge variant="outline">views {token.sourceCount}</Badge>
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {token.sources.map((source) => (
+                      <Badge key={`${token.id}-${source}`} variant="secondary">
+                        {source}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-xs text-muted-foreground">
+              No shared execution tokens are projected in the active frame.
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card size="sm">
+        <CardHeader>
           <CardTitle>Frame Diffs</CardTitle>
           <CardDescription>
             Compare the active frame against its adjacent states to expose overloaded or empty transitions.
@@ -479,7 +523,11 @@ export function AuthorReview({
                   <span className="font-mono text-foreground/90">{segment.id}</span>
                   <Badge variant="outline">{segment.tone ?? "default"}</Badge>
                   {segment.targetId ? <Badge variant="outline">{segment.targetId}</Badge> : null}
-                  <span className="text-muted-foreground">{segment.text}</span>
+                  {segment.tokenStyle ? (
+                    <ExecutionTokenMark label={segment.text} style={segment.tokenStyle} />
+                  ) : (
+                    <span className="text-muted-foreground">{segment.text}</span>
+                  )}
                 </div>
               ))}
             </div>

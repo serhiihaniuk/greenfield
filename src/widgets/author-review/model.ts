@@ -5,6 +5,10 @@ import type {
   VerificationReport,
 } from "@/domains/verification/types"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
+import {
+  collectFrameExecutionTokens,
+  type FrameExecutionToken,
+} from "@/shared/visualization/execution-tokens"
 
 export interface FrameDiffSummary {
   primitiveAdditions: number
@@ -51,6 +55,10 @@ export interface AuthorTimelineEntry {
   blockingIssueCount: number
   warningIssueCount: number
   isActive: boolean
+}
+
+export interface AuthorExecutionTokenSummary extends FrameExecutionToken {
+  sourceCount: number
 }
 
 const EMPTY_SUMMARY: FrameDiffSummary = {
@@ -275,4 +283,13 @@ export function buildAuthorTimeline(
       isActive: frame.id === activeFrameId,
     }
   })
+}
+
+export function summarizeExecutionTokens(
+  frame?: Frame
+): AuthorExecutionTokenSummary[] {
+  return collectFrameExecutionTokens(frame).map((token) => ({
+    ...token,
+    sourceCount: token.sources.length,
+  }))
 }

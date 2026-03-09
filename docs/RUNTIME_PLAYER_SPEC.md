@@ -206,6 +206,7 @@ It must expose:
 - frame checks
 - narration payload source values
 - direct primitive focus on the live rendered stage
+- shared execution-token summaries showing which synchronized views currently project the same execution object
 - pedagogical warnings such as skipped micro-steps, hidden state loss, or overloaded frames
 
 Author mode must not have a separate lesson state machine.
@@ -235,6 +236,7 @@ Direction:
 
 - author tooling should explain which execution object is being tracked
 - it should be possible to relate stage pointers, state rows, and narration references back to the same token identity
+- audit should surface which synchronized views currently carry each token so drift is obvious during review
 - future audit workflows should surface token continuity issues as a first-class diagnostic
 
 ## Command And Shortcut Contract

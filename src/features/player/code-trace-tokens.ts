@@ -1,66 +1,12 @@
 import type { Frame } from "@/domains/projection/types"
 import type { ExecutionTokenStyle } from "@/entities/visualization/types"
 import type { CodePresentation, CodePresentationLine } from "@/features/player/code-presentation"
+import { collectFrameExecutionTokens } from "@/shared/visualization/execution-tokens"
 
 type FrameExecutionToken = {
   id: string
   label: string
   style: ExecutionTokenStyle
-}
-
-function collectFrameExecutionTokens(frame: Frame | undefined): FrameExecutionToken[] {
-  if (!frame) {
-    return []
-  }
-
-  const tokens = new Map<string, FrameExecutionToken>()
-
-  const addToken = (
-    tokenId: string | undefined,
-    label: string | undefined,
-    style: ExecutionTokenStyle | undefined
-  ) => {
-    if (!tokenId || !label || !style || tokens.has(tokenId)) {
-      return
-    }
-
-    tokens.set(tokenId, {
-      id: tokenId,
-      label,
-      style,
-    })
-  }
-
-  for (const primitive of frame.primitives) {
-    if (primitive.kind === "state") {
-      const values = (primitive.data as { values: Array<{ label: string; tokenId?: string; tokenStyle?: ExecutionTokenStyle }> }).values
-      for (const value of values) {
-        addToken(value.tokenId, value.label, value.tokenStyle)
-      }
-      continue
-    }
-
-    if (primitive.kind === "stack") {
-      const frames = (primitive.data as { frames: Array<{ label: string; tokenId?: string; tokenStyle?: ExecutionTokenStyle }> }).frames
-      for (const stackFrame of frames) {
-        addToken(stackFrame.tokenId, stackFrame.label, stackFrame.tokenStyle)
-      }
-      continue
-    }
-
-    if (primitive.kind === "call-tree") {
-      const nodes = (primitive.data as { nodes: Array<{ label: string; tokenId?: string; tokenStyle?: ExecutionTokenStyle }> }).nodes
-      for (const node of nodes) {
-        addToken(node.tokenId, node.label, node.tokenStyle)
-      }
-    }
-  }
-
-  for (const segment of frame.narration.segments) {
-    addToken(segment.tokenId, segment.text, segment.tokenStyle)
-  }
-
-  return [...tokens.values()].sort((left, right) => right.label.length - left.label.length)
 }
 
 function splitTokenContent(
@@ -157,10 +103,15 @@ export function decorateCodePresentationWithExecutionTokens(
     return presentation
   }
 
-  const frameTokens = collectFrameExecutionTokens(frame)
-  if (frameTokens.length === 0) {
-    return presentation
-  }
+  const frameTokens: FrameExecutionToken[] = collectFrameExecutionTokens(frame)
+    .map((token) => ({
+      id: token.id,
+      label: token.label,
+      style: token.style,
+    }))
+    if (frameTokens.length === 0) {
+      return presentation
+    }
 
   return {
     ...presentation,
