@@ -12,6 +12,7 @@ import type {
   PointerSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { deriveExecutionTokensFromPointers } from "@/shared/visualization/execution-tokens"
 
 type BinarySearchSnapshot = {
   nums: number[]
@@ -65,17 +66,54 @@ function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
 }
 
 function buildNarration(event: TraceEvent, snapshot: BinarySearchSnapshot): NarrationPayload {
+  const tokenSegment = (
+    id: string,
+    text: string,
+    tone: NarrationPayload["segments"][number]["tone"] = "default"
+  ) => ({
+    id: `${event.id}-${id}`,
+    text,
+    tone,
+  })
+
+  const pointerSegments = (pointer: PointerSpec) => ({
+    id: `${event.id}-${pointer.id}`,
+    text: pointer.label,
+    tokenId: pointer.id,
+    tokenStyle: deriveExecutionTokensFromPointers([pointer]).get(pointer.id)?.style,
+  })
+
   switch (event.codeLine) {
     case "L1":
       return {
         summary: "Initialize the low pointer at the start of the array.",
-        segments: [],
+        segments: [
+          tokenSegment("t0", "Initialize "),
+          pointerSegments({
+            id: "lo",
+            targetId: `cell-${snapshot.lo ?? 0}`,
+            label: "lo",
+            tone: "primary",
+            placement: "top-start",
+          }),
+          tokenSegment("t1", " at the start of the array."),
+        ],
         sourceValues: event.payload,
       }
     case "L2":
       return {
         summary: "Initialize the high pointer at the end of the array.",
-        segments: [],
+        segments: [
+          tokenSegment("t0", "Initialize "),
+          pointerSegments({
+            id: "hi",
+            targetId: `cell-${snapshot.hi ?? snapshot.nums.length - 1}`,
+            label: "hi",
+            tone: "secondary",
+            placement: "top-end",
+          }),
+          tokenSegment("t1", " at the end of the array."),
+        ],
         sourceValues: event.payload,
       }
     case "L3":
@@ -90,7 +128,17 @@ function buildNarration(event: TraceEvent, snapshot: BinarySearchSnapshot): Narr
     case "L4":
       return {
         summary: `Move the midpoint to index ${snapshot.mid}.`,
-        segments: [],
+        segments: [
+          tokenSegment("t0", "Move "),
+          pointerSegments({
+            id: "mid",
+            targetId: `cell-${snapshot.mid ?? 0}`,
+            label: "mid",
+            tone: "compare",
+            placement: "bottom",
+          }),
+          tokenSegment("t1", ` to index ${snapshot.mid}.`),
+        ],
         sourceValues: event.payload,
       }
     case "L6":
@@ -114,13 +162,49 @@ function buildNarration(event: TraceEvent, snapshot: BinarySearchSnapshot): Narr
     case "L10":
       return {
         summary: `Discard the left half through mid and move lo to ${snapshot.lo}.`,
-        segments: [],
+        segments: [
+          tokenSegment("t0", "Discard the left half through "),
+          pointerSegments({
+            id: "mid",
+            targetId: `cell-${snapshot.mid ?? 0}`,
+            label: "mid",
+            tone: "compare",
+            placement: "bottom",
+          }),
+          tokenSegment("t1", " and move "),
+          pointerSegments({
+            id: "lo",
+            targetId: `cell-${snapshot.lo ?? 0}`,
+            label: "lo",
+            tone: "primary",
+            placement: "top-start",
+          }),
+          tokenSegment("t2", ` to ${snapshot.lo}.`),
+        ],
         sourceValues: event.payload,
       }
     case "L12":
       return {
         summary: `Discard the right half through mid and move hi to ${snapshot.hi}.`,
-        segments: [],
+        segments: [
+          tokenSegment("t0", "Discard the right half through "),
+          pointerSegments({
+            id: "mid",
+            targetId: `cell-${snapshot.mid ?? 0}`,
+            label: "mid",
+            tone: "compare",
+            placement: "bottom",
+          }),
+          tokenSegment("t1", " and move "),
+          pointerSegments({
+            id: "hi",
+            targetId: `cell-${snapshot.hi ?? 0}`,
+            label: "hi",
+            tone: "secondary",
+            placement: "top-end",
+          }),
+          tokenSegment("t2", ` to ${snapshot.hi}.`),
+        ],
         sourceValues: event.payload,
       }
     case "L15":
@@ -283,6 +367,7 @@ function buildPrimitiveStates(
 
   const highlights = buildHighlights(event, snapshot)
   const annotations = buildAnnotations(event, snapshot)
+  const executionTokens = deriveExecutionTokensFromPointers(pointers)
 
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "array",
@@ -312,9 +397,24 @@ function buildPrimitiveStates(
     data: {
       values: [
         { label: "target", value: snapshot.target },
-        { label: "lo", value: snapshot.lo ?? "—" },
-        { label: "hi", value: snapshot.hi ?? "—" },
-        { label: "mid", value: snapshot.mid ?? "—" },
+        {
+          label: "lo",
+          value: snapshot.lo ?? "—",
+          tokenId: executionTokens.get("lo")?.id,
+          tokenStyle: executionTokens.get("lo")?.style,
+        },
+        {
+          label: "hi",
+          value: snapshot.hi ?? "—",
+          tokenId: executionTokens.get("hi")?.id,
+          tokenStyle: executionTokens.get("hi")?.style,
+        },
+        {
+          label: "mid",
+          value: snapshot.mid ?? "—",
+          tokenId: executionTokens.get("mid")?.id,
+          tokenStyle: executionTokens.get("mid")?.style,
+        },
         { label: "value", value: snapshot.value ?? "—" },
         { label: "answer", value: snapshot.answer ?? "—" },
       ],

@@ -4,6 +4,7 @@ import {
   primitiveFrameStateSchema,
   type PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { executionTokenStyleSchema } from "@/entities/visualization/types"
 import {
   serializableRecordSchema,
   type SerializableRecord,
@@ -40,6 +41,8 @@ export const narrationSegmentSchema = z.object({
   text: z.string().min(1),
   tone: narrationSegmentToneSchema.optional(),
   targetId: z.string().min(1).optional(),
+  tokenId: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
 })
 
 export type NarrationSegment = z.infer<typeof narrationSegmentSchema>

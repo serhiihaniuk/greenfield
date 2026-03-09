@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 import {
+  executionTokenStyleSchema,
   definePrimitiveFrameState,
   type PrimitiveFrameState,
 } from "@/entities/visualization/types"
@@ -68,6 +69,8 @@ export function defineSequencePrimitiveFrameState(
 export const stateValueSchema = z.object({
   label: z.string().min(1),
   value: z.union([z.string(), z.number()]),
+  tokenId: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
 })
 
 export type StateValue = z.infer<typeof stateValueSchema>
@@ -366,6 +369,8 @@ export const narrationSegmentPrimitiveSchema = z.object({
       "dim",
     ])
     .optional(),
+  tokenId: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
 })
 
 export type NarrationSegmentPrimitive = z.infer<

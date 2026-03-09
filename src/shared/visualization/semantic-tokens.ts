@@ -2,6 +2,7 @@ import type {
   AnnotationTone,
   EdgeTone,
   Emphasis,
+  ExecutionTokenStyle,
   HighlightTone,
   PointerTone,
 } from "@/entities/visualization/types"
@@ -24,12 +25,45 @@ export const highlightToneClasses: ToneClassMap<HighlightTone> = {
 
 export const pointerToneClasses: ToneClassMap<PointerTone> = {
   primary: "text-cyan-300",
-  secondary: "text-slate-300",
+  secondary: "text-violet-300",
   compare: "text-sky-300",
   success: "text-emerald-300",
   error: "text-rose-300",
   done: "text-emerald-400/80",
   special: "text-amber-300",
+}
+
+export const executionTokenTextClasses: ToneClassMap<ExecutionTokenStyle> = {
+  "accent-1": "text-cyan-300",
+  "accent-2": "text-violet-300",
+  "accent-3": "text-sky-300",
+  "accent-4": "text-amber-300",
+  success: "text-emerald-300",
+  warning: "text-amber-300",
+  error: "text-rose-300",
+  muted: "text-muted-foreground",
+}
+
+export const executionTokenChipClasses: ToneClassMap<ExecutionTokenStyle> = {
+  "accent-1": "border-cyan-400/50 bg-cyan-400/12 text-cyan-100",
+  "accent-2": "border-violet-400/50 bg-violet-400/12 text-violet-100",
+  "accent-3": "border-sky-400/50 bg-sky-400/12 text-sky-100",
+  "accent-4": "border-amber-400/50 bg-amber-400/12 text-amber-100",
+  success: "border-emerald-400/50 bg-emerald-400/12 text-emerald-100",
+  warning: "border-amber-400/50 bg-amber-400/12 text-amber-100",
+  error: "border-rose-400/50 bg-rose-400/12 text-rose-100",
+  muted: "border-border/60 bg-muted/20 text-muted-foreground",
+}
+
+export const executionTokenRowClasses: ToneClassMap<ExecutionTokenStyle> = {
+  "accent-1": "border-cyan-400/35 bg-cyan-400/7",
+  "accent-2": "border-violet-400/35 bg-violet-400/7",
+  "accent-3": "border-sky-400/35 bg-sky-400/7",
+  "accent-4": "border-amber-400/35 bg-amber-400/7",
+  success: "border-emerald-400/35 bg-emerald-400/7",
+  warning: "border-amber-400/35 bg-amber-400/7",
+  error: "border-rose-400/35 bg-rose-400/7",
+  muted: "border-border/60 bg-background/20",
 }
 
 export const annotationToneClasses: ToneClassMap<AnnotationTone> = {

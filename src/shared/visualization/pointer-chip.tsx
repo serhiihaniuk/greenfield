@@ -4,11 +4,14 @@ import { motion } from "motion/react"
 import type { PointerSpec } from "@/entities/visualization/types"
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
-import { pointerToneClasses } from "@/shared/visualization/semantic-tokens"
+import { executionTokenFromPointer } from "@/shared/visualization/execution-tokens"
+import { executionTokenTextClasses } from "@/shared/visualization/semantic-tokens"
 
 type PointerChipProps = {
   pointer: PointerSpec
   scopeId?: string
+  x?: number
+  y?: number
 }
 
 const pointerTargetMemory = new Map<string, string>()
@@ -59,13 +62,37 @@ function isBottomPlacement(pointer: PointerSpec) {
   return (pointer.placement ?? "top").startsWith("bottom")
 }
 
-export function PointerChip({ pointer, scopeId }: PointerChipProps) {
+function getPointerTransform(pointer: PointerSpec) {
+  const placement = pointer.placement ?? "top"
+
+  if (placement.startsWith("bottom")) {
+    return "translate(-50%, 0)"
+  }
+
+  if (placement.startsWith("left")) {
+    return "translate(-100%, -50%)"
+  }
+
+  if (placement.startsWith("right")) {
+    return "translate(0, -50%)"
+  }
+
+  return "translate(-50%, -100%)"
+}
+
+export function PointerChip({
+  pointer,
+  scopeId,
+  x = 0,
+  y = 0,
+}: PointerChipProps) {
   const { animateTravel, transitions } = useMotionContract()
   const memoryKey = getPointerMemoryKey(pointer, scopeId)
   const previousTargetId = pointerTargetMemory.get(memoryKey)
   const movement = getMovement(previousTargetId, pointer.targetId)
   const pointsUp = isBottomPlacement(pointer)
   const verticalOffset = pointsUp ? 6 : -6
+  const token = executionTokenFromPointer(pointer)
 
   // Pointer already existed in a different cell — it's moving, not new.
   // Let layoutId handle the smooth cross-cell transition instead of
@@ -85,12 +112,14 @@ export function PointerChip({ pointer, scopeId }: PointerChipProps) {
           ? { opacity: 0, y: verticalOffset, scale: 0.92 }
           : false
       }
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      animate={{ opacity: 1, x, y, scale: 1 }}
       exit={animateTravel ? { opacity: 0 } : { opacity: 0 }}
       transition={transitions.pointerTravel}
+      style={{ transform: getPointerTransform(pointer) }}
+      data-token-id={token.id}
       className={cn(
-        "inline-flex w-8 flex-col items-center gap-0.5 font-mono leading-none whitespace-nowrap drop-shadow-[0_0_12px_rgba(8,145,178,0.18)] select-none",
-        pointerToneClasses[pointer.tone],
+        "absolute inline-flex w-8 flex-col items-center gap-0.5 font-mono leading-none whitespace-nowrap drop-shadow-[0_0_12px_rgba(8,145,178,0.18)] select-none",
+        executionTokenTextClasses[token.style],
         pointer.status === "done" && "opacity-70",
         pointer.status === "waiting" && "opacity-85"
       )}

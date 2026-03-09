@@ -42,6 +42,7 @@ import { VerificationBlockerDialog } from "@/widgets/lesson-player/verification-
 import { collectRelatedIssues } from "@/widgets/author-review/model"
 import { cn } from "@/shared/lib/utils"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
+import { NarrationSegments } from "@/shared/visualization/views/narration-view"
 import { Button } from "@/shared/ui/button"
 import { Badge } from "@/shared/ui/badge"
 import {
@@ -441,7 +442,14 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 <p className="text-xs leading-relaxed text-foreground/80">
                   {learnerModeBlocked
                     ? "Learner mode is blocked until verification issues are inspected in lesson audit."
-                    : activeFrame?.narration.summary ?? "Load a lesson to begin playback."}
+                    : activeFrame ? (
+                        <NarrationSegments
+                          summary={activeFrame.narration.summary}
+                          segments={activeFrame.narration.segments}
+                        />
+                      ) : (
+                        "Load a lesson to begin playback."
+                      )}
                 </p>
               </div>
 

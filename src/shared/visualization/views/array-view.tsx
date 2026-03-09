@@ -9,7 +9,10 @@ import type {
 } from "@/entities/visualization/types"
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
-import { PointerChip } from "@/shared/visualization/pointer-chip"
+import {
+  PointerLayer,
+  usePointerAnchorRegistry,
+} from "@/shared/visualization/pointer-overlay"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import {
   annotationToneClasses,
@@ -61,24 +64,13 @@ function renderAnnotations(
   ))
 }
 
-function splitPointersByPlacement(pointers: PointerSpec[]) {
-  return {
-    topPointers: pointers.filter(
-      (pointer) => !(pointer.placement ?? "top").startsWith("bottom")
-    ),
-    bottomPointers: pointers.filter((pointer) =>
-      (pointer.placement ?? "top").startsWith("bottom")
-    ),
-  }
-}
-
 export function ArrayView({
   primitive,
 }: {
   primitive: ArrayPrimitiveFrameState
 }) {
   const { animateTravel, transitions } = useMotionContract()
-  const pointerMap = groupByTarget(sortPointers(primitive.pointers ?? []))
+  const { rootRef, registerTarget, anchors } = usePointerAnchorRegistry()
   const highlightMap = new Map<string, HighlightSpec>(
     (primitive.highlights ?? []).map((highlight) => [
       highlight.targetId,
@@ -91,35 +83,26 @@ export function ArrayView({
     <PrimitiveShell primitive={primitive}>
       <div className="overflow-x-auto pb-1">
         <LayoutGroup id={`${primitive.id}-array`}>
-          <div className="flex min-w-max gap-3">
+          <div
+            ref={rootRef}
+            className="relative flex min-w-max items-start gap-3 px-1 pt-10 pb-10"
+          >
+            <PointerLayer
+              pointers={sortPointers(primitive.pointers ?? [])}
+              anchors={anchors}
+              scopeId={primitive.id}
+            />
             {primitive.data.cells.map((cell) => {
-              const pointers = pointerMap.get(cell.id) ?? []
               const highlight = highlightMap.get(cell.id)
               const annotations = annotationMap.get(cell.id)
-              const { topPointers, bottomPointers } =
-                splitPointersByPlacement(pointers)
 
               return (
                 <div
                   key={cell.id}
                   className="flex w-12 shrink-0 flex-col items-center gap-2 overflow-visible"
                 >
-                  <div
-                    className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
-                    data-testid={`pointer-stack-top-${cell.id}`}
-                  >
-                    <AnimatePresence initial={false} mode="popLayout">
-                      {topPointers.map((pointer) => (
-                        <PointerChip
-                          key={pointer.id}
-                          pointer={pointer}
-                          scopeId={primitive.id}
-                        />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-
                   <motion.div
+                    ref={registerTarget(cell.id)}
                     transition={transitions.highlight}
                     animate={
                       animateTravel
@@ -156,20 +139,7 @@ export function ArrayView({
                     </AnimatePresence>
                   </div>
 
-                  <div
-                    className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
-                    data-testid={`pointer-stack-bottom-${cell.id}`}
-                  >
-                    <AnimatePresence initial={false} mode="popLayout">
-                      {bottomPointers.map((pointer) => (
-                        <PointerChip
-                          key={pointer.id}
-                          pointer={pointer}
-                          scopeId={primitive.id}
-                        />
-                      ))}
-                    </AnimatePresence>
-                  </div>
+                  <div className="h-0 w-full shrink-0" />
                 </div>
               )
             })}

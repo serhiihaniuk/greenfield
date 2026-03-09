@@ -1,5 +1,6 @@
 import type { NarrationPrimitiveFrameState } from "@/entities/visualization/primitives"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { cn } from "@/shared/lib/utils"
 
 const segmentClasses = {
@@ -15,6 +16,34 @@ const segmentClasses = {
   dim: "text-muted-foreground",
 } as const
 
+type NarrationSegmentsProps = {
+  summary: string
+  segments: NarrationPrimitiveFrameState["data"]["segments"]
+}
+
+export function NarrationSegments({
+  summary,
+  segments,
+}: NarrationSegmentsProps) {
+  if (segments.length === 0) {
+    return <>{summary}</>
+  }
+
+  return segments.map((segment) => (
+    <span
+      key={segment.id}
+      className={cn(segmentClasses[segment.tone ?? "default"])}
+      data-token-id={segment.tokenId}
+    >
+      {segment.tokenStyle ? (
+        <ExecutionTokenMark label={segment.text} style={segment.tokenStyle} />
+      ) : (
+        segment.text
+      )}
+    </span>
+  ))
+}
+
 export function NarrationView({
   primitive,
 }: {
@@ -25,16 +54,10 @@ export function NarrationView({
       <div className="flex flex-col gap-4 text-sm leading-6">
         <div className="rounded-2xl border border-border/60 bg-muted/14 px-3 py-3">
           <p>
-          {primitive.data.segments.length > 0
-            ? primitive.data.segments.map((segment) => (
-                <span
-                  key={segment.id}
-                  className={cn(segmentClasses[segment.tone ?? "default"])}
-                >
-                  {segment.text}
-                </span>
-              ))
-            : primitive.data.summary}
+            <NarrationSegments
+              summary={primitive.data.summary}
+              segments={primitive.data.segments}
+            />
           </p>
         </div>
         <div className="grid gap-3 border-t border-border/60 pt-4 sm:grid-cols-2">

@@ -3,7 +3,12 @@ import { AnimatePresence, motion } from "motion/react"
 import type { StatePrimitiveFrameState } from "@/entities/visualization/primitives"
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import {
+  executionTokenRowClasses,
+  executionTokenTextClasses,
+} from "@/shared/visualization/semantic-tokens"
 
 export function StateView({
   primitive,
@@ -21,14 +26,34 @@ export function StateView({
             layout={animateTravel}
             transition={transitions.layout}
             className={cn(
-              "rounded-lg border border-border/60 px-2.5 py-2 font-mono"
+              "rounded-lg border border-border/60 px-2.5 py-2 font-mono",
+              entry.tokenStyle && executionTokenRowClasses[entry.tokenStyle]
             )}
+            data-token-id={entry.tokenId}
           >
             <div className="flex items-center justify-between gap-3">
-              <span className="text-[10px] tracking-wider text-muted-foreground uppercase">
-                {entry.label}
+              <span
+                className={cn(
+                  "text-[10px] tracking-wider text-muted-foreground uppercase",
+                  entry.tokenStyle && executionTokenTextClasses[entry.tokenStyle]
+                )}
+              >
+                {entry.tokenStyle ? (
+                  <ExecutionTokenMark
+                    label={entry.label}
+                    style={entry.tokenStyle}
+                    variant="text"
+                  />
+                ) : (
+                  entry.label
+                )}
               </span>
-              <span className="relative flex min-w-8 justify-end overflow-hidden text-base leading-none font-semibold text-foreground">
+              <span
+                className={cn(
+                  "relative flex min-w-8 justify-end overflow-hidden text-base leading-none font-semibold text-foreground",
+                  entry.tokenStyle && executionTokenTextClasses[entry.tokenStyle]
+                )}
+              >
                 <AnimatePresence initial={false} mode="popLayout">
                   <motion.span
                     key={`${entry.label}-${String(entry.value)}`}

@@ -7,7 +7,10 @@ import type {
   PointerSpec,
 } from "@/entities/visualization/types"
 import { cn } from "@/shared/lib/utils"
-import { PointerChip } from "@/shared/visualization/pointer-chip"
+import {
+  PointerLayer,
+  usePointerAnchorRegistry,
+} from "@/shared/visualization/pointer-overlay"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import {
   annotationToneClasses,
@@ -60,23 +63,12 @@ function renderAnnotations(
   ))
 }
 
-function splitPointersByPlacement(pointers: PointerSpec[]) {
-  return {
-    topPointers: pointers.filter(
-      (pointer) => !(pointer.placement ?? "top").startsWith("bottom")
-    ),
-    bottomPointers: pointers.filter((pointer) =>
-      (pointer.placement ?? "top").startsWith("bottom")
-    ),
-  }
-}
-
 export function SequenceView({
   primitive,
 }: {
   primitive: SequencePrimitiveFrameState
 }) {
-  const pointerMap = groupByTarget(sortPointers(primitive.pointers ?? []))
+  const { rootRef, registerTarget, anchors } = usePointerAnchorRegistry()
   const highlightMap = new Map<string, HighlightSpec>(
     (primitive.highlights ?? []).map((highlight) => [
       highlight.targetId,
@@ -96,36 +88,29 @@ export function SequenceView({
         ) : null}
 
         <div className="overflow-x-auto pb-1">
-          <div className="flex min-w-max items-start gap-2">
+          <div
+            ref={rootRef}
+            className="relative flex min-w-max items-start gap-2 px-1 pt-10 pb-10"
+          >
+            <PointerLayer
+              pointers={sortPointers(primitive.pointers ?? [])}
+              anchors={anchors}
+              scopeId={primitive.id}
+            />
             {primitive.data.items.length === 0 ? (
               <div className="rounded-lg border border-dashed border-border/60 bg-muted/10 px-3 py-2 text-sm text-muted-foreground">
                 Sequence is empty
               </div>
             ) : (
               primitive.data.items.map((item, index) => {
-                const pointers = pointerMap.get(item.id) ?? []
                 const highlight = highlightMap.get(item.id)
                 const annotations = annotationMap.get(item.id)
-                const { topPointers, bottomPointers } =
-                  splitPointersByPlacement(pointers)
 
                 return (
                   <div key={item.id} className="flex items-start gap-2">
                     <div className="flex w-14 shrink-0 flex-col items-center gap-2">
                       <div
-                        className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-end justify-center gap-1 overflow-visible"
-                        data-testid={`pointer-stack-top-${item.id}`}
-                      >
-                        {topPointers.map((pointer) => (
-                          <PointerChip
-                            key={pointer.id}
-                            pointer={pointer}
-                            scopeId={primitive.id}
-                          />
-                        ))}
-                      </div>
-
-                      <div
+                        ref={registerTarget(item.id)}
                         className={cn(
                           "flex min-h-12 w-full flex-col items-center justify-center rounded-xl border px-2 py-1.5 font-mono transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
                           highlight
@@ -153,19 +138,7 @@ export function SequenceView({
                       >
                         {renderAnnotations(annotations)}
                       </div>
-
-                      <div
-                        className="flex h-10 shrink-0 w-full min-w-0 flex-nowrap items-start justify-center gap-1 overflow-visible"
-                        data-testid={`pointer-stack-bottom-${item.id}`}
-                      >
-                        {bottomPointers.map((pointer) => (
-                          <PointerChip
-                            key={pointer.id}
-                            pointer={pointer}
-                            scopeId={primitive.id}
-                          />
-                        ))}
-                      </div>
+                      <div className="h-0 w-full shrink-0" />
                     </div>
 
                     {index < primitive.data.items.length - 1 ? (

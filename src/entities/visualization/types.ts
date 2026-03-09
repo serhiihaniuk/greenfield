@@ -33,6 +33,19 @@ export const pointerToneSchema = z.enum([
 
 export type PointerTone = z.infer<typeof pointerToneSchema>
 
+export const executionTokenStyleSchema = z.enum([
+  "accent-1",
+  "accent-2",
+  "accent-3",
+  "accent-4",
+  "success",
+  "warning",
+  "error",
+  "muted",
+])
+
+export type ExecutionTokenStyle = z.infer<typeof executionTokenStyleSchema>
+
 export const pointerPlacementSchema = z.enum([
   "top",
   "top-start",

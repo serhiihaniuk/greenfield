@@ -2,6 +2,7 @@ import { buildLessonRuntime } from "@/features/player/runtime"
 import { verifyRuntimeOutputs } from "@/domains/verification/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
+import type { StatePrimitiveFrameState } from "@/entities/visualization/primitives"
 
 describe("verifyRuntimeOutputs", () => {
   const approach = binarySearchLesson.approaches[0]
@@ -23,6 +24,36 @@ describe("verifyRuntimeOutputs", () => {
 
     expect(runtime.failure).toBeUndefined()
     expect(runtime.verification?.isValid).toBe(true)
+  })
+
+  it("projects binary search execution tokens across state and narration", () => {
+    const runtime = buildLessonRuntime({
+      lesson: binarySearchLesson,
+      approach,
+      mode: "full",
+      rawInput: foundMiddlePreset.rawInput,
+    })
+
+    const midFrame = runtime.frames.find((frame) => frame.codeLine === "L4")
+    const statePrimitive = midFrame?.primitives.find(
+      (primitive) => primitive.id === "state"
+    )
+
+    if (!midFrame || !statePrimitive || statePrimitive.kind !== "state") {
+      throw new Error("Expected a binary search state primitive on the midpoint frame.")
+    }
+
+    const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
+
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "mid")
+    ).toMatchObject({
+      tokenId: "mid",
+      tokenStyle: "accent-3",
+    })
+    expect(midFrame.narration.segments.some((segment) => segment.tokenId === "mid")).toBe(
+      true
+    )
   })
 
   it("flags broken frame bindings and missing primary primitives", () => {

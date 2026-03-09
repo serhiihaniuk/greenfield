@@ -86,7 +86,7 @@ describe("PrimitiveRenderer", () => {
       title: "State",
       data: {
         values: [
-          { label: "lo", value: 0 },
+          { label: "lo", value: 0, tokenId: "lo", tokenStyle: "accent-1" },
           { label: "hi", value: 5 },
         ],
       },
@@ -96,6 +96,10 @@ describe("PrimitiveRenderer", () => {
 
     expect(screen.getByText("State")).toBeInTheDocument()
     expect(screen.getByText("lo")).toBeInTheDocument()
+    expect(screen.getByText("lo").closest("[data-token-id]")).toHaveAttribute(
+      "data-token-id",
+      "lo"
+    )
     expect(screen.getByText("5")).toBeInTheDocument()
   })
 
@@ -245,7 +249,16 @@ describe("PrimitiveRenderer", () => {
       title: "Narration",
       data: {
         summary: "Return the answer.",
-        segments: [],
+        segments: [
+          { id: "n0", text: "Move " },
+          {
+            id: "n1",
+            text: "mid",
+            tokenId: "mid",
+            tokenStyle: "accent-3",
+          },
+          { id: "n2", text: " left." },
+        ],
         codeLine: "L2",
         visualChange: "result",
       },
@@ -281,6 +294,10 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("return mid")).toBeInTheDocument()
     expect(screen.getByText("val 5")).toBeInTheDocument()
     expect(screen.getByText("push")).toBeInTheDocument()
+    expect(screen.getByText("mid").closest("[data-token-id]")).toHaveAttribute(
+      "data-token-id",
+      "mid"
+    )
   })
 
   it("produces deterministic structural and execution tree layouts", () => {
