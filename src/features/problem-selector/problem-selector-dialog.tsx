@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { SearchIcon } from "lucide-react"
 
 import { type CatalogEntry } from "@/domains/lessons/catalog"
@@ -51,6 +52,18 @@ export function ProblemSelectorDialog({
     activeLessonId,
   })
 
+  useEffect(() => {
+    if (open) {
+      // Must fire after base-ui Dialog's own focus management + animation (duration-100)
+      const timer = setTimeout(() => {
+        document
+          .querySelector<HTMLInputElement>('[data-slot="dialog-content"] input')
+          ?.focus()
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [open])
+
   const activeFilterCount =
     filter.categories.size +
     filter.difficulties.size +
@@ -84,25 +97,13 @@ export function ProblemSelectorDialog({
           </div>
         </DialogHeader>
 
-        <div className="grid min-h-0 flex-1 overflow-hidden lg:grid-cols-[16rem_1fr]">
-          <aside className="min-h-0 border-b border-border/30 lg:border-r lg:border-b-0">
-            <FilterRail
-              filter={filter}
-              counts={counts}
-              onToggleCategory={toggleCategory}
-              onToggleDifficulty={toggleDifficulty}
-              onToggleMechanism={toggleMechanism}
-              onToggleConfusion={toggleConfusion}
-            />
-          </aside>
-
-          <div className="flex min-h-0 flex-1 flex-col">
+        <div className="grid min-h-0 flex-1 grid-rows-[1fr_auto] overflow-hidden md:grid-cols-[14rem_1fr] md:grid-rows-[1fr]">
+          <div className="flex min-h-0 flex-1 flex-col md:col-start-2">
             <div className="flex flex-col gap-3 border-b border-border/30 px-5 py-3">
               <div className="flex flex-wrap items-center gap-3">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border/40 bg-muted/20 px-3 py-2">
                   <SearchIcon className="size-4 text-muted-foreground" />
                   <Input
-                    autoFocus={open}
                     placeholder="Search lessons..."
                     value={filter.search}
                     onChange={(event) => setSearch(event.target.value)}
@@ -158,7 +159,7 @@ export function ProblemSelectorDialog({
               </div>
             </div>
 
-            <ScrollArea className="flex-1">
+            <ScrollArea className="min-h-0 flex-1">
               {results.length > 0 ? (
                 <div className="grid gap-3 p-5 sm:grid-cols-2">
                   {results.map((entry) => (
@@ -185,6 +186,17 @@ export function ProblemSelectorDialog({
               )}
             </ScrollArea>
           </div>
+
+          <aside className="min-h-0 max-h-44 border-t border-border/30 md:col-start-1 md:row-start-1 md:max-h-none md:border-t-0 md:border-r">
+            <FilterRail
+              filter={filter}
+              counts={counts}
+              onToggleCategory={toggleCategory}
+              onToggleDifficulty={toggleDifficulty}
+              onToggleMechanism={toggleMechanism}
+              onToggleConfusion={toggleConfusion}
+            />
+          </aside>
         </div>
       </DialogContent>
     </Dialog>

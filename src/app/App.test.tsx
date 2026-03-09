@@ -43,7 +43,8 @@ describe("App", () => {
   it("renders the lesson player toolbar", async () => {
     await renderApp()
 
-    expect(await screen.findByRole("button", { name: /^play$/i })).toBeInTheDocument()
+    expect(await screen.findByRole("button", { name: /previous frame/i })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: /next frame/i })).toBeInTheDocument()
     expect(screen.getByText("Binary Search", { exact: true })).toBeInTheDocument()
     expect(
       screen.getByRole("button", { name: /open preset studio/i })
@@ -87,7 +88,6 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /open preset studio/i }))
     fireEvent.click(screen.getByText("Not Found", { exact: true }))
 
-    expect(screen.getByText("What makes it special", { exact: true })).toBeInTheDocument()
     expect(
       screen.getAllByText(/The search exhausts the interval and returns -1/i).length
     ).toBeGreaterThan(0)

@@ -1,3 +1,5 @@
+import type { ReactNode } from "react"
+
 import { Checkbox } from "@/shared/ui/checkbox"
 import { FieldLegend, FieldSet } from "@/shared/ui/field"
 import { Label } from "@/shared/ui/label"
@@ -10,6 +12,7 @@ type FilterSectionProps<T extends string> = {
   active: Set<T>
   counts: Map<T, number>
   onToggle: (value: T) => void
+  renderLabel?: (option: T, label: string) => ReactNode
 }
 
 export function FilterSection<T extends string>({
@@ -19,6 +22,7 @@ export function FilterSection<T extends string>({
   active,
   counts,
   onToggle,
+  renderLabel,
 }: FilterSectionProps<T>) {
   return (
     <FieldSet className="gap-2.5">
@@ -44,7 +48,7 @@ export function FilterSection<T extends string>({
                 htmlFor={fieldId}
                 className="min-w-0 flex-1 cursor-pointer text-sm font-normal"
               >
-                {labels[option]}
+                {renderLabel ? renderLabel(option, labels[option]) : labels[option]}
               </Label>
               <span
                 className={cn(

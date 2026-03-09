@@ -7,8 +7,6 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   KeyboardIcon,
-  PauseIcon,
-  PlayIcon,
   RotateCcwIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
@@ -73,6 +71,7 @@ import {
   ResizablePanelGroup,
 } from "@/shared/ui/resizable"
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/shared/ui/tooltip"
+import { Kbd } from "@/shared/ui/kbd"
 import {
   Dialog,
   DialogDescription,
@@ -477,7 +476,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const shortcutsCommand = commandById.get("toggle-hotkeys")
 
   return (
-    <main className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
+    <main className="mx-auto flex h-svh max-w-[3840px] flex-col overflow-hidden bg-background text-foreground">
       <div className="relative min-h-0 flex-1">
         <ResizablePanelGroup orientation="horizontal">
           <ResizablePanel
@@ -510,11 +509,8 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </div>
               ) : null}
 
-              <div className="shrink-0 border-b border-border/20 px-3 py-2">
-                <div className="mb-1 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                  Support
-                </div>
-                <p className="text-xs leading-relaxed text-foreground/80">
+              <div className="shrink-0 border-b border-border/20 px-4 py-3">
+                <p className="text-base leading-relaxed text-foreground">
                   {learnerModeBlocked
                     ? "Learner mode is blocked until verification issues are inspected in lesson audit."
                     : activeFrame ? (
@@ -523,7 +519,9 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                           segments={activeFrame.narration.segments}
                         />
                       ) : (
-                        "Load a lesson to begin playback."
+                        <span className="text-muted-foreground">
+                          Load a lesson to begin playback.
+                        </span>
                       )}
                 </p>
               </div>
@@ -735,12 +733,20 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       </div>
 
       <footer className="flex h-12 shrink-0 items-center gap-1 border-t border-border/40 px-2">
-        <div className="min-w-0 max-w-[15rem] px-1">
-          <div className="inline-flex max-w-full items-center gap-2 text-sm text-muted-foreground">
-            <BookOpenIcon data-icon="inline-start" />
-            <span className="truncate">{lesson?.title ?? "Current lesson"}</span>
-          </div>
-        </div>
+        <Button
+          size="sm"
+          variant="default"
+          className="max-w-[13rem] gap-1.5"
+          onClick={() =>
+            problemSelectorCommand ? runCommand(problemSelectorCommand) : setProblemSelectorOpen(true)
+          }
+          disabled={problemSelectorCommand ? commandDisabled(problemSelectorCommand, commandContext) : false}
+          aria-label="Open problem selector"
+        >
+          <BookOpenIcon data-icon="inline-start" />
+          <span className="truncate">{lesson?.title ?? "Current lesson"}</span>
+          <CommandShortcutHints command={problemSelectorCommand} />
+        </Button>
 
         <Select
           value={approachId || null}
@@ -763,25 +769,18 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
 
         <Button
           size="sm"
-          variant="outline"
-          className="w-[14rem] justify-between gap-2"
+          variant="ghost"
+          className="max-w-[13rem] gap-1.5 text-muted-foreground"
           onClick={() =>
             presetStudioCommand ? runCommand(presetStudioCommand) : openPresetStudio()
           }
           aria-label="Open preset studio"
         >
-          <span className="inline-flex min-w-0 items-center gap-2">
-            <SlidersHorizontalIcon data-icon="inline-start" />
-            <span className="truncate">
-              {inputSource === "custom" ? "Custom input" : activePreset?.label ?? "Preset studio"}
-            </span>
+          <SlidersHorizontalIcon data-icon="inline-start" />
+          <span className="truncate">
+            {inputSource === "custom" ? "Custom input" : activePreset?.label ?? "Preset studio"}
           </span>
-          <span className="inline-flex shrink-0 items-center gap-2">
-            <Badge variant={inputSource === "custom" ? "secondary" : "outline"}>
-              {inputSource}
-            </Badge>
-            <CommandShortcutHints command={presetStudioCommand} />
-          </span>
+          <CommandShortcutHints command={presetStudioCommand} />
         </Button>
 
         <div className="mx-1 h-5 border-l border-border/30" />
@@ -811,15 +810,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <TooltipTrigger
               render={
                 <Button
-                  size="icon-xs"
-                  variant="ghost"
+                  size="sm"
+                  variant="default"
                   onClick={() => previousFrameCommand && runCommand(previousFrameCommand)}
                   disabled={previousFrameCommand ? commandDisabled(previousFrameCommand, commandContext) : learnerModeBlocked}
                   aria-label="Previous frame"
                 />
               }
             >
-              <ChevronLeftIcon />
+              <ChevronLeftIcon className="!size-4 stroke-[2.5]" data-icon="inline-start" />
+              Prev
+              <Kbd keys={["A"]} />
             </TooltipTrigger>
             <TooltipContent>
               <CommandTooltipShortcut command={previousFrameCommand}>
@@ -831,38 +832,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
             <TooltipTrigger
               render={
                 <Button
-                  size="xs"
-                  onClick={() => playPauseCommand && runCommand(playPauseCommand)}
-                  disabled={playPauseCommand ? commandDisabled(playPauseCommand, commandContext) : learnerModeBlocked}
-                />
-              }
-            >
-              {playbackStatus === "playing" ? (
-                <PauseIcon data-icon="inline-start" />
-              ) : (
-                <PlayIcon data-icon="inline-start" />
-              )}
-              {playbackStatus === "playing" ? "Pause" : "Play"}
-            </TooltipTrigger>
-            <TooltipContent>
-              <CommandTooltipShortcut command={playPauseCommand}>
-                {playbackStatus === "playing" ? "Pause" : "Play"}
-              </CommandTooltipShortcut>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger
-              render={
-                <Button
-                  size="icon-xs"
-                  variant="ghost"
+                  size="sm"
+                  variant="default"
                   onClick={() => nextFrameCommand && runCommand(nextFrameCommand)}
                   disabled={nextFrameCommand ? commandDisabled(nextFrameCommand, commandContext) : learnerModeBlocked}
                   aria-label="Next frame"
                 />
               }
             >
-              <ChevronRightIcon />
+              <Kbd keys={["D"]} />
+              Next
+              <ChevronRightIcon className="!size-4 stroke-[2.5]" data-icon="inline-end" />
             </TooltipTrigger>
             <TooltipContent>
               <CommandTooltipShortcut command={nextFrameCommand}>

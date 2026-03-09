@@ -1,5 +1,16 @@
 import { cn } from "@/shared/lib/utils"
 
+const KEY_DISPLAY: Record<string, string> = {
+  Left: "←",
+  Right: "→",
+  Up: "↑",
+  Down: "↓",
+}
+
+function displayKey(key: string) {
+  return KEY_DISPLAY[key] ?? key
+}
+
 type KbdProps = React.ComponentProps<"kbd"> & {
   keys?: readonly string[]
 }
@@ -18,7 +29,7 @@ function Kbd({ className, children, keys, ...props }: KbdProps) {
       )}
       {...props}
     >
-      {keys?.join(" + ") ?? children}
+      {keys?.map(displayKey).join(" + ") ?? children}
     </kbd>
   )
 }

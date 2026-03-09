@@ -39,7 +39,7 @@ function ResizableHandle({
       {...props}
     >
       {withHandle && (
-        <div className="z-10 flex h-6 w-1 shrink-0 rounded-lg bg-border transition-colors group-hover/handle:bg-primary/60" />
+        <div className="z-10 flex h-6 w-1 shrink-0 rounded-lg bg-primary/70 transition-colors group-hover/handle:bg-primary" />
       )}
     </ResizablePrimitive.Separator>
   )

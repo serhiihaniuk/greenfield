@@ -20,9 +20,10 @@ function difficultyBadgeVariant(difficulty: CatalogEntry["difficulty"]) {
   switch (difficulty) {
     case "easy":
       return "success"
+    case "medium":
+      return "warning"
     case "hard":
       return "destructive"
-    case "medium":
     default:
       return "secondary"
   }
@@ -36,19 +37,25 @@ type ProblemCardProps = {
 
 export function ProblemCard({ entry, isActive, onSelect }: ProblemCardProps) {
   return (
-    <button type="button" onClick={onSelect} className="w-full text-left outline-none">
+    <button
+      type="button"
+      onClick={onSelect}
+      className="h-full w-full cursor-pointer rounded-xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+    >
       <Card
         size="sm"
         className={cn(
-          "w-full gap-2 ring-1 transition-colors",
+          "h-full w-full gap-2 ring-1 transition-colors",
           isActive ? "ring-primary/50" : "ring-foreground/10",
           !isActive && "hover:ring-foreground/20"
         )}
       >
         <CardHeader className="gap-2">
-          <CardAction>
-            {isActive ? <Badge variant="secondary">studying</Badge> : null}
-          </CardAction>
+          {isActive ? (
+            <CardAction>
+              <Badge variant="secondary">studying</Badge>
+            </CardAction>
+          ) : null}
           <CardTitle className="truncate pr-2">{entry.title}</CardTitle>
           <CardDescription className="line-clamp-2">{entry.summary}</CardDescription>
         </CardHeader>

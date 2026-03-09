@@ -54,7 +54,15 @@ function TooltipContent({
           {...props}
         >
           {children}
-          <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground data-[side=bottom]:top-1 data-[side=inline-end]:top-1/2! data-[side=inline-end]:-left-1 data-[side=inline-end]:-translate-y-1/2 data-[side=inline-start]:top-1/2! data-[side=inline-start]:-right-1 data-[side=inline-start]:-translate-y-1/2 data-[side=left]:top-1/2! data-[side=left]:-right-1 data-[side=left]:-translate-y-1/2 data-[side=right]:top-1/2! data-[side=right]:-left-1 data-[side=right]:-translate-y-1/2 data-[side=top]:-bottom-2.5" />
+          <TooltipPrimitive.Arrow
+            className={cn(
+              "z-50 bg-foreground",
+              "data-[side=top]:h-1.5 data-[side=top]:w-3 data-[side=top]:-bottom-1.5 data-[side=top]:[clip-path:polygon(0_0,100%_0,50%_100%)]",
+              "data-[side=bottom]:h-1.5 data-[side=bottom]:w-3 data-[side=bottom]:-top-1.5 data-[side=bottom]:[clip-path:polygon(50%_0,0_100%,100%_100%)]",
+              "data-[side=left]:h-3 data-[side=left]:w-1.5 data-[side=left]:-right-1.5 data-[side=left]:[clip-path:polygon(0_0,100%_50%,0_100%)]",
+              "data-[side=right]:h-3 data-[side=right]:w-1.5 data-[side=right]:-left-1.5 data-[side=right]:[clip-path:polygon(0_50%,100%_0,100%_100%)]",
+            )}
+          />
         </TooltipPrimitive.Popup>
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>

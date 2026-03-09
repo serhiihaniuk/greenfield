@@ -5,11 +5,27 @@ import {
   difficultyLabels,
   mechanismLabels,
 } from "@/domains/lessons/catalog"
+import type { LessonDifficulty } from "@/domains/lessons/types"
 import { confusionTypeSchema, type ConfusionType } from "@/domains/lessons/types"
 import type { CatalogCountMaps, CatalogFilterState } from "@/features/problem-selector/catalog-query"
 import { FilterSection } from "@/features/problem-selector/filter-section"
+import { Badge } from "@/shared/ui/badge"
 import { ScrollArea } from "@/shared/ui/scroll-area"
 import { Separator } from "@/shared/ui/separator"
+
+const difficultyBadgeVariant: Record<LessonDifficulty, "success" | "warning" | "destructive"> = {
+  easy: "success",
+  medium: "warning",
+  hard: "destructive",
+}
+
+function renderDifficultyLabel(option: string, label: string) {
+  return (
+    <Badge variant={difficultyBadgeVariant[option as LessonDifficulty]}>
+      {label}
+    </Badge>
+  )
+}
 
 type FilterRailProps = {
   filter: CatalogFilterState
@@ -62,6 +78,7 @@ export function FilterRail({
           active={filter.difficulties}
           counts={counts.difficulties}
           onToggle={onToggleDifficulty}
+          renderLabel={renderDifficultyLabel}
         />
 
         <Separator />
