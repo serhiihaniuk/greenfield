@@ -84,6 +84,7 @@ Phase 9 now also has a documented follow-up architecture for cross-view executio
 Phase 9 now also has live execution-token pilots beyond the initial pointer rollout: Binary Search, House Robber, and Sliding Window Maximum share token identity across stage, state, and narration, and Maximum Depth of Binary Tree now carries a shared `dfs` token across the execution tree, call stack, and narration.
 Phase 9 now also includes the first shared code-trace execution-token pass: the player shell decorates active-line code spans from the current frame's token identity, with Binary Search as the first pilot.
 Phase 9 now also makes author review token-aware at the active-frame level: audit can summarize shared execution tokens and which synchronized views currently project them, so token drift is inspectable instead of inferred.
+Phase 9 now also has a documented stage-composition correction: the old `primary` / `secondary` / `tertiary` routing is not enough for lessons with multiple mechanism views, so the next shell pass should evolve toward `primary`, `co-primary`, `context`, and `support`.
 
 ## Phase 0: Operating System
 
@@ -288,6 +289,7 @@ Primitive implementation must follow both `docs/PRIMITIVE_SYSTEM_SPEC.md` and `d
 - compatibility bridge from current pointer specs into shared execution tokens
 - pointer-overlay migration for array and sequence primitives
 - Binary Search token pilot across stage, state, and narration
+- flagship lesson audit for `primary` / `co-primary` / `context` / `support` stage composition
 
 ### Acceptance criteria
 
@@ -296,6 +298,8 @@ Primitive implementation must follow both `docs/PRIMITIVE_SYSTEM_SPEC.md` and `d
 - shell UI stays inside `shadcn/ui` conventions
 - pointer rendering no longer perturbs primitive layout
 - important execution objects can become recognizable across multiple synchronized views instead of only inside a pointer renderer
+- stage composition is driven by pedagogical job rather than by primitive kind alone
+- mechanism views are no longer demoted to generic side panels when they explain the transition
 
 ### Phase 9.x: Cross-View Execution Tokens And Pointer Overlay
 
@@ -328,6 +332,38 @@ Acceptance criteria:
 - pointer overlays do not change primitive width, height, or scroll behavior
 - Binary Search demonstrates one shared execution-token identity across stage pointer, state row, and narration
 - the rollout is compatibility-based rather than a breaking lesson-authoring rewrite
+
+### Phase 9.y: Pedagogical Stage Composition
+
+Why this exists:
+
+- several flagship lessons still use the stage incorrectly even after shell hardening
+- the runtime can currently demote mechanism views into generic secondary panels
+- some context views still compete with richer execution views they no longer need to outrank
+
+Decision:
+
+- stop treating `primary` / `secondary` / `tertiary` as the real pedagogical model
+- define lesson composition in terms of `support`, `primary`, `co-primary`, and `context`
+- audit the flagship set against those roles before making more visual shell changes
+
+Target compositions:
+
+- Binary Search: array `primary`; state `support`
+- House Robber: houses row `primary`; rolling state `support`
+- Maximum Depth: execution tree `primary`; call stack `co-primary`; structural tree `context`
+- Graph BFS: graph `primary`; frontier queue `co-primary`; traversal state `support`
+- Sliding Window Maximum: array/window `primary`; monotonic deque `co-primary`; window state `support`
+- Coin Change Memo DFS: call tree `primary`; memo table and call stack `co-primary`
+- Heap Top K: heap `primary`; input scan `co-primary`; threshold/top-k state `support`
+- Tree DFS Traversal: structural tree `primary`; stack and traversal output `co-primary`
+
+Acceptance criteria:
+
+- the composition rules are written into canonical docs before shell changes
+- each flagship lesson has an explicit target role assignment
+- duplicated structural context can no longer outrank a richer execution view
+- support-column content is limited to narration, code trace, compact code-state, and lightweight runtime status
 
 ## Sequencing Rules
 

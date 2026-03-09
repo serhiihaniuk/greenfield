@@ -221,6 +221,21 @@ Rules:
 
 The AI must choose views from confusion type.
 
+Do not classify views only as "main thing" and "sidebar thing".
+Choose them by pedagogical job:
+
+- `support` - narration, code trace, compact code-state
+- `primary` - main teaching surface
+- `co-primary` - another stage view required to explain the transition
+- `context` - optional orientation view only
+
+Use this selection test:
+
+1. Which view answers "what is happening right now?"
+2. Which second view is required to answer "why is that the next step?"
+3. Which remaining view only reassures or orients the learner?
+4. Which remaining values are only code-state mirrors and therefore belong in support?
+
 ### `pointer-state`
 
 Minimum:
@@ -237,7 +252,7 @@ Minimum:
 
 - primary execution view when the confusion is about recursive flow, aggregation, or return propagation
 - primary structural view only when the learner is mainly tracking traversal location through the original structure
-- stack or frame view
+- co-primary stack or frame view whenever it explains why control moves next
 - code trace
 - narration
 
@@ -246,13 +261,17 @@ Example:
 - Maximum Depth of Binary Tree should usually make the execution tree primary and keep the structural tree as secondary context.
 - Iterative tree traversal should usually keep the structural tree primary because the learner is tracking where traversal goes next through the original tree.
 
+Additional rule:
+
+- if the execution view already makes the structure legible, do not keep the original structure at equal weight; demote it to `context`
+
 ### `memoization-reuse`
 
 Minimum:
 
 - call tree or focused execution tree
-- stack view
-- memo table
+- co-primary stack view
+- co-primary memo table
 - code trace
 - narration
 
@@ -277,6 +296,9 @@ Minimum:
 - desktop playback should avoid unnecessary scrolling on normal presets
 - if algorithmic correctness cannot be verified, the lesson is not done
 - if pedagogical integrity cannot be verified, the lesson is not done
+- if a view explains the algorithm's mechanism, it belongs in the stage, not the support column
+- if a view only mirrors code state, it belongs in support even when it is visually attractive
+- do not keep duplicated structural context at equal weight when a richer execution view already subsumes it
 
 ## Execution Token Authoring Guidance
 
@@ -311,6 +333,19 @@ Example:
 
 - token `mid` stays recognizable in stage, state, and narration
 - the array cell under `mid` may still use local highlight tone `compare`
+
+## Flagship Composition Targets
+
+Use these as the default authoring targets for the current flagship set.
+
+- Binary Search: array `primary`; code-state `support`
+- House Robber: houses/state-transition row `primary`; rolling DP scalars `support`
+- Maximum Depth: execution tree `primary`; call stack `co-primary`; structural tree `context`
+- Graph BFS: graph `primary`; frontier queue `co-primary`; traversal state `support`
+- Sliding Window Maximum: array/window `primary`; monotonic deque `co-primary`; window state `support`
+- Coin Change Memo DFS: call tree `primary`; memo table and call stack `co-primary`
+- Heap Top K: heap `primary`; input scan `co-primary`; threshold/top-k state `support`
+- Tree DFS Traversal: structural tree `primary`; stack and traversal output `co-primary`
 
 ## Definition Of Done
 

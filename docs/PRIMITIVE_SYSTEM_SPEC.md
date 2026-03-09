@@ -422,23 +422,35 @@ The primitive system must explicitly support density modes.
 
 Primitives do not appear alone. They appear as part of the lesson surface.
 
-### Main lesson composition
+### Pedagogical composition roles
 
-- one primary primitive or composite canvas owns the central attention
-- secondary primitives explain supporting state
-- tertiary primitives are compact and should not compete visually with the primary one
+The older `primary` / `secondary` / `tertiary` language is an implementation routing tool, not the real product model.
+
+The canonical composition roles are:
+
+- `support` - narration, code trace, compact code-state, and lightweight runtime status
+- `primary` - the main teaching surface for the active confusion
+- `co-primary` - a second stage view required to explain why the next step happens
+- `context` - an optional orientation view that helps, but does not teach the transition directly
+
+These roles are selected by learner need, not by primitive kind.
 
 ### Priority examples
 
-- binary search: array is primary, state and code are secondary
-- tree DFS: tree is primary, stack and code are secondary
-- memo DFS: call tree is primary, stack and memo table are secondary
+- binary search: array is `primary`; code-state is `support`
+- sliding window maximum: array is `primary`; deque is `co-primary`
+- maximum depth: execution tree is `primary`; call stack is `co-primary`; structural tree is `context`
+- heap top-k: heap is `primary`; input scan is `co-primary`
+- memo DFS: call tree is `primary`; stack and memo table are `co-primary`
 
 ### Composition rules
 
 - never let three equally heavy panels compete at the same visual weight unless the lesson truly requires it
-- if the learner must compare two panels, align the related state spatially
+- if the learner must compare two panels to understand the step, those panels are both stage-level and should be composed together
+- if the learner only needs a view for orientation, keep it as `context` and compact it before it can compete with `primary` or `co-primary`
 - if a primitive is not adding meaning for the current lesson, do not render it just because it exists
+- if a richer execution view already subsumes a structural view, the structural view must drop to `context` or disappear
+- if a view only mirrors code variables, it belongs in `support`, not in the main stage
 
 ### Viewport hint contract
 
@@ -455,6 +467,18 @@ The `splitPrimitives()` function in `lesson-player.tsx` routes each primitive:
 - `kind === "state"` → support column (left panel)
 - `role === "primary"` or undefined non-state → stage primary (center, large area, flex centering)
 - `role === "secondary"` or `"tertiary"` → stage sidebar (compact or proportional column)
+
+This is still the current runtime implementation.
+It should not be mistaken for the final pedagogical contract.
+
+The next shell-composition pass should evolve routing so that lesson view specs can express:
+
+- `support`
+- `primary`
+- `co-primary`
+- `context`
+
+without forcing `co-primary` and `context` into the same undifferentiated bucket.
 
 ### Independent scroll regions
 

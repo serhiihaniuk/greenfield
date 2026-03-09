@@ -183,6 +183,7 @@ Completed so far:
 - execution-token pilots now extend beyond pointer lessons: Binary Search, House Robber, and Sliding Window share token identity across stage, state, and narration, while Maximum Depth now carries a shared `dfs` token across the execution tree, call stack, and narration
 - the first code-trace token pilot is now live too: Binary Search decorates the active code line with the same execution-token identity used by its stage pointers, narration, and state rows
 - audit is now token-aware at frame level: author review can summarize which shared execution tokens exist in the active frame and which synchronized views currently project them
+- Phase 9 now also has a clearer stage-composition diagnosis: the current `primary/secondary/tertiary` routing is too blunt for lessons whose mechanism depends on multiple stage views, and the next shell pass should distinguish `primary`, `co-primary`, `context`, and `support`
 
 ## Immediate Next Step
 
@@ -191,8 +192,9 @@ Continue Phase 9 from the plan:
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
 3. retune dense lesson stage composition now that execution visuals share the stage while code-state panels stay beside code
-4. continue expanding cross-view execution tokens from the first array pilots into recursion, then into later code-trace rendering once the token contract feels stable
-5. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
+4. audit all flagship lessons against the new pedagogical stage roles so the shell can stop treating mechanism views as generic side panels
+5. continue expanding cross-view execution tokens from the first array pilots into recursion, then into later code-trace rendering once the token contract feels stable
+6. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
 
 ## Canonical Files
 

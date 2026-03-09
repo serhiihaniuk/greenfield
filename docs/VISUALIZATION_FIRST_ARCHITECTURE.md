@@ -556,6 +556,134 @@ Shell rules:
 - dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
 
+## Stage Composition Roles
+
+The old mental model of `primary`, `secondary`, and `tertiary` is too weak.
+It classifies views by surface weight, but not by pedagogical job.
+
+The stage should instead be designed around four roles:
+
+- `support` - narration, code trace, compact code-state, lightweight runtime status
+- `primary` - the main teaching surface for the current confusion
+- `co-primary` - a second stage view without which the next step is not intelligible
+- `context` - an optional orientation view that may help, but should never outrank the real teaching surface
+
+This is the key rule:
+
+- a view is `co-primary` if removing it makes the learner unable to answer "why did the next step happen?"
+
+### Role rules
+
+- `support` belongs in the support column, not the stage
+- `primary`, `co-primary`, and `context` belong in the stage composition
+- a lesson may have more than one `co-primary` when the algorithm truly has multiple synchronized mechanisms
+- `context` should be compact, docked, collapsible, or removable before it is allowed to compete with `primary` or `co-primary`
+
+### Anti-rules
+
+- do not demote the mechanism view to side-info if it explains the transition
+- do not keep a duplicated structure as stage context when a richer execution view already subsumes it
+- do not classify views only by primitive kind; classify them by learner question
+
+### Current implementation note
+
+The runtime still routes primitives through the older viewport roles such as
+`primary`, `secondary`, and `tertiary`.
+That is an implementation limitation, not the target product contract.
+
+Lesson composition should now be authored and reviewed in terms of:
+
+- `support`
+- `primary`
+- `co-primary`
+- `context`
+
+Future shell work should make the runtime honor these roles directly.
+
+## Flagship Composition Audit
+
+The flagship lessons should now be treated as follows.
+
+### Binary Search
+
+- `primary`: search interval array
+- `support`: code-state for `lo`, `hi`, `mid`, narration, code trace
+- no `co-primary` needed; the pointer-state lesson is already fully explained by one stage surface plus compact code-state
+
+### House Robber
+
+- `primary`: houses/state-transition row
+- `support`: rolling DP scalar state, narration, code trace
+- no extra stage context unless a future lesson variant introduces a second synchronized structure that truly explains the transition
+
+### Maximum Depth Of Binary Tree
+
+- `primary`: execution tree
+- `co-primary`: call stack
+- `context`: structural binary tree
+- `support`: narration, code trace
+
+The structural tree is only orientation.
+It should never compete with the execution tree, because the execution tree already explains both recursion flow and return aggregation more directly.
+
+### Graph BFS Frontier
+
+- `primary`: graph frontier
+- `co-primary`: frontier queue
+- `support`: traversal state, narration, code trace
+
+The queue explains why the next node is expanded.
+It is not optional side info.
+
+### Sliding Window Maximum
+
+- `primary`: sliding window over the array
+- `co-primary`: monotonic deque
+- `support`: compact window/code-state, narration, code trace
+
+The deque is part of the core mechanism.
+Treating it as sidebar trivia weakens the lesson.
+
+### Coin Change Memo DFS
+
+- `primary`: execution tree / call tree
+- `co-primary`: memo table
+- `co-primary`: call stack
+- `support`: narration, code trace
+
+The learner needs both reuse and waiting-return flow.
+Neither memo nor stack should be reduced to support-only metadata.
+
+### Heap Top K
+
+- `primary`: min heap
+- `co-primary`: input scan
+- `support`: compact threshold/top-k/code-state, narration, code trace
+
+The heap and the current candidate must be seen together.
+The scan is part of the main comparison story, not an afterthought.
+
+### Tree DFS Traversal With Stack
+
+- `primary`: structural tree
+- `co-primary`: explicit stack
+- `co-primary`: traversal output
+- `support`: narration, code trace
+
+The learner needs to see where traversal goes, what is waiting on the stack, and what has already been committed to output.
+
+## Stage Composition Selection Rule
+
+When choosing view weights for a lesson, ask these questions in order:
+
+1. Which view best answers "what is happening right now?"
+2. Which second view is required to answer "why is that the next step?"
+3. Which remaining view only helps with orientation or reassurance?
+4. Which views are merely code-state mirrors and therefore belong in support?
+
+If a view only mirrors code values, keep it in `support`.
+If it explains the mechanism of the algorithm, it belongs in the stage.
+
 ## Cross-View Execution Objects
 
 The product should treat important execution objects as shared semantic tokens.
