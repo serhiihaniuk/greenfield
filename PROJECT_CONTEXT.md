@@ -180,6 +180,7 @@ Completed so far:
 - the motion pilot now covers the first recursion lesson too: Maximum Depth animates execution-tree call nodes, stack push/pop handoff, and return-value commitment so recursive flow is legible without relying on static status changes alone
 - shared pointers are no longer rendered as bordered chips; the runtime now uses an arrow-based pointer primitive with directional mount/move animation and shared movement memory across array and sequence views
 - pointer hardening is now being reframed as a larger cross-view execution-token architecture: pointers are no longer treated as the root semantic object, and the next documented direction is to make important execution objects recognizable across stage, state, narration, and later code views through one shared token identity
+- execution-token pilots now extend beyond pointer lessons: Binary Search, House Robber, and Sliding Window share token identity across stage, state, and narration, while Maximum Depth now carries a shared `dfs` token across the execution tree, call stack, and narration
 
 ## Immediate Next Step
 
@@ -188,7 +189,7 @@ Continue Phase 9 from the plan:
 1. start the hardening pass now that all eight flagship lesson families are implemented and verified
 2. prioritize visual QA, viewport QA, and custom-input QA across the expanded lesson set before adding more breadth
 3. retune dense lesson stage composition now that execution visuals share the stage while code-state panels stay beside code
-4. document and then implement cross-view execution tokens with Binary Search as the first pilot for stage + state + narration identity
+4. continue expanding cross-view execution tokens from the first array pilots into recursion, then into later code-trace rendering once the token contract feels stable
 5. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
 
 ## Canonical Files

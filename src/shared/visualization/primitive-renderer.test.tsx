@@ -149,7 +149,14 @@ describe("PrimitiveRenderer", () => {
       data: {
         topLabel: "top",
         frames: [
-          { id: "f1", label: "dfs(3)", status: "active" },
+          {
+            id: "f1",
+            label: "dfs",
+            tokenId: "dfs",
+            tokenStyle: "accent-1",
+            detail: "node 3",
+            status: "active",
+          },
           { id: "f2", label: "dfs(2)", status: "waiting" },
         ],
       },
@@ -210,7 +217,14 @@ describe("PrimitiveRenderer", () => {
       data: {
         rootId: "root",
         nodes: [
-          { id: "root", label: "dfs", stateValue: "(3)", status: "current" },
+          {
+            id: "root",
+            label: "dfs",
+            tokenId: "dfs",
+            tokenStyle: "accent-1",
+            stateValue: "(3)",
+            status: "current",
+          },
           {
             id: "left",
             label: "dfs",
@@ -287,7 +301,16 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("Execution")).toBeInTheDocument()
     expect(screen.getAllByText("Code Trace")).toHaveLength(1)
     expect(screen.getByText("Narration")).toBeInTheDocument()
-    expect(screen.getByText("dfs(3)")).toBeInTheDocument()
+    expect(
+      screen
+        .getAllByText("dfs")
+        .some(
+          (node) =>
+            node.closest("[data-token-id]")?.getAttribute("data-token-id") ===
+            "dfs"
+        )
+    ).toBe(true)
+    expect(screen.getByText("node 3")).toBeInTheDocument()
     expect(screen.getAllByText("front").length).toBeGreaterThan(0)
     expect(screen.getAllByText("A").length).toBeGreaterThan(1)
     expect(screen.getByText("—")).toBeInTheDocument()

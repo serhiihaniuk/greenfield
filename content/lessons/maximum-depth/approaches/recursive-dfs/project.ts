@@ -57,6 +57,12 @@ type MaximumDepthSnapshot = {
   answer?: number
 }
 
+const dfsExecutionToken = {
+  id: "dfs",
+  label: "dfs",
+  style: "accent-1" as const,
+}
+
 function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
   switch (event.type) {
     case "call":
@@ -89,10 +95,6 @@ function getNode(
   }
 
   return snapshot.nodes.find((entry) => entry.id === nodeId)
-}
-
-function getCallLabel(call: CallSnapshot) {
-  return call.nodeValue === null ? "dfs(null)" : `dfs(${call.nodeValue})`
 }
 
 function getCallStateValue(call: CallSnapshot) {
@@ -266,11 +268,13 @@ function buildStackFrames(snapshot: MaximumDepthSnapshot): StackFrame[] {
 
     return {
       id: call.callId,
-      label: getCallLabel(call),
+      label: dfsExecutionToken.label,
+      tokenId: dfsExecutionToken.id,
+      tokenStyle: dfsExecutionToken.style,
       detail:
         call.nodeValue === null
-          ? "Empty subtree"
-          : `left ${call.leftDepth ?? "?"} · right ${call.rightDepth ?? "?"}`,
+          ? "null subtree"
+          : `node ${call.nodeValue} · left ${call.leftDepth ?? "?"} · right ${call.rightDepth ?? "?"}`,
       status:
         snapshot.stack.at(-1) === call.callId
           ? "active"
@@ -329,7 +333,9 @@ function buildCallTreeEdges(
 function buildCallTreeNodes(snapshot: MaximumDepthSnapshot): CallTreeNode[] {
   return snapshot.calls.map((call) => ({
     id: call.callId,
-    label: "dfs",
+    label: dfsExecutionToken.label,
+    tokenId: dfsExecutionToken.id,
+    tokenStyle: dfsExecutionToken.style,
     stateValue: getCallStateValue(call),
     parentId: call.parentCallId,
     badge: call.side,
@@ -367,6 +373,22 @@ function buildNarration(
   event: TraceEvent,
   snapshot: MaximumDepthSnapshot
 ): NarrationPayload {
+  const tokenSegment = (id: string) => ({
+    id: `${event.id}-${id}`,
+    text: dfsExecutionToken.label,
+    tokenId: dfsExecutionToken.id,
+    tokenStyle: dfsExecutionToken.style,
+  })
+  const textSegment = (
+    id: string,
+    text: string,
+    tone: NarrationPayload["segments"][number]["tone"] = "default"
+  ) => ({
+    id: `${event.id}-${id}`,
+    text,
+    tone,
+  })
+
   switch (event.type) {
     case "call":
       return {
@@ -376,20 +398,58 @@ function buildNarration(
             : event.payload.side === "root"
               ? `Start recursion at the root node ${event.payload.nodeValue}.`
               : `Descend into the ${event.payload.side} child at node ${event.payload.nodeValue}.`,
-        segments: [],
+        segments:
+          event.payload.nodeValue === null
+            ? [
+                textSegment("t0", "Enter "),
+                tokenSegment("dfs"),
+                textSegment(
+                  "t1",
+                  ` on the ${event.payload.side} child with null.`
+                ),
+              ]
+            : event.payload.side === "root"
+              ? [
+                  textSegment("t0", "Start "),
+                  tokenSegment("dfs"),
+                  textSegment(
+                    "t1",
+                    ` at the root node ${event.payload.nodeValue}.`
+                  ),
+                ]
+              : [
+                  textSegment("t0", "Descend into "),
+                  tokenSegment("dfs"),
+                  textSegment(
+                    "t1",
+                    ` on the ${event.payload.side} child at node ${event.payload.nodeValue}.`
+                  ),
+                ],
         sourceValues: event.payload,
       }
     case "compare":
       return {
         summary: `Node ${event.payload.nodeValue} is not null, so this call must ask both children for their depth.`,
-        segments: [],
+        segments: [
+          tokenSegment("dfs"),
+          textSegment(
+            "t0",
+            ` at node ${event.payload.nodeValue} is not null, so it must ask both children for their depth.`
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "base-case":
       return {
         summary:
           "dfs(null) returns 0 because an empty subtree contributes no depth.",
-        segments: [],
+        segments: [
+          tokenSegment("dfs"),
+          textSegment(
+            "t0",
+            "(null) returns 0 because an empty subtree contributes no depth."
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "mutate":
@@ -398,7 +458,15 @@ function buildNarration(
           event.codeLine === "L6"
             ? `Store leftDepth = ${event.payload.leftDepth} after the left subtree returns.`
             : `Store rightDepth = ${event.payload.rightDepth} after the right subtree returns.`,
-        segments: [],
+        segments: [
+          tokenSegment("dfs"),
+          textSegment(
+            "t0",
+            event.codeLine === "L6"
+              ? ` stores leftDepth = ${event.payload.leftDepth} after the left subtree returns.`
+              : ` stores rightDepth = ${event.payload.rightDepth} after the right subtree returns.`
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "result":
@@ -407,7 +475,16 @@ function buildNarration(
           event.codeLine === "L2"
             ? `The wrapper returns maximum depth ${snapshot.answer}.`
             : `Compute depth at node ${getCall(snapshot, event.payload.callId as string | undefined)?.nodeValue}: 1 + max(${event.payload.leftDepth}, ${event.payload.rightDepth}) = ${event.payload.returnValue}.`,
-        segments: [],
+        segments:
+          event.codeLine === "L2"
+            ? []
+            : [
+                tokenSegment("dfs"),
+                textSegment(
+                  "t0",
+                  ` at node ${getCall(snapshot, event.payload.callId as string | undefined)?.nodeValue} returns 1 + max(${event.payload.leftDepth}, ${event.payload.rightDepth}) = ${event.payload.returnValue}.`
+                ),
+              ],
         sourceValues: event.payload,
       }
     case "return":
@@ -416,7 +493,16 @@ function buildNarration(
           event.payload.nodeId === null || event.codeLine === "L5"
             ? "Return base depth 0 to the waiting parent call."
             : `Return depth ${event.payload.returnValue} to the parent call.`,
-        segments: [],
+        segments: [
+          textSegment("t0", "Return "),
+          tokenSegment("dfs"),
+          textSegment(
+            "t1",
+            event.payload.nodeId === null || event.codeLine === "L5"
+              ? " base depth 0 to the waiting parent call."
+              : ` depth ${event.payload.returnValue} to the parent call.`
+          ),
+        ],
         sourceValues: event.payload,
       }
     default:

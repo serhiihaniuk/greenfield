@@ -4,8 +4,10 @@ import type { CallTreePrimitiveFrameState } from "@/entities/visualization/primi
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
 import { EdgeLayer } from "@/shared/visualization/edge-layer"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { layoutCallTree } from "@/shared/visualization/layouts/call-tree-layout"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { executionTokenTextClasses } from "@/shared/visualization/semantic-tokens"
 
 const statusClasses = {
   current: "border-cyan-400/65 bg-cyan-400/12 text-cyan-50",
@@ -90,10 +92,25 @@ export function CallTreeView({
                         "absolute w-32 -translate-x-1/2 -translate-y-1/2 rounded-xl border px-3 py-2.5 shadow-[0_18px_40px_rgba(2,8,23,0.2)]",
                         statusClasses[node.status]
                       )}
+                      data-token-id={node.tokenId}
                     >
                       <div className="flex items-start justify-between gap-2">
-                        <div className="font-mono text-[11px] tracking-[0.16em] uppercase">
-                          {node.label}
+                        <div
+                          className={cn(
+                            "font-mono text-[11px] tracking-[0.16em] uppercase",
+                            node.tokenStyle &&
+                              executionTokenTextClasses[node.tokenStyle]
+                          )}
+                        >
+                          {node.tokenStyle ? (
+                            <ExecutionTokenMark
+                              label={node.label}
+                              style={node.tokenStyle}
+                              variant="text"
+                            />
+                          ) : (
+                            node.label
+                          )}
                         </div>
                         {node.badge ? (
                           <motion.div

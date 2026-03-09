@@ -484,6 +484,7 @@ Must support:
 - push/pop or enqueue/dequeue emphasis
 - frame detail rows for recursion when needed
 - waiting versus active frame styling
+- optional execution-token identity on the frame label when the stack or queue is projecting a shared execution object such as `dfs`, `front`, or `back`
 
 ### HashMapView
 
@@ -510,7 +511,7 @@ Must support:
 - current frame versus waiting frame distinction
 - solved, memoized, dead, and base-state annotations
 - compact repeated-state rendering
-- focus mode and full mode
+- execution-token-aware labels when the lesson needs the same call identity to appear in narration or other synchronized views
 
 ### GraphView
 

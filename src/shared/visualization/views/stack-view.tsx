@@ -3,7 +3,9 @@ import { AnimatePresence, LayoutGroup, motion } from "motion/react"
 import type { StackPrimitiveFrameState } from "@/entities/visualization/primitives"
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { executionTokenTextClasses } from "@/shared/visualization/semantic-tokens"
 
 export function StackView({
   primitive,
@@ -65,11 +67,26 @@ export function StackView({
                     frame.status === "archived" &&
                       "border-border/50 bg-muted/15 opacity-75"
                   )}
+                  data-token-id={frame.tokenId}
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <div className="flex items-baseline gap-2">
-                      <div className="font-mono text-sm font-medium">
-                        {frame.label}
+                      <div
+                        className={cn(
+                          "font-mono text-sm font-medium",
+                          frame.tokenStyle &&
+                            executionTokenTextClasses[frame.tokenStyle]
+                        )}
+                      >
+                        {frame.tokenStyle ? (
+                          <ExecutionTokenMark
+                            label={frame.label}
+                            style={frame.tokenStyle}
+                            variant="text"
+                          />
+                        ) : (
+                          frame.label
+                        )}
                       </div>
                       {frame.detail ? (
                         <motion.div

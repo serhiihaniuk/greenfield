@@ -2,8 +2,13 @@ import { buildLessonRuntime } from "@/features/player/runtime"
 import { verifyRuntimeOutputs } from "@/domains/verification/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
+import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
-import type { StatePrimitiveFrameState } from "@/entities/visualization/primitives"
+import type {
+  CallTreePrimitiveFrameState,
+  StackPrimitiveFrameState,
+  StatePrimitiveFrameState,
+} from "@/entities/visualization/primitives"
 
 describe("verifyRuntimeOutputs", () => {
   const approach = binarySearchLesson.approaches[0]
@@ -270,6 +275,55 @@ describe("verifyRuntimeOutputs", () => {
     })
     expect(
       pushFrame.narration.segments.some((segment) => segment.tokenId === "index")
+    ).toBe(true)
+  })
+
+  it("projects the maximum depth dfs token across execution tree, stack, and narration", () => {
+    const maximumDepthApproach = maximumDepthLesson.approaches[0]
+    const balancedPreset = maximumDepthApproach?.presets.find(
+      (preset) => preset.id === "balanced-five"
+    )
+
+    if (!maximumDepthApproach || !balancedPreset) {
+      throw new Error("Maximum depth lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: maximumDepthLesson,
+      approach: maximumDepthApproach,
+      mode: "full",
+      rawInput: balancedPreset.rawInput,
+    })
+
+    const rootFrame = runtime.frames.find((frame) => frame.codeLine === "L2")
+    const executionTree = rootFrame?.primitives.find(
+      (primitive) => primitive.id === "execution-tree"
+    )
+    const callStack = rootFrame?.primitives.find(
+      (primitive) => primitive.id === "call-stack"
+    )
+
+    if (!rootFrame || !executionTree || executionTree.kind !== "call-tree") {
+      throw new Error("Expected a maximum depth execution tree on the root frame.")
+    }
+
+    if (!callStack || callStack.kind !== "stack") {
+      throw new Error("Expected a maximum depth call stack on the root frame.")
+    }
+
+    const typedExecutionTree = executionTree as CallTreePrimitiveFrameState
+    const typedCallStack = callStack as StackPrimitiveFrameState
+
+    expect(typedExecutionTree.data.nodes[0]).toMatchObject({
+      tokenId: "dfs",
+      tokenStyle: "accent-1",
+    })
+    expect(typedCallStack.data.frames[0]).toMatchObject({
+      tokenId: "dfs",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      rootFrame.narration.segments.some((segment) => segment.tokenId === "dfs")
     ).toBe(true)
   })
 })

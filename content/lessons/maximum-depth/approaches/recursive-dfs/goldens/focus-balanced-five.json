@@ -19,7 +19,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -37,7 +39,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -124,7 +126,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -142,7 +146,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -230,7 +234,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -238,7 +244,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -256,12 +264,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -348,7 +356,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -356,7 +366,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -374,12 +386,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -467,7 +479,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -475,7 +489,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -483,7 +499,9 @@
                 "label": "dfs",
                 "parentId": "call-2",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -501,17 +519,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-3",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -599,7 +617,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -607,7 +627,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -616,7 +638,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -634,17 +658,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-3",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -731,7 +755,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -739,7 +765,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -748,7 +776,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -766,12 +796,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -858,7 +888,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -866,7 +898,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -875,7 +909,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -893,12 +929,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -986,7 +1022,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -994,7 +1032,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1003,7 +1043,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1011,7 +1053,9 @@
                 "label": "dfs",
                 "parentId": "call-2",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1029,17 +1073,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-4",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1127,7 +1171,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1135,7 +1181,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1144,7 +1192,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1153,7 +1203,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1171,17 +1223,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-4",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1268,7 +1320,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1276,7 +1330,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1285,7 +1341,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1294,7 +1352,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1312,12 +1372,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1404,7 +1464,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1412,7 +1474,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1421,7 +1485,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1430,7 +1496,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1448,12 +1516,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1541,7 +1609,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1550,7 +1620,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1559,7 +1631,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1568,7 +1642,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1586,12 +1662,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-2",
-                "label": "dfs(9)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1679,7 +1755,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1688,7 +1766,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1697,7 +1777,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1706,7 +1788,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1724,7 +1808,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1812,7 +1896,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1821,7 +1907,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1830,7 +1918,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1839,7 +1929,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1857,7 +1949,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -1946,7 +2038,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1955,7 +2049,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -1964,7 +2060,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1973,7 +2071,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -1981,7 +2081,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -1999,12 +2101,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2092,7 +2194,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2101,7 +2205,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2110,7 +2216,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2119,7 +2227,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2127,7 +2237,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2145,12 +2257,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2239,7 +2351,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2248,7 +2362,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2257,7 +2373,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2266,7 +2384,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2274,7 +2394,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2282,7 +2404,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2300,17 +2424,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2398,7 +2522,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2407,7 +2533,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2416,7 +2544,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2425,7 +2555,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2433,7 +2565,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2441,7 +2575,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2459,17 +2595,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2558,7 +2694,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2567,7 +2705,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2576,7 +2716,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2585,7 +2727,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2593,7 +2737,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2601,7 +2747,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2609,7 +2757,9 @@
                 "label": "dfs",
                 "parentId": "call-6",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2627,22 +2777,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-7",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2731,7 +2881,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2740,7 +2892,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2749,7 +2903,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2758,7 +2914,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2766,7 +2924,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2774,7 +2934,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2783,7 +2945,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2801,22 +2965,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-7",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -2904,7 +3068,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2913,7 +3079,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2922,7 +3090,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2931,7 +3101,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -2939,7 +3111,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2947,7 +3121,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -2956,7 +3132,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -2974,17 +3152,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3072,7 +3250,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3081,7 +3261,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3090,7 +3272,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3099,7 +3283,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3107,7 +3293,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3115,7 +3303,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3124,7 +3314,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -3142,17 +3334,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3241,7 +3433,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3250,7 +3444,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3259,7 +3455,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3268,7 +3466,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3276,7 +3476,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3284,7 +3486,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3293,7 +3497,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3301,7 +3507,9 @@
                 "label": "dfs",
                 "parentId": "call-6",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -3319,22 +3527,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-8",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3423,7 +3631,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3432,7 +3642,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3441,7 +3653,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3450,7 +3664,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3458,7 +3674,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3466,7 +3684,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3475,7 +3695,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3484,7 +3706,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -3502,22 +3726,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-8",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3605,7 +3829,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3614,7 +3840,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3623,7 +3851,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3632,7 +3862,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3640,7 +3872,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3648,7 +3882,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3657,7 +3893,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3666,7 +3904,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -3684,17 +3924,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3782,7 +4022,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3791,7 +4033,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3800,7 +4044,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3809,7 +4055,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3817,7 +4065,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3825,7 +4075,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3834,7 +4086,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3843,7 +4097,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -3861,17 +4117,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -3960,7 +4216,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3969,7 +4227,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -3978,7 +4238,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3987,7 +4249,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -3995,7 +4259,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4004,7 +4270,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4013,7 +4281,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4022,7 +4292,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4040,17 +4312,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-6",
-                "label": "dfs(15)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -4139,7 +4411,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4148,7 +4422,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4157,7 +4433,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4166,7 +4444,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4174,7 +4454,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4183,7 +4465,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4192,7 +4476,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4201,7 +4487,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4219,12 +4507,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -4313,7 +4601,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4322,7 +4612,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4331,7 +4623,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4340,7 +4634,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4348,7 +4644,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4357,7 +4655,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4366,7 +4666,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4375,7 +4677,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4393,12 +4697,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -4488,7 +4792,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4497,7 +4803,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4506,7 +4814,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4515,7 +4825,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4523,7 +4835,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4532,7 +4846,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4541,7 +4857,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4550,7 +4868,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4558,7 +4878,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4576,17 +4898,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -4675,7 +4997,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4684,7 +5008,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4693,7 +5019,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4702,7 +5030,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4710,7 +5040,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4719,7 +5051,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4728,7 +5062,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4737,7 +5073,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4745,7 +5083,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4763,17 +5103,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -4863,7 +5203,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4872,7 +5214,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4881,7 +5225,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4890,7 +5236,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4898,7 +5246,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4907,7 +5257,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4916,7 +5268,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4925,7 +5279,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -4933,7 +5289,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -4941,7 +5299,9 @@
                 "label": "dfs",
                 "parentId": "call-9",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -4959,22 +5319,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-10",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -5064,7 +5424,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5073,7 +5435,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5082,7 +5446,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5091,7 +5457,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5099,7 +5467,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5108,7 +5478,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5117,7 +5489,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5126,7 +5500,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5134,7 +5510,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5143,7 +5521,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -5161,22 +5541,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-10",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -5265,7 +5645,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5274,7 +5656,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5283,7 +5667,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5292,7 +5678,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5300,7 +5688,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5309,7 +5699,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5318,7 +5710,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5327,7 +5721,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5335,7 +5731,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5344,7 +5742,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -5362,17 +5762,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -5461,7 +5861,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5470,7 +5872,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5479,7 +5883,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5488,7 +5894,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5496,7 +5904,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5505,7 +5915,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5514,7 +5926,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5523,7 +5937,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5531,7 +5947,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5540,7 +5958,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -5558,17 +5978,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -5658,7 +6078,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5667,7 +6089,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5676,7 +6100,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5685,7 +6111,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5693,7 +6121,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5702,7 +6132,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5711,7 +6143,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5720,7 +6154,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5728,7 +6164,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5737,7 +6175,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5745,7 +6185,9 @@
                 "label": "dfs",
                 "parentId": "call-9",
                 "stateValue": "null",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -5763,22 +6205,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-11",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -5868,7 +6310,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5877,7 +6321,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5886,7 +6332,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5895,7 +6343,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5903,7 +6353,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5912,7 +6364,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5921,7 +6375,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5930,7 +6386,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5938,7 +6396,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -5947,7 +6407,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -5956,7 +6418,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -5974,22 +6438,22 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-11",
-                "label": "dfs(null)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -6078,7 +6542,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6087,7 +6553,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6096,7 +6564,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6105,7 +6575,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6113,7 +6585,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6122,7 +6596,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6131,7 +6607,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6140,7 +6618,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6148,7 +6628,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6157,7 +6639,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6166,7 +6650,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -6184,17 +6670,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -6283,7 +6769,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6292,7 +6780,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6301,7 +6791,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6310,7 +6802,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6318,7 +6812,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6327,7 +6823,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6336,7 +6834,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6345,7 +6845,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6353,7 +6855,9 @@
                 "label": "dfs",
                 "parentId": "call-5",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6362,7 +6866,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6371,7 +6877,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -6389,17 +6897,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -6489,7 +6997,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6498,7 +7008,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6507,7 +7019,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6516,7 +7030,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6524,7 +7040,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6533,7 +7051,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6542,7 +7062,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6551,7 +7073,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6560,7 +7084,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6569,7 +7095,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6578,7 +7106,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -6596,17 +7126,17 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-9",
-                "label": "dfs(7)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -6696,7 +7226,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6705,7 +7237,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6714,7 +7248,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6723,7 +7259,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6731,7 +7269,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6740,7 +7280,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6749,7 +7291,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6758,7 +7302,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6767,7 +7313,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6776,7 +7324,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6785,7 +7335,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -6803,12 +7355,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -6898,7 +7450,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6907,7 +7461,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6916,7 +7472,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6925,7 +7483,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6933,7 +7493,9 @@
                 "label": "dfs",
                 "parentId": "call-1",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6942,7 +7504,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6951,7 +7515,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6960,7 +7526,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6969,7 +7537,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -6978,7 +7548,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -6987,7 +7559,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -7005,12 +7579,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -7101,7 +7675,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "waiting"
+                "status": "waiting",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7110,7 +7686,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7119,7 +7697,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7128,7 +7708,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7137,7 +7719,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7146,7 +7730,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7155,7 +7741,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7164,7 +7752,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7173,7 +7763,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7182,7 +7774,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7191,7 +7785,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -7209,12 +7805,12 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "waiting"
               },
               {
                 "id": "call-5",
-                "label": "dfs(20)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -7305,7 +7901,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7314,7 +7912,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7323,7 +7923,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7332,7 +7934,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7341,7 +7945,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7350,7 +7956,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7359,7 +7967,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7368,7 +7978,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7377,7 +7989,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7386,7 +8000,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7395,7 +8011,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -7413,7 +8031,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -7504,7 +8122,9 @@
                 "id": "call-1",
                 "label": "dfs",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7513,7 +8133,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7522,7 +8144,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7531,7 +8155,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7540,7 +8166,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7549,7 +8177,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7558,7 +8188,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7567,7 +8199,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7576,7 +8210,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7585,7 +8221,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7594,7 +8232,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -7612,7 +8252,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -7705,7 +8345,9 @@
                 "label": "dfs",
                 "returnValue": "3",
                 "stateValue": "node 3",
-                "status": "current"
+                "status": "current",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7714,7 +8356,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7723,7 +8367,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7732,7 +8378,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7741,7 +8389,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7750,7 +8400,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7759,7 +8411,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7768,7 +8422,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7777,7 +8433,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7786,7 +8444,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7795,7 +8455,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -7813,7 +8475,7 @@
             "frames": [
               {
                 "id": "call-1",
-                "label": "dfs(3)",
+                "label": "dfs",
                 "status": "active"
               }
             ]
@@ -7906,7 +8568,9 @@
                 "label": "dfs",
                 "returnValue": "3",
                 "stateValue": "node 3",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7915,7 +8579,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7924,7 +8590,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7933,7 +8601,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7942,7 +8612,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7951,7 +8623,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7960,7 +8634,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7969,7 +8645,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7978,7 +8656,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -7987,7 +8667,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -7996,7 +8678,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"
@@ -8101,7 +8785,9 @@
                 "label": "dfs",
                 "returnValue": "3",
                 "stateValue": "node 3",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -8110,7 +8796,9 @@
                 "parentId": "call-1",
                 "returnValue": "1",
                 "stateValue": "node 9",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -8119,7 +8807,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -8128,7 +8818,9 @@
                 "parentId": "call-2",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -8137,7 +8829,9 @@
                 "parentId": "call-1",
                 "returnValue": "2",
                 "stateValue": "node 20",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -8146,7 +8840,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 15",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -8155,7 +8851,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -8164,7 +8862,9 @@
                 "parentId": "call-6",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -8173,7 +8873,9 @@
                 "parentId": "call-5",
                 "returnValue": "1",
                 "stateValue": "node 7",
-                "status": "solved"
+                "status": "solved",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "left",
@@ -8182,7 +8884,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               },
               {
                 "badge": "right",
@@ -8191,7 +8895,9 @@
                 "parentId": "call-9",
                 "returnValue": "0",
                 "stateValue": "null",
-                "status": "base"
+                "status": "base",
+                "tokenId": "dfs",
+                "tokenStyle": "accent-1"
               }
             ],
             "rootId": "call-1"

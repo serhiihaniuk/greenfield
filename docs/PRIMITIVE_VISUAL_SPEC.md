@@ -332,6 +332,7 @@ Color is semantic, not decorative.
 - waiting frames are visible but secondary
 - completed frames may shift to a done tone instead of disappearing instantly
 - popping a frame must leave a visible handoff to the returned caller when that relationship matters
+- if a stack frame projects a shared execution token, the frame label should carry that token identity while frame detail carries the call-specific payload
 
 ## QueueView Visual Rules
 
@@ -420,6 +421,7 @@ They should have:
 - repeated dead or overshoot states should prefer compact nodes
 - branch completion and return flow must remain visually legible when a node leaves the active path
 - focus mode is the default visual mode
+- when call-tree nodes project a shared execution token, the function label should carry that token identity while the node state value stays lesson-specific
 
 ## GraphView Visual Rules
 
