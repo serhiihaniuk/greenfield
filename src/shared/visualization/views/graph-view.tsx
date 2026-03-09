@@ -1,6 +1,7 @@
 import type { GraphPrimitiveFrameState } from "@/entities/visualization/primitives"
 import { EdgeLayer } from "@/shared/visualization/edge-layer"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { cn } from "@/shared/lib/utils"
 
 const nodeClasses = {
@@ -55,11 +56,20 @@ export function GraphView({
                   "absolute flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border font-mono text-sm font-semibold shadow-[0_14px_28px_rgba(2,8,23,0.22)]",
                   nodeClasses[node.status]
                 )}
+                data-token-id={node.tokenId}
                 style={{
                   left: node.x - minX + padding,
                   top: node.y - minY + padding,
                 }}
               >
+                {node.tokenStyle ? (
+                  <div className="absolute bottom-[calc(100%+0.55rem)] left-1/2 -translate-x-1/2">
+                    <ExecutionTokenMark
+                      label={node.tokenLabel ?? node.label}
+                      style={node.tokenStyle}
+                    />
+                  </div>
+                ) : null}
                 {node.label}
                 {node.annotation ? (
                   <div className="absolute top-[calc(100%+0.45rem)] rounded-full border border-border/60 bg-background/75 px-1.5 py-0.5 text-[10px] text-muted-foreground">

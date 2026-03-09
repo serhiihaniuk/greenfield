@@ -15,6 +15,7 @@ import {
   type QueueItem,
 } from "@/entities/visualization/primitives"
 import type {
+  ExecutionTokenStyle,
   EdgeHighlightSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
@@ -43,6 +44,49 @@ type GraphBfsSnapshot = {
   currentId?: string
   inspectingNeighborId?: string
   answer?: string | null
+}
+
+const CURRENT_TOKEN_ID = "current"
+const CURRENT_TOKEN_STYLE: ExecutionTokenStyle = "accent-1"
+const CURRENT_TOKEN_LABEL = "current"
+const NEIGHBOR_TOKEN_ID = "neighbor"
+const NEIGHBOR_TOKEN_STYLE: ExecutionTokenStyle = "accent-3"
+const NEIGHBOR_TOKEN_LABEL = "neighbor"
+
+function textSegment(id: string, text: string): NarrationPayload["segments"][number] {
+  return {
+    id,
+    text,
+  }
+}
+
+function tokenSegment(
+  id: string,
+  text: string,
+  tokenId: string,
+  tokenStyle: ExecutionTokenStyle
+): NarrationPayload["segments"][number] {
+  return {
+    id,
+    text,
+    tokenId,
+    tokenStyle,
+  }
+}
+
+function getCurrentProjectedNodeId(
+  event: TraceEvent,
+  snapshot: GraphBfsSnapshot
+) {
+  if (typeof event.payload.currentId === "string") {
+    return event.payload.currentId
+  }
+
+  if (event.codeLine === "L3" && typeof event.payload.frontId === "string") {
+    return event.payload.frontId
+  }
+
+  return snapshot.currentId
 }
 
 function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
@@ -110,10 +154,7 @@ function buildGraphNodes(
   event: TraceEvent,
   snapshot: GraphBfsSnapshot
 ): GraphNode[] {
-  const currentId =
-    "currentId" in event.payload
-      ? String(event.payload.currentId)
-      : snapshot.currentId
+  const currentId = getCurrentProjectedNodeId(event, snapshot)
   const inspectingNeighborId =
     "neighborId" in event.payload
       ? String(event.payload.neighborId)
@@ -161,6 +202,24 @@ function buildGraphNodes(
     return {
       id: node.id,
       label: node.id,
+      tokenId:
+        node.id === currentId
+          ? CURRENT_TOKEN_ID
+          : node.id === inspectingNeighborId
+            ? NEIGHBOR_TOKEN_ID
+            : undefined,
+      tokenLabel:
+        node.id === currentId
+          ? CURRENT_TOKEN_LABEL
+          : node.id === inspectingNeighborId
+            ? NEIGHBOR_TOKEN_LABEL
+            : undefined,
+      tokenStyle:
+        node.id === currentId
+          ? CURRENT_TOKEN_STYLE
+          : node.id === inspectingNeighborId
+            ? NEIGHBOR_TOKEN_STYLE
+            : undefined,
       x: node.x,
       y: node.y,
       annotation,
@@ -176,6 +235,30 @@ function buildQueueItems(
   return snapshot.queue.map((nodeId, index) => ({
     id: `queue-${nodeId}-${index}`,
     label: nodeId,
+    tokenId:
+      event.codeLine === "L3" && index === 0
+        ? CURRENT_TOKEN_ID
+        : event.codeLine === "L9" &&
+            event.payload.neighborId === nodeId &&
+            index === snapshot.queue.length - 1
+          ? NEIGHBOR_TOKEN_ID
+          : undefined,
+    tokenLabel:
+      event.codeLine === "L3" && index === 0
+        ? CURRENT_TOKEN_LABEL
+        : event.codeLine === "L9" &&
+            event.payload.neighborId === nodeId &&
+            index === snapshot.queue.length - 1
+          ? NEIGHBOR_TOKEN_LABEL
+          : undefined,
+    tokenStyle:
+      event.codeLine === "L3" && index === 0
+        ? CURRENT_TOKEN_STYLE
+        : event.codeLine === "L9" &&
+            event.payload.neighborId === nodeId &&
+            index === snapshot.queue.length - 1
+          ? NEIGHBOR_TOKEN_STYLE
+          : undefined,
     status: index === 0 ? "active" : "waiting",
     annotation:
       event.codeLine === "L3" && index === 0
@@ -196,13 +279,21 @@ function buildNarration(
     case "L1":
       return {
         summary: `Seed the frontier queue with start node ${snapshot.startId}.`,
-        segments: [],
+        segments: [
+          textSegment("text-0", "Seed the frontier queue with start node "),
+          textSegment("text-1", snapshot.startId),
+          textSegment("text-2", "."),
+        ],
         sourceValues: event.payload,
       }
     case "L2":
       return {
         summary: `Mark ${snapshot.startId} visited immediately so BFS never enqueues it again.`,
-        segments: [],
+        segments: [
+          textSegment("text-0", "Mark "),
+          textSegment("text-1", snapshot.startId),
+          textSegment("text-2", " visited immediately so BFS never enqueues it again."),
+        ],
         sourceValues: event.payload,
       }
     case "L3":
@@ -210,13 +301,42 @@ function buildNarration(
         summary: Boolean(event.payload.hasFrontier)
           ? `The frontier is not empty, so BFS can expand ${event.payload.frontId} next.`
           : "The frontier is empty, so the target cannot be reached from the start node.",
-        segments: [],
+        segments: Boolean(event.payload.hasFrontier)
+          ? [
+              textSegment("text-0", "The frontier is not empty, so "),
+              tokenSegment(
+                "token-current",
+                CURRENT_TOKEN_LABEL,
+                CURRENT_TOKEN_ID,
+                CURRENT_TOKEN_STYLE
+              ),
+              textSegment("text-1", " is "),
+              textSegment("text-2", String(event.payload.frontId)),
+              textSegment("text-3", " and will be expanded next."),
+            ]
+          : [
+              textSegment(
+                "text-0",
+                "The frontier is empty, so the target cannot be reached from the start node."
+              ),
+            ],
         sourceValues: event.payload,
       }
     case "L4":
       return {
         summary: `Dequeue ${event.payload.currentId}; it is now the node BFS expands.`,
-        segments: [],
+        segments: [
+          textSegment("text-0", "Dequeue "),
+          tokenSegment(
+            "token-current",
+            CURRENT_TOKEN_LABEL,
+            CURRENT_TOKEN_ID,
+            CURRENT_TOKEN_STYLE
+          ),
+          textSegment("text-1", " = "),
+          textSegment("text-2", String(event.payload.currentId)),
+          textSegment("text-3", "; it is now the node BFS expands."),
+        ],
         sourceValues: event.payload,
       }
     case "L5":
@@ -224,7 +344,32 @@ function buildNarration(
         summary: Boolean(event.payload.found)
           ? `${event.payload.currentId} matches the target, so BFS stops.`
           : `${event.payload.currentId} is not the target, so inspect its neighbors.`,
-        segments: [],
+        segments: Boolean(event.payload.found)
+          ? [
+              tokenSegment(
+                "token-current",
+                CURRENT_TOKEN_LABEL,
+                CURRENT_TOKEN_ID,
+                CURRENT_TOKEN_STYLE
+              ),
+              textSegment("text-0", " = "),
+              textSegment("text-1", String(event.payload.currentId)),
+              textSegment("text-2", " matches the target, so BFS stops."),
+            ]
+          : [
+              tokenSegment(
+                "token-current",
+                CURRENT_TOKEN_LABEL,
+                CURRENT_TOKEN_ID,
+                CURRENT_TOKEN_STYLE
+              ),
+              textSegment("text-0", " = "),
+              textSegment("text-1", String(event.payload.currentId)),
+              textSegment(
+                "text-2",
+                " is not the target, so inspect its neighbors."
+              ),
+            ],
         sourceValues: event.payload,
       }
     case "L7":
@@ -232,26 +377,107 @@ function buildNarration(
         summary: Boolean(event.payload.alreadyVisited)
           ? `Neighbor ${event.payload.neighborId} was already visited, so BFS skips it.`
           : `Neighbor ${event.payload.neighborId} is unseen and should join the frontier.`,
-        segments: [],
+        segments: Boolean(event.payload.alreadyVisited)
+          ? [
+              tokenSegment(
+                "token-current",
+                CURRENT_TOKEN_LABEL,
+                CURRENT_TOKEN_ID,
+                CURRENT_TOKEN_STYLE
+              ),
+              textSegment("text-current-0", " checks "),
+              tokenSegment(
+                "token-neighbor",
+                NEIGHBOR_TOKEN_LABEL,
+                NEIGHBOR_TOKEN_ID,
+                NEIGHBOR_TOKEN_STYLE
+              ),
+              textSegment("text-neighbor-0", " = "),
+              textSegment("text-neighbor-1", String(event.payload.neighborId)),
+              textSegment(
+                "text-neighbor-2",
+                " and finds it was already visited, so BFS skips it."
+              ),
+            ]
+          : [
+              tokenSegment(
+                "token-current",
+                CURRENT_TOKEN_LABEL,
+                CURRENT_TOKEN_ID,
+                CURRENT_TOKEN_STYLE
+              ),
+              textSegment("text-current-0", " checks "),
+              tokenSegment(
+                "token-neighbor",
+                NEIGHBOR_TOKEN_LABEL,
+                NEIGHBOR_TOKEN_ID,
+                NEIGHBOR_TOKEN_STYLE
+              ),
+              textSegment("text-neighbor-0", " = "),
+              textSegment("text-neighbor-1", String(event.payload.neighborId)),
+              textSegment(
+                "text-neighbor-2",
+                " and sees it is unseen, so it should join the frontier."
+              ),
+            ],
         sourceValues: event.payload,
       }
     case "L8":
       return {
         summary: `Add ${event.payload.neighborId} to the visited set before enqueuing it.`,
-        segments: [],
+        segments: [
+          tokenSegment(
+            "token-current",
+            CURRENT_TOKEN_LABEL,
+            CURRENT_TOKEN_ID,
+            CURRENT_TOKEN_STYLE
+          ),
+          textSegment("text-0", " marks "),
+          tokenSegment(
+            "token-neighbor",
+            NEIGHBOR_TOKEN_LABEL,
+            NEIGHBOR_TOKEN_ID,
+            NEIGHBOR_TOKEN_STYLE
+          ),
+          textSegment("text-1", " = "),
+          textSegment("text-2", String(event.payload.neighborId)),
+          textSegment("text-3", " visited before enqueuing it."),
+        ],
         sourceValues: event.payload,
       }
     case "L9":
       return {
         summary: `Enqueue ${event.payload.neighborId} at the back of the frontier queue.`,
-        segments: [],
+        segments: [
+          tokenSegment(
+            "token-current",
+            CURRENT_TOKEN_LABEL,
+            CURRENT_TOKEN_ID,
+            CURRENT_TOKEN_STYLE
+          ),
+          textSegment("text-0", " enqueues "),
+          tokenSegment(
+            "token-neighbor",
+            NEIGHBOR_TOKEN_LABEL,
+            NEIGHBOR_TOKEN_ID,
+            NEIGHBOR_TOKEN_STYLE
+          ),
+          textSegment("text-1", " = "),
+          textSegment("text-2", String(event.payload.neighborId)),
+          textSegment("text-3", " at the back of the frontier queue."),
+        ],
         sourceValues: event.payload,
       }
     case "L12":
       return {
         summary:
           "Return null because BFS exhausted the frontier without finding the target.",
-        segments: [],
+        segments: [
+          textSegment(
+            "text-0",
+            "Return null because BFS exhausted the frontier without finding the target."
+          ),
+        ],
         sourceValues: event.payload,
       }
     default:
@@ -259,7 +485,13 @@ function buildNarration(
         summary: snapshot.answer
           ? `Return found node ${snapshot.answer}.`
           : "Advance the BFS frontier.",
-        segments: [],
+        segments: snapshot.answer
+          ? [
+              textSegment("text-0", "Return found node "),
+              textSegment("text-1", snapshot.answer),
+              textSegment("text-2", "."),
+            ]
+          : [textSegment("text-0", "Advance the BFS frontier.")],
         sourceValues: event.payload,
       }
   }
@@ -309,8 +541,28 @@ function buildPrimitiveStates(
       values: [
         { label: "start", value: snapshot.startId },
         { label: "target", value: snapshot.targetId },
-        { label: "current", value: snapshot.currentId ?? "-" },
-        { label: "neighbor", value: snapshot.inspectingNeighborId ?? "-" },
+        {
+          label: "current",
+          value: getCurrentProjectedNodeId(event, snapshot) ?? "-",
+          tokenId:
+            getCurrentProjectedNodeId(event, snapshot) !== undefined
+              ? CURRENT_TOKEN_ID
+              : undefined,
+          tokenStyle:
+            getCurrentProjectedNodeId(event, snapshot) !== undefined
+              ? CURRENT_TOKEN_STYLE
+              : undefined,
+        },
+        {
+          label: "neighbor",
+          value: snapshot.inspectingNeighborId ?? "-",
+          tokenId: snapshot.inspectingNeighborId
+            ? NEIGHBOR_TOKEN_ID
+            : undefined,
+          tokenStyle: snapshot.inspectingNeighborId
+            ? NEIGHBOR_TOKEN_STYLE
+            : undefined,
+        },
         { label: "frontier", value: snapshot.queue.join(" -> ") || "-" },
         { label: "visited", value: snapshot.visited.join(", ") || "-" },
         { label: "order", value: snapshot.order.join(", ") || "-" },

@@ -15,6 +15,8 @@ export type ExecutionToken = {
 export type FrameExecutionTokenSource =
   | "state"
   | "stack"
+  | "queue"
+  | "graph"
   | "call-tree"
   | "narration"
   | "code-trace"
@@ -151,6 +153,60 @@ export function collectFrameExecutionTokens(
               style: stackFrame.tokenStyle,
             },
             "stack"
+          )
+        }
+      }
+      continue
+    }
+
+    if (primitive.kind === "queue") {
+      const items = (
+        primitive.data as {
+          items: Array<{
+            label: string
+            tokenId?: string
+            tokenLabel?: string
+            tokenStyle?: ExecutionTokenStyle
+          }>
+        }
+      ).items
+      for (const item of items) {
+        if (item.tokenId && item.tokenStyle) {
+          mergeFrameExecutionToken(
+            tokens,
+            {
+              id: item.tokenId,
+              label: item.tokenLabel ?? item.label,
+              style: item.tokenStyle,
+            },
+            "queue"
+          )
+        }
+      }
+      continue
+    }
+
+    if (primitive.kind === "graph") {
+      const nodes = (
+        primitive.data as {
+          nodes: Array<{
+            label: string
+            tokenId?: string
+            tokenLabel?: string
+            tokenStyle?: ExecutionTokenStyle
+          }>
+        }
+      ).nodes
+      for (const node of nodes) {
+        if (node.tokenId && node.tokenStyle) {
+          mergeFrameExecutionToken(
+            tokens,
+            {
+              id: node.tokenId,
+              label: node.tokenLabel ?? node.label,
+              style: node.tokenStyle,
+            },
+            "graph"
           )
         }
       }

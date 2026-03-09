@@ -347,7 +347,10 @@
                 "annotation": "front",
                 "id": "A",
                 "label": "A",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -419,7 +422,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "A",
               "frontier": "A",
               "neighbor": "-",
               "order": "-",
@@ -494,6 +497,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -635,6 +641,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -775,6 +784,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -783,6 +795,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "default",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 44,
                 "y": 212
               },
@@ -916,6 +931,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -924,6 +942,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 44,
                 "y": 212
               },
@@ -1057,6 +1078,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -1065,6 +1089,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 44,
                 "y": 212
               },
@@ -1204,6 +1231,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -1219,6 +1249,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "default",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 190,
                 "y": 214
               },
@@ -1351,6 +1384,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -1366,6 +1402,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 190,
                 "y": 214
               },
@@ -1498,6 +1537,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 120,
                 "y": 96
               },
@@ -1513,6 +1555,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 190,
                 "y": 214
               },
@@ -1657,7 +1702,10 @@
                 "annotation": "front",
                 "id": "B",
                 "label": "B",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -1727,7 +1775,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "B",
               "frontier": "B -> C",
               "neighbor": "-",
               "order": "A",
@@ -1809,6 +1857,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -1956,6 +2007,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -2096,6 +2150,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 120,
                 "y": 96
               },
@@ -2103,6 +2160,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -2249,6 +2309,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -2264,6 +2327,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "default",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 298,
                 "y": 108
               },
@@ -2396,6 +2462,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -2411,6 +2480,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 298,
                 "y": 108
               },
@@ -2543,6 +2615,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 44,
                 "y": 212
               },
@@ -2558,6 +2633,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 298,
                 "y": 108
               },
@@ -2702,7 +2780,10 @@
                 "annotation": "front",
                 "id": "C",
                 "label": "C",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -2765,7 +2846,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "C",
               "frontier": "C -> D",
               "neighbor": "-",
               "order": "A, B",
@@ -2854,6 +2935,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3001,6 +3085,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3134,6 +3221,9 @@
                 "id": "A",
                 "label": "A",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 120,
                 "y": 96
               },
@@ -3148,6 +3238,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3294,6 +3387,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3302,6 +3398,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 298,
                 "y": 108
               },
@@ -3441,6 +3540,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3456,6 +3558,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "default",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 292,
                 "y": 264
               },
@@ -3588,6 +3693,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3603,6 +3711,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 292,
                 "y": 264
               },
@@ -3735,6 +3846,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 190,
                 "y": 214
               },
@@ -3750,6 +3864,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 292,
                 "y": 264
               },
@@ -3894,7 +4011,10 @@
                 "annotation": "front",
                 "id": "D",
                 "label": "D",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -3950,7 +4070,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "D",
               "frontier": "D -> E",
               "neighbor": "-",
               "order": "A, B, C",
@@ -4046,6 +4166,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4193,6 +4316,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4326,6 +4452,9 @@
                 "id": "B",
                 "label": "B",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 44,
                 "y": 212
               },
@@ -4340,6 +4469,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4480,6 +4612,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 190,
                 "y": 214
               },
@@ -4487,6 +4622,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4633,6 +4771,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4648,6 +4789,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "default",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 414,
                 "y": 190
               }
@@ -4779,6 +4923,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4794,6 +4941,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 414,
                 "y": 190
               }
@@ -4925,6 +5075,9 @@
                 "id": "D",
                 "label": "D",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 298,
                 "y": 108
               },
@@ -4940,6 +5093,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 414,
                 "y": 190
               }
@@ -5083,7 +5239,10 @@
                 "annotation": "front",
                 "id": "E",
                 "label": "E",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 292,
                 "y": 264
               },
@@ -5132,7 +5291,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "E",
               "frontier": "E -> F",
               "neighbor": "-",
               "order": "A, B, C, D",
@@ -5235,6 +5394,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 292,
                 "y": 264
               },
@@ -5382,6 +5544,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 292,
                 "y": 264
               },
@@ -5515,6 +5680,9 @@
                 "id": "C",
                 "label": "C",
                 "status": "visited",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 190,
                 "y": 214
               },
@@ -5529,6 +5697,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 292,
                 "y": 264
               },
@@ -5675,6 +5846,9 @@
                 "id": "E",
                 "label": "E",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 292,
                 "y": 264
               },
@@ -5683,6 +5857,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "frontier",
+                "tokenId": "neighbor",
+                "tokenLabel": "neighbor",
+                "tokenStyle": "accent-3",
                 "x": 414,
                 "y": 190
               }
@@ -5828,7 +6005,10 @@
                 "annotation": "front",
                 "id": "F",
                 "label": "F",
-                "status": "frontier",
+                "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 414,
                 "y": 190
               }
@@ -5864,7 +6044,7 @@
           "data": {
             "values": {
               "answer": "-",
-              "current": "-",
+              "current": "F",
               "frontier": "F",
               "neighbor": "-",
               "order": "A, B, C, D, E",
@@ -5975,6 +6155,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 414,
                 "y": 190
               }
@@ -6115,6 +6298,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "active",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 414,
                 "y": 190
               }
@@ -6255,6 +6441,9 @@
                 "id": "F",
                 "label": "F",
                 "status": "found",
+                "tokenId": "current",
+                "tokenLabel": "current",
+                "tokenStyle": "accent-1",
                 "x": 414,
                 "y": 190
               }

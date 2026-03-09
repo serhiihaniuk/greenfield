@@ -1,14 +1,18 @@
 import { buildLessonRuntime } from "@/features/player/runtime"
 import { verifyRuntimeOutputs } from "@/domains/verification/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
+import { graphBfsLesson } from "../../../content/lessons/graph-bfs/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
 import type {
   CallTreePrimitiveFrameState,
+  GraphPrimitiveFrameState,
+  QueuePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
 } from "@/entities/visualization/primitives"
+import { collectFrameExecutionTokens } from "@/shared/visualization/execution-tokens"
 
 describe("verifyRuntimeOutputs", () => {
   const approach = binarySearchLesson.approaches[0]
@@ -276,6 +280,116 @@ describe("verifyRuntimeOutputs", () => {
     expect(
       pushFrame.narration.segments.some((segment) => segment.tokenId === "index")
     ).toBe(true)
+  })
+
+  it("projects graph bfs current and neighbor tokens across graph, queue, state, and narration", () => {
+    const graphBfsApproach = graphBfsLesson.approaches[0]
+    const reachPreset = graphBfsApproach?.presets.find(
+      (preset) => preset.id === "reach-f"
+    )
+
+    if (!graphBfsApproach || !reachPreset) {
+      throw new Error("Graph BFS lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: graphBfsLesson,
+      approach: graphBfsApproach,
+      mode: "full",
+      rawInput: reachPreset.rawInput,
+    })
+
+    const frontierFrame = runtime.frames.find((frame) => frame.codeLine === "L3")
+    const frontierQueue = frontierFrame?.primitives.find(
+      (primitive) => primitive.id === "frontier-queue"
+    )
+
+    if (!frontierFrame || !frontierQueue || frontierQueue.kind !== "queue") {
+      throw new Error("Expected a Graph BFS frontier queue on the loop-check frame.")
+    }
+
+    const typedFrontierQueue = frontierQueue as QueuePrimitiveFrameState
+    expect(typedFrontierQueue.data.items[0]).toMatchObject({
+      tokenId: "current",
+      tokenLabel: "current",
+      tokenStyle: "accent-1",
+    })
+
+    const enqueueFrame = runtime.frames.find((frame) => frame.codeLine === "L9")
+    const graphPrimitive = enqueueFrame?.primitives.find(
+      (primitive) => primitive.id === "graph"
+    )
+    const enqueueQueue = enqueueFrame?.primitives.find(
+      (primitive) => primitive.id === "frontier-queue"
+    )
+    const statePrimitive = enqueueFrame?.primitives.find(
+      (primitive) => primitive.id === "frontier-state"
+    )
+
+    if (!enqueueFrame || !graphPrimitive || graphPrimitive.kind !== "graph") {
+      throw new Error("Expected a Graph BFS graph primitive on the enqueue frame.")
+    }
+
+    if (!enqueueQueue || enqueueQueue.kind !== "queue") {
+      throw new Error("Expected a Graph BFS queue primitive on the enqueue frame.")
+    }
+
+    if (!statePrimitive || statePrimitive.kind !== "state") {
+      throw new Error("Expected a Graph BFS state primitive on the enqueue frame.")
+    }
+
+    const typedGraphPrimitive = graphPrimitive as GraphPrimitiveFrameState
+    const typedQueuePrimitive = enqueueQueue as QueuePrimitiveFrameState
+    const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
+
+    expect(
+      typedGraphPrimitive.data.nodes.find((node) => node.tokenId === "current")
+    ).toMatchObject({
+      tokenLabel: "current",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      typedGraphPrimitive.data.nodes.find((node) => node.tokenId === "neighbor")
+    ).toMatchObject({
+      tokenLabel: "neighbor",
+      tokenStyle: "accent-3",
+    })
+    expect(
+      typedQueuePrimitive.data.items.find((item) => item.tokenId === "neighbor")
+    ).toMatchObject({
+      tokenLabel: "neighbor",
+      tokenStyle: "accent-3",
+    })
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "current")
+    ).toMatchObject({
+      tokenId: "current",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "neighbor")
+    ).toMatchObject({
+      tokenId: "neighbor",
+      tokenStyle: "accent-3",
+    })
+    expect(
+      enqueueFrame.narration.segments.some(
+        (segment) => segment.tokenId === "current"
+      )
+    ).toBe(true)
+    expect(
+      enqueueFrame.narration.segments.some(
+        (segment) => segment.tokenId === "neighbor"
+      )
+    ).toBe(true)
+
+    const tokenSources = collectFrameExecutionTokens(enqueueFrame)
+    expect(tokenSources.find((token) => token.id === "current")?.sources).toEqual(
+      expect.arrayContaining(["graph", "state", "narration"])
+    )
+    expect(tokenSources.find((token) => token.id === "neighbor")?.sources).toEqual(
+      expect.arrayContaining(["graph", "queue", "state", "narration"])
+    )
   })
 
   it("projects the maximum depth dfs token across execution tree, stack, and narration", () => {

@@ -1,5 +1,6 @@
 import type { QueuePrimitiveFrameState } from "@/entities/visualization/primitives"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import { cn } from "@/shared/lib/utils"
 
 const statusClasses = {
@@ -35,7 +36,16 @@ export function QueueView({
                       "rounded-xl border px-2.5 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
                       statusClasses[item.status]
                     )}
+                    data-token-id={item.tokenId}
                   >
+                    {item.tokenStyle ? (
+                      <div className="mb-1">
+                        <ExecutionTokenMark
+                          label={item.tokenLabel ?? item.label}
+                          style={item.tokenStyle}
+                        />
+                      </div>
+                    ) : null}
                     <div className="flex items-baseline gap-2 font-mono text-sm font-semibold">
                       <span>{item.label}</span>
                       {item.detail ? (

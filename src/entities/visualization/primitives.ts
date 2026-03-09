@@ -133,6 +133,9 @@ export function defineStackPrimitiveFrameState(
 export const queueItemSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),
+  tokenId: z.string().min(1).optional(),
+  tokenLabel: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
   detail: z.string().optional(),
   status: z.enum(["active", "waiting", "done", "archived"]).default("waiting"),
   annotation: z.string().optional(),
@@ -234,6 +237,9 @@ export function defineTreePrimitiveFrameState(
 export const graphNodeSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),
+  tokenId: z.string().min(1).optional(),
+  tokenLabel: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
   x: z.number(),
   y: z.number(),
   annotation: z.string().optional(),
