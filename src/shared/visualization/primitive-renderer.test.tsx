@@ -246,13 +246,20 @@ describe("PrimitiveRenderer", () => {
             id: "L1",
             lineNumber: 1,
             text: "let lo = 0",
-            tokens: [{ content: "let lo = 0" }],
+            tokens: [
+              { content: "let " },
+              { content: "lo", tokenId: "lo", tokenStyle: "accent-1" },
+              { content: " = 0" },
+            ],
           },
           {
             id: "L2",
             lineNumber: 2,
             text: "return mid",
-            tokens: [{ content: "return mid" }],
+            tokens: [
+              { content: "return " },
+              { content: "mid", tokenId: "mid", tokenStyle: "accent-3" },
+            ],
           },
         ],
       },
@@ -314,13 +321,18 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getAllByText("front").length).toBeGreaterThan(0)
     expect(screen.getAllByText("A").length).toBeGreaterThan(1)
     expect(screen.getByText("—")).toBeInTheDocument()
-    expect(screen.getByText("return mid")).toBeInTheDocument()
+    expect(screen.getByText("return")).toBeInTheDocument()
     expect(screen.getByText("val 5")).toBeInTheDocument()
     expect(screen.getByText("push")).toBeInTheDocument()
-    expect(screen.getByText("mid").closest("[data-token-id]")).toHaveAttribute(
-      "data-token-id",
-      "mid"
-    )
+    expect(
+      screen
+        .getAllByText("mid")
+        .some(
+          (node) =>
+            node.closest("[data-token-id]")?.getAttribute("data-token-id") ===
+            "mid"
+        )
+    ).toBe(true)
   })
 
   it("produces deterministic structural and execution tree layouts", () => {

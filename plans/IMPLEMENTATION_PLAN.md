@@ -82,6 +82,7 @@ Phase 9 now also extends the motion pilot into recursion: Maximum Depth of Binar
 Phase 9 now also upgrades the shared pointer system: array and sequence pointers are rendered as animated arrow primitives rather than bordered chips, with movement bias driven by tracked pointer continuity.
 Phase 9 now also has a documented follow-up architecture for cross-view execution tokens: pointers are no longer the intended root semantic object, and the next hardening slice is to make important execution objects recognizable across stage, state, narration, and later code through one shared token identity.
 Phase 9 now also has live execution-token pilots beyond the initial pointer rollout: Binary Search, House Robber, and Sliding Window Maximum share token identity across stage, state, and narration, and Maximum Depth of Binary Tree now carries a shared `dfs` token across the execution tree, call stack, and narration.
+Phase 9 now also includes the first shared code-trace execution-token pass: the player shell decorates active-line code spans from the current frame's token identity, with Binary Search as the first pilot.
 
 ## Phase 0: Operating System
 

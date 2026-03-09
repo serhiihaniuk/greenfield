@@ -15,6 +15,7 @@ import {
 
 import { useTheme } from "@/app/providers/theme-provider"
 import { listLessons } from "@/domains/lessons/loaders"
+import type { Frame } from "@/domains/projection/types"
 import { defineCodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import type { PrimitiveFrameState } from "@/entities/visualization/types"
 import {
@@ -35,6 +36,7 @@ import {
   buildPlainCodePresentation,
   type CodePresentation,
 } from "@/features/player/code-presentation"
+import { decorateCodePresentationWithExecutionTokens } from "@/features/player/code-trace-tokens"
 import { useLessonPlayerStore } from "@/features/player/store"
 import { AuthorReview } from "@/widgets/author-review/author-review"
 import { PresetStudioDialog } from "@/widgets/lesson-player/preset-studio-dialog"
@@ -111,18 +113,20 @@ function splitPrimitives(primitives: PrimitiveFrameState[]) {
 
 function buildCodeTracePrimitive(
   code: CodePresentation | undefined,
-  activeLineId: string | undefined
+  activeFrame: Frame | undefined
 ) {
+  const decoratedCode = decorateCodePresentationWithExecutionTokens(code, activeFrame)
+
   return defineCodeTracePrimitiveFrameState({
     id: "code-trace",
     kind: "code-trace",
     title: "Code Trace",
     subtitle: "Active line highlighting stays synchronized to the current frame.",
     data: {
-      lines: code?.lines ?? [],
-      activeLineId,
-      background: code?.background,
-      foreground: code?.foreground,
+      lines: decoratedCode?.lines ?? [],
+      activeLineId: activeFrame?.codeLine,
+      background: decoratedCode?.background,
+      foreground: decoratedCode?.foreground,
     },
     viewport: {
       role: "secondary",
@@ -193,7 +197,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const learnerModeBlocked = verificationBlocked && !authorMode
   const verificationBlockerOpen = learnerModeBlocked && !presetStudioOpen
   const blockingIssues = collectRelatedIssues(verification, activeFrame, activeEvent, 3)
-  const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame?.codeLine)
+  const codeTracePrimitive = buildCodeTracePrimitive(codePresentation, activeFrame)
   const activePreset =
     approach?.presets.find((preset) => preset.id === selectedPresetId) ?? approach?.presets[0]
 

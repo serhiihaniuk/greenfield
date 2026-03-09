@@ -4,6 +4,7 @@ import { LayoutGroup, motion } from "motion/react"
 import type { CodeTracePrimitiveFrameState } from "@/entities/visualization/primitives"
 import { cn } from "@/shared/lib/utils"
 import { useMotionContract } from "@/shared/motion/contract"
+import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
 import {
   PrimitiveRoleContext,
   PrimitiveShell,
@@ -66,6 +67,7 @@ export function CodeTraceView({
                     {line.tokens.map((token, index) => (
                       <span
                         key={`${line.id}-${index}-${token.content}`}
+                        data-token-id={token.tokenId}
                         style={{
                           color:
                             token.color ??
@@ -73,7 +75,15 @@ export function CodeTraceView({
                             "#e1e4e8",
                         }}
                       >
-                        {token.content}
+                        {token.tokenStyle ? (
+                          <ExecutionTokenMark
+                            label={token.content}
+                            style={token.tokenStyle}
+                            variant="text"
+                          />
+                        ) : (
+                          token.content
+                        )}
                       </span>
                     ))}
                   </div>

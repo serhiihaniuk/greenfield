@@ -214,7 +214,7 @@ State and code views should eventually support token-aware rendering.
 
 ### CodeTraceView
 
-- code trace may later render token-aware variable emphasis
+- code trace should support token-aware variable emphasis when the same execution object already exists in the synchronized frame context
 - code should remain readable first; token rendering is supportive, not noisy
 - token identity should be reused when it improves learner recognition, not sprayed onto every variable indiscriminately
 
@@ -453,7 +453,8 @@ They should have:
 
 - active line must be immediately visible
 - syntax highlighting must not compete with semantic line highlighting
-- inline variable chips should be compact and rare
+- token-aware variable emphasis should stay inline with code text, not turn code into a badge wall
+- the first pilot should decorate only the active line or otherwise strongly relevant spans, not every repeated variable mention in the file
 
 ## StateView Visual Rules
 

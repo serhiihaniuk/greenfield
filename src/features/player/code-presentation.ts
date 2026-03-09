@@ -1,9 +1,13 @@
 import type { CodeTemplate } from "@/domains/lessons/types"
 
+import type { ExecutionTokenStyle } from "@/entities/visualization/types"
+
 type HighlightToken = {
   content: string
   color?: string
   fontStyle?: number
+  tokenId?: string
+  tokenStyle?: ExecutionTokenStyle
 }
 
 export interface CodePresentationLine {

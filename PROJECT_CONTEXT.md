@@ -181,6 +181,7 @@ Completed so far:
 - shared pointers are no longer rendered as bordered chips; the runtime now uses an arrow-based pointer primitive with directional mount/move animation and shared movement memory across array and sequence views
 - pointer hardening is now being reframed as a larger cross-view execution-token architecture: pointers are no longer treated as the root semantic object, and the next documented direction is to make important execution objects recognizable across stage, state, narration, and later code views through one shared token identity
 - execution-token pilots now extend beyond pointer lessons: Binary Search, House Robber, and Sliding Window share token identity across stage, state, and narration, while Maximum Depth now carries a shared `dfs` token across the execution tree, call stack, and narration
+- the first code-trace token pilot is now live too: Binary Search decorates the active code line with the same execution-token identity used by its stage pointers, narration, and state rows
 
 ## Immediate Next Step
 

@@ -527,7 +527,7 @@ Must support:
 - active line
 - waiting line or suspended frame line
 - returned line
-- optional inline variable chips
+- optional token-aware inline variable emphasis derived from shared execution-token identity
 - line numbers and stable code layout
 
 ### StateView

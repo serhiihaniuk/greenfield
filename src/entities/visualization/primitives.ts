@@ -322,6 +322,8 @@ export const codeTraceLineSchema = z.object({
       content: z.string(),
       color: z.string().optional(),
       fontStyle: z.number().optional(),
+      tokenId: z.string().min(1).optional(),
+      tokenStyle: executionTokenStyleSchema.optional(),
     })
   ),
 })
