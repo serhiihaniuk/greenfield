@@ -1,11 +1,5 @@
-import type { ReactNode } from "react"
-
 import type { SequencePrimitiveFrameState } from "@/entities/visualization/primitives"
-import type {
-  AnnotationSpec,
-  HighlightSpec,
-  PointerSpec,
-} from "@/entities/visualization/types"
+import type { HighlightSpec } from "@/entities/visualization/types"
 import { cn } from "@/shared/lib/utils"
 import {
   PointerLayer,
@@ -13,55 +7,9 @@ import {
 } from "@/shared/visualization/pointer-overlay"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import {
-  annotationToneClasses,
   emphasisClasses,
   highlightToneClasses,
 } from "@/shared/visualization/semantic-tokens"
-
-function sortPointers(pointers: PointerSpec[]) {
-  return [...pointers].sort((left, right) => {
-    const leftPriority = left.priority ?? 0
-    const rightPriority = right.priority ?? 0
-
-    if (leftPriority !== rightPriority) {
-      return leftPriority - rightPriority
-    }
-
-    return left.id.localeCompare(right.id)
-  })
-}
-
-function groupByTarget<T extends { targetId: string }>(entries: T[]) {
-  const grouped = new Map<string, T[]>()
-
-  for (const entry of entries) {
-    const existing = grouped.get(entry.targetId) ?? []
-    existing.push(entry)
-    grouped.set(entry.targetId, existing)
-  }
-
-  return grouped
-}
-
-function renderAnnotations(
-  annotations: AnnotationSpec[] | undefined
-): ReactNode {
-  if (!annotations || annotations.length === 0) {
-    return null
-  }
-
-  return annotations.map((annotation) => (
-    <span
-      key={annotation.id}
-      className={cn(
-        "inline-flex max-w-full items-center rounded-md border px-1.5 py-0.5 font-mono text-[10px] leading-none",
-        annotationToneClasses[annotation.tone ?? "default"]
-      )}
-    >
-      {annotation.text}
-    </span>
-  ))
-}
 
 export function SequenceView({
   primitive,
@@ -75,8 +23,6 @@ export function SequenceView({
       highlight,
     ])
   )
-  const annotationMap = groupByTarget(primitive.annotations ?? [])
-
   return (
     <PrimitiveShell primitive={primitive}>
       <div className="grid gap-3">
@@ -87,13 +33,13 @@ export function SequenceView({
           </div>
         ) : null}
 
-        <div className="overflow-x-auto pb-1">
+        <div className="overflow-x-auto overflow-y-clip pb-1">
           <div
             ref={rootRef}
-            className="relative flex min-w-max items-start gap-2 px-1 pt-10 pb-10"
+            className="relative flex min-w-max items-start gap-2 px-5 pt-14 pb-14"
           >
             <PointerLayer
-              pointers={sortPointers(primitive.pointers ?? [])}
+              pointers={primitive.pointers ?? []}
               anchors={anchors}
               scopeId={primitive.id}
             />
@@ -102,50 +48,36 @@ export function SequenceView({
                 Sequence is empty
               </div>
             ) : (
-              primitive.data.items.map((item, index) => {
+              primitive.data.items.map((item) => {
                 const highlight = highlightMap.get(item.id)
-                const annotations = annotationMap.get(item.id)
 
                 return (
-                  <div key={item.id} className="flex items-start gap-2">
-                    <div className="flex w-14 shrink-0 flex-col items-center gap-2">
-                      <div
-                        ref={registerTarget(item.id)}
-                        className={cn(
-                          "flex min-h-12 w-full flex-col items-center justify-center rounded-xl border px-2 py-1.5 font-mono transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
-                          highlight
-                            ? highlightToneClasses[highlight.tone]
-                            : highlightToneClasses.default,
-                          highlight?.emphasis
-                            ? emphasisClasses[highlight.emphasis]
-                            : emphasisClasses.normal
-                        )}
-                        data-highlight-tone={highlight?.tone ?? "default"}
-                      >
-                        <span className="text-center text-sm leading-none font-semibold">
-                          {item.label}
+                  <div
+                    key={item.id}
+                    ref={registerTarget(item.id)}
+                    className="flex w-14 shrink-0 flex-col items-center"
+                  >
+                    <div
+                      className={cn(
+                        "flex min-h-12 w-full flex-col items-center justify-center rounded-xl border px-2 py-1.5 font-mono transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
+                        highlight
+                          ? highlightToneClasses[highlight.tone]
+                          : highlightToneClasses.default,
+                        highlight?.emphasis
+                          ? emphasisClasses[highlight.emphasis]
+                          : emphasisClasses.normal
+                      )}
+                      data-highlight-tone={highlight?.tone ?? "default"}
+                    >
+                      <span className="text-center text-sm leading-none font-semibold">
+                        {item.label}
+                      </span>
+                      {item.detail ? (
+                        <span className="mt-1 text-center text-[10px] leading-none text-muted-foreground">
+                          {item.detail}
                         </span>
-                        {item.detail ? (
-                          <span className="mt-1 text-center text-[10px] leading-none text-muted-foreground">
-                            {item.detail}
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <div
-                        className="flex min-h-5 max-w-full flex-wrap items-center justify-center gap-1"
-                        data-testid={`annotation-stack-${item.id}`}
-                      >
-                        {renderAnnotations(annotations)}
-                      </div>
-                      <div className="h-0 w-full shrink-0" />
+                      ) : null}
                     </div>
-
-                    {index < primitive.data.items.length - 1 ? (
-                      <div className="pt-[3.15rem] text-muted-foreground/70">
-                        →
-                      </div>
-                    ) : null}
                   </div>
                 )
               })

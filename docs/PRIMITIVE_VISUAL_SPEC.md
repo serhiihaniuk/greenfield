@@ -488,27 +488,38 @@ They should have:
 
 ### Stage structure
 
-The stage (right panel, ~73% width) uses independently scrolling regions:
+The stage (right panel, ~73% width) uses a **unified flex column** for all stage-core views. Co-primary, primary, and context primitives render inside one scrollable container as a single vertically-stacked, center-aligned group.
+
+When secondary content is present, the stage splits into a resizable pair:
 
 ```
-div (grid h-full overflow-hidden, dynamic columns)
-  ├─ section (overflow-auto flex)          ← primary scrolls alone
-  │   └─ div.m-auto (grid auto-rows-max)  ← centers when content is small
-  └─ aside (overflow-y-auto border-l)     ← secondary scrolls alone
-      └─ div (grid auto-rows-max)
+div (h-full overflow-hidden)
+  └─ ResizablePanelGroup (horizontal)
+       ├─ ResizablePanel id="stage-main"      ← user-resizable
+       │   └─ section (overflow-auto flex)     ← unified scroll region
+       │       └─ div.m-auto (flex-col items-center gap-4)
+       │            ├─ co-primary primitives   ← stacked above primary
+       │            ├─ primary primitives      ← main teaching surface
+       │            └─ context primitives      ← optional orientation aids
+       ├─ ResizableHandle
+       └─ ResizablePanel id="stage-secondary"  ← user-resizable
+           └─ aside (overflow-y-auto border-l) ← auxiliary scrolls alone
+               └─ div (grid auto-rows-max)
 ```
 
-Primary content centers via `m-auto` on a flex child — when content is smaller than the container, margins distribute excess space. When content overflows, margins collapse to 0 and normal scrolling applies with no top-clipping.
+When no secondary content exists, the `ResizablePanelGroup` is omitted and the unified flex column fills the stage directly.
+
+Stage-core content centers via `m-auto` on a flex child — when content is smaller than the container, margins distribute excess space. When content overflows, margins collapse to 0 and normal scrolling applies with no top-clipping. Each view takes its natural width and all center-align together via `items-center`.
 
 ### Column strategy
 
-The stage picks columns based on what the secondary region contains:
+The stage uses resizable panels with default sizes based on secondary content:
 
-| Case                | Condition                     | Columns                     |
-| ------------------- | ----------------------------- | --------------------------- |
-| No secondary        | no secondary primitives       | Single column               |
-| Compact secondary   | secondary has only flow views | `1fr + clamp(16rem, 22rem)` |
-| Expansive secondary | secondary has a canvas view   | `1.2fr + 1fr`               |
+| Case                | Condition                     | Default split (main / secondary) | Secondary constraints  |
+| ------------------- | ----------------------------- | -------------------------------- | ---------------------- |
+| No secondary        | no secondary primitives       | Full width (no split)            | —                      |
+| Compact secondary   | secondary has only flow views | 78% / 22%                        | min 14%, max 42%       |
+| Expansive secondary | secondary has a canvas view   | 72% / 28%                        | min 14%, max 42%       |
 
 Canvas views (`tree`, `call-tree`, `graph` — listed in `CANVAS_KINDS` set in `lesson-player.tsx`) use absolute positioning and have intrinsic minimum widths (300–360px). Flow views (array, sequence, stack, queue, hash-map) use CSS flex/grid and compress naturally into narrow columns.
 

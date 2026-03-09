@@ -468,21 +468,26 @@ Each primitive declares `PrimitiveViewportSpec` with:
 The `splitPrimitives()` function in `lesson-player.tsx` routes each primitive:
 
 - `kind === "state"` or `role === "support"` → support column (left panel)
-- `role === "primary"` or undefined non-state → stage primary (center, large area, flex centering)
-- `role === "co-primary"` or `role === "context"` → stage-core companion region
-- `role === "secondary"` → stage auxiliary rail
+- `role === "primary"` or undefined non-state → unified stage flex column
+- `role === "co-primary"` or `role === "context"` → unified stage flex column (stacked with primary)
+- `role === "secondary"` → stage auxiliary rail (separate resizable panel)
 - `role === "tertiary"` → support column legacy fallback
 
 This is now the current runtime implementation contract.
 The key pedagogical correction is that `secondary` no longer means "smaller stage panel".
 It means "true auxiliary execution aid".
 
+### Unified stage-core composition
+
+Co-primary, primary, and context primitives all render inside **one flex column** with `items-center` and `m-auto` centering. They stack vertically as a single group: co-primaries first, then primary, then context.
+
+This design ensures that related stage-core views always compose as one cohesive unit instead of being separated into disconnected regions. Each view takes its natural width and all center-align together.
+
 ### Independent scroll regions
 
-Stage-core and auxiliary regions scroll independently. The outer stage container uses `overflow-hidden` so no scroll leaks. Each region owns its own overflow:
+The unified stage-core region and auxiliary rail scroll independently. The outer stage container uses `overflow-hidden` so no scroll leaks. Each region owns its own overflow:
 
-- Primary: `overflow-auto` with `m-auto` centering — content centers when smaller than viewport, scrolls normally when overflowing.
-- Companion/context: `overflow-y-auto` when stage-core views stack above or below the primary surface.
+- Stage-core: `overflow-auto` with `m-auto` flex centering — content centers when smaller than viewport, scrolls normally when overflowing.
 - Secondary aid rail: `overflow-y-auto` — auxiliary aids stack vertically via `grid auto-rows-max`.
 
 ## Primitive-Specific Requirements

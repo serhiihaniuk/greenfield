@@ -119,13 +119,13 @@ test("keeps synchronized secondary visuals inside the stage instead of the suppo
   await expectRuntimeReady(page, "Traversal Tree", "DFS Stack")
 
   await expect(
-    testRegion(page, "stage-companion-region").getByRole("heading", {
+    testRegion(page, "stage-primary-region").getByRole("heading", {
       name: "DFS Stack",
       exact: true,
     })
   ).toBeVisible()
   await expect(
-    testRegion(page, "stage-companion-region").getByRole("heading", {
+    testRegion(page, "stage-primary-region").getByRole("heading", {
       name: "Preorder Output",
       exact: true,
     })

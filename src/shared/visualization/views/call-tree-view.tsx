@@ -29,6 +29,13 @@ export function CallTreeView({
   const canvasWidth = Math.max(layout.width + 136, 360)
   const canvasHeight = Math.max(layout.height + 84, 280)
 
+  // Center tree content horizontally within the canvas.
+  const xs = layout.nodes.map((n) => n.x)
+  const offsetX =
+    xs.length > 0
+      ? canvasWidth / 2 - (Math.min(...xs) + Math.max(...xs)) / 2
+      : canvasWidth / 2
+
   return (
     <PrimitiveShell primitive={primitive}>
       <div
@@ -45,7 +52,7 @@ export function CallTreeView({
               <EdgeLayer
                 nodes={layout.nodes.map((node) => ({
                   id: node.id,
-                  x: node.x + 68,
+                  x: node.x + offsetX,
                   y: node.y + 42,
                 }))}
                 edges={layout.edges}
@@ -75,7 +82,7 @@ export function CallTreeView({
                         opacity: 1,
                         scale: node.status === "current" ? 1.03 : 1,
                         filter: "blur(0px)",
-                        left: positioned.x + 68,
+                        left: positioned.x + offsetX,
                         top: positioned.y + 42,
                       }}
                       exit={

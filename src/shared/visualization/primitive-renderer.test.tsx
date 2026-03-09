@@ -54,15 +54,6 @@ describe("PrimitiveRenderer", () => {
           emphasis: "strong",
         },
       ],
-      annotations: [
-        {
-          id: "candidate",
-          targetId: "cell-1",
-          kind: "badge",
-          text: "candidate",
-          tone: "active",
-        },
-      ],
     })
 
     render(<PrimitiveRenderer primitive={primitive} />)
@@ -73,7 +64,6 @@ describe("PrimitiveRenderer", () => {
       .map((node) => node.textContent)
 
     expect(pointerLabels).toEqual(["lo", "mid"])
-    expect(screen.getByText("candidate")).toBeInTheDocument()
     expect(
       screen.getByText("3").closest("[data-highlight-tone]")
     ).toHaveAttribute("data-highlight-tone", "compare")
@@ -130,15 +120,6 @@ describe("PrimitiveRenderer", () => {
           targetId: "d2",
           tone: "candidate",
           emphasis: "strong",
-        },
-      ],
-      annotations: [
-        {
-          id: "push",
-          targetId: "d2",
-          kind: "badge",
-          text: "push",
-          tone: "active",
         },
       ],
     })
@@ -323,7 +304,6 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("—")).toBeInTheDocument()
     expect(screen.getByText("return")).toBeInTheDocument()
     expect(screen.getByText("val 5")).toBeInTheDocument()
-    expect(screen.getByText("push")).toBeInTheDocument()
     expect(
       screen
         .getAllByText("mid")

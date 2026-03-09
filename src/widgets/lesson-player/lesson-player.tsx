@@ -248,8 +248,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   } =
     splitPrimitives(activePrimitives)
   const hasSupportPrimitives = supportPrimitives.length > 0
-  const hasCoPrimaryStage = coPrimaryPrimitives.length > 0
-  const hasContextStage = contextPrimitives.length > 0
   const hasSecondaryStage = secondaryPrimitives.length > 0
   const hasExpansiveSecondary = secondaryPrimitives.some((p) =>
     CANVAS_KINDS.has(p.kind)
@@ -552,65 +550,40 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                     defaultSize={hasExpansiveSecondary ? "72%" : "78%"}
                     minSize="30%"
                   >
-                    <div className="flex h-full min-h-0 flex-col">
-                      {hasCoPrimaryStage ? (
-                        <section
-                          data-testid="stage-companion-region"
-                          className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
-                        >
-                          <div
-                            data-testid="stage-coprimary-region"
-                            className="grid auto-rows-max gap-3"
-                          >
-                            {coPrimaryPrimitives.map((primitive) => (
-                              <PrimitiveRenderer
-                                key={primitive.id}
-                                primitive={primitive}
-                                role="primary"
-                                selectedPrimitiveId={selectedPrimitiveId}
-                              />
-                            ))}
-                          </div>
-                        </section>
-                      ) : null}
-
-                      <section
-                        data-testid="stage-scroll-region"
-                        className="flex min-h-0 flex-1 overflow-auto"
+                    <section
+                      data-testid="stage-scroll-region"
+                      className="flex h-full min-h-0 overflow-auto"
+                    >
+                      <div
+                        data-testid="stage-primary-region"
+                        className="m-auto flex flex-col items-center gap-4 p-4"
                       >
-                        <div
-                          data-testid="stage-primary-region"
-                          className="m-auto grid auto-rows-max gap-4 p-4"
-                        >
-                          {primaryPrimitives.map((primitive) => (
-                            <PrimitiveRenderer
-                              key={primitive.id}
-                              primitive={primitive}
-                              role="primary"
-                              selectedPrimitiveId={selectedPrimitiveId}
-                            />
-                          ))}
-                        </div>
-                      </section>
-
-                      {hasContextStage ? (
-                        <section
-                          data-testid="stage-context-region"
-                          className="max-h-[34%] shrink-0 overflow-y-auto border-t border-border/20 p-4"
-                        >
-                          <div className="grid auto-rows-max gap-3">
-                            {contextPrimitives.map((primitive) => (
-                              <PrimitiveRenderer
-                                key={primitive.id}
-                                primitive={primitive}
-                                role="secondary"
-                                selectedPrimitiveId={selectedPrimitiveId}
-                              />
-                            ))}
-                          </div>
-                        </section>
-                      ) : null}
-                    </div>
+                        {coPrimaryPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="primary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                        {primaryPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="primary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                        {contextPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="secondary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                      </div>
+                    </section>
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel
@@ -639,65 +612,40 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                   </ResizablePanel>
                 </ResizablePanelGroup>
               ) : (
-                <div className="flex h-full min-h-0 flex-col">
-                  {hasCoPrimaryStage ? (
-                    <section
-                      data-testid="stage-companion-region"
-                      className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
-                    >
-                      <div
-                        data-testid="stage-coprimary-region"
-                        className="grid auto-rows-max gap-3"
-                      >
-                        {coPrimaryPrimitives.map((primitive) => (
-                          <PrimitiveRenderer
-                            key={primitive.id}
-                            primitive={primitive}
-                            role="primary"
-                            selectedPrimitiveId={selectedPrimitiveId}
-                          />
-                        ))}
-                      </div>
-                    </section>
-                  ) : null}
-
-                  <section
-                    data-testid="stage-scroll-region"
-                    className="flex min-h-0 flex-1 overflow-auto"
+                <section
+                  data-testid="stage-scroll-region"
+                  className="flex h-full overflow-auto"
+                >
+                  <div
+                    data-testid="stage-primary-region"
+                    className="m-auto flex flex-col items-center gap-4 p-4"
                   >
-                    <div
-                      data-testid="stage-primary-region"
-                      className="m-auto grid auto-rows-max gap-4 p-4"
-                    >
-                      {primaryPrimitives.map((primitive) => (
-                        <PrimitiveRenderer
-                          key={primitive.id}
-                          primitive={primitive}
-                          role="primary"
-                          selectedPrimitiveId={selectedPrimitiveId}
-                        />
-                      ))}
-                    </div>
-                  </section>
-
-                  {hasContextStage ? (
-                    <section
-                      data-testid="stage-context-region"
-                      className="max-h-[34%] shrink-0 overflow-y-auto border-t border-border/20 p-4"
-                    >
-                      <div className="grid auto-rows-max gap-3">
-                        {contextPrimitives.map((primitive) => (
-                          <PrimitiveRenderer
-                            key={primitive.id}
-                            primitive={primitive}
-                            role="secondary"
-                            selectedPrimitiveId={selectedPrimitiveId}
-                          />
-                        ))}
-                      </div>
-                    </section>
-                  ) : null}
-                </div>
+                    {coPrimaryPrimitives.map((primitive) => (
+                      <PrimitiveRenderer
+                        key={primitive.id}
+                        primitive={primitive}
+                        role="primary"
+                        selectedPrimitiveId={selectedPrimitiveId}
+                      />
+                    ))}
+                    {primaryPrimitives.map((primitive) => (
+                      <PrimitiveRenderer
+                        key={primitive.id}
+                        primitive={primitive}
+                        role="primary"
+                        selectedPrimitiveId={selectedPrimitiveId}
+                      />
+                    ))}
+                    {contextPrimitives.map((primitive) => (
+                      <PrimitiveRenderer
+                        key={primitive.id}
+                        primitive={primitive}
+                        role="secondary"
+                        selectedPrimitiveId={selectedPrimitiveId}
+                      />
+                    ))}
+                  </div>
+                </section>
               )}
             </div>
           </ResizablePanel>

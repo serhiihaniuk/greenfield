@@ -781,7 +781,7 @@ Each primitive declares `PrimitiveViewportSpec` in its lesson `project.ts`:
 - `preferredWidth`: ideal width in px (900–980 stage-core, 280–420 auxiliary). Declared for every primitive in lesson data. Not yet consumed for dynamic column sizing but available for future use.
 - `minHeight`: minimum height constraint.
 
-The `splitPrimitives()` function in `lesson-player.tsx` reads `role` and `kind` to route primitives to regions.
+The `splitPrimitives()` function in `lesson-player.tsx` reads `role` and `kind` to route primitives to regions. All stage-core views (co-primary, primary, context) render inside one unified flex column with `items-center` centering, stacking as a single cohesive group.
 
 Lesson authors should not hand-duplicate view roles across lesson metadata and projector code.
 Each approach should define one shared view-spec list that contains:
@@ -800,7 +800,7 @@ Views fall into two categories that affect layout behavior:
 
 **Flow views** (array, sequence, stack, queue, hash-map) — use CSS flex/grid with content-driven sizing. They compress naturally into narrow columns without breaking.
 
-When a canvas view appears in the secondary column, the stage switches from a narrow sidebar (`16–22rem`) to a proportional split (`1.2fr : 1fr`) so the canvas gets enough width.
+When secondary views are present, the stage splits into a `ResizablePanelGroup` with the main unified column at 72–78% and the auxiliary rail at 22–28%. Expansive secondary views (canvas-based) get 28%, compact ones get 22%.
 
 ### Extending the system
 
