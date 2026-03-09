@@ -184,6 +184,7 @@ Completed so far:
 - the first code-trace token pilot is now live too: Binary Search decorates the active code line with the same execution-token identity used by its stage pointers, narration, and state rows
 - audit is now token-aware at frame level: author review can summarize which shared execution tokens exist in the active frame and which synchronized views currently project them
 - Phase 9 now also has a clearer stage-composition diagnosis: the current `primary/secondary/tertiary` routing is too blunt for lessons whose mechanism depends on multiple stage views, and the next shell pass should distinguish `primary`, `co-primary`, `context`, and `support`
+- Phase 9 now has the first live pedagogical stage-composition pass in code: the shell can route `co-primary` mechanism views into the main stage stack, keep explicit `context` views in a separate stage rail, and keep `support` panels beside narration and code instead of treating all non-primary views as one generic sidebar
 
 ## Immediate Next Step
 

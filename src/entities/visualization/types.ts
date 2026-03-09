@@ -124,6 +124,9 @@ export type DensityMode = z.infer<typeof densityModeSchema>
 
 export const primitiveViewportRoleSchema = z.enum([
   "primary",
+  "co-primary",
+  "context",
+  "support",
   "secondary",
   "tertiary",
 ])

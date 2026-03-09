@@ -2,6 +2,7 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { minHeapTopKCodeTemplate } from "./approaches/min-heap/code"
 import { minHeapTopKNotes } from "./approaches/min-heap/notes"
@@ -11,6 +12,7 @@ import {
   traceMinHeapTopK,
 } from "./approaches/min-heap/trace"
 import { verifyMinHeapTopK } from "./approaches/min-heap/verify"
+import { minHeapTopKViewSpecs } from "./approaches/min-heap/views"
 import { heapTopKPresets } from "./presets"
 
 const minHeapApproach = defineApproachDefinition({
@@ -19,26 +21,7 @@ const minHeapApproach = defineApproachDefinition({
   codeTemplate: minHeapTopKCodeTemplate,
   parseInput: parseHeapTopKInput,
   presets: heapTopKPresets,
-  requiredViews: [
-    {
-      id: "min-heap",
-      primitive: "tree",
-      role: "primary",
-      title: "Min Heap",
-    },
-    {
-      id: "input-array",
-      primitive: "array",
-      role: "secondary",
-      title: "Input Scan",
-    },
-    {
-      id: "heap-state",
-      primitive: "state",
-      role: "secondary",
-      title: "Top-K State",
-    },
-  ],
+  requiredViews: toRequiredViews(minHeapTopKViewSpecs),
   trace: traceMinHeapTopK,
   project: projectMinHeapTopK,
   verify: (events, frames) =>

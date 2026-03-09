@@ -23,8 +23,19 @@ describe("lesson view specs", () => {
       {
         id: "memo-table",
         primitive: "hash-map",
-        role: "secondary",
+        role: "co-primary",
         title: "Memo Table",
+        viewport: {
+          role: "co-primary",
+          preferredWidth: 360,
+          minHeight: 200,
+        },
+      },
+      {
+        id: "memo-state",
+        primitive: "state",
+        role: "support",
+        title: "Memo State",
       },
     ] as const)
 
@@ -38,8 +49,14 @@ describe("lesson view specs", () => {
       {
         id: "memo-table",
         primitive: "hash-map",
-        role: "secondary",
+        role: "co-primary",
         title: "Memo Table",
+      },
+      {
+        id: "memo-state",
+        primitive: "state",
+        role: "support",
+        title: "Memo State",
       },
     ])
 
@@ -47,6 +64,11 @@ describe("lesson view specs", () => {
       role: "primary",
       preferredWidth: 960,
       minHeight: 360,
+    })
+    expect(getLessonViewSpec(viewSpecs, "memo-table").viewport).toEqual({
+      role: "co-primary",
+      preferredWidth: 360,
+      minHeight: 200,
     })
   })
 })

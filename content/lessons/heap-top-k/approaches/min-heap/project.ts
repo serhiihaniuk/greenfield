@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -19,6 +20,7 @@ import type {
   PointerSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { minHeapTopKViewSpecs } from "./views"
 
 type HeapTopKSnapshot = {
   nums: number[]
@@ -359,10 +361,12 @@ function buildHeapPrimitive(
   event: TraceEvent,
   snapshot: HeapTopKSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(minHeapTopKViewSpecs, "min-heap")
+
   return defineTreePrimitiveFrameState({
     id: "min-heap",
     kind: "tree",
-    title: "Min Heap",
+    title: viewSpec.title,
     subtitle:
       "The root is the weakest kept value, so every new candidate must beat it before entering the top-k set.",
     data: {
@@ -370,11 +374,7 @@ function buildHeapPrimitive(
       rootId: "slot-0",
     },
     edgeHighlights: buildHeapEdgeHighlights(event),
-    viewport: {
-      role: "primary",
-      preferredWidth: 900,
-      minHeight: 340,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
@@ -382,10 +382,12 @@ function buildInputPrimitive(
   event: TraceEvent,
   snapshot: HeapTopKSnapshot
 ): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(minHeapTopKViewSpecs, "input-array")
+
   return defineArrayPrimitiveFrameState({
     id: "input-array",
     kind: "array",
-    title: "Input Scan",
+    title: viewSpec.title,
     subtitle:
       "Each value is considered exactly once against the current heap threshold.",
     data: {
@@ -398,19 +400,17 @@ function buildInputPrimitive(
     pointers: buildInputPointers(snapshot),
     highlights: buildInputHighlights(event, snapshot),
     annotations: buildInputAnnotations(event, snapshot),
-    viewport: {
-      role: "secondary",
-      preferredWidth: 960,
-      minHeight: 220,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 
 function buildStatePrimitive(snapshot: HeapTopKSnapshot): PrimitiveFrameState {
+  const viewSpec = getLessonViewSpec(minHeapTopKViewSpecs, "heap-state")
+
   return defineStatePrimitiveFrameState({
     id: "heap-state",
     kind: "state",
-    title: "Top-K State",
+    title: viewSpec.title,
     data: {
       values: [
         { label: "i", value: snapshot.currentIndex ?? "-" },
@@ -433,11 +433,7 @@ function buildStatePrimitive(snapshot: HeapTopKSnapshot): PrimitiveFrameState {
         },
       ],
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 220,
-    },
+    viewport: viewSpec.viewport,
   })
 }
 

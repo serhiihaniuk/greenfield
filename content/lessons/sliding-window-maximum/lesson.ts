@@ -2,6 +2,7 @@ import {
   defineApproachDefinition,
   defineLessonDefinition,
 } from "@/domains/lessons/types"
+import { toRequiredViews } from "@/domains/lessons/view-specs"
 
 import { monotonicDequeSlidingWindowMaximumCodeTemplate } from "./approaches/monotonic-deque/code"
 import { monotonicDequeSlidingWindowMaximumNotes } from "./approaches/monotonic-deque/notes"
@@ -11,6 +12,7 @@ import {
   traceMonotonicDequeSlidingWindowMaximum,
 } from "./approaches/monotonic-deque/trace"
 import { verifyMonotonicDequeSlidingWindowMaximum } from "./approaches/monotonic-deque/verify"
+import { monotonicDequeSlidingWindowViewSpecs } from "./approaches/monotonic-deque/views"
 import { slidingWindowMaximumPresets } from "./presets"
 
 const monotonicDequeApproach = defineApproachDefinition({
@@ -19,26 +21,7 @@ const monotonicDequeApproach = defineApproachDefinition({
   codeTemplate: monotonicDequeSlidingWindowMaximumCodeTemplate,
   parseInput: parseSlidingWindowMaximumInput,
   presets: slidingWindowMaximumPresets,
-  requiredViews: [
-    {
-      id: "window-array",
-      primitive: "array",
-      role: "primary",
-      title: "Sliding Window",
-    },
-    {
-      id: "monotonic-deque",
-      primitive: "sequence",
-      role: "secondary",
-      title: "Monotonic Deque",
-    },
-    {
-      id: "window-state",
-      primitive: "state",
-      role: "secondary",
-      title: "Window State",
-    },
-  ],
+  requiredViews: toRequiredViews(monotonicDequeSlidingWindowViewSpecs),
   trace: traceMonotonicDequeSlidingWindowMaximum,
   project: projectMonotonicDequeSlidingWindowMaximum,
   verify: (events, frames) =>

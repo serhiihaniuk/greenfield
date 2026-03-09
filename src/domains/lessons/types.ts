@@ -70,7 +70,13 @@ export type PresetDefinition = z.infer<typeof presetDefinitionSchema>
 export interface RequiredView {
   id: string
   primitive: PrimitiveKind
-  role: "primary" | "secondary" | "tertiary"
+  role:
+    | "primary"
+    | "co-primary"
+    | "context"
+    | "support"
+    | "secondary"
+    | "tertiary"
   title?: string
   optional?: boolean
 }
@@ -78,7 +84,14 @@ export interface RequiredView {
 export const requiredViewSchema = z.object({
   id: z.string().min(1),
   primitive: primitiveKindSchema,
-  role: z.enum(["primary", "secondary", "tertiary"]),
+  role: z.enum([
+    "primary",
+    "co-primary",
+    "context",
+    "support",
+    "secondary",
+    "tertiary",
+  ]),
   title: z.string().optional(),
   optional: z.boolean().optional(),
 })

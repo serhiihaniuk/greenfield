@@ -25,7 +25,7 @@ const desktopLessonMatrix = [
   },
   {
     lesson: "Maximum Depth of Binary Tree",
-    primaryHeading: "Binary Tree",
+    primaryHeading: "Execution Tree",
     secondaryHeading: "Call Stack",
   },
   {
@@ -81,7 +81,7 @@ const denseViewportMatrix = [
   {
     lesson: "Maximum Depth of Binary Tree",
     preset: "Left Heavy",
-    primaryHeading: "Binary Tree",
+    primaryHeading: "Execution Tree",
     secondaryHeading: "Call Stack",
   },
   {
@@ -176,9 +176,9 @@ test("keeps tall primary primitive canvases fully visible inside their shells", 
 
   await selectFooterOption(page, "Lesson", "Maximum Depth of Binary Tree")
   await selectFooterOption(page, "Preset", "Left Heavy")
-  await expectRuntimeReady(page, "Binary Tree", "Call Stack")
-  await expect(primitiveRegion(page, "tree")).toBeVisible()
-  await expectPrimitiveCanvasFits(page, "tree-canvas")
+  await expectRuntimeReady(page, "Execution Tree", "Call Stack")
+  await expect(primitiveRegion(page, "execution-tree")).toBeVisible()
+  await expectPrimitiveCanvasFits(page, "execution-tree-canvas")
 
   await selectFooterOption(page, "Lesson", "Top K Largest with Min Heap")
   await selectFooterOption(page, "Preset", "Skip Small Tail")

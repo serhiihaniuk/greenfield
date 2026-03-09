@@ -1,4 +1,5 @@
 import type { VisualizationMode } from "@/domains/lessons/types"
+import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
@@ -18,6 +19,7 @@ import type {
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
 import { deriveExecutionTokensFromPointers } from "@/shared/visualization/execution-tokens"
+import { monotonicDequeSlidingWindowViewSpecs } from "./views"
 
 type SlidingWindowMaximumSnapshot = {
   nums: number[]
@@ -543,6 +545,18 @@ function buildPrimitiveStates(
   snapshot: SlidingWindowMaximumSnapshot,
   _mode: VisualizationMode
 ): PrimitiveFrameState[] {
+  const arrayViewSpec = getLessonViewSpec(
+    monotonicDequeSlidingWindowViewSpecs,
+    "window-array"
+  )
+  const dequeViewSpec = getLessonViewSpec(
+    monotonicDequeSlidingWindowViewSpecs,
+    "monotonic-deque"
+  )
+  const stateViewSpec = getLessonViewSpec(
+    monotonicDequeSlidingWindowViewSpecs,
+    "window-state"
+  )
   const arrayPointers = buildArrayPointers(event, snapshot)
   const dequePointers = buildDequePointers(event, snapshot)
   const executionTokens = deriveExecutionTokensFromPointers([
@@ -552,7 +566,7 @@ function buildPrimitiveStates(
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "window-array",
     kind: "array",
-    title: "Sliding Window",
+    title: arrayViewSpec.title,
     subtitle:
       "The current index enters the window while stale and dominated candidates are removed around it.",
     data: {
@@ -565,17 +579,13 @@ function buildPrimitiveStates(
     pointers: arrayPointers,
     highlights: buildArrayHighlights(event, snapshot),
     annotations: buildArrayAnnotations(event, snapshot),
-    viewport: {
-      role: "primary",
-      preferredWidth: 960,
-      minHeight: 300,
-    },
+    viewport: arrayViewSpec.viewport,
   })
 
   const dequePrimitive = defineSequencePrimitiveFrameState({
     id: "monotonic-deque",
     kind: "sequence",
-    title: "Monotonic Deque",
+    title: dequeViewSpec.title,
     subtitle:
       "Indices stay in decreasing value order, so the front always names the current maximum candidate.",
     data: {
@@ -590,11 +600,7 @@ function buildPrimitiveStates(
     pointers: dequePointers,
     highlights: buildDequeHighlights(event, snapshot),
     annotations: buildDequeAnnotations(event, snapshot),
-    viewport: {
-      role: "secondary",
-      preferredWidth: 360,
-      minHeight: 220,
-    },
+    viewport: dequeViewSpec.viewport,
   })
 
   const frontIndex = snapshot.deque[0]
@@ -602,7 +608,7 @@ function buildPrimitiveStates(
   const statePrimitive = defineStatePrimitiveFrameState({
     id: "window-state",
     kind: "state",
-    title: "Window State",
+    title: stateViewSpec.title,
     data: {
       values: [
         {
@@ -644,11 +650,7 @@ function buildPrimitiveStates(
         },
       ],
     },
-    viewport: {
-      role: "secondary",
-      preferredWidth: 320,
-      minHeight: 240,
-    },
+    viewport: stateViewSpec.viewport,
   })
 
   return [arrayPrimitive, dequePrimitive, statePrimitive]

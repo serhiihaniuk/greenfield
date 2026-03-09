@@ -49,7 +49,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -101,7 +101,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-1",
@@ -156,7 +156,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -209,7 +209,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-2",
@@ -279,7 +279,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -331,7 +331,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-3",
@@ -401,7 +401,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -454,7 +454,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-4",
@@ -539,7 +539,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -592,7 +592,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-5",
@@ -678,7 +678,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -730,7 +730,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-6",
@@ -811,7 +811,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -863,7 +863,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-7",
@@ -944,7 +944,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -997,7 +997,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-8",
@@ -1093,7 +1093,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1146,7 +1146,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-9",
@@ -1243,7 +1243,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1295,7 +1295,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-10",
@@ -1387,7 +1387,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1439,7 +1439,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-11",
@@ -1531,7 +1531,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1584,7 +1584,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-12",
@@ -1677,7 +1677,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1730,7 +1730,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-13",
@@ -1818,7 +1818,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1871,7 +1871,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-14",
@@ -1959,7 +1959,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2013,7 +2013,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-15",
@@ -2116,7 +2116,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2169,7 +2169,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-16",
@@ -2272,7 +2272,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2326,7 +2326,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-17",
@@ -2444,7 +2444,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2497,7 +2497,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-18",
@@ -2615,7 +2615,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2669,7 +2669,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-19",
@@ -2802,7 +2802,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2856,7 +2856,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-20",
@@ -2990,7 +2990,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3043,7 +3043,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-21",
@@ -3172,7 +3172,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3225,7 +3225,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-22",
@@ -3354,7 +3354,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3408,7 +3408,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-23",
@@ -3552,7 +3552,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3606,7 +3606,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-24",
@@ -3751,7 +3751,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3804,7 +3804,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-25",
@@ -3944,7 +3944,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3997,7 +3997,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-26",
@@ -4137,7 +4137,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4191,7 +4191,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-27",
@@ -4332,7 +4332,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4386,7 +4386,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-28",
@@ -4522,7 +4522,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4576,7 +4576,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-29",
@@ -4712,7 +4712,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4767,7 +4767,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-30",
@@ -4918,7 +4918,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4972,7 +4972,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-31",
@@ -5123,7 +5123,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5178,7 +5178,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-32",
@@ -5344,7 +5344,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5399,7 +5399,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-33",
@@ -5566,7 +5566,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5620,7 +5620,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-34",
@@ -5782,7 +5782,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5836,7 +5836,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-35",
@@ -5998,7 +5998,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6053,7 +6053,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-36",
@@ -6230,7 +6230,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6285,7 +6285,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-37",
@@ -6463,7 +6463,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6517,7 +6517,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-38",
@@ -6690,7 +6690,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6744,7 +6744,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-39",
@@ -6917,7 +6917,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -6972,7 +6972,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-40",
@@ -7146,7 +7146,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -7201,7 +7201,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-41",
@@ -7370,7 +7370,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -7425,7 +7425,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-42",
@@ -7594,7 +7594,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -7650,7 +7650,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-43",
@@ -7820,7 +7820,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -7876,7 +7876,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-44",
@@ -8041,7 +8041,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -8097,7 +8097,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-45",
@@ -8262,7 +8262,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -8319,7 +8319,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-46",
@@ -8485,7 +8485,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -8542,7 +8542,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-47",
@@ -8702,7 +8702,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -8759,7 +8759,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-48",
@@ -8919,7 +8919,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -8976,7 +8976,7 @@
           "kind": "tree",
           "pointers": [],
           "title": "Binary Tree",
-          "viewportRole": "secondary"
+          "viewportRole": "context"
         }
       ],
       "sourceEventId": "event-49",

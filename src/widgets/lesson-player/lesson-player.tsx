@@ -42,7 +42,6 @@ import { AuthorReview } from "@/widgets/author-review/author-review"
 import { PresetStudioDialog } from "@/widgets/lesson-player/preset-studio-dialog"
 import { VerificationBlockerDialog } from "@/widgets/lesson-player/verification-blocker-dialog"
 import { collectRelatedIssues } from "@/widgets/author-review/model"
-import { cn } from "@/shared/lib/utils"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
 import { NarrationSegments } from "@/shared/visualization/views/narration-view"
 import { Button } from "@/shared/ui/button"
@@ -89,25 +88,68 @@ const PLAYBACK_SPEED_OPTIONS = ["0.5x", "1x", "1.5x", "2x"] as const
 const CANVAS_KINDS = new Set(["tree", "call-tree", "graph"])
 const STATIC_COMMANDS = getStaticLessonCommands()
 
+type StageCompositionRole =
+  | "support"
+  | "primary"
+  | "co-primary"
+  | "context"
+
+function getStageCompositionRole(
+  primitive: PrimitiveFrameState
+): StageCompositionRole {
+  const role = primitive.viewport?.role
+
+  if (role === "support") {
+    return "support"
+  }
+
+  if (role === "primary") {
+    return "primary"
+  }
+
+  if (role === "co-primary") {
+    return "co-primary"
+  }
+
+  if (role === "context") {
+    return "context"
+  }
+
+  if (primitive.kind === "state") {
+    return "support"
+  }
+
+  if (role === "secondary" || role === "tertiary") {
+    return "co-primary"
+  }
+
+  return "primary"
+}
+
 function splitPrimitives(primitives: PrimitiveFrameState[]) {
-  const supportPrimitives = primitives.filter((primitive) => primitive.kind === "state")
-  const primaryPrimitives = primitives.filter(
-    (primitive) =>
-      primitive.viewport?.role === "primary" ||
-      (!primitive.viewport?.role && primitive.kind !== "state")
+  const supportPrimitives = primitives.filter(
+    (primitive) => getStageCompositionRole(primitive) === "support"
   )
-  const secondaryPrimitives = primitives.filter(
-    (primitive) =>
-      primitive.kind !== "state" &&
-      (primitive.viewport?.role === "secondary" ||
-        primitive.viewport?.role === "tertiary")
+  const primaryPrimitives = primitives.filter(
+    (primitive) => getStageCompositionRole(primitive) === "primary"
+  )
+  const coPrimaryPrimitives = primitives.filter(
+    (primitive) => getStageCompositionRole(primitive) === "co-primary"
+  )
+  const contextPrimitives = primitives.filter(
+    (primitive) => getStageCompositionRole(primitive) === "context"
   )
 
   return {
     primaryPrimitives:
-      primaryPrimitives.length > 0 ? primaryPrimitives : primitives,
+      primaryPrimitives.length > 0
+        ? primaryPrimitives
+        : primitives.filter(
+            (primitive) => getStageCompositionRole(primitive) !== "support"
+          ),
     supportPrimitives,
-    secondaryPrimitives,
+    coPrimaryPrimitives,
+    contextPrimitives,
   }
 }
 
@@ -185,11 +227,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     currentFrameIndex + 1 < frames.length ? frames[currentFrameIndex + 1] : undefined
   const activeEvent = trace.find((event) => event.id === activeFrame?.sourceEventId)
   const activePrimitives = activeFrame?.primitives ?? []
-  const { primaryPrimitives, supportPrimitives, secondaryPrimitives } =
+  const {
+    primaryPrimitives,
+    supportPrimitives,
+    coPrimaryPrimitives,
+    contextPrimitives,
+  } =
     splitPrimitives(activePrimitives)
   const hasSupportPrimitives = supportPrimitives.length > 0
-  const hasSecondaryStage = secondaryPrimitives.length > 0
-  const hasExpansiveSecondary = secondaryPrimitives.some((p) => CANVAS_KINDS.has(p.kind))
+  const hasCoPrimaryStage = coPrimaryPrimitives.length > 0
+  const hasContextStage = contextPrimitives.length > 0
+  const hasExpansiveContext = contextPrimitives.some((p) => CANVAS_KINDS.has(p.kind))
   const currentFrameLabel =
     frames.length === 0 ? "0/0" : `${currentFrameIndex + 1}/${frames.length}`
   const visualChangeLabel = activeFrame?.visualChangeType ?? "-"
@@ -479,50 +527,126 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           <ResizablePanel id="stage" defaultSize="73%" minSize="30%">
             <div
               data-testid="stage-visual-grid"
-              className={cn(
-                "grid h-full overflow-hidden",
-                hasSecondaryStage && hasExpansiveSecondary
-                  ? "xl:grid-cols-[1.2fr_1fr]"
-                  : hasSecondaryStage
-                    ? "xl:grid-cols-[1fr_minmax(16rem,22rem)]"
-                    : ""
-              )}
+              className="h-full overflow-hidden"
             >
-              <section
-                data-testid="stage-scroll-region"
-                className="flex overflow-auto"
-              >
-                <div
-                  data-testid="stage-primary-region"
-                  className="m-auto grid auto-rows-max gap-4 p-4"
-                >
-                  {primaryPrimitives.map((primitive) => (
-                    <PrimitiveRenderer
-                      key={primitive.id}
-                      primitive={primitive}
-                      role="primary"
-                      selectedPrimitiveId={selectedPrimitiveId}
-                    />
-                  ))}
+              {hasContextStage ? (
+                <ResizablePanelGroup orientation="horizontal">
+                  <ResizablePanel
+                    id="stage-main"
+                    defaultSize={hasExpansiveContext ? "72%" : "76%"}
+                    minSize="30%"
+                  >
+                    <div className="flex h-full min-h-0 flex-col">
+                      {hasCoPrimaryStage ? (
+                        <section
+                          data-testid="stage-secondary-region"
+                          className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
+                        >
+                          <div
+                            data-testid="stage-coprimary-region"
+                            className="grid auto-rows-max gap-3"
+                          >
+                            {coPrimaryPrimitives.map((primitive) => (
+                              <PrimitiveRenderer
+                                key={primitive.id}
+                                primitive={primitive}
+                                role="secondary"
+                                selectedPrimitiveId={selectedPrimitiveId}
+                              />
+                            ))}
+                          </div>
+                        </section>
+                      ) : null}
+
+                      <section
+                        data-testid="stage-scroll-region"
+                        className="flex min-h-0 flex-1 overflow-auto"
+                      >
+                        <div
+                          data-testid="stage-primary-region"
+                          className="m-auto grid auto-rows-max gap-4 p-4"
+                        >
+                          {primaryPrimitives.map((primitive) => (
+                            <PrimitiveRenderer
+                              key={primitive.id}
+                              primitive={primitive}
+                              role="primary"
+                              selectedPrimitiveId={selectedPrimitiveId}
+                            />
+                          ))}
+                        </div>
+                      </section>
+                    </div>
+                  </ResizablePanel>
+                  <ResizableHandle withHandle />
+                  <ResizablePanel
+                    id="stage-context"
+                    defaultSize={hasExpansiveContext ? "28%" : "24%"}
+                    minSize="14%"
+                    maxSize="42%"
+                    collapsible
+                    collapsedSize="0%"
+                  >
+                    <aside
+                      data-testid="stage-context-region"
+                      className="h-full overflow-y-auto border-l border-border/20 p-4"
+                    >
+                      <div className="grid auto-rows-max gap-3">
+                        {contextPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="secondary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                      </div>
+                    </aside>
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              ) : (
+                <div className="flex h-full min-h-0 flex-col">
+                  {hasCoPrimaryStage ? (
+                    <section
+                      data-testid="stage-secondary-region"
+                      className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
+                    >
+                      <div
+                        data-testid="stage-coprimary-region"
+                        className="grid auto-rows-max gap-3"
+                      >
+                        {coPrimaryPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="secondary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                      </div>
+                    </section>
+                  ) : null}
+
+                  <section
+                    data-testid="stage-scroll-region"
+                    className="flex min-h-0 flex-1 overflow-auto"
+                  >
+                    <div
+                      data-testid="stage-primary-region"
+                      className="m-auto grid auto-rows-max gap-4 p-4"
+                    >
+                      {primaryPrimitives.map((primitive) => (
+                        <PrimitiveRenderer
+                          key={primitive.id}
+                          primitive={primitive}
+                          role="primary"
+                          selectedPrimitiveId={selectedPrimitiveId}
+                        />
+                      ))}
+                    </div>
+                  </section>
                 </div>
-              </section>
-              {hasSecondaryStage ? (
-                <aside
-                  data-testid="stage-secondary-region"
-                  className="overflow-y-auto border-l border-border/20 p-4"
-                >
-                  <div className="grid auto-rows-max gap-3">
-                    {secondaryPrimitives.map((primitive) => (
-                      <PrimitiveRenderer
-                        key={primitive.id}
-                        primitive={primitive}
-                        role="secondary"
-                        selectedPrimitiveId={selectedPrimitiveId}
-                      />
-                    ))}
-                  </div>
-                </aside>
-              ) : null}
+              )}
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
@@ -564,7 +688,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </Badge>
                 <Badge variant="outline">code {activeFrame?.codeLine ?? "-"}</Badge>
                 <Badge variant="outline">
-                  views {primaryPrimitives.length + secondaryPrimitives.length}
+                  views {primaryPrimitives.length + coPrimaryPrimitives.length + contextPrimitives.length}
                 </Badge>
                 <Button size="xs" variant="ghost" onClick={toggleAuthorMode}>
                   <CommandShortcutHints command={auditCommand} />

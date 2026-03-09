@@ -64,7 +64,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -85,7 +85,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-1",
@@ -155,7 +155,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -176,7 +176,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-2",
@@ -246,7 +246,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -267,7 +267,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-3",
@@ -354,7 +354,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -375,7 +375,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-4",
@@ -454,7 +454,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -475,7 +475,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-5",
@@ -592,7 +592,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -613,7 +613,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-6",
@@ -714,7 +714,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -735,7 +735,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-7",
@@ -827,7 +827,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -848,7 +848,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-8",
@@ -957,7 +957,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -978,7 +978,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-9",
@@ -1087,7 +1087,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1108,7 +1108,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-10",
@@ -1217,7 +1217,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1238,7 +1238,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-11",
@@ -1325,7 +1325,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1346,7 +1346,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-12",
@@ -1463,7 +1463,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1484,7 +1484,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-13",
@@ -1585,7 +1585,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1606,7 +1606,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-14",
@@ -1698,7 +1698,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1719,7 +1719,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-15",
@@ -1828,7 +1828,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1849,7 +1849,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-16",
@@ -1958,7 +1958,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -1979,7 +1979,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-17",
@@ -2088,7 +2088,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2109,7 +2109,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-18",
@@ -2245,7 +2245,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2266,7 +2266,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-19",
@@ -2386,7 +2386,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2407,7 +2407,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-20",
@@ -2543,7 +2543,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2564,7 +2564,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-21",
@@ -2675,7 +2675,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2696,7 +2696,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-22",
@@ -2824,7 +2824,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2845,7 +2845,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-23",
@@ -2973,7 +2973,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -2994,7 +2994,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-24",
@@ -3122,7 +3122,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3143,7 +3143,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-25",
@@ -3289,7 +3289,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3310,7 +3310,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-26",
@@ -3440,7 +3440,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3461,7 +3461,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-27",
@@ -3607,7 +3607,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3628,7 +3628,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-28",
@@ -3749,7 +3749,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3770,7 +3770,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-29",
@@ -3908,7 +3908,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -3929,7 +3929,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-30",
@@ -4067,7 +4067,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4088,7 +4088,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-31",
@@ -4216,7 +4216,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4237,7 +4237,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-32",
@@ -4365,7 +4365,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4386,7 +4386,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-33",
@@ -4514,7 +4514,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4535,7 +4535,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-34",
@@ -4644,7 +4644,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4665,7 +4665,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-35",
@@ -4774,7 +4774,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4795,7 +4795,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-36",
@@ -4882,7 +4882,7 @@
           "kind": "sequence",
           "pointers": [],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -4903,7 +4903,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-37",
@@ -5020,7 +5020,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5041,7 +5041,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-38",
@@ -5142,7 +5142,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5163,7 +5163,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-39",
@@ -5280,7 +5280,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5301,7 +5301,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-40",
@@ -5393,7 +5393,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5414,7 +5414,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-41",
@@ -5522,7 +5522,7 @@
             }
           ],
           "title": "Monotonic Deque",
-          "viewportRole": "secondary"
+          "viewportRole": "co-primary"
         },
         {
           "annotations": [],
@@ -5543,7 +5543,7 @@
           "kind": "state",
           "pointers": [],
           "title": "Window State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-42",
