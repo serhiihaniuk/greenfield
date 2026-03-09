@@ -2,6 +2,7 @@ import { buildLessonRuntime } from "@/features/player/runtime"
 import { verifyRuntimeOutputs } from "@/domains/verification/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
+import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
 import type { StatePrimitiveFrameState } from "@/entities/visualization/primitives"
 
 describe("verifyRuntimeOutputs", () => {
@@ -126,6 +127,45 @@ describe("verifyRuntimeOutputs", () => {
     ).toBe(false)
   })
 
+  it("projects the house robber index token across state and narration", () => {
+    const houseRobberApproach = houseRobberLesson.approaches[0]
+    const classicFivePreset = houseRobberApproach?.presets.find(
+      (preset) => preset.id === "classic-five"
+    )
+
+    if (!houseRobberApproach || !classicFivePreset) {
+      throw new Error("House robber lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: houseRobberLesson,
+      approach: houseRobberApproach,
+      mode: "full",
+      rawInput: classicFivePreset.rawInput,
+    })
+
+    const focusedFrame = runtime.frames.find((frame) => frame.codeLine === "L4")
+    const statePrimitive = focusedFrame?.primitives.find(
+      (primitive) => primitive.id === "rolling-state"
+    )
+
+    if (!focusedFrame || !statePrimitive || statePrimitive.kind !== "state") {
+      throw new Error("Expected a house robber state primitive on the pointer frame.")
+    }
+
+    const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
+
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "i")
+    ).toMatchObject({
+      tokenId: "index",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      focusedFrame.narration.segments.some((segment) => segment.tokenId === "index")
+    ).toBe(true)
+  })
+
   it("flags disappearing pointers as a continuity warning", () => {
     const houseRobberApproach = houseRobberLesson.approaches[0]
     const classicFivePreset = houseRobberApproach?.presets.find(
@@ -185,6 +225,51 @@ describe("verifyRuntimeOutputs", () => {
       report.warnings.some(
         (issue) => issue.code === "FRAME_POINTER_CONTINUITY_LOSS"
       )
+    ).toBe(true)
+  })
+
+  it("projects sliding window tokens across state and narration", () => {
+    const slidingWindowApproach = slidingWindowMaximumLesson.approaches[0]
+    const classicPreset = slidingWindowApproach?.presets.find(
+      (preset) => preset.id === "classic-five"
+    )
+
+    if (!slidingWindowApproach || !classicPreset) {
+      throw new Error("Sliding window lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: slidingWindowMaximumLesson,
+      approach: slidingWindowApproach,
+      mode: "full",
+      rawInput: classicPreset.rawInput,
+    })
+
+    const pushFrame = runtime.frames.find((frame) => frame.codeLine === "L11")
+    const statePrimitive = pushFrame?.primitives.find(
+      (primitive) => primitive.id === "window-state"
+    )
+
+    if (!pushFrame || !statePrimitive || statePrimitive.kind !== "state") {
+      throw new Error("Expected a sliding window state primitive on the push frame.")
+    }
+
+    const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
+
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "i")
+    ).toMatchObject({
+      tokenId: "index",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "front")
+    ).toMatchObject({
+      tokenId: "deque-front",
+      tokenStyle: "accent-2",
+    })
+    expect(
+      pushFrame.narration.segments.some((segment) => segment.tokenId === "index")
     ).toBe(true)
   })
 })

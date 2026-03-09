@@ -16,6 +16,7 @@ import type {
   PointerSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { deriveExecutionTokensFromPointers } from "@/shared/visualization/execution-tokens"
 
 type HouseRobberSnapshot = {
   nums: number[]
@@ -47,6 +48,29 @@ function buildNarration(
   event: TraceEvent,
   snapshot: HouseRobberSnapshot
 ): NarrationPayload {
+  const executionTokens = deriveExecutionTokensFromPointers(
+    buildPointers(event, snapshot)
+  )
+  const indexToken = executionTokens.get("index")
+  const textSegment = (
+    id: string,
+    text: string,
+    tone: NarrationPayload["segments"][number]["tone"] = "default"
+  ) => ({
+    id: `${event.id}-${id}`,
+    text,
+    tone,
+  })
+  const tokenSegment = (id: string) =>
+    indexToken
+      ? {
+          id: `${event.id}-${id}`,
+          text: indexToken.label,
+          tokenId: indexToken.id,
+          tokenStyle: indexToken.style,
+        }
+      : textSegment(id, "i")
+
   switch (event.codeLine) {
     case "L1":
       return {
@@ -68,19 +92,36 @@ function buildNarration(
           event.payload.result === false
             ? "Every house has been processed, so the rolling state now holds the answer."
             : `Check whether house ${snapshot.index} is the next transition to evaluate.`,
-        segments: [],
+        segments: event.payload.result === false
+          ? []
+          : [
+              textSegment("t0", "Check whether "),
+              tokenSegment("index"),
+              textSegment("t1", ` = ${snapshot.index} is the next transition to evaluate.`),
+            ],
         sourceValues: event.payload,
       }
     case "L4":
       return event.type === "pointer-update"
         ? {
             summary: `Move the focus to house ${snapshot.index} with value ${snapshot.currentValue}.`,
-            segments: [],
+            segments: [
+              textSegment("t0", "Move "),
+              tokenSegment("index"),
+              textSegment(
+                "t1",
+                ` to house ${snapshot.index} with value ${snapshot.currentValue}.`
+              ),
+            ],
             sourceValues: event.payload,
           }
         : {
             summary: `Compute take = prevTwo + nums[index] = ${snapshot.take}.`,
-            segments: [],
+            segments: [
+              textSegment("t0", "Compute take = prevTwo + nums["),
+              tokenSegment("index"),
+              textSegment("t1", `] = ${snapshot.take}.`),
+            ],
             sourceValues: event.payload,
           }
     case "L5":
@@ -216,10 +257,7 @@ function buildPointers(
       id: "index",
       targetId: `cell-${targetIndex}`,
       label: "i",
-      tone:
-        event.codeLine === "L3" && event.payload.result === false
-          ? "done"
-          : "primary",
+      tone: "primary",
       placement: "top",
       status:
         event.codeLine === "L3" && event.payload.result === false
@@ -305,6 +343,8 @@ function buildPrimitiveStates(
   snapshot: HouseRobberSnapshot,
   _mode: VisualizationMode
 ): PrimitiveFrameState[] {
+  const pointers = buildPointers(event, snapshot)
+  const executionTokens = deriveExecutionTokensFromPointers(pointers)
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "houses",
     kind: "array",
@@ -318,7 +358,7 @@ function buildPrimitiveStates(
         value,
       })),
     },
-    pointers: buildPointers(event, snapshot),
+    pointers,
     highlights: buildHighlights(event, snapshot),
     annotations: buildAnnotations(event, snapshot),
     viewport: {
@@ -334,7 +374,12 @@ function buildPrimitiveStates(
     title: "DP State",
     data: {
       values: [
-        { label: "index", value: snapshot.index ?? "-" },
+        {
+          label: "i",
+          value: snapshot.index ?? "-",
+          tokenId: executionTokens.get("index")?.id,
+          tokenStyle: executionTokens.get("index")?.style,
+        },
         { label: "house", value: snapshot.currentValue ?? "-" },
         { label: "prevTwo", value: snapshot.prevTwo ?? "-" },
         { label: "prevOne", value: snapshot.prevOne ?? "-" },

@@ -17,6 +17,7 @@ import type {
   PointerSpec,
   PrimitiveFrameState,
 } from "@/entities/visualization/types"
+import { deriveExecutionTokensFromPointers } from "@/shared/visualization/execution-tokens"
 
 type SlidingWindowMaximumSnapshot = {
   nums: number[]
@@ -58,6 +59,36 @@ function buildNarration(
   event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot
 ): NarrationPayload {
+  const executionTokens = deriveExecutionTokensFromPointers([
+    ...buildArrayPointers(event, snapshot),
+    ...buildDequePointers(event, snapshot),
+  ])
+  const indexToken = executionTokens.get("index")
+  const frontToken = executionTokens.get("deque-front")
+  const backToken = executionTokens.get("deque-back")
+  const textSegment = (
+    id: string,
+    text: string,
+    tone: NarrationPayload["segments"][number]["tone"] = "default"
+  ) => ({
+    id: `${event.id}-${id}`,
+    text,
+    tone,
+  })
+  const tokenSegment = (
+    id: string,
+    token: typeof indexToken | typeof frontToken | typeof backToken | undefined,
+    fallbackText: string
+  ) =>
+    token
+      ? {
+          id: `${event.id}-${id}`,
+          text: token.label,
+          tokenId: token.id,
+          tokenStyle: token.style,
+        }
+      : textSegment(id, fallbackText)
+
   switch (event.codeLine) {
     case "L1":
       return {
@@ -78,13 +109,26 @@ function buildNarration(
           event.payload.result === false
             ? "Every index has been processed, so the output list is complete."
             : `Advance to index ${snapshot.index} for the next window transition.`,
-        segments: [],
+        segments: event.payload.result === false
+          ? []
+          : [
+              textSegment("t0", "Advance "),
+              tokenSegment("index", indexToken, "i"),
+              textSegment("t1", ` to index ${snapshot.index} for the next window transition.`),
+            ],
         sourceValues: event.payload,
       }
     case "L4":
       return {
         summary: `Move the focus to nums[${snapshot.index}] = ${snapshot.currentValue}.`,
-        segments: [],
+        segments: [
+          textSegment("t0", "Move "),
+          tokenSegment("index", indexToken, "i"),
+          textSegment(
+            "t1",
+            ` to nums[${snapshot.index}] = ${snapshot.currentValue}.`
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "L5":
@@ -92,7 +136,15 @@ function buildNarration(
         summary: Boolean(event.payload.result)
           ? `Deque front index ${event.payload.frontIndex} is stale, so it must leave the window.`
           : "The deque front still belongs to the current window, so keep it.",
-        segments: [],
+        segments: [
+          tokenSegment("front", frontToken, "front"),
+          textSegment(
+            "t0",
+            Boolean(event.payload.result)
+              ? ` index ${event.payload.frontIndex} is stale, so it must leave the window.`
+              : " still belongs to the current window, so keep it."
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "L6":
@@ -106,7 +158,15 @@ function buildNarration(
         summary: Boolean(event.payload.result)
           ? `Deque back index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
           : "The deque back is larger than the current value, so it can stay as a candidate.",
-        segments: [],
+        segments: [
+          tokenSegment("back", backToken, "back"),
+          textSegment(
+            "t0",
+            Boolean(event.payload.result)
+              ? ` index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
+              : " is larger than the current value, so it can stay as a candidate."
+          ),
+        ],
         sourceValues: event.payload,
       }
     case "L9":
@@ -118,7 +178,11 @@ function buildNarration(
     case "L11":
       return {
         summary: `Push index ${event.payload.pushedIndex} so it can compete in later windows.`,
-        segments: [],
+        segments: [
+          textSegment("t0", "Push "),
+          tokenSegment("index", indexToken, "i"),
+          textSegment("t1", " into the deque so it can compete in later windows."),
+        ],
         sourceValues: event.payload,
       }
     case "L12":
@@ -132,7 +196,11 @@ function buildNarration(
     case "L13":
       return {
         summary: `Append ${event.payload.maxValue} from deque front index ${event.payload.maxIndex} to the result.`,
-        segments: [],
+        segments: [
+          textSegment("t0", `Append ${event.payload.maxValue} from `),
+          tokenSegment("front", frontToken, "front"),
+          textSegment("t1", ` index ${event.payload.maxIndex} to the result.`),
+        ],
         sourceValues: event.payload,
       }
     case "L16":
@@ -372,7 +440,7 @@ function buildDequeHighlights(
 }
 
 function buildDequePointers(
-  event: TraceEvent,
+  _event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot
 ): PointerSpec[] {
   if (snapshot.deque.length === 0) {
@@ -385,8 +453,8 @@ function buildDequePointers(
     {
       id: "deque-front",
       targetId: `deque-${frontIndex}`,
-      label: event.codeLine === "L13" ? "max" : "front",
-      tone: event.codeLine === "L13" ? "success" : "primary",
+      label: "front",
+      tone: "secondary",
       placement: "top",
       priority: 1,
       status: "active",
@@ -398,7 +466,7 @@ function buildDequePointers(
       id: "deque-back",
       targetId: `deque-${backIndex}`,
       label: "back",
-      tone: "secondary",
+      tone: "compare",
       placement: "bottom",
       priority: 2,
       status: "waiting",
@@ -475,6 +543,12 @@ function buildPrimitiveStates(
   snapshot: SlidingWindowMaximumSnapshot,
   _mode: VisualizationMode
 ): PrimitiveFrameState[] {
+  const arrayPointers = buildArrayPointers(event, snapshot)
+  const dequePointers = buildDequePointers(event, snapshot)
+  const executionTokens = deriveExecutionTokensFromPointers([
+    ...arrayPointers,
+    ...dequePointers,
+  ])
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "window-array",
     kind: "array",
@@ -488,7 +562,7 @@ function buildPrimitiveStates(
         value,
       })),
     },
-    pointers: buildArrayPointers(event, snapshot),
+    pointers: arrayPointers,
     highlights: buildArrayHighlights(event, snapshot),
     annotations: buildArrayAnnotations(event, snapshot),
     viewport: {
@@ -513,7 +587,7 @@ function buildPrimitiveStates(
         detail: `val ${snapshot.nums[dequeIndex]}`,
       })),
     },
-    pointers: buildDequePointers(event, snapshot),
+    pointers: dequePointers,
     highlights: buildDequeHighlights(event, snapshot),
     annotations: buildDequeAnnotations(event, snapshot),
     viewport: {
@@ -531,19 +605,34 @@ function buildPrimitiveStates(
     title: "Window State",
     data: {
       values: [
-        { label: "index", value: snapshot.index ?? "-" },
+        {
+          label: "i",
+          value: snapshot.index ?? "-",
+          tokenId: executionTokens.get("index")?.id,
+          tokenStyle: executionTokens.get("index")?.style,
+        },
         { label: "current", value: snapshot.currentValue ?? "-" },
         { label: "k", value: snapshot.k },
         {
           label: "deque",
           value: snapshot.deque.length > 0 ? snapshot.deque.join(" -> ") : "-",
         },
-        { label: "frontIdx", value: frontIndex ?? "-" },
+        {
+          label: "front",
+          value: frontIndex ?? "-",
+          tokenId: executionTokens.get("deque-front")?.id,
+          tokenStyle: executionTokens.get("deque-front")?.style,
+        },
         {
           label: "frontVal",
           value: frontIndex !== undefined ? snapshot.nums[frontIndex] : "-",
         },
-        { label: "backIdx", value: backIndex ?? "-" },
+        {
+          label: "back",
+          value: backIndex ?? "-",
+          tokenId: executionTokens.get("deque-back")?.id,
+          tokenStyle: executionTokens.get("deque-back")?.style,
+        },
         {
           label: "result",
           value:

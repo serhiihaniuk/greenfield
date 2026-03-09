@@ -70,12 +70,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": "-",
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": "-",
+              "i": "-",
               "k": 3,
               "result": "-"
             }
@@ -161,12 +161,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": "-",
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": "-",
+              "i": "-",
               "k": 3,
               "result": "[]"
             }
@@ -252,12 +252,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": 1,
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": 0,
+              "i": 0,
               "k": 3,
               "result": "[]"
             }
@@ -360,12 +360,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": 1,
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": 0,
+              "i": 0,
               "k": 3,
               "result": "[]"
             }
@@ -460,12 +460,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": 1,
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": 0,
+              "i": 0,
               "k": 3,
               "result": "[]"
             }
@@ -588,7 +588,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -598,12 +598,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 1,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 0,
+              "i": 0,
               "k": 3,
               "result": "[]"
             }
@@ -710,7 +710,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -720,12 +720,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 1,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 0,
+              "i": 0,
               "k": 3,
               "result": "[]"
             }
@@ -823,7 +823,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -833,12 +833,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 3,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -953,7 +953,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -963,12 +963,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 3,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1083,7 +1083,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1093,12 +1093,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 3,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1213,7 +1213,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-0",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1223,12 +1223,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 0,
+              "back": 0,
               "current": 3,
               "deque": "0",
-              "frontIdx": 0,
+              "front": 0,
               "frontVal": 1,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1331,12 +1331,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": 3,
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1459,7 +1459,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1469,12 +1469,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": 3,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1581,7 +1581,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1591,12 +1591,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": 3,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 1,
+              "i": 1,
               "k": 3,
               "result": "[]"
             }
@@ -1694,7 +1694,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1704,12 +1704,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": -1,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -1824,7 +1824,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1834,12 +1834,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": -1,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -1954,7 +1954,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -1964,12 +1964,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": -1,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -2084,7 +2084,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -2094,12 +2094,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 1,
+              "back": 1,
               "current": -1,
               "deque": "1",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -2232,7 +2232,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2241,7 +2241,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2251,12 +2251,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -1,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -2373,7 +2373,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2382,7 +2382,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2392,12 +2392,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -1,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "[]"
             }
@@ -2525,12 +2525,12 @@
           "pointers": [
             {
               "id": "deque-front",
-              "label": "max",
+              "label": "front",
               "placement": "top",
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "success"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2539,7 +2539,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2549,12 +2549,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -1,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 2,
+              "i": 2,
               "k": 3,
               "result": "3"
             }
@@ -2662,7 +2662,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2671,7 +2671,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2681,12 +2681,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -3,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -2811,7 +2811,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2820,7 +2820,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2830,12 +2830,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -3,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -2960,7 +2960,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -2969,7 +2969,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2979,12 +2979,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -3,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -3109,7 +3109,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3118,7 +3118,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-2",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3128,12 +3128,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": -3,
               "deque": "1 -> 2",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -3276,7 +3276,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3285,7 +3285,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3295,12 +3295,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": -3,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -3427,7 +3427,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3436,7 +3436,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3446,12 +3446,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": -3,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3"
             }
@@ -3589,12 +3589,12 @@
           "pointers": [
             {
               "id": "deque-front",
-              "label": "max",
+              "label": "front",
               "placement": "top",
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "success"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3603,7 +3603,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3613,12 +3613,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": -3,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 3,
+              "i": 3,
               "k": 3,
               "result": "3, 3"
             }
@@ -3736,7 +3736,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3745,7 +3745,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3755,12 +3755,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -3895,7 +3895,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -3904,7 +3904,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -3914,12 +3914,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4054,7 +4054,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-1",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -4063,7 +4063,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4073,12 +4073,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "1 -> 2 -> 3",
-              "frontIdx": 1,
+              "front": 1,
               "frontVal": 3,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4203,7 +4203,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-2",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -4212,7 +4212,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4222,12 +4222,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "2 -> 3",
-              "frontIdx": 2,
+              "front": 2,
               "frontVal": -1,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4352,7 +4352,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-2",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -4361,7 +4361,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4371,12 +4371,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "2 -> 3",
-              "frontIdx": 2,
+              "front": 2,
               "frontVal": -1,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4501,7 +4501,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-2",
-              "tone": "primary"
+              "tone": "secondary"
             },
             {
               "id": "deque-back",
@@ -4510,7 +4510,7 @@
               "priority": 2,
               "status": "waiting",
               "targetId": "deque-3",
-              "tone": "secondary"
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4520,12 +4520,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 3,
+              "back": 3,
               "current": 5,
               "deque": "2 -> 3",
-              "frontIdx": 2,
+              "front": 2,
               "frontVal": -1,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4640,7 +4640,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-2",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -4650,12 +4650,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": 5,
               "deque": "2",
-              "frontIdx": 2,
+              "front": 2,
               "frontVal": -1,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4770,7 +4770,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-2",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -4780,12 +4780,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 2,
+              "back": 2,
               "current": 5,
               "deque": "2",
-              "frontIdx": 2,
+              "front": 2,
               "frontVal": -1,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -4888,12 +4888,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": "-",
+              "back": "-",
               "current": 5,
               "deque": "-",
-              "frontIdx": "-",
+              "front": "-",
               "frontVal": "-",
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -5016,7 +5016,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-4",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -5026,12 +5026,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 4,
+              "back": 4,
               "current": 5,
               "deque": "4",
-              "frontIdx": 4,
+              "front": 4,
               "frontVal": 5,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -5138,7 +5138,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-4",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -5148,12 +5148,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 4,
+              "back": 4,
               "current": 5,
               "deque": "4",
-              "frontIdx": 4,
+              "front": 4,
               "frontVal": 5,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3"
             }
@@ -5271,12 +5271,12 @@
           "pointers": [
             {
               "id": "deque-front",
-              "label": "max",
+              "label": "front",
               "placement": "top",
               "priority": 1,
               "status": "active",
               "targetId": "deque-4",
-              "tone": "success"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -5286,12 +5286,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 4,
+              "back": 4,
               "current": 5,
               "deque": "4",
-              "frontIdx": 4,
+              "front": 4,
               "frontVal": 5,
-              "index": 4,
+              "i": 4,
               "k": 3,
               "result": "3, 3, 5"
             }
@@ -5389,7 +5389,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-4",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -5399,12 +5399,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 4,
+              "back": 4,
               "current": "-",
               "deque": "4",
-              "frontIdx": 4,
+              "front": 4,
               "frontVal": 5,
-              "index": "-",
+              "i": "-",
               "k": 3,
               "result": "3, 3, 5"
             }
@@ -5518,7 +5518,7 @@
               "priority": 1,
               "status": "active",
               "targetId": "deque-4",
-              "tone": "primary"
+              "tone": "secondary"
             }
           ],
           "title": "Monotonic Deque",
@@ -5528,12 +5528,12 @@
           "annotations": [],
           "data": {
             "values": {
-              "backIdx": 4,
+              "back": 4,
               "current": "-",
               "deque": "4",
-              "frontIdx": 4,
+              "front": 4,
               "frontVal": 5,
-              "index": "-",
+              "i": "-",
               "k": 3,
               "result": "3, 3, 5"
             }
