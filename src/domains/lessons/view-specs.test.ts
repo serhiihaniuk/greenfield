@@ -23,10 +23,10 @@ describe("lesson view specs", () => {
       {
         id: "memo-table",
         primitive: "hash-map",
-        role: "co-primary",
+        role: "secondary",
         title: "Memo Table",
         viewport: {
-          role: "co-primary",
+          role: "secondary",
           preferredWidth: 360,
           minHeight: 200,
         },
@@ -49,7 +49,7 @@ describe("lesson view specs", () => {
       {
         id: "memo-table",
         primitive: "hash-map",
-        role: "co-primary",
+        role: "secondary",
         title: "Memo Table",
       },
       {
@@ -66,7 +66,7 @@ describe("lesson view specs", () => {
       minHeight: 360,
     })
     expect(getLessonViewSpec(viewSpecs, "memo-table").viewport).toEqual({
-      role: "co-primary",
+      role: "secondary",
       preferredWidth: 360,
       minHeight: 200,
     })

@@ -420,7 +420,7 @@ function buildPrimitiveStates(
       ],
     },
     viewport: {
-      role: "secondary",
+      role: "support",
       preferredWidth: 280,
       minHeight: 240,
     },

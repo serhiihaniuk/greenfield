@@ -15,24 +15,12 @@ export const recursiveMaximumDepthViewSpecs = defineLessonViewSpecs([
   {
     id: "call-stack",
     primitive: "stack",
-    role: "co-primary",
+    role: "secondary",
     title: "Call Stack",
     viewport: {
-      role: "co-primary",
+      role: "secondary",
       preferredWidth: 320,
       minHeight: 220,
-    },
-  },
-  {
-    id: "tree",
-    primitive: "tree",
-    role: "context",
-    title: "Binary Tree",
-    optional: true,
-    viewport: {
-      role: "context",
-      preferredWidth: 360,
-      minHeight: 300,
     },
   },
 ] as const)

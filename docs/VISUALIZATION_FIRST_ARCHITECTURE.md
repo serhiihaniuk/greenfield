@@ -27,7 +27,7 @@ On desktop, the default lesson experience should look like:
 
 - a compact top bar
 - one dominant central visualization surface
-- synchronized secondary panels only when they improve understanding
+- synchronized auxiliary panels only when they improve understanding
 - narration anchored close to the active step
 - code trace docked into the same surface as the visualization
 - a command palette entry point for task and shell actions instead of a dense row of global selectors
@@ -44,6 +44,11 @@ A learner opening a lesson should immediately understand:
 Synchronized views should not feel like unrelated panels.
 They should feel like technical drawings of the same execution state from
 different angles.
+
+Only true execution aids belong in auxiliary panels.
+For the current product, that means recursive call stacks and memo tables.
+Arrays, queues, deques, heaps, graphs, trees, and output sequences are stage-core
+views and should stay in the main visualization window whenever they explain the step.
 
 ## Core Constraints
 
@@ -187,7 +192,6 @@ The product is succeeding when a flagship lesson can do all of the following:
 - the active state is obvious in under one second
 - the learner can track what is waiting for what
 - important state never disappears without an explicit visual representation of where it went
-- the learner can switch between focused and broader understanding modes without losing context
 - custom input can be replayed without breaking the mental model
 - the default desktop experience avoids unnecessary scrolling during normal playback
 - author mode can explain why the visualization is both correct and pedagogically safe
@@ -539,7 +543,7 @@ The shell must be designed for high-intensity study, not editorial reading.
 Default desktop composition:
 
 - compact top utility bar
-- dominant central visualization stage that holds both primary and secondary synchronized primitives
+- dominant central visualization stage that holds all learner-facing algorithm structures
 - a narrower support column for narration, code trace, compact code-state panels, and lightweight runtime status
 - short narration near the active flow
 - code trace docked beside, not inside, the main stage
@@ -551,9 +555,9 @@ Shell rules:
 - vertical sprawl is a product bug
 - the active state should stay near the visual center
 - archived or low-importance states should be compacted
-- structural and execution-oriented secondary views belong inside the stage composition, not the support column
+- arrays, queues, deques, heaps, graphs, trees, and output sequences belong inside the stage composition, not the support column
 - compact code-state panels may stay beside narration and code when that keeps variable state tightly coupled to the active line
-- dense stage-side secondary stacks must be compacted before they can starve the narration or code/reference column
+- auxiliary stage aids must be compacted before they can starve the narration or code/reference column
 - the learner should rarely need to scroll during normal preset playback on desktop
 
 ## Stage Composition Roles
@@ -561,12 +565,13 @@ Shell rules:
 The old mental model of `primary`, `secondary`, and `tertiary` is too weak.
 It classifies views by surface weight, but not by pedagogical job.
 
-The stage should instead be designed around four roles:
+The stage should instead be designed around five roles:
 
 - `support` - narration, code trace, compact code-state, lightweight runtime status
 - `primary` - the main teaching surface for the current confusion
-- `co-primary` - a second stage view without which the next step is not intelligible
-- `context` - an optional orientation view that may help, but should never outrank the real teaching surface
+- `co-primary` - a second stage-core view without which the next step is not intelligible
+- `secondary` - a true auxiliary execution aid, currently limited to recursive call stack and memo table
+- `context` - a rare orientation view that may help, but should never duplicate or outrank the real teaching surface
 
 This is the key rule:
 
@@ -576,7 +581,9 @@ This is the key rule:
 
 - `support` belongs in the support column, not the stage
 - `primary`, `co-primary`, and `context` belong in the stage composition
+- `secondary` belongs in the auxiliary rail, not in the support column
 - a lesson may have more than one `co-primary` when the algorithm truly has multiple synchronized mechanisms
+- do not use `secondary` for arrays, queues, deques, heaps, graphs, trees, or output sequences
 - `context` should be compact, docked, collapsible, or removable before it is allowed to compete with `primary` or `co-primary`
 
 ### Anti-rules
@@ -587,18 +594,13 @@ This is the key rule:
 
 ### Current implementation note
 
-The runtime still routes primitives through the older viewport roles such as
-`primary`, `secondary`, and `tertiary`.
-That is an implementation limitation, not the target product contract.
-
 Lesson composition should now be authored and reviewed in terms of:
 
 - `support`
 - `primary`
 - `co-primary`
+- `secondary`
 - `context`
-
-Future shell work should make the runtime honor these roles directly.
 
 ## Flagship Composition Audit
 
@@ -619,12 +621,11 @@ The flagship lessons should now be treated as follows.
 ### Maximum Depth Of Binary Tree
 
 - `primary`: execution tree
-- `co-primary`: call stack
-- `context`: structural binary tree
+- `secondary`: call stack
 - `support`: narration, code trace
 
-The structural tree is only orientation.
-It should never compete with the execution tree, because the execution tree already explains both recursion flow and return aggregation more directly.
+The structural tree should not be present by default here.
+The execution tree already explains both recursion flow and return aggregation more directly.
 
 ### Graph BFS Frontier
 
@@ -647,12 +648,12 @@ Treating it as sidebar trivia weakens the lesson.
 ### Coin Change Memo DFS
 
 - `primary`: execution tree / call tree
-- `co-primary`: memo table
-- `co-primary`: call stack
+- `secondary`: memo table
+- `secondary`: call stack
 - `support`: narration, code trace
 
-The learner needs both reuse and waiting-return flow.
-Neither memo nor stack should be reduced to support-only metadata.
+The learner needs both reuse and waiting-return flow, but memo and stack are
+auxiliary aids rather than stage-core algorithm objects.
 
 ### Heap Top K
 
@@ -678,11 +679,13 @@ When choosing view weights for a lesson, ask these questions in order:
 
 1. Which view best answers "what is happening right now?"
 2. Which second view is required to answer "why is that the next step?"
-3. Which remaining view only helps with orientation or reassurance?
-4. Which views are merely code-state mirrors and therefore belong in support?
+3. Which remaining view is a true auxiliary execution aid such as a call stack or memo table?
+4. Which remaining view only helps with orientation or reassurance?
+5. Which views are merely code-state mirrors and therefore belong in support?
 
 If a view only mirrors code values, keep it in `support`.
 If it explains the mechanism of the algorithm, it belongs in the stage.
+If it is a recursive call stack or memo table, it may use `secondary`.
 
 ## Cross-View Execution Objects
 
@@ -774,8 +777,8 @@ Initial flagship interpretation:
 
 Each primitive declares `PrimitiveViewportSpec` in its lesson `project.ts`:
 
-- `role`: routes the primitive to a region — `"primary"` → stage center, `"secondary"`/`"tertiary"` → stage sidebar, `kind === "state"` → left support column.
-- `preferredWidth`: ideal width in px (900–980 primary, 280–420 secondary). Declared for every primitive in lesson data. Not yet consumed for dynamic column sizing but available for future use.
+- `role`: routes the primitive to a region — `"primary"`/`"co-primary"`/`"context"` → stage core, `"secondary"` → auxiliary rail, and `kind === "state"` or `"support"` → left support column.
+- `preferredWidth`: ideal width in px (900–980 stage-core, 280–420 auxiliary). Declared for every primitive in lesson data. Not yet consumed for dynamic column sizing but available for future use.
 - `minHeight`: minimum height constraint.
 
 The `splitPrimitives()` function in `lesson-player.tsx` reads `role` and `kind` to route primitives to regions.

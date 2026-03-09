@@ -430,7 +430,8 @@ The canonical composition roles are:
 
 - `support` - narration, code trace, compact code-state, and lightweight runtime status
 - `primary` - the main teaching surface for the active confusion
-- `co-primary` - a second stage view required to explain why the next step happens
+- `co-primary` - a second stage-core view required to explain why the next step happens
+- `secondary` - a true auxiliary execution aid, currently limited to recursive call stack and memo table
 - `context` - an optional orientation view that helps, but does not teach the transition directly
 
 These roles are selected by learner need, not by primitive kind.
@@ -439,24 +440,26 @@ These roles are selected by learner need, not by primitive kind.
 
 - binary search: array is `primary`; code-state is `support`
 - sliding window maximum: array is `primary`; deque is `co-primary`
-- maximum depth: execution tree is `primary`; call stack is `co-primary`; structural tree is `context`
+- maximum depth: execution tree is `primary`; call stack is `secondary`
 - heap top-k: heap is `primary`; input scan is `co-primary`
-- memo DFS: call tree is `primary`; stack and memo table are `co-primary`
+- memo DFS: call tree is `primary`; stack and memo table are `secondary`
 
 ### Composition rules
 
 - never let three equally heavy panels compete at the same visual weight unless the lesson truly requires it
 - if the learner must compare two panels to understand the step, those panels are both stage-level and should be composed together
+- if a view is a recursive call stack or memo table, it may use `secondary` as an auxiliary aid
 - if the learner only needs a view for orientation, keep it as `context` and compact it before it can compete with `primary` or `co-primary`
 - if a primitive is not adding meaning for the current lesson, do not render it just because it exists
 - if a richer execution view already subsumes a structural view, the structural view must drop to `context` or disappear
 - if a view only mirrors code variables, it belongs in `support`, not in the main stage
+- do not place arrays, queues, deques, heaps, graphs, trees, or output sequences in `secondary`
 
 ### Viewport hint contract
 
 Each primitive declares `PrimitiveViewportSpec` with:
 
-- `role`: `"primary"` | `"secondary"` | `"tertiary"` — determines routing.
+- `role`: `"primary"` | `"co-primary"` | `"secondary"` | `"context"` | `"support"` | `"tertiary"` — determines routing.
 - `preferredWidth`: ideal width in px — declared for every primitive in lesson data.
 - `minHeight`: minimum height constraint.
 
@@ -464,28 +467,23 @@ Each primitive declares `PrimitiveViewportSpec` with:
 
 The `splitPrimitives()` function in `lesson-player.tsx` routes each primitive:
 
-- `kind === "state"` → support column (left panel)
+- `kind === "state"` or `role === "support"` → support column (left panel)
 - `role === "primary"` or undefined non-state → stage primary (center, large area, flex centering)
-- `role === "secondary"` or `"tertiary"` → stage sidebar (compact or proportional column)
+- `role === "co-primary"` or `role === "context"` → stage-core companion region
+- `role === "secondary"` → stage auxiliary rail
+- `role === "tertiary"` → support column legacy fallback
 
-This is still the current runtime implementation.
-It should not be mistaken for the final pedagogical contract.
-
-The next shell-composition pass should evolve routing so that lesson view specs can express:
-
-- `support`
-- `primary`
-- `co-primary`
-- `context`
-
-without forcing `co-primary` and `context` into the same undifferentiated bucket.
+This is now the current runtime implementation contract.
+The key pedagogical correction is that `secondary` no longer means "smaller stage panel".
+It means "true auxiliary execution aid".
 
 ### Independent scroll regions
 
-Primary and secondary regions scroll independently. The outer stage container uses `overflow-hidden` so no scroll leaks. Each region owns its own overflow:
+Stage-core and auxiliary regions scroll independently. The outer stage container uses `overflow-hidden` so no scroll leaks. Each region owns its own overflow:
 
 - Primary: `overflow-auto` with `m-auto` centering — content centers when smaller than viewport, scrolls normally when overflowing.
-- Secondary: `overflow-y-auto` — multiple secondaries stack vertically via `grid auto-rows-max`.
+- Companion/context: `overflow-y-auto` when stage-core views stack above or below the primary surface.
+- Secondary aid rail: `overflow-y-auto` — auxiliary aids stack vertically via `grid auto-rows-max`.
 
 ## Primitive-Specific Requirements
 

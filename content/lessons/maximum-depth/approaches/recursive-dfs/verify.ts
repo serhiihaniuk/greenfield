@@ -4,7 +4,6 @@ import type { TraceEvent } from "@/domains/tracing/types"
 import type {
   CallTreePrimitiveFrameState,
   StackPrimitiveFrameState,
-  TreePrimitiveFrameState,
 } from "@/entities/visualization/primitives"
 import {
   createVerificationReport,
@@ -65,26 +64,15 @@ function verifyRequiredViews(frames: Frame[]): VerificationReport {
   const issues: VerificationIssue[] = []
 
   for (const frame of frames) {
-    const tree = findPrimitive(frame, "tree")
     const stack = findPrimitive(frame, "call-stack")
     const executionTree = findPrimitive(frame, "execution-tree")
-
-    if (!tree || tree.kind !== "tree") {
-      issues.push({
-        code: "MAX_DEPTH_TREE_VIEW_MISSING",
-        kind: "viewport",
-        severity: "error",
-        message: `Frame "${frame.id}" should keep the structural tree available as supporting context.`,
-        frameId: frame.id,
-      })
-    }
 
     if (!stack || stack.kind !== "stack") {
       issues.push({
         code: "MAX_DEPTH_STACK_VIEW_MISSING",
         kind: "viewport",
         severity: "error",
-        message: `Frame "${frame.id}" should render the recursion stack alongside the tree.`,
+        message: `Frame "${frame.id}" should render the recursion call stack as optional secondary aid.`,
         frameId: frame.id,
       })
     }
@@ -175,28 +163,8 @@ function verifyFinalAnswer(frames: Frame[]): VerificationReport {
     })
   }
 
-  const tree = findPrimitive(finalFrame, "tree")
   const executionTree = findPrimitive(finalFrame, "execution-tree")
   const stack = findPrimitive(finalFrame, "call-stack")
-
-  const rootAnnotation =
-    tree && tree.kind === "tree"
-      ? (tree as TreePrimitiveFrameState).data.nodes.find(
-          (node) => !node.parentId
-        )?.annotation
-      : undefined
-
-  if (!rootAnnotation?.includes("answer")) {
-    issues.push({
-      code: "MAX_DEPTH_FINAL_ANSWER_ANNOTATION_MISSING",
-      kind: "pedagogical-integrity",
-      severity: "error",
-      message:
-        "The final frame should annotate the root with the returned maximum depth.",
-      frameId: finalFrame.id,
-      pedagogicalCheck: "hidden-state-loss",
-    })
-  }
 
   const rootCallReturnValue =
     executionTree && executionTree.kind === "call-tree"
@@ -210,7 +178,8 @@ function verifyFinalAnswer(frames: Frame[]): VerificationReport {
       code: "MAX_DEPTH_ROOT_RETURN_VALUE_MISSING",
       kind: "pedagogical-integrity",
       severity: "error",
-      message: "The call tree should expose the root call's returned depth.",
+      message:
+        "The execution tree should expose the root call's returned depth as the learner-facing answer.",
       frameId: finalFrame.id,
       pedagogicalCheck: "code-line-mismatch",
     })

@@ -10,15 +10,10 @@ import type { TraceEvent } from "@/domains/tracing/types"
 import {
   defineCallTreePrimitiveFrameState,
   defineStackPrimitiveFrameState,
-  defineTreePrimitiveFrameState,
   type CallTreeNode,
   type StackFrame,
-  type TreeNode,
 } from "@/entities/visualization/primitives"
-import type {
-  EdgeHighlightSpec,
-  PrimitiveFrameState,
-} from "@/entities/visualization/types"
+import type { EdgeHighlightSpec, PrimitiveFrameState } from "@/entities/visualization/types"
 import { recursiveMaximumDepthViewSpecs } from "./views"
 
 type TraversalSide = "root" | "left" | "right"
@@ -86,185 +81,27 @@ function getCall(snapshot: MaximumDepthSnapshot, callId: string | undefined) {
   return snapshot.calls.find((entry) => entry.callId === callId)
 }
 
-function getNode(
-  snapshot: MaximumDepthSnapshot,
-  nodeId: string | null | undefined
-) {
-  if (!nodeId) {
-    return undefined
-  }
-
-  return snapshot.nodes.find((entry) => entry.id === nodeId)
-}
-
 function getCallStateValue(call: CallSnapshot) {
   return call.nodeValue === null ? "null" : `node ${call.nodeValue}`
 }
 
-function getTreeEdgeHighlights(
-  event: TraceEvent,
-  snapshot: MaximumDepthSnapshot
-): EdgeHighlightSpec[] {
-  const highlights: EdgeHighlightSpec[] = []
-
-  if (event.type === "call") {
-    const childCall = getCall(
-      snapshot,
-      event.payload.callId as string | undefined
-    )
-    const parentCall = getCall(snapshot, childCall?.parentCallId)
-    if (parentCall?.nodeId && childCall?.nodeId) {
-      highlights.push({
-        id: `${event.id}-tree-call`,
-        sourceId: parentCall.nodeId,
-        targetId: childCall.nodeId,
-        tone: "active",
-        emphasis: "strong",
-      })
-    }
-  }
-
-  if (event.type === "mutate") {
-    const currentCall = getCall(
-      snapshot,
-      event.payload.callId as string | undefined
-    )
-    const currentNode = getNode(snapshot, currentCall?.nodeId)
-    const childNodeId =
-      event.codeLine === "L6" ? currentNode?.leftId : currentNode?.rightId
-
-    if (currentCall?.nodeId && childNodeId) {
-      highlights.push({
-        id: `${event.id}-tree-return`,
-        sourceId: currentCall.nodeId,
-        targetId: childNodeId,
-        tone: "done",
-        emphasis: "normal",
-      })
-    }
-  }
-
-  return highlights
-}
-
-function buildTreeNodes(
-  event: TraceEvent,
-  snapshot: MaximumDepthSnapshot
-): TreeNode[] {
-  const callByNodeId = new Map(
-    snapshot.calls
-      .filter(
-        (call): call is CallSnapshot & { nodeId: string } =>
-          call.nodeId !== null
-      )
-      .map((call) => [call.nodeId, call])
-  )
-  const activeCall = getCall(snapshot, snapshot.activeCallId)
-  const parentCall = getCall(
-    snapshot,
-    event.payload.parentCallId as string | undefined
-  )
-  const highlightedParentNodeId =
-    event.type === "call" && event.payload.nodeId === null
-      ? parentCall?.nodeId
-      : undefined
-
-  return snapshot.nodes.map((node) => {
-    const call = callByNodeId.get(node.id)
-    const parentNode = getNode(snapshot, node.parentId)
-    const childSide =
-      parentNode?.leftId === node.id
-        ? "left"
-        : parentNode?.rightId === node.id
-          ? "right"
-          : undefined
-
-    let status: TreeNode["status"] = "default"
-    if (
-      snapshot.activeNodeId === node.id ||
-      highlightedParentNodeId === node.id
-    ) {
-      status = "active"
-    } else if (call?.returnValue !== undefined) {
-      status = "done"
-    }
-
-    let annotation: string | undefined
-    if (
-      event.type === "result" &&
-      event.codeLine === "L2" &&
-      node.id === snapshot.rootId
-    ) {
-      annotation = `answer ${snapshot.answer}`
-    } else if (event.type === "compare" && activeCall?.nodeId === node.id) {
-      annotation = "expand"
-    } else if (
-      event.type === "result" &&
-      event.codeLine === "L8" &&
-      activeCall?.nodeId === node.id
-    ) {
-      annotation = `d=${activeCall.returnValue}`
-    } else if (
-      event.type === "mutate" &&
-      event.codeLine === "L6" &&
-      activeCall?.nodeId === node.id
-    ) {
-      annotation = `L=${activeCall.leftDepth}`
-    } else if (
-      event.type === "mutate" &&
-      event.codeLine === "L7" &&
-      activeCall?.nodeId === node.id
-    ) {
-      annotation = `R=${activeCall.rightDepth}`
-    } else if (
-      event.type === "call" &&
-      event.payload.nodeId === null &&
-      parentCall?.nodeId === node.id
-    ) {
-      annotation = `${event.payload.side} -> null`
-    } else if (call?.returnValue !== undefined) {
-      annotation = `d=${call.returnValue}`
-    }
-
-    return {
-      id: node.id,
-      label: String(node.value),
-      parentId: node.parentId,
-      childSide,
-      depth: node.depth,
-      annotation,
-      status,
-    }
-  })
-}
-
-function buildTreePrimitive(
-  event: TraceEvent,
-  snapshot: MaximumDepthSnapshot
-): PrimitiveFrameState {
-  const viewSpec = getLessonViewSpec(recursiveMaximumDepthViewSpecs, "tree")
-
-  return defineTreePrimitiveFrameState({
-    id: "tree",
-    kind: "tree",
-    title: viewSpec.title,
-    subtitle:
-      "The structural tree stays visible as context while the execution tree explains how recursion unfolds.",
-    data: {
-      nodes: buildTreeNodes(event, snapshot),
-      rootId: snapshot.rootId,
-    },
-    edgeHighlights: getTreeEdgeHighlights(event, snapshot),
-    viewport: viewSpec.viewport,
-  })
-}
-
-function buildStackFrames(snapshot: MaximumDepthSnapshot): StackFrame[] {
+function buildStackFrames(
+  snapshot: MaximumDepthSnapshot,
+  event: TraceEvent
+): StackFrame[] {
   return snapshot.stack.map((callId) => {
     const call = getCall(snapshot, callId)
     if (!call) {
       throw new Error(`Missing stack call ${callId}.`)
     }
+
+    const isActiveFrame = snapshot.stack.at(-1) === call.callId
+    const annotation =
+      isActiveFrame && event.type === "compare"
+        ? "check"
+        : call.returnValue !== undefined
+          ? `ret ${call.returnValue}`
+          : call.side
 
     return {
       id: call.callId,
@@ -275,19 +112,18 @@ function buildStackFrames(snapshot: MaximumDepthSnapshot): StackFrame[] {
         call.nodeValue === null
           ? "null subtree"
           : `node ${call.nodeValue} · left ${call.leftDepth ?? "?"} · right ${call.rightDepth ?? "?"}`,
-      status:
-        snapshot.stack.at(-1) === call.callId
-          ? "active"
-          : call.returnValue !== undefined
-            ? "done"
-            : "waiting",
-      annotation:
-        call.returnValue !== undefined ? `ret ${call.returnValue}` : call.side,
+      status: isActiveFrame
+        ? "active"
+        : call.returnValue !== undefined
+          ? "done"
+          : "waiting",
+      annotation,
     }
   })
 }
 
 function buildStackPrimitive(
+  event: TraceEvent,
   snapshot: MaximumDepthSnapshot
 ): PrimitiveFrameState {
   const viewSpec = getLessonViewSpec(
@@ -302,7 +138,7 @@ function buildStackPrimitive(
     subtitle:
       "Only one recursive frame is active; parents wait for child depths to return.",
     data: {
-      frames: buildStackFrames(snapshot),
+      frames: buildStackFrames(snapshot, event),
       topLabel: snapshot.stack.length > 0 ? "top of stack" : undefined,
     },
     viewport: viewSpec.viewport,
@@ -330,19 +166,29 @@ function buildCallTreeEdges(
   ]
 }
 
-function buildCallTreeNodes(snapshot: MaximumDepthSnapshot): CallTreeNode[] {
-  return snapshot.calls.map((call) => ({
-    id: call.callId,
-    label: dfsExecutionToken.label,
-    tokenId: dfsExecutionToken.id,
-    tokenStyle: dfsExecutionToken.style,
-    stateValue: getCallStateValue(call),
-    parentId: call.parentCallId,
-    badge: call.side,
-    returnValue:
-      call.returnValue !== undefined ? String(call.returnValue) : undefined,
-    status: call.status,
-  }))
+function buildCallTreeNodes(
+  event: TraceEvent,
+  snapshot: MaximumDepthSnapshot
+): CallTreeNode[] {
+  return snapshot.calls.map((call) => {
+    const isRootAnswerFrame =
+      event.type === "result" &&
+      event.codeLine === "L2" &&
+      !call.parentCallId
+
+    return {
+      id: call.callId,
+      label: dfsExecutionToken.label,
+      tokenId: dfsExecutionToken.id,
+      tokenStyle: dfsExecutionToken.style,
+      stateValue: getCallStateValue(call),
+      parentId: call.parentCallId,
+      badge: isRootAnswerFrame ? "answer" : call.side,
+      returnValue:
+        call.returnValue !== undefined ? String(call.returnValue) : undefined,
+      status: call.status,
+    }
+  })
 }
 
 function buildCallTreePrimitive(
@@ -361,7 +207,7 @@ function buildCallTreePrimitive(
     subtitle:
       "Each node in the execution tree is one recursive call and the depth it eventually returns.",
     data: {
-      nodes: buildCallTreeNodes(snapshot),
+      nodes: buildCallTreeNodes(event, snapshot),
       rootId: snapshot.calls[0]?.callId ?? "call-1",
     },
     edgeHighlights: buildCallTreeEdges(event, snapshot),
@@ -521,8 +367,7 @@ function buildPrimitiveStates(
 ): PrimitiveFrameState[] {
   return [
     buildCallTreePrimitive(event, snapshot),
-    buildStackPrimitive(snapshot),
-    buildTreePrimitive(event, snapshot),
+    buildStackPrimitive(event, snapshot),
   ]
 }
 

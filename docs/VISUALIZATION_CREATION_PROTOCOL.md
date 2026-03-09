@@ -226,15 +226,17 @@ Choose them by pedagogical job:
 
 - `support` - narration, code trace, compact code-state
 - `primary` - main teaching surface
-- `co-primary` - another stage view required to explain the transition
+- `co-primary` - another stage-core view required to explain the transition
+- `secondary` - a true auxiliary execution aid, currently limited to recursive call stack and memo table
 - `context` - optional orientation view only
 
 Use this selection test:
 
 1. Which view answers "what is happening right now?"
 2. Which second view is required to answer "why is that the next step?"
-3. Which remaining view only reassures or orients the learner?
-4. Which remaining values are only code-state mirrors and therefore belong in support?
+3. Which remaining view is only a call stack or memo table and therefore qualifies as `secondary`?
+4. Which remaining view only reassures or orients the learner?
+5. Which remaining values are only code-state mirrors and therefore belong in support?
 
 ### `pointer-state`
 
@@ -252,26 +254,26 @@ Minimum:
 
 - primary execution view when the confusion is about recursive flow, aggregation, or return propagation
 - primary structural view only when the learner is mainly tracking traversal location through the original structure
-- co-primary stack or frame view whenever it explains why control moves next
+- secondary call stack only when recursion waiting relationships materially help
 - code trace
 - narration
 
 Example:
 
-- Maximum Depth of Binary Tree should usually make the execution tree primary and keep the structural tree as secondary context.
+- Maximum Depth of Binary Tree should usually make the execution tree primary and keep the call stack secondary.
 - Iterative tree traversal should usually keep the structural tree primary because the learner is tracking where traversal goes next through the original tree.
 
 Additional rule:
 
-- if the execution view already makes the structure legible, do not keep the original structure at equal weight; demote it to `context`
+- if the execution view already makes the structure legible, do not keep the original structure visible by default
 
 ### `memoization-reuse`
 
 Minimum:
 
 - call tree or focused execution tree
-- co-primary stack view
-- co-primary memo table
+- secondary stack view
+- secondary memo table
 - code trace
 - narration
 
@@ -297,6 +299,7 @@ Minimum:
 - if algorithmic correctness cannot be verified, the lesson is not done
 - if pedagogical integrity cannot be verified, the lesson is not done
 - if a view explains the algorithm's mechanism, it belongs in the stage, not the support column
+- if a view is not a call stack or memo table, it should not use `secondary`
 - if a view only mirrors code state, it belongs in support even when it is visually attractive
 - do not keep duplicated structural context at equal weight when a richer execution view already subsumes it
 
@@ -340,10 +343,10 @@ Use these as the default authoring targets for the current flagship set.
 
 - Binary Search: array `primary`; code-state `support`
 - House Robber: houses/state-transition row `primary`; rolling DP scalars `support`
-- Maximum Depth: execution tree `primary`; call stack `co-primary`; structural tree `context`
+- Maximum Depth: execution tree `primary`; call stack `secondary`
 - Graph BFS: graph `primary`; frontier queue `co-primary`; traversal state `support`
 - Sliding Window Maximum: array/window `primary`; monotonic deque `co-primary`; window state `support`
-- Coin Change Memo DFS: call tree `primary`; memo table and call stack `co-primary`
+- Coin Change Memo DFS: call tree `primary`; memo table and call stack `secondary`
 - Heap Top K: heap `primary`; input scan `co-primary`; threshold/top-k state `support`
 - Tree DFS Traversal: structural tree `primary`; stack and traversal output `co-primary`
 

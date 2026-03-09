@@ -92,6 +92,7 @@ type StageCompositionRole =
   | "support"
   | "primary"
   | "co-primary"
+  | "secondary"
   | "context"
 
 function getStageCompositionRole(
@@ -111,6 +112,10 @@ function getStageCompositionRole(
     return "co-primary"
   }
 
+  if (role === "secondary") {
+    return "secondary"
+  }
+
   if (role === "context") {
     return "context"
   }
@@ -119,8 +124,8 @@ function getStageCompositionRole(
     return "support"
   }
 
-  if (role === "secondary" || role === "tertiary") {
-    return "co-primary"
+  if (role === "tertiary") {
+    return "support"
   }
 
   return "primary"
@@ -136,6 +141,9 @@ function splitPrimitives(primitives: PrimitiveFrameState[]) {
   const coPrimaryPrimitives = primitives.filter(
     (primitive) => getStageCompositionRole(primitive) === "co-primary"
   )
+  const secondaryPrimitives = primitives.filter(
+    (primitive) => getStageCompositionRole(primitive) === "secondary"
+  )
   const contextPrimitives = primitives.filter(
     (primitive) => getStageCompositionRole(primitive) === "context"
   )
@@ -145,10 +153,14 @@ function splitPrimitives(primitives: PrimitiveFrameState[]) {
       primaryPrimitives.length > 0
         ? primaryPrimitives
         : primitives.filter(
-            (primitive) => getStageCompositionRole(primitive) !== "support"
+            (primitive) => {
+              const role = getStageCompositionRole(primitive)
+              return role !== "support" && role !== "secondary"
+            }
           ),
     supportPrimitives,
     coPrimaryPrimitives,
+    secondaryPrimitives,
     contextPrimitives,
   }
 }
@@ -231,13 +243,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     primaryPrimitives,
     supportPrimitives,
     coPrimaryPrimitives,
+    secondaryPrimitives,
     contextPrimitives,
   } =
     splitPrimitives(activePrimitives)
   const hasSupportPrimitives = supportPrimitives.length > 0
   const hasCoPrimaryStage = coPrimaryPrimitives.length > 0
   const hasContextStage = contextPrimitives.length > 0
-  const hasExpansiveContext = contextPrimitives.some((p) => CANVAS_KINDS.has(p.kind))
+  const hasSecondaryStage = secondaryPrimitives.length > 0
+  const hasExpansiveSecondary = secondaryPrimitives.some((p) =>
+    CANVAS_KINDS.has(p.kind)
+  )
   const currentFrameLabel =
     frames.length === 0 ? "0/0" : `${currentFrameIndex + 1}/${frames.length}`
   const visualChangeLabel = activeFrame?.visualChangeType ?? "-"
@@ -529,17 +545,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               data-testid="stage-visual-grid"
               className="h-full overflow-hidden"
             >
-              {hasContextStage ? (
+              {hasSecondaryStage ? (
                 <ResizablePanelGroup orientation="horizontal">
                   <ResizablePanel
                     id="stage-main"
-                    defaultSize={hasExpansiveContext ? "72%" : "76%"}
+                    defaultSize={hasExpansiveSecondary ? "72%" : "78%"}
                     minSize="30%"
                   >
                     <div className="flex h-full min-h-0 flex-col">
                       {hasCoPrimaryStage ? (
                         <section
-                          data-testid="stage-secondary-region"
+                          data-testid="stage-companion-region"
                           className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
                         >
                           <div
@@ -550,7 +566,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                               <PrimitiveRenderer
                                 key={primitive.id}
                                 primitive={primitive}
-                                role="secondary"
+                                role="primary"
                                 selectedPrimitiveId={selectedPrimitiveId}
                               />
                             ))}
@@ -576,23 +592,41 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                           ))}
                         </div>
                       </section>
+
+                      {hasContextStage ? (
+                        <section
+                          data-testid="stage-context-region"
+                          className="max-h-[34%] shrink-0 overflow-y-auto border-t border-border/20 p-4"
+                        >
+                          <div className="grid auto-rows-max gap-3">
+                            {contextPrimitives.map((primitive) => (
+                              <PrimitiveRenderer
+                                key={primitive.id}
+                                primitive={primitive}
+                                role="secondary"
+                                selectedPrimitiveId={selectedPrimitiveId}
+                              />
+                            ))}
+                          </div>
+                        </section>
+                      ) : null}
                     </div>
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel
-                    id="stage-context"
-                    defaultSize={hasExpansiveContext ? "28%" : "24%"}
+                    id="stage-secondary"
+                    defaultSize={hasExpansiveSecondary ? "28%" : "22%"}
                     minSize="14%"
                     maxSize="42%"
                     collapsible
                     collapsedSize="0%"
                   >
                     <aside
-                      data-testid="stage-context-region"
+                      data-testid="stage-secondary-region"
                       className="h-full overflow-y-auto border-l border-border/20 p-4"
                     >
                       <div className="grid auto-rows-max gap-3">
-                        {contextPrimitives.map((primitive) => (
+                        {secondaryPrimitives.map((primitive) => (
                           <PrimitiveRenderer
                             key={primitive.id}
                             primitive={primitive}
@@ -608,7 +642,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 <div className="flex h-full min-h-0 flex-col">
                   {hasCoPrimaryStage ? (
                     <section
-                      data-testid="stage-secondary-region"
+                      data-testid="stage-companion-region"
                       className="max-h-[38%] shrink-0 overflow-y-auto border-b border-border/20 p-4"
                     >
                       <div
@@ -619,7 +653,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                           <PrimitiveRenderer
                             key={primitive.id}
                             primitive={primitive}
-                            role="secondary"
+                            role="primary"
                             selectedPrimitiveId={selectedPrimitiveId}
                           />
                         ))}
@@ -645,6 +679,24 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                       ))}
                     </div>
                   </section>
+
+                  {hasContextStage ? (
+                    <section
+                      data-testid="stage-context-region"
+                      className="max-h-[34%] shrink-0 overflow-y-auto border-t border-border/20 p-4"
+                    >
+                      <div className="grid auto-rows-max gap-3">
+                        {contextPrimitives.map((primitive) => (
+                          <PrimitiveRenderer
+                            key={primitive.id}
+                            primitive={primitive}
+                            role="secondary"
+                            selectedPrimitiveId={selectedPrimitiveId}
+                          />
+                        ))}
+                      </div>
+                    </section>
+                  ) : null}
                 </div>
               )}
             </div>
@@ -688,7 +740,11 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </Badge>
                 <Badge variant="outline">code {activeFrame?.codeLine ?? "-"}</Badge>
                 <Badge variant="outline">
-                  views {primaryPrimitives.length + coPrimaryPrimitives.length + contextPrimitives.length}
+                  views{" "}
+                  {primaryPrimitives.length +
+                    coPrimaryPrimitives.length +
+                    secondaryPrimitives.length +
+                    contextPrimitives.length}
                 </Badge>
                 <Button size="xs" variant="ghost" onClick={toggleAuthorMode}>
                   <CommandShortcutHints command={auditCommand} />

@@ -15,10 +15,10 @@ export const memoDfsCoinChangeViewSpecs = defineLessonViewSpecs([
   {
     id: "memo-table",
     primitive: "hash-map",
-    role: "co-primary",
+    role: "secondary",
     title: "Memo Table",
     viewport: {
-      role: "co-primary",
+      role: "secondary",
       preferredWidth: 340,
       minHeight: 260,
     },
@@ -26,10 +26,10 @@ export const memoDfsCoinChangeViewSpecs = defineLessonViewSpecs([
   {
     id: "call-stack",
     primitive: "stack",
-    role: "co-primary",
+    role: "secondary",
     title: "Call Stack",
     viewport: {
-      role: "co-primary",
+      role: "secondary",
       preferredWidth: 320,
       minHeight: 240,
     },

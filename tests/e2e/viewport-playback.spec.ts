@@ -119,17 +119,52 @@ test("keeps synchronized secondary visuals inside the stage instead of the suppo
   await expectRuntimeReady(page, "Traversal Tree", "DFS Stack")
 
   await expect(
-    testRegion(page, "stage-secondary-region").getByRole("heading", {
+    testRegion(page, "stage-companion-region").getByRole("heading", {
       name: "DFS Stack",
       exact: true,
     })
   ).toBeVisible()
   await expect(
-    testRegion(page, "stage-secondary-region").getByRole("heading", {
+    testRegion(page, "stage-companion-region").getByRole("heading", {
       name: "Preorder Output",
       exact: true,
     })
   ).toBeVisible()
+})
+
+test("keeps only memo and call-stack aids in the secondary rail", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await selectFooterOption(page, "Lesson", "Maximum Depth of Binary Tree")
+  await expectRuntimeReady(page, "Execution Tree", "Call Stack")
+  await expect(
+    testRegion(page, "stage-secondary-region").getByRole("heading", {
+      name: "Call Stack",
+      exact: true,
+    })
+  ).toBeVisible()
+
+  await selectFooterOption(page, "Lesson", "Coin Change Memo DFS")
+  await expectRuntimeReady(page, "Execution Tree", "Call Stack")
+  await expect(
+    testRegion(page, "stage-secondary-region").getByRole("heading", {
+      name: "Call Stack",
+      exact: true,
+    })
+  ).toBeVisible()
+  await expect(
+    testRegion(page, "stage-secondary-region").getByRole("heading", {
+      name: "Memo Table",
+      exact: true,
+    })
+  ).toBeVisible()
+
+  await selectFooterOption(page, "Lesson", "Graph BFS Frontier")
+  await expectRuntimeReady(page, "Graph Frontier", "Frontier Queue")
+  await expect(testRegion(page, "stage-secondary-region")).toHaveCount(0)
 })
 
 test("keeps compact code-state panels in the support column", async ({ page }) => {
@@ -139,8 +174,7 @@ test("keeps compact code-state panels in the support column", async ({ page }) =
   await expectRuntimeReady(page, "Search Interval", "State")
 
   await expect(
-    testRegion(page, "support-primitives-region").getByRole("heading", {
-      name: "State",
+    testRegion(page, "support-primitives-region").getByText("State", {
       exact: true,
     })
   ).toBeVisible()

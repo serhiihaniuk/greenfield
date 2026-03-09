@@ -20,7 +20,7 @@ const lessonMatrix = [
   },
   {
     lesson: "Maximum Depth of Binary Tree",
-    primaryHeading: "Binary Tree",
+    primaryHeading: "Execution Tree",
     secondaryHeading: "Call Stack",
   },
   {
@@ -82,8 +82,8 @@ const presetMatrix = [
     preset: "Left Heavy",
     expectedSnippet: '"values": [',
     secondarySnippet: "4",
-    primaryHeading: "Binary Tree",
-    secondaryHeading: "Execution Tree",
+    primaryHeading: "Execution Tree",
+    secondaryHeading: "Call Stack",
   },
   {
     lesson: "Tree DFS Traversal with Stack",

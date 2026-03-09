@@ -13,7 +13,14 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [],
           "id": "array",
@@ -47,7 +54,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-1",
@@ -66,7 +73,14 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [],
           "id": "array",
@@ -107,7 +121,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-2",
@@ -126,15 +140,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -174,7 +219,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-3",
@@ -193,15 +238,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -248,7 +324,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-4",
@@ -267,15 +343,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -322,7 +429,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-5",
@@ -349,15 +456,46 @@
             }
           ],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-2", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-2",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -404,7 +542,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-6",
@@ -423,15 +561,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "strong", "targetId": "cell-3", "tone": "mutated" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -478,7 +647,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-7",
@@ -497,15 +666,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -545,7 +745,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-8",
@@ -564,15 +764,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -619,7 +850,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-9",
@@ -638,15 +869,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -693,7 +955,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-10",
@@ -720,15 +982,46 @@
             }
           ],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "strong", "targetId": "cell-4", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "candidate" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-4",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "candidate"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -775,7 +1068,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-11",
@@ -794,15 +1087,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "strong", "targetId": "cell-3", "tone": "mutated" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "mutated"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "dim"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -849,7 +1173,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-12",
@@ -868,15 +1192,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-3", "tone": "candidate" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-3",
+              "tone": "candidate"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "dim"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -916,7 +1271,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-13",
@@ -935,15 +1290,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "strong", "targetId": "cell-3", "tone": "compare" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "compare"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "dim"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -990,7 +1376,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-14",
@@ -1009,15 +1395,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "strong", "targetId": "cell-3", "tone": "found" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "found"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "dim"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -1064,7 +1481,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-15",
@@ -1083,15 +1500,46 @@
         {
           "annotations": [],
           "data": {
-            "cellValues": [1, 3, 5, 7, 9, 11]
+            "cellValues": [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
           },
           "highlights": [
-            { "emphasis": "soft", "targetId": "cell-0", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-1", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-2", "tone": "dim" },
-            { "emphasis": "strong", "targetId": "cell-3", "tone": "found" },
-            { "emphasis": "soft", "targetId": "cell-4", "tone": "dim" },
-            { "emphasis": "soft", "targetId": "cell-5", "tone": "dim" }
+            {
+              "emphasis": "soft",
+              "targetId": "cell-0",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-1",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-2",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "strong",
+              "targetId": "cell-3",
+              "tone": "found"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-4",
+              "tone": "dim"
+            },
+            {
+              "emphasis": "soft",
+              "targetId": "cell-5",
+              "tone": "dim"
+            }
           ],
           "id": "array",
           "kind": "array",
@@ -1138,7 +1586,7 @@
           "kind": "state",
           "pointers": [],
           "title": "State",
-          "viewportRole": "secondary"
+          "viewportRole": "support"
         }
       ],
       "sourceEventId": "event-16",
@@ -1146,22 +1594,90 @@
     }
   ],
   "trace": [
-    { "codeLine": "L1", "id": "event-1", "type": "mutate" },
-    { "codeLine": "L2", "id": "event-2", "type": "mutate" },
-    { "codeLine": "L3", "id": "event-3", "type": "compare" },
-    { "codeLine": "L4", "id": "event-4", "type": "pointer-update" },
-    { "codeLine": "L6", "id": "event-5", "type": "compare" },
-    { "codeLine": "L9", "id": "event-6", "type": "compare" },
-    { "codeLine": "L10", "id": "event-7", "type": "pointer-update" },
-    { "codeLine": "L3", "id": "event-8", "type": "compare" },
-    { "codeLine": "L4", "id": "event-9", "type": "pointer-update" },
-    { "codeLine": "L6", "id": "event-10", "type": "compare" },
-    { "codeLine": "L9", "id": "event-11", "type": "compare" },
-    { "codeLine": "L12", "id": "event-12", "type": "pointer-update" },
-    { "codeLine": "L3", "id": "event-13", "type": "compare" },
-    { "codeLine": "L4", "id": "event-14", "type": "pointer-update" },
-    { "codeLine": "L6", "id": "event-15", "type": "compare" },
-    { "codeLine": "L7", "id": "event-16", "type": "result" },
-    { "codeLine": "L7", "id": "event-17", "type": "complete" }
+    {
+      "codeLine": "L1",
+      "id": "event-1",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L2",
+      "id": "event-2",
+      "type": "mutate"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-3",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-4",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-5",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-6",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L10",
+      "id": "event-7",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-8",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-9",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-10",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L9",
+      "id": "event-11",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L12",
+      "id": "event-12",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L3",
+      "id": "event-13",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L4",
+      "id": "event-14",
+      "type": "pointer-update"
+    },
+    {
+      "codeLine": "L6",
+      "id": "event-15",
+      "type": "compare"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-16",
+      "type": "result"
+    },
+    {
+      "codeLine": "L7",
+      "id": "event-17",
+      "type": "complete"
+    }
   ]
 }

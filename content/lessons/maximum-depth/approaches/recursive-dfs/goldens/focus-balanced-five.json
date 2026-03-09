@@ -49,59 +49,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-1",
@@ -156,60 +104,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "expand",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-2",
@@ -279,59 +174,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-3",
@@ -401,60 +244,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "expand",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-4",
@@ -539,60 +329,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "left -> null",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-5",
@@ -678,59 +415,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-6",
@@ -811,59 +496,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-7",
@@ -944,60 +577,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "L=0",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-8",
@@ -1093,60 +673,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "right -> null",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-9",
@@ -1243,59 +770,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-10",
@@ -1387,59 +862,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-11",
@@ -1531,60 +954,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "R=0",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-12",
@@ -1677,60 +1047,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-13",
@@ -1818,60 +1135,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-14",
@@ -1959,61 +1223,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "L=1",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-15",
@@ -2116,60 +1326,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-16",
@@ -2272,61 +1429,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "expand",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-17",
@@ -2444,60 +1547,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-18",
@@ -2615,61 +1665,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "expand",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-19",
@@ -2802,61 +1798,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "left -> null",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-20",
@@ -2990,60 +1932,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-21",
@@ -3172,60 +2061,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-22",
@@ -3354,61 +2190,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "L=0",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-23",
@@ -3552,61 +2334,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "right -> null",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-24",
@@ -3751,60 +2479,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "default"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-25",
@@ -3944,60 +2619,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-26",
@@ -4137,61 +2759,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "R=0",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-27",
@@ -4332,61 +2900,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "active"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-28",
@@ -4522,61 +3036,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-29",
@@ -4712,62 +3172,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "L=1",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-30",
@@ -4918,61 +3323,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-31",
@@ -5123,62 +3474,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "expand",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-32",
@@ -5344,62 +3640,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "left -> null",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-33",
@@ -5566,61 +3807,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-34",
@@ -5782,61 +3969,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-35",
@@ -5998,62 +4131,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "L=0",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-36",
@@ -6230,62 +4308,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "right -> null",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-37",
@@ -6463,61 +4486,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "default"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-38",
@@ -6690,61 +4659,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-39",
@@ -6917,62 +4832,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "R=0",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-40",
@@ -7146,62 +5006,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "active"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-41",
@@ -7370,62 +5175,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-42",
@@ -7594,63 +5344,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "R=1",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-43",
@@ -7820,63 +5514,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "default"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-44",
@@ -8041,63 +5679,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-45",
@@ -8262,64 +5844,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "R=2",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-46",
@@ -8485,64 +6010,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "d=3",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "active"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-47",
@@ -8702,64 +6170,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "d=3",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-48",
@@ -8780,7 +6191,7 @@
           "data": {
             "nodes": [
               {
-                "badge": "root",
+                "badge": "answer",
                 "id": "call-1",
                 "label": "dfs",
                 "returnValue": "3",
@@ -8919,64 +6330,7 @@
           "kind": "stack",
           "pointers": [],
           "title": "Call Stack",
-          "viewportRole": "co-primary"
-        },
-        {
-          "annotations": [],
-          "data": {
-            "nodes": [
-              {
-                "annotation": "answer 3",
-                "depth": 0,
-                "id": "node-0",
-                "label": "3",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 1,
-                "id": "node-1",
-                "label": "9",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=2",
-                "childSide": "right",
-                "depth": 1,
-                "id": "node-2",
-                "label": "20",
-                "parentId": "node-0",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "left",
-                "depth": 2,
-                "id": "node-5",
-                "label": "15",
-                "parentId": "node-2",
-                "status": "done"
-              },
-              {
-                "annotation": "d=1",
-                "childSide": "right",
-                "depth": 2,
-                "id": "node-6",
-                "label": "7",
-                "parentId": "node-2",
-                "status": "done"
-              }
-            ],
-            "rootId": "node-0"
-          },
-          "highlights": [],
-          "id": "tree",
-          "kind": "tree",
-          "pointers": [],
-          "title": "Binary Tree",
-          "viewportRole": "context"
+          "viewportRole": "secondary"
         }
       ],
       "sourceEventId": "event-49",

@@ -37,9 +37,9 @@ const customInputMatrix = [
   },
   {
     lesson: "Maximum Depth of Binary Tree",
-    primaryHeading: "Binary Tree",
+    primaryHeading: "Execution Tree",
     secondaryHeading: "Call Stack",
-    expectedVisibleText: "88",
+    expectedVisibleText: "node 41",
     rawInput: JSON.stringify(
       {
         values: [41, 19, 63, 88],
