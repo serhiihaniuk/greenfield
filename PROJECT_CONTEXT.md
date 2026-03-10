@@ -190,6 +190,7 @@ Completed so far:
 - lesson selection is now route-driven instead of hardcoded in the app shell: `/lessons/:slug` is the canonical lesson URL, `/` redirects to the default registry lesson, and invalid lesson slugs redirect safely instead of leaving stale runtime mounted
 - the learner-facing task switch has been replaced with a dedicated problem-selector modal on `Ctrl + E`, backed by a typed lesson catalog with category, difficulty, mechanism, confusion, and flagship-status metadata
 - the generic command palette remains as shell-action infrastructure, but it is no longer the primary lesson-discovery surface
+- narration has started its first strict pedagogy pass: Binary Search now uses structured explanation blocks with `headline`, `reason`, `implication`, and evidence instead of flat frame summaries, and runtime verification now treats narration/token drift as a real contract problem instead of a styling miss
 
 ## Immediate Next Step
 

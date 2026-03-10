@@ -472,15 +472,23 @@ They should have:
 
 ### Layout
 
-- one compact block
+- one compact explanation panel
 - one-step explanation only
 - close to the main visualization, not far below the fold
+- clear internal hierarchy:
+  - explanation label
+  - main headline
+  - optional `Because`
+  - optional `So now`
+  - optional evidence chip row
 
 ### Visual behavior
 
 - semantic colored segments match the on-screen state
 - when narration names a shared execution token, it should render that token with the same token identity used in synchronized views
 - narration must describe only the one learner-visible change in the current frame
+- narration should keep `headline`, `reason`, and `implication` visually distinct instead of blending them into one paragraph where possible
+- evidence should stay compact and chip-like, not turn into a second state table
 - avoid large paragraphs
 - keep line length compact for fast scanning
 

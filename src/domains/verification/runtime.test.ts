@@ -64,6 +64,74 @@ describe("verifyRuntimeOutputs", () => {
     expect(midFrame.narration.segments.some((segment) => segment.tokenId === "mid")).toBe(
       true
     )
+    expect(midFrame.narration.headline?.segments[1]?.tokenId).toBe("mid")
+    expect(midFrame.narration.reason?.segments[0]?.text).toContain(
+      "Binary search always probes the center"
+    )
+    expect(midFrame.narration.implication?.segments[0]?.text).toContain(
+      "The next frame compares"
+    )
+  })
+
+  it("flags narration tokens that are not projected outside the explanation surface", () => {
+    const runtime = buildLessonRuntime({
+      lesson: binarySearchLesson,
+      approach,
+      mode: "full",
+      rawInput: foundMiddlePreset.rawInput,
+    })
+
+    const report = verifyRuntimeOutputs(
+      binarySearchLesson,
+      approach,
+      runtime.trace,
+      runtime.frames.map((frame) => {
+        if (frame.codeLine !== "L4") {
+          return frame
+        }
+
+        return {
+          ...frame,
+          primitives: frame.primitives.map((primitive) => {
+            if (primitive.id === "array") {
+              return {
+                ...primitive,
+                pointers: primitive.pointers?.filter(
+                  (pointer) => pointer.id !== "mid"
+                ),
+              }
+            }
+
+            if (primitive.id === "state" && primitive.kind === "state") {
+              const statePrimitive = primitive as StatePrimitiveFrameState
+              return {
+                ...statePrimitive,
+                data: {
+                  ...statePrimitive.data,
+                  values: statePrimitive.data.values.map((entry) =>
+                    entry.label === "mid"
+                      ? {
+                          ...entry,
+                          tokenId: undefined,
+                          tokenStyle: undefined,
+                        }
+                      : entry
+                  ),
+                },
+              }
+            }
+
+            return primitive
+          }),
+        }
+      })
+    )
+
+    expect(
+      report.errors.some(
+        (issue) => issue.code === "NARRATION_TOKEN_NOT_PROJECTED"
+      )
+    ).toBe(true)
   })
 
   it("flags broken frame bindings and missing primary primitives", () => {

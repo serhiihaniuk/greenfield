@@ -4,6 +4,7 @@ import type {
   PointerTone,
 } from "@/entities/visualization/types"
 import type { Frame } from "@/domains/projection/types"
+import { flattenNarrationSegments } from "@/domains/projection/narration"
 
 export type ExecutionToken = {
   id: string
@@ -23,6 +24,10 @@ export type FrameExecutionTokenSource =
 
 export type FrameExecutionToken = ExecutionToken & {
   sources: FrameExecutionTokenSource[]
+}
+
+type CollectFrameExecutionTokenOptions = {
+  includeNarration?: boolean
 }
 
 export function executionTokenStyleFromPointerTone(
@@ -98,11 +103,14 @@ function mergeFrameExecutionToken(
 }
 
 export function collectFrameExecutionTokens(
-  frame: Frame | undefined
+  frame: Frame | undefined,
+  options: CollectFrameExecutionTokenOptions = {}
 ): FrameExecutionToken[] {
   if (!frame) {
     return []
   }
+
+  const { includeNarration = true } = options
 
   const tokens = new Map<string, FrameExecutionToken>()
 
@@ -269,17 +277,33 @@ export function collectFrameExecutionTokens(
     }
   }
 
-  for (const segment of frame.narration.segments) {
-    if (segment.tokenId && segment.tokenStyle) {
-      mergeFrameExecutionToken(
-        tokens,
-        {
-          id: segment.tokenId,
-          label: segment.text,
-          style: segment.tokenStyle,
-        },
-        "narration"
-      )
+  if (includeNarration) {
+    for (const segment of flattenNarrationSegments(frame.narration)) {
+      if (segment.tokenId && segment.tokenStyle) {
+        mergeFrameExecutionToken(
+          tokens,
+          {
+            id: segment.tokenId,
+            label: segment.text,
+            style: segment.tokenStyle,
+          },
+          "narration"
+        )
+      }
+    }
+
+    for (const evidence of frame.narration.evidence ?? []) {
+      if (evidence.tokenId && evidence.tokenStyle) {
+        mergeFrameExecutionToken(
+          tokens,
+          {
+            id: evidence.tokenId,
+            label: evidence.value,
+            style: evidence.tokenStyle,
+          },
+          "narration"
+        )
+      }
     }
   }
 

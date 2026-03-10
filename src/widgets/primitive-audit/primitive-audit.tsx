@@ -379,6 +379,7 @@ function buildNarrationFrames() {
       data: {
         summary: "Start by checking whether the memo already contains this answer.",
         segments: [],
+        evidence: [],
         codeLine: "L2",
         visualChange: "read",
       },
@@ -397,6 +398,7 @@ function buildNarrationFrames() {
           { id: "n3", text: "memo", tone: "memo" },
           { id: "n4", text: " result stays available.", tone: "default" },
         ],
+        evidence: [],
         codeLine: "L4",
         visualChange: "split",
       },
@@ -409,6 +411,7 @@ function buildNarrationFrames() {
       data: {
         summary: "Both child calls returned, so the parent can publish one merged answer.",
         segments: [],
+        evidence: [],
         codeLine: "L6",
         visualChange: "return",
       },

@@ -1,7 +1,17 @@
-import type { Frame, NarrationPayload, VisualChangeType } from "@/domains/projection/types"
+import type {
+  Frame,
+  NarrationPayloadInput,
+  NarrationSegmentTone,
+  VisualChangeType,
+} from "@/domains/projection/types"
 import type { VisualizationMode } from "@/domains/lessons/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import { defineFrame } from "@/domains/projection/types"
+import {
+  defineStructuredNarration,
+  narrationText,
+  narrationTokenFromPointer,
+} from "@/domains/projection/narration"
 import {
   defineArrayPrimitiveFrameState,
   defineStatePrimitiveFrameState,
@@ -65,163 +75,278 @@ function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
   }
 }
 
-function buildNarration(event: TraceEvent, snapshot: BinarySearchSnapshot): NarrationPayload {
+function buildNarration(
+  event: TraceEvent,
+  snapshot: BinarySearchSnapshot
+): NarrationPayloadInput {
+  const loPointer: PointerSpec = {
+    id: "lo",
+    targetId: `cell-${snapshot.lo ?? 0}`,
+    label: "lo",
+    tone: "primary",
+    placement: "top-start",
+  }
+  const hiPointer: PointerSpec = {
+    id: "hi",
+    targetId: `cell-${snapshot.hi ?? Math.max(snapshot.nums.length - 1, 0)}`,
+    label: "hi",
+    tone: "secondary",
+    placement: "top-end",
+  }
+  const midPointer: PointerSpec = {
+    id: "mid",
+    targetId: `cell-${snapshot.mid ?? 0}`,
+    label: "mid",
+    tone: "compare",
+    placement: "bottom",
+  }
   const tokenSegment = (
     id: string,
     text: string,
-    tone: NarrationPayload["segments"][number]["tone"] = "default"
-  ) => ({
-    id: `${event.id}-${id}`,
-    text,
-    tone,
-  })
-
-  const pointerSegments = (pointer: PointerSpec) => ({
-    id: `${event.id}-${pointer.id}`,
-    text: pointer.label,
-    tokenId: pointer.id,
-    tokenStyle: deriveExecutionTokensFromPointers([pointer]).get(pointer.id)?.style,
-  })
+    tone?: NarrationSegmentTone
+  ) => narrationText(`${event.id}-${id}`, text, tone)
+  const pointerSegment = (id: string, pointer: PointerSpec) =>
+    narrationTokenFromPointer(`${event.id}-${id}`, pointer)
+  const intervalLabel =
+    snapshot.lo !== undefined && snapshot.hi !== undefined
+      ? `${snapshot.lo}..${snapshot.hi}`
+      : "—"
 
   switch (event.codeLine) {
     case "L1":
-      return {
-        summary: "Initialize the low pointer at the start of the array.",
-        segments: [
-          tokenSegment("t0", "Initialize "),
-          pointerSegments({
-            id: "lo",
-            targetId: `cell-${snapshot.lo ?? 0}`,
-            label: "lo",
-            tone: "primary",
-            placement: "top-start",
-          }),
-          tokenSegment("t1", " at the start of the array."),
+      return defineStructuredNarration({
+        family: "setup",
+        headline: [
+          tokenSegment("headline-0", "Initialize "),
+          pointerSegment("headline-lo", loPointer),
+          tokenSegment("headline-1", " at the start of the array."),
+        ],
+        reason:
+          "Binary search starts with the full array as the candidate interval.",
+        implication:
+          "The next step places hi at the opposite end of that same interval.",
+        evidence: [
+          {
+            id: `${event.id}-interval`,
+            label: "Candidate interval",
+            value: "whole array",
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L2":
-      return {
-        summary: "Initialize the high pointer at the end of the array.",
-        segments: [
-          tokenSegment("t0", "Initialize "),
-          pointerSegments({
-            id: "hi",
-            targetId: `cell-${snapshot.hi ?? snapshot.nums.length - 1}`,
-            label: "hi",
-            tone: "secondary",
-            placement: "top-end",
-          }),
-          tokenSegment("t1", " at the end of the array."),
+      return defineStructuredNarration({
+        family: "setup",
+        headline: [
+          tokenSegment("headline-0", "Initialize "),
+          pointerSegment("headline-hi", hiPointer),
+          tokenSegment("headline-1", " at the end of the array."),
+        ],
+        reason:
+          "The live search interval spans from lo through hi, so both ends must be visible before the loop begins.",
+        implication:
+          "The loop can now test whether any candidate indices remain.",
+        evidence: [
+          {
+            id: `${event.id}-interval`,
+            label: "Candidate interval",
+            value: intervalLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L3":
-      return {
-        summary:
+      return defineStructuredNarration({
+        family: "check",
+        headline:
           event.payload.result === false
-            ? "The candidate interval is empty, so the search ends."
-            : "Check whether the search interval is still valid.",
-        segments: [],
+            ? "The candidate interval is empty."
+            : "Check whether the candidate interval is still valid.",
+        reason:
+          event.payload.result === false
+            ? "lo has crossed hi, so no indices remain to test."
+            : "Binary search continues only while lo stays on or before hi.",
+        implication:
+          event.payload.result === false
+            ? "The search will finish because every possible index has been eliminated."
+            : "The next step can safely probe the midpoint inside the live interval.",
+        evidence: [
+          {
+            id: `${event.id}-interval`,
+            label: "Current interval",
+            value: intervalLabel,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L4":
-      return {
-        summary: `Move the midpoint to index ${snapshot.mid}.`,
-        segments: [
-          tokenSegment("t0", "Move "),
-          pointerSegments({
-            id: "mid",
-            targetId: `cell-${snapshot.mid ?? 0}`,
-            label: "mid",
-            tone: "compare",
-            placement: "bottom",
-          }),
-          tokenSegment("t1", ` to index ${snapshot.mid}.`),
+      return defineStructuredNarration({
+        family: "advance",
+        headline: [
+          tokenSegment("headline-0", "Move "),
+          pointerSegment("headline-mid", midPointer),
+          tokenSegment("headline-1", ` to index ${snapshot.mid}.`),
+        ],
+        reason:
+          "Binary search always probes the center of the current candidate interval before discarding a side.",
+        implication:
+          "The next frame compares nums[mid] with the target to decide what survives.",
+        evidence: [
+          {
+            id: `${event.id}-interval`,
+            label: "Current interval",
+            value: intervalLabel,
+          },
+          {
+            id: `${event.id}-mid`,
+            label: "Mid index",
+            value: `${snapshot.mid ?? "—"}`,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L6":
-      return {
-        summary: `Compare nums[mid]=${snapshot.value} against target=${snapshot.target}.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "compare",
+        headline: [
+          tokenSegment("headline-0", "Compare nums["),
+          pointerSegment("headline-mid", midPointer),
+          tokenSegment("headline-1", `]=${snapshot.value} against target=${snapshot.target}.`),
+        ],
+        reason:
+          "This comparison tells binary search whether it can return immediately or which half is still worth keeping.",
+        implication:
+          snapshot.value === snapshot.target
+            ? "An exact match means the midpoint itself is the answer."
+            : "The next frame will decide which half is safe to discard.",
+        evidence: [
+          {
+            id: `${event.id}-comparison`,
+            label: "Comparison",
+            value: `${snapshot.value} vs ${snapshot.target}`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L7":
-      return {
-        summary: `The target is found at index ${snapshot.answer}.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "commit",
+        headline: `The target is found at index ${snapshot.answer}.`,
+        reason:
+          "nums[mid] matched target exactly, so there is no need to inspect any other candidate.",
+        implication:
+          "The search is complete and the final return can commit this index as the answer.",
+        evidence: [
+          {
+            id: `${event.id}-answer`,
+            label: "Answer",
+            value: `${snapshot.answer ?? "—"}`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L9":
-      return {
-        summary: `Decide which half to discard based on ${snapshot.value} < ${snapshot.target}.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "check",
+        headline: `Decide which half to discard based on ${snapshot.value} < ${snapshot.target}.`,
+        reason:
+          snapshot.value !== undefined && snapshot.value < snapshot.target
+            ? "A smaller midpoint value means every index at or left of mid is too small."
+            : "A larger midpoint value means every index at or right of mid is too large.",
+        implication:
+          snapshot.value !== undefined && snapshot.value < snapshot.target
+            ? "The next frame will move lo to the first index that can still beat the target."
+            : "The next frame will move hi to the last index that can still beat the target.",
+        evidence: [
+          {
+            id: `${event.id}-rule`,
+            label: "Branch rule",
+            value:
+              snapshot.value !== undefined && snapshot.value < snapshot.target
+                ? "nums[mid] < target"
+                : "nums[mid] > target",
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L10":
-      return {
-        summary: `Discard the left half through mid and move lo to ${snapshot.lo}.`,
-        segments: [
-          tokenSegment("t0", "Discard the left half through "),
-          pointerSegments({
-            id: "mid",
-            targetId: `cell-${snapshot.mid ?? 0}`,
-            label: "mid",
-            tone: "compare",
-            placement: "bottom",
-          }),
-          tokenSegment("t1", " and move "),
-          pointerSegments({
-            id: "lo",
-            targetId: `cell-${snapshot.lo ?? 0}`,
-            label: "lo",
-            tone: "primary",
-            placement: "top-start",
-          }),
-          tokenSegment("t2", ` to ${snapshot.lo}.`),
+      return defineStructuredNarration({
+        family: "prune",
+        headline: [
+          tokenSegment("headline-0", "Discard the left half through "),
+          pointerSegment("headline-mid", midPointer),
+          tokenSegment("headline-1", " and move "),
+          pointerSegment("headline-lo", loPointer),
+          tokenSegment("headline-2", ` to ${snapshot.lo}.`),
+        ],
+        reason:
+          "nums[mid] was smaller than the target, so every index at or before mid is now provably too small.",
+        implication:
+          "Only the right half remains a valid candidate interval.",
+        evidence: [
+          {
+            id: `${event.id}-next-interval`,
+            label: "Next interval",
+            value: intervalLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L12":
-      return {
-        summary: `Discard the right half through mid and move hi to ${snapshot.hi}.`,
-        segments: [
-          tokenSegment("t0", "Discard the right half through "),
-          pointerSegments({
-            id: "mid",
-            targetId: `cell-${snapshot.mid ?? 0}`,
-            label: "mid",
-            tone: "compare",
-            placement: "bottom",
-          }),
-          tokenSegment("t1", " and move "),
-          pointerSegments({
-            id: "hi",
-            targetId: `cell-${snapshot.hi ?? 0}`,
-            label: "hi",
-            tone: "secondary",
-            placement: "top-end",
-          }),
-          tokenSegment("t2", ` to ${snapshot.hi}.`),
+      return defineStructuredNarration({
+        family: "prune",
+        headline: [
+          tokenSegment("headline-0", "Discard the right half through "),
+          pointerSegment("headline-mid", midPointer),
+          tokenSegment("headline-1", " and move "),
+          pointerSegment("headline-hi", hiPointer),
+          tokenSegment("headline-2", ` to ${snapshot.hi}.`),
+        ],
+        reason:
+          "nums[mid] was larger than the target, so every index at or after mid is now provably too large.",
+        implication:
+          "Only the left half remains a valid candidate interval.",
+        evidence: [
+          {
+            id: `${event.id}-next-interval`,
+            label: "Next interval",
+            value: intervalLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L15":
-      return {
-        summary:
+      return defineStructuredNarration({
+        family: "return",
+        headline:
           snapshot.answer === -1
             ? "Return -1 because the target never appeared in the candidate interval."
             : `Return the final answer ${snapshot.answer}.`,
-        segments: [],
+        reason:
+          snapshot.answer === -1
+            ? "The interval became empty before any midpoint matched the target."
+            : "A prior compare frame already proved this index is an exact match.",
+        implication:
+          snapshot.answer === -1
+            ? "The search finishes with no valid position."
+            : "The caller receives the exact index of the target.",
+        evidence: [
+          {
+            id: `${event.id}-answer`,
+            label: "Return value",
+            value: `${snapshot.answer ?? "—"}`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     default:
-      return {
-        summary: "Advance the binary search state.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "advance",
+        headline: "Advance the binary search state.",
+        reason:
+          "This frame keeps the search state synchronized before the next learner-visible change.",
         sourceValues: event.payload,
-      }
+      })
   }
 }
 

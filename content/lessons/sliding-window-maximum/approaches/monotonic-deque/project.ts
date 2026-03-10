@@ -3,7 +3,8 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
+  type NarrationSegmentTone,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -60,7 +61,7 @@ function getWindowStart(snapshot: SlidingWindowMaximumSnapshot) {
 function buildNarration(
   event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   const executionTokens = deriveExecutionTokensFromPointers([
     ...buildArrayPointers(event, snapshot),
     ...buildDequePointers(event, snapshot),
@@ -71,7 +72,7 @@ function buildNarration(
   const textSegment = (
     id: string,
     text: string,
-    tone: NarrationPayload["segments"][number]["tone"] = "default"
+    tone: NarrationSegmentTone = "default"
   ) => ({
     id: `${event.id}-${id}`,
     text,

@@ -8,7 +8,7 @@
       ],
       "codeLine": "L1",
       "id": "frame-1",
-      "narrationSummary": "Initialize the low pointer at the start of the array.",
+      "narrationSummary": "Initialize lo at the start of the array.",
       "primitives": [
         {
           "annotations": [],
@@ -68,7 +68,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-2",
-      "narrationSummary": "Initialize the high pointer at the end of the array.",
+      "narrationSummary": "Initialize hi at the end of the array.",
       "primitives": [
         {
           "annotations": [],
@@ -135,7 +135,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-3",
-      "narrationSummary": "Check whether the search interval is still valid.",
+      "narrationSummary": "Check whether the candidate interval is still valid.",
       "primitives": [
         {
           "annotations": [],
@@ -233,7 +233,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-4",
-      "narrationSummary": "Move the midpoint to index 2.",
+      "narrationSummary": "Move mid to index 2.",
       "primitives": [
         {
           "annotations": [],
@@ -661,7 +661,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-8",
-      "narrationSummary": "Check whether the search interval is still valid.",
+      "narrationSummary": "Check whether the candidate interval is still valid.",
       "primitives": [
         {
           "annotations": [],
@@ -759,7 +759,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-9",
-      "narrationSummary": "Move the midpoint to index 4.",
+      "narrationSummary": "Move mid to index 4.",
       "primitives": [
         {
           "annotations": [],
@@ -1187,7 +1187,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-13",
-      "narrationSummary": "Check whether the search interval is still valid.",
+      "narrationSummary": "Check whether the candidate interval is still valid.",
       "primitives": [
         {
           "annotations": [],
@@ -1285,7 +1285,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-14",
-      "narrationSummary": "Move the midpoint to index 3.",
+      "narrationSummary": "Move mid to index 3.",
       "primitives": [
         {
           "annotations": [],

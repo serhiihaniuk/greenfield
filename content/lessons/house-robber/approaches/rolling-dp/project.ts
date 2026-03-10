@@ -1,6 +1,7 @@
 import type {
   Frame,
-  NarrationPayload,
+  NarrationPayloadInput,
+  NarrationSegmentTone,
   VisualChangeType,
 } from "@/domains/projection/types"
 import type { VisualizationMode } from "@/domains/lessons/types"
@@ -47,7 +48,7 @@ function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
 function buildNarration(
   event: TraceEvent,
   snapshot: HouseRobberSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   const executionTokens = deriveExecutionTokensFromPointers(
     buildPointers(event, snapshot)
   )
@@ -55,7 +56,7 @@ function buildNarration(
   const textSegment = (
     id: string,
     text: string,
-    tone: NarrationPayload["segments"][number]["tone"] = "default"
+    tone: NarrationSegmentTone = "default"
   ) => ({
     id: `${event.id}-${id}`,
     text,

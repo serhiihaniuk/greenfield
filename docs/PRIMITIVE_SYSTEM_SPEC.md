@@ -572,6 +572,16 @@ Must support:
 - colored semantic segments matching on-screen state
 - short, high-signal copy
 - no paragraph dumps
+- structured explanation rendering with:
+  - headline
+  - reason
+  - implication
+  - optional evidence
+- shared execution-token marks inside narration content
+- a compact explanation-panel layout rather than undifferentiated prose
+
+NarrationView is the canonical explanatory surface for the active frame transition.
+It should not be treated as a generic text dump.
 
 ## Motion Rules
 

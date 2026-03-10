@@ -26,6 +26,11 @@ import {
   type VerificationIssue,
   type VerificationReport,
 } from "@/domains/verification/types"
+import {
+  flattenNarrationSegments,
+  narrationPlainText,
+} from "@/domains/projection/narration"
+import { collectFrameExecutionTokens } from "@/shared/visualization/execution-tokens"
 
 type FrameDiffSummary = {
   primitiveAdditions: number
@@ -688,6 +693,115 @@ function verifyPedagogicalIntegrity(frames: Frame[]): VerificationReport {
   return createVerificationReport(issues)
 }
 
+function verifyStructuredNarration(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+  const implicationFamilies = new Set([
+    "prune",
+    "commit",
+    "return",
+    "reuse",
+    "shift",
+  ])
+
+  for (const frame of frames) {
+    const { narration } = frame
+    const headline = narration.headline
+    const flattenedSegments = flattenNarrationSegments(narration)
+    const projectedTokenIds = new Set(
+      collectFrameExecutionTokens(frame, { includeNarration: false }).map(
+        (token) => token.id
+      )
+    )
+
+    if (headline) {
+      const headlineText = narrationPlainText(headline.segments)
+      if (headlineText !== narration.summary) {
+        issues.push(
+          createIssue({
+            code: "NARRATION_SUMMARY_HEADLINE_MISMATCH",
+            kind: "pedagogical-integrity",
+            severity: "warning",
+            message: `Frame "${frame.id}" narration summary drifts from the structured headline.`,
+            frameId: frame.id,
+            pedagogicalCheck: "narration-mismatch",
+          })
+        )
+      }
+    }
+
+    if (narration.family && !narration.headline) {
+      issues.push(
+        createIssue({
+          code: "NARRATION_FAMILY_WITHOUT_HEADLINE",
+          kind: "pedagogical-integrity",
+          severity: "error",
+          message: `Frame "${frame.id}" declares narration family "${narration.family}" without a structured headline.`,
+          frameId: frame.id,
+          pedagogicalCheck: "narration-mismatch",
+        })
+      )
+    }
+
+    if (
+      narration.family &&
+      !narration.reason &&
+      !narration.implication
+    ) {
+      issues.push(
+        createIssue({
+          code: "NARRATION_EXPLANATION_TOO_THIN",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: `Frame "${frame.id}" narration family "${narration.family}" should explain either why the change happened or what it implies next.`,
+          frameId: frame.id,
+          pedagogicalCheck: "narration-mismatch",
+        })
+      )
+    }
+
+    if (
+      narration.family &&
+      implicationFamilies.has(narration.family) &&
+      !narration.implication
+    ) {
+      issues.push(
+        createIssue({
+          code: "NARRATION_IMPLICATION_MISSING",
+          kind: "pedagogical-integrity",
+          severity: "warning",
+          message: `Frame "${frame.id}" narration family "${narration.family}" should expose the consequence of the step.`,
+          frameId: frame.id,
+          pedagogicalCheck: "narration-mismatch",
+        })
+      )
+    }
+
+    for (const segment of flattenedSegments) {
+      if (!segment.tokenId) {
+        continue
+      }
+
+      if (!projectedTokenIds.has(segment.tokenId)) {
+        issues.push(
+          createIssue({
+            code: "NARRATION_TOKEN_NOT_PROJECTED",
+            kind: "pedagogical-integrity",
+            severity: "error",
+            message: `Frame "${frame.id}" mentions token "${segment.tokenId}" in narration without projecting it in another synchronized view.`,
+            frameId: frame.id,
+            pedagogicalCheck: "narration-mismatch",
+            meta: {
+              tokenId: segment.tokenId,
+            },
+          })
+        )
+      }
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 function verifyViewportSanity(
   lesson: AnyLessonDefinition,
   frames: Frame[]
@@ -785,6 +899,7 @@ export function verifyRuntimeOutputs(
     verifyPrimitiveContracts(frames),
     verifyFrameChecks(frames),
     verifyPedagogicalIntegrity(frames),
+    verifyStructuredNarration(frames),
     verifyViewportSanity(lesson, frames)
   )
 

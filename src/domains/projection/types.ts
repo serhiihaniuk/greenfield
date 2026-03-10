@@ -47,13 +47,51 @@ export const narrationSegmentSchema = z.object({
 
 export type NarrationSegment = z.infer<typeof narrationSegmentSchema>
 
+export const narrationFamilySchema = z.enum([
+  "setup",
+  "check",
+  "advance",
+  "compare",
+  "prune",
+  "commit",
+  "return",
+  "reuse",
+  "expand",
+  "shift",
+])
+
+export type NarrationFamily = z.infer<typeof narrationFamilySchema>
+
+export const narrationClauseSchema = z.object({
+  segments: z.array(narrationSegmentSchema).min(1),
+})
+
+export type NarrationClause = z.infer<typeof narrationClauseSchema>
+
+export const narrationEvidenceSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  value: z.string().min(1),
+  tone: narrationSegmentToneSchema.optional(),
+  tokenId: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
+})
+
+export type NarrationEvidence = z.infer<typeof narrationEvidenceSchema>
+
 export const narrationPayloadSchema = z.object({
   summary: z.string().min(1),
   segments: z.array(narrationSegmentSchema).default([]),
+  family: narrationFamilySchema.optional(),
+  headline: narrationClauseSchema.optional(),
+  reason: narrationClauseSchema.optional(),
+  implication: narrationClauseSchema.optional(),
+  evidence: z.array(narrationEvidenceSchema).default([]),
   sourceValues: serializableRecordSchema.default({}),
 })
 
 export type NarrationPayload = z.infer<typeof narrationPayloadSchema>
+export type NarrationPayloadInput = z.input<typeof narrationPayloadSchema>
 
 export const frameCheckStatusSchema = z.enum(["pass", "warn", "fail"])
 export type FrameCheckStatus = z.infer<typeof frameCheckStatusSchema>
@@ -91,6 +129,13 @@ export interface Frame {
   meta?: SerializableRecord
 }
 
+export interface FrameInput
+  extends Omit<Frame, "narration" | "primitives" | "checks"> {
+  narration: NarrationPayloadInput
+  primitives: PrimitiveFrameState[]
+  checks: FrameCheck[]
+}
+
 export const frameSchema = z.object({
   id: z.string().min(1),
   sourceEventId: z.string().min(1),
@@ -102,7 +147,6 @@ export const frameSchema = z.object({
   meta: serializableRecordSchema.optional(),
 })
 
-export function defineFrame(frame: Frame): Frame {
-  frameSchema.parse(frame)
-  return frame
+export function defineFrame(frame: FrameInput): Frame {
+  return frameSchema.parse(frame)
 }

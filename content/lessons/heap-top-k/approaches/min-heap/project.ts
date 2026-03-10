@@ -3,7 +3,7 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -52,7 +52,7 @@ function getPayloadNumber(event: TraceEvent, key: string) {
 function buildNarration(
   event: TraceEvent,
   snapshot: HeapTopKSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   switch (event.codeLine) {
     case "L1":
       return {

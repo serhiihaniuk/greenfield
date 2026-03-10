@@ -96,6 +96,9 @@ At minimum, flagship presets should expose:
 8. Review in author mode.
 9. Expose in learner mode only after verification passes.
 
+Narration binding should now use the structured explanation path by default.
+Do not treat this step as "write a sentence for each frame."
+
 ## Files A New Lesson Must Create
 
 Assuming lesson slug `coin-change`, create these files:
@@ -136,6 +139,20 @@ src/domains/verification/*
 
 Only update shared contracts when the lesson genuinely requires a new reusable capability.
 Do not patch shared types for one-off page behavior.
+
+## Structured Narration Requirement
+
+New lessons should not hand-author narration as arbitrary prose strings.
+The default path is:
+
+1. classify the frame event into a narration family
+2. build a `headline`
+3. add a `reason`
+4. add an `implication` when the learner needs to understand what survives or happens next
+5. attach compact evidence when it materially improves trust
+
+Use shared narration builders where possible.
+If a lesson bypasses the structured narration path, that should be treated as an exception requiring review.
 
 ## Required Contract Sequence
 

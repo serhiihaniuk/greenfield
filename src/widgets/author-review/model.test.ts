@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import type { Frame } from "@/domains/projection/types"
+import { defineFrame, type Frame } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
 import type { VerificationReport } from "@/domains/verification/types"
 import {
@@ -11,7 +11,7 @@ import {
   summarizeNarrationBindings,
 } from "@/widgets/author-review/model"
 
-const previousFrame = {
+const previousFrame = defineFrame({
   id: "frame-1",
   sourceEventId: "event-1",
   codeLine: "L1",
@@ -19,6 +19,7 @@ const previousFrame = {
   narration: {
     summary: "before",
     segments: [],
+    evidence: [],
     sourceValues: { step: 1 },
   },
   primitives: [
@@ -35,9 +36,9 @@ const previousFrame = {
     },
   ],
   checks: [],
-} as Frame
+})
 
-const currentFrame = {
+const currentFrame = defineFrame({
   id: "frame-2",
   sourceEventId: "event-2",
   codeLine: "L2",
@@ -45,6 +46,7 @@ const currentFrame = {
   narration: {
     summary: "after",
     segments: [],
+    evidence: [],
     sourceValues: { step: 2, target: 7 },
   },
   primitives: [
@@ -69,7 +71,7 @@ const currentFrame = {
     },
   ],
   checks: [],
-} as Frame
+})
 
 const event = {
   id: "event-2",

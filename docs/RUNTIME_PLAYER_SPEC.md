@@ -161,6 +161,34 @@ Every frame must include:
 
 The runtime should not infer hidden state outside the frame.
 
+Structured narration is now part of that frame contract.
+A frame-level narration payload may carry:
+
+- `summary`
+- `headline`
+- `reason`
+- `implication`
+- `evidence`
+
+`summary` remains the compact fallback string, but learner mode should prefer the structured explanation block when those fields are present.
+
+## Narration Synchronization Contract
+
+Narration is synchronized runtime state, not post-hoc commentary.
+
+That means:
+
+- narration must classify the same learner-visible action as `visualChangeType`
+- narration tokens must resolve to execution objects that are projected somewhere outside the narration surface
+- narration families should reuse shared explanation shapes rather than freeform prose when possible
+- audit should be able to inspect `headline`, `reason`, `implication`, and `evidence` separately
+
+The runtime should warn or fail when narration drifts from the frame:
+
+- narration family without a headline is invalid
+- narration that references an unprojected execution token is invalid
+- narration for `prune`, `commit`, `return`, `reuse`, or `shift` events should warn if it omits the implication layer entirely
+
 ## Lesson Loading Flow
 
 1. Resolve lesson from registry.

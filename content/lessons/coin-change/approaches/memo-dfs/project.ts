@@ -3,7 +3,7 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -359,7 +359,7 @@ function buildHashMapPrimitive(
 function buildNarration(
   event: TraceEvent,
   snapshot: CoinChangeSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   switch (event.type) {
     case "call":
       return {

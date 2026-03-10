@@ -389,9 +389,53 @@ export type NarrationSegmentPrimitive = z.infer<
   typeof narrationSegmentPrimitiveSchema
 >
 
+export const narrationClausePrimitiveSchema = z.object({
+  segments: z.array(narrationSegmentPrimitiveSchema).min(1),
+})
+
+export const narrationEvidencePrimitiveSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  value: z.string().min(1),
+  tone: z
+    .enum([
+      "default",
+      "active",
+      "compare",
+      "candidate",
+      "done",
+      "found",
+      "error",
+      "memo",
+      "base",
+      "dim",
+    ])
+    .optional(),
+  tokenId: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
+})
+
 export const narrationPrimitiveDataSchema = z.object({
   summary: z.string().min(1),
   segments: z.array(narrationSegmentPrimitiveSchema).default([]),
+  family: z
+    .enum([
+      "setup",
+      "check",
+      "advance",
+      "compare",
+      "prune",
+      "commit",
+      "return",
+      "reuse",
+      "expand",
+      "shift",
+    ])
+    .optional(),
+  headline: narrationClausePrimitiveSchema.optional(),
+  reason: narrationClausePrimitiveSchema.optional(),
+  implication: narrationClausePrimitiveSchema.optional(),
+  evidence: z.array(narrationEvidencePrimitiveSchema).default([]),
   codeLine: z.string().optional(),
   visualChange: z.string().optional(),
 })

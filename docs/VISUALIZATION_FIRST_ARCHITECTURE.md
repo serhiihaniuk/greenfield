@@ -152,6 +152,9 @@ The command palette remains infrastructure for app actions, not lesson discovery
 - if a client language is not explicitly bundled for the current lesson set, code should fall back to readable plain text instead of bloating the runtime
 - custom line metadata for active line, waiting line, and returned-line emphasis
 - narration generated from frame-bound payloads, not ad hoc prose
+- narration should render as a structured explanation block instead of a flat sentence
+- the canonical explanation shape is `headline -> reason -> implication`, with optional evidence
+- narration families such as `setup`, `advance`, `compare`, `prune`, `commit`, `return`, `reuse`, and `shift` should be reused across lessons instead of reinventing prose style each time
 
 ### Testing and QA
 
@@ -375,7 +378,7 @@ This is how the app should actually create animated algorithm visuals.
 4. Validate event invariants.
 5. Project events into learner-visible frames.
 6. Validate frame-to-code mapping, One Visual Change, and state continuity.
-7. Generate narration from frame-bound state.
+7. Generate structured narration from frame-bound state and event family.
 8. Review the lesson in author mode.
 9. Expose the verified lesson in learner mode.
 
@@ -726,6 +729,35 @@ They may appear in:
 - later, code trace and audit tooling
 
 The user should recognize them as the same object across these views.
+
+## Narration As A Pedagogical Subsystem
+
+Narration is not filler text beneath the state panel.
+It is the explanation layer that turns code flow and visual change into learner understanding.
+
+The canonical narration block should answer:
+
+- what changed
+- why it changed
+- what that means now
+
+So narration should be modeled as structured data, not only as a summary string.
+
+Current structured shape:
+
+- `headline` - the dominant learner-visible change
+- `reason` - the rule, branch, or invariant behind that change
+- `implication` - what survives, what is discarded, what is committed, or what should happen next
+- `evidence` - compact supporting facts such as branch values or interval bounds
+
+Hard rules:
+
+- narration must describe the same learner-visible action as the frame's dominant event
+- narration must reuse shared execution-token identity when it references tracked objects
+- narration should prefer family-specific builders over freeform prose
+- narration that talks about undeclared or unprojected execution objects should fail verification
+
+Binary Search is the first live pilot of this stricter model.
 
 This is the architectural reason pointer work should not remain a pointer-only refactor.
 

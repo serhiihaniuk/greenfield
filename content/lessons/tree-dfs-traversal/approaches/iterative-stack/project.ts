@@ -3,7 +3,7 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -64,7 +64,7 @@ function getNode(
 function buildNarration(
   event: TraceEvent,
   snapshot: TreeDfsTraversalSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   switch (event.codeLine) {
     case "L1":
       return {

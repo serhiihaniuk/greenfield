@@ -12,7 +12,7 @@ import {
 } from "@/domains/lessons/types"
 import { createVerificationReport } from "@/domains/verification/types"
 
-const baseApproach = defineApproachDefinition({
+const baseApproach = defineApproachDefinition<{ n: number }>({
   id: "iterative",
   label: "Iterative",
   codeTemplate: {
@@ -59,6 +59,7 @@ const baseApproach = defineApproachDefinition({
       narration: {
         summary: "Return the parsed value.",
         segments: [],
+        evidence: [],
         sourceValues: {},
       },
       primitives: [],
@@ -71,7 +72,7 @@ const baseApproach = defineApproachDefinition({
 function createLesson(
   overrides: Partial<LessonDefinition<{ n: number }>> = {}
 ): LessonDefinition<{ n: number }> {
-  return defineLessonDefinition({
+  return defineLessonDefinition<{ n: number }>({
     id: "binary-search",
     slug: "binary-search",
     title: "Binary Search",

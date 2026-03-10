@@ -261,6 +261,28 @@ describe("PrimitiveRenderer", () => {
           },
           { id: "n2", text: " left." },
         ],
+        family: "prune",
+        headline: {
+          segments: [
+            { id: "h0", text: "Move " },
+            {
+              id: "h1",
+              text: "mid",
+              tokenId: "mid",
+              tokenStyle: "accent-3",
+            },
+            { id: "h2", text: " left." },
+          ],
+        },
+        reason: {
+          segments: [{ id: "r0", text: "because the right half is too large" }],
+        },
+        implication: {
+          segments: [{ id: "i0", text: "so only the left half remains" }],
+        },
+        evidence: [
+          { id: "e0", label: "Rule", value: "nums[mid] > target" },
+        ],
         codeLine: "L2",
         visualChange: "result",
       },
@@ -289,6 +311,10 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("Execution")).toBeInTheDocument()
     expect(screen.getAllByText("Code Trace")).toHaveLength(1)
     expect(screen.getByText("Narration")).toBeInTheDocument()
+    expect(screen.getByText("Explanation")).toBeInTheDocument()
+    expect(screen.getByText("Because")).toBeInTheDocument()
+    expect(screen.getByText("So now")).toBeInTheDocument()
+    expect(screen.getByText("Rule")).toBeInTheDocument()
     expect(
       screen
         .getAllByText("dfs")

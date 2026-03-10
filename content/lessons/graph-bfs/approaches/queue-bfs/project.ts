@@ -3,7 +3,8 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
+  type NarrationSegment,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -53,7 +54,10 @@ const NEIGHBOR_TOKEN_ID = "neighbor"
 const NEIGHBOR_TOKEN_STYLE: ExecutionTokenStyle = "accent-3"
 const NEIGHBOR_TOKEN_LABEL = "neighbor"
 
-function textSegment(id: string, text: string): NarrationPayload["segments"][number] {
+function textSegment(
+  id: string,
+  text: string
+): NarrationSegment {
   return {
     id,
     text,
@@ -65,7 +69,7 @@ function tokenSegment(
   text: string,
   tokenId: string,
   tokenStyle: ExecutionTokenStyle
-): NarrationPayload["segments"][number] {
+): NarrationSegment {
   return {
     id,
     text,
@@ -274,7 +278,7 @@ function buildQueueItems(
 function buildNarration(
   event: TraceEvent,
   snapshot: GraphBfsSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   switch (event.codeLine) {
     case "L1":
       return {

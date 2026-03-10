@@ -3,7 +3,8 @@ import { getLessonViewSpec } from "@/domains/lessons/view-specs"
 import {
   defineFrame,
   type Frame,
-  type NarrationPayload,
+  type NarrationPayloadInput,
+  type NarrationSegmentTone,
   type VisualChangeType,
 } from "@/domains/projection/types"
 import type { TraceEvent } from "@/domains/tracing/types"
@@ -218,7 +219,7 @@ function buildCallTreePrimitive(
 function buildNarration(
   event: TraceEvent,
   snapshot: MaximumDepthSnapshot
-): NarrationPayload {
+): NarrationPayloadInput {
   const tokenSegment = (id: string) => ({
     id: `${event.id}-${id}`,
     text: dfsExecutionToken.label,
@@ -228,7 +229,7 @@ function buildNarration(
   const textSegment = (
     id: string,
     text: string,
-    tone: NarrationPayload["segments"][number]["tone"] = "default"
+    tone: NarrationSegmentTone = "default"
   ) => ({
     id: `${event.id}-${id}`,
     text,
