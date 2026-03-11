@@ -50,6 +50,12 @@ Only true execution aids belong in auxiliary panels.
 For the current product, that means recursive call stacks and memo tables.
 Arrays, queues, deques, heaps, graphs, trees, and output sequences are stage-core
 views and should stay in the main visualization window whenever they explain the step.
+Matrix-based graph problems should use a first-class grid family instead of being
+flattened into arrays or redrawn as abstract node-link graphs.
+
+For those lessons, the board is the world.
+The queue or stack explains traversal through that world, but the grid remains
+the primary spatial truth.
 
 ## Core Constraints
 
@@ -202,6 +208,10 @@ The command palette remains infrastructure for app actions, not lesson discovery
 3. state-meaning confusion
 4. whole-picture confusion
 5. code-construction confusion
+
+Matrix-based graph lessons should usually be authored through a dedicated
+`grid-traversal` lesson family while still reusing the existing confusion types
+such as `frontier-traversal` or `stack-execution`.
 
 ## Success Criteria
 
@@ -533,6 +543,24 @@ Must emphasize:
 - mutation target
 - affected links or edges
 - result state
+
+### Grid-traversal lessons
+
+Must emphasize:
+
+- the matrix as the primary world
+- legal adjacency through the chosen grid neighborhood
+- the current and next frontier cells
+- visited or claimed region continuity
+- queue or stack movement only when it explains traversal through the grid
+
+Composition rules:
+
+- `grid` is always stage-core and never auxiliary
+- `queue` is co-primary for BFS matrix lessons
+- explicit algorithm stacks are co-primary when the learner is following iterative DFS
+- recursive call stacks stay auxiliary when recursion waiting relationships help
+- state, narration, and code remain in support
 
 ## Content And Verification Decisions
 

@@ -10,6 +10,7 @@ import type {
   CallTreePrimitiveFrameState,
   CodeTracePrimitiveFrameState,
   GraphPrimitiveFrameState,
+  GridPrimitiveFrameState,
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
   QueuePrimitiveFrameState,
@@ -26,6 +27,7 @@ import {
   type VerificationIssue,
   type VerificationReport,
 } from "@/domains/verification/types"
+import { verifyGridPrimitiveFrame } from "@/domains/verification/grid"
 import {
   flattenNarrationSegments,
   narrationPlainText,
@@ -133,6 +135,10 @@ function collectPrimitiveTargetIds(
         (primitive as GraphPrimitiveFrameState).data.nodes.map(
           (node) => node.id
         )
+      )
+    case "grid":
+      return new Set(
+        (primitive as GridPrimitiveFrameState).data.cells.map((cell) => cell.id)
       )
     case "code-trace":
       return new Set(
@@ -429,6 +435,17 @@ function verifyPrimitiveContracts(frames: Frame[]): VerificationReport {
 
     for (const primitive of frame.primitives) {
       const targetIds = collectPrimitiveTargetIds(primitive)
+
+      if (primitive.kind === "grid") {
+        const gridReport = verifyGridPrimitiveFrame(
+          primitive as GridPrimitiveFrameState,
+          frame.id
+        )
+        issues.push(
+          ...gridReport.errors,
+          ...gridReport.warnings
+        )
+      }
 
       for (const pointer of primitive.pointers ?? []) {
         if (!targetIds.has(pointer.targetId)) {

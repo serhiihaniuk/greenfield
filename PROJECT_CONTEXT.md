@@ -191,6 +191,7 @@ Completed so far:
 - the learner-facing task switch has been replaced with a dedicated problem-selector modal on `Ctrl + E`, backed by a typed lesson catalog with category, difficulty, mechanism, confusion, and flagship-status metadata
 - the generic command palette remains as shell-action infrastructure, but it is no longer the primary lesson-discovery surface
 - narration has started its first strict pedagogy pass: Binary Search now uses structured explanation blocks with `headline`, `reason`, `implication`, and evidence instead of flat frame summaries, and runtime verification now treats narration/token drift as a real contract problem instead of a styling miss
+- a new matrix-graph direction is now being implemented as a first-class `grid` primitive family and `grid-traversal` lesson scaffold so board-based graph problems stop being forced into generic graph or array visuals
 
 ## Immediate Next Step
 
@@ -203,6 +204,7 @@ Continue Phase 9 from the plan:
 5. continue expanding cross-view execution tokens from the first array pilots into recursion, then into later code-trace rendering once the token contract feels stable
 6. continue the remaining visual hardening pass across flagship lessons now that the non-visual shell audit is complete
 7. broaden the new problem-selector catalog once more lessons exist, while keeping the route slug as the only lesson-selection source of truth
+8. ship the first `grid-traversal` flagship lessons, starting with Rotting Oranges and then Number of Islands, so matrix-based graph problems have a real stage-core board primitive instead of ad hoc visuals
 
 ## Canonical Files
 

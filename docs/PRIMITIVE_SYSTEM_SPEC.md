@@ -29,6 +29,7 @@ Every primitive must:
 - `HashMapView`
 - `TreeView`
 - `GraphView`
+- `GridView`
 
 ### Execution primitives
 
@@ -90,6 +91,67 @@ interface PrimitiveFrameState<TData = unknown> {
   meta?: Record<string, unknown>
 }
 ```
+
+## Grid Primitive Family
+
+`GridView` is the canonical spatial primitive for matrix-based graph problems.
+It is not a generic table and not a graph substitute.
+
+The learner should read it as a board or map:
+
+- cells occupy stable row and column positions
+- adjacency is spatial
+- region ownership and visitation are visible in the board itself
+- queue or stack aids explain traversal through that board
+
+### Grid rules
+
+- `grid` is always stage-core
+- `grid` is never `secondary`
+- lesson data may declare semantic cell states, tokens, annotations, and a small set of overlay hints
+- lesson data may not hand-author raw colors, arbitrary drawing instructions, or freeform SVG paths
+
+### Grid data contract
+
+The grid primitive should minimally define:
+
+- `rows`
+- `cols`
+- `cells`
+- optional `coordinateLabels`
+- optional `adjacencyMode`
+- optional `legend`
+- optional renderer-owned overlay hints
+
+Each cell should minimally define:
+
+- `id`
+- `row`
+- `col`
+- `value`
+- semantic `state`
+- optional annotation
+- optional token metadata
+
+### Grid overlays
+
+Grid overlays are support hints owned by the grid renderer, not a separate
+learner-visible primitive.
+
+Use them only for transient pedagogy such as:
+
+- current-neighbor arrows
+- frontier rings
+- path traces
+- region outlines
+- focus boxes
+
+Rules:
+
+- the board owns spatial truth
+- overlays explain the current step
+- overlays may not become the main state carrier
+- overlays must reference real cell ids and legal adjacency
 
 ## Pointer System
 

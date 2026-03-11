@@ -14,6 +14,7 @@ export const primitiveKindSchema = z.enum([
   "tree",
   "call-tree",
   "graph",
+  "grid",
   "code-trace",
   "state",
   "narration",

@@ -101,6 +101,19 @@ Rules:
 The current runtime may derive token identity from existing pointer specs as a
 compatibility bridge, but the architectural direction is a frame-level token system.
 
+## Grid-Family Runtime Rules
+
+Matrix-based graph lessons should use a dedicated grid family instead of
+flattening the board into array semantics or projecting it as an abstract graph.
+
+Runtime rules for grid lessons:
+
+- `grid` is always the stage-core world
+- BFS matrix lessons keep `queue` as a co-primary stage view
+- recursive matrix lessons may use `call-stack` only as an auxiliary aid
+- grid overlays are renderer-owned teaching hints, not authored freeform drawings
+- grid-family verification should check legal adjacency, cell existence, overlay references, and visited-state continuity
+
 ## Projection Synchronization
 
 The runtime is synchronizing semantic objects across views, not just synchronizing widgets.

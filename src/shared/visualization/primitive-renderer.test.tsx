@@ -3,6 +3,7 @@ import { render, screen, within } from "@testing-library/react"
 import {
   defineCallTreePrimitiveFrameState,
   defineCodeTracePrimitiveFrameState,
+  defineGridPrimitiveFrameState,
   defineGraphPrimitiveFrameState,
   defineHashMapPrimitiveFrameState,
   defineNarrationPrimitiveFrameState,
@@ -93,7 +94,7 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("5")).toBeInTheDocument()
   })
 
-  it("renders sequence, stack, queue, hash-map, tree, graph, call-tree, code-trace, and narration primitives", () => {
+  it("renders sequence, stack, queue, hash-map, tree, graph, grid, call-tree, code-trace, and narration primitives", () => {
     const sequencePrimitive = defineSequencePrimitiveFrameState({
       id: "sequence",
       kind: "sequence",
@@ -189,6 +190,49 @@ describe("PrimitiveRenderer", () => {
           { id: "b", label: "B", x: 200, y: 160, status: "frontier" },
         ],
         edges: [{ id: "a-b", sourceId: "a", targetId: "b" }],
+      },
+    })
+    const gridPrimitive = defineGridPrimitiveFrameState({
+      id: "grid",
+      kind: "grid",
+      title: "Orange Grid",
+      data: {
+        rows: 2,
+        cols: 2,
+        adjacencyMode: "orthogonal-4",
+        coordinateLabels: {
+          rows: true,
+          cols: true,
+        },
+        cells: [
+          { id: "r0-c0", row: 0, col: 0, value: 2, state: "source" },
+          {
+            id: "r0-c1",
+            row: 0,
+            col: 1,
+            value: 1,
+            state: "frontier",
+            tokenId: "neighbor",
+            tokenLabel: "neighbor",
+            tokenStyle: "accent-3",
+          },
+          { id: "r1-c0", row: 1, col: 0, value: 0, state: "blocked" },
+          { id: "r1-c1", row: 1, col: 1, value: 1, state: "open" },
+        ],
+        overlays: [
+          {
+            id: "arrow-1",
+            kind: "neighbor-arrow",
+            sourceCellId: "r0-c0",
+            targetCellId: "r0-c1",
+            tone: "success",
+            label: "spread",
+          },
+        ],
+        legend: [
+          { label: "empty", state: "blocked" },
+          { label: "fresh", state: "open" },
+        ],
       },
     })
     const callTreePrimitive = defineCallTreePrimitiveFrameState({
@@ -296,6 +340,7 @@ describe("PrimitiveRenderer", () => {
         <PrimitiveRenderer primitive={hashMapPrimitive} />
         <PrimitiveRenderer primitive={treePrimitive} />
         <PrimitiveRenderer primitive={graphPrimitive} />
+        <PrimitiveRenderer primitive={gridPrimitive} />
         <PrimitiveRenderer primitive={callTreePrimitive} />
         <PrimitiveRenderer primitive={codeTracePrimitive} />
         <PrimitiveRenderer primitive={narrationPrimitive} />
@@ -308,6 +353,7 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("Memo")).toBeInTheDocument()
     expect(screen.getByText("Tree")).toBeInTheDocument()
     expect(screen.getByText("Graph")).toBeInTheDocument()
+    expect(screen.getByText("Orange Grid")).toBeInTheDocument()
     expect(screen.getByText("Execution")).toBeInTheDocument()
     expect(screen.getAllByText("Code Trace")).toHaveLength(1)
     expect(screen.getByText("Narration")).toBeInTheDocument()
@@ -330,6 +376,7 @@ describe("PrimitiveRenderer", () => {
     expect(screen.getByText("—")).toBeInTheDocument()
     expect(screen.getByText("return")).toBeInTheDocument()
     expect(screen.getByText("val 5")).toBeInTheDocument()
+    expect(screen.getByText("spread")).toBeInTheDocument()
     expect(
       screen
         .getAllByText("mid")

@@ -2,6 +2,7 @@ import type {
   ArrayPrimitiveFrameState,
   CallTreePrimitiveFrameState,
   CodeTracePrimitiveFrameState,
+  GridPrimitiveFrameState,
   GraphPrimitiveFrameState,
   HashMapPrimitiveFrameState,
   NarrationPrimitiveFrameState,
@@ -22,6 +23,7 @@ import { CallTreeView } from "@/shared/visualization/views/call-tree-view"
 import { ArrayView } from "@/shared/visualization/views/array-view"
 import { CodeTraceView } from "@/shared/visualization/views/code-trace-view"
 import { GraphView } from "@/shared/visualization/views/graph-view"
+import { GridView } from "@/shared/visualization/views/grid-view"
 import { HashMapView } from "@/shared/visualization/views/hash-map-view"
 import { NarrationView } from "@/shared/visualization/views/narration-view"
 import { QueueView } from "@/shared/visualization/views/queue-view"
@@ -71,6 +73,9 @@ export function PrimitiveRenderer({
       break
     case "graph":
       content = <GraphView primitive={primitive as GraphPrimitiveFrameState} />
+      break
+    case "grid":
+      content = <GridView primitive={primitive as GridPrimitiveFrameState} />
       break
     case "call-tree":
       content = (

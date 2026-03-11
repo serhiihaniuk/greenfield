@@ -18,6 +18,7 @@ export type FrameExecutionTokenSource =
   | "stack"
   | "queue"
   | "graph"
+  | "grid"
   | "call-tree"
   | "narration"
   | "code-trace"
@@ -215,6 +216,33 @@ export function collectFrameExecutionTokens(
               style: node.tokenStyle,
             },
             "graph"
+          )
+        }
+      }
+      continue
+    }
+
+    if (primitive.kind === "grid") {
+      const cells = (
+        primitive.data as {
+          cells: Array<{
+            value?: string | number
+            tokenId?: string
+            tokenLabel?: string
+            tokenStyle?: ExecutionTokenStyle
+          }>
+        }
+      ).cells
+      for (const cell of cells) {
+        if (cell.tokenId && cell.tokenStyle) {
+          mergeFrameExecutionToken(
+            tokens,
+            {
+              id: cell.tokenId,
+              label: cell.tokenLabel ?? String(cell.value ?? cell.tokenId),
+              style: cell.tokenStyle,
+            },
+            "grid"
           )
         }
       }

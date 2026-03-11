@@ -84,6 +84,15 @@ const catalogDescriptors = [
     featuredRank: 2,
   },
   {
+    lessonId: "rotting-oranges",
+    category: "graphs",
+    difficulty: "medium",
+    mechanisms: ["queue-bfs"],
+    summary: "See a multi-source BFS spread through a matrix one frontier wave at a time.",
+    status: "flagship",
+    featuredRank: 8,
+  },
+  {
     lessonId: "sliding-window-maximum",
     category: "sliding-windows",
     difficulty: "hard",

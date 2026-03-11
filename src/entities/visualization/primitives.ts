@@ -280,6 +280,114 @@ export function defineGraphPrimitiveFrameState(
   }) as GraphPrimitiveFrameState
 }
 
+export const gridCellStateSchema = z.enum([
+  "default",
+  "blocked",
+  "open",
+  "visited",
+  "frontier",
+  "source",
+  "target",
+  "path",
+  "region",
+  "done",
+  "dim",
+])
+
+export type GridCellState = z.infer<typeof gridCellStateSchema>
+
+export const gridAdjacencyModeSchema = z.enum([
+  "orthogonal-4",
+  "orthogonal-8",
+])
+
+export type GridAdjacencyMode = z.infer<typeof gridAdjacencyModeSchema>
+
+export const gridOverlayKindSchema = z.enum([
+  "neighbor-arrow",
+  "frontier-ring",
+  "path-segment",
+  "region-outline",
+  "focus-cell",
+])
+
+export type GridOverlayKind = z.infer<typeof gridOverlayKindSchema>
+
+export const gridCellSchema = z.object({
+  id: z.string().min(1),
+  row: z.number().int().nonnegative(),
+  col: z.number().int().nonnegative(),
+  value: z.union([z.string(), z.number()]).optional(),
+  state: gridCellStateSchema.default("default"),
+  annotation: z.string().optional(),
+  tokenId: z.string().min(1).optional(),
+  tokenLabel: z.string().min(1).optional(),
+  tokenStyle: executionTokenStyleSchema.optional(),
+})
+
+export type GridCell = z.infer<typeof gridCellSchema>
+
+export const gridOverlaySchema = z.object({
+  id: z.string().min(1),
+  kind: gridOverlayKindSchema,
+  sourceCellId: z.string().min(1).optional(),
+  targetCellId: z.string().min(1).optional(),
+  cellIds: z.array(z.string().min(1)).optional(),
+  label: z.string().optional(),
+  tone: z
+    .enum([
+      "default",
+      "muted",
+      "active",
+      "success",
+      "warning",
+      "error",
+      "memo",
+      "special",
+    ])
+    .optional(),
+})
+
+export type GridOverlay = z.infer<typeof gridOverlaySchema>
+
+export const gridLegendItemSchema = z.object({
+  label: z.string().min(1),
+  state: gridCellStateSchema,
+})
+
+export type GridLegendItem = z.infer<typeof gridLegendItemSchema>
+
+export const gridPrimitiveDataSchema = z.object({
+  rows: z.number().int().positive(),
+  cols: z.number().int().positive(),
+  cells: z.array(gridCellSchema),
+  coordinateLabels: z
+    .object({
+      rows: z.boolean().default(false),
+      cols: z.boolean().default(false),
+    })
+    .optional(),
+  adjacencyMode: gridAdjacencyModeSchema.optional(),
+  overlays: z.array(gridOverlaySchema).default([]),
+  legend: z.array(gridLegendItemSchema).default([]),
+})
+
+export type GridPrimitiveData = z.infer<typeof gridPrimitiveDataSchema>
+
+export type GridPrimitiveFrameState = PrimitiveFrameState<GridPrimitiveData> & {
+  kind: "grid"
+}
+
+export function defineGridPrimitiveFrameState(
+  state: GridPrimitiveFrameState
+): GridPrimitiveFrameState {
+  const data = gridPrimitiveDataSchema.parse(state.data)
+  return definePrimitiveFrameState({
+    ...state,
+    data,
+  }) as GridPrimitiveFrameState
+}
+
 export const callTreeNodeSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),

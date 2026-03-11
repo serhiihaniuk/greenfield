@@ -108,6 +108,58 @@ Use a consistent size scale across primitives.
 These are starting contracts, not random values.
 If changed globally, update this spec.
 
+## Grid Visual Grammar
+
+Matrix-based graph problems should render through `GridView`.
+The learner should read it as a dense spatial board, not a spreadsheet.
+
+Rules:
+
+- cells are compact squares on a stable board
+- row and column coordinates are optional and subdued
+- semantic cell states drive appearance, not raw ad hoc colors
+- the board stays visually stable while traversal moves through it
+- queue or stack views may accompany the board, but the board remains the main world
+
+Recommended defaults:
+
+- grid cell: `48 x 48`
+- grid cell gap: `6`
+- coordinate gutter: compact mono labels only when the lesson benefits from coordinates
+- in-cell annotation: tiny mono text, one short word when possible
+
+Preferred semantic states:
+
+- `blocked`
+- `open`
+- `visited`
+- `frontier`
+- `source`
+- `target`
+- `path`
+- `region`
+- `done`
+- `dim`
+
+Problem-specific labels such as `land`, `water`, `fresh`, or `rotten` should map
+onto these stable visual states instead of inventing one-off color systems.
+
+### Grid overlays
+
+Use overlays only for transient teaching hints:
+
+- neighbor arrows
+- frontier rings
+- path traces
+- region outlines
+- focus boxes
+
+Overlay rules:
+
+- overlays must not perturb board layout
+- overlays should be sparse and adjacent-frame scoped
+- overlays should clarify legal movement or frontier spread, not replace the board
+
 ## Execution Token Visual Grammar
 
 Execution tokens are the learner-recognition layer shared across views.

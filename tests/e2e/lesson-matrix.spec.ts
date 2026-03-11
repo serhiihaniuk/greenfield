@@ -24,6 +24,11 @@ const lessonMatrix = [
     secondaryHeading: "Call Stack",
   },
   {
+    lesson: "Rotting Oranges",
+    primaryHeading: "Orange Grid",
+    secondaryHeading: "Frontier Queue",
+  },
+  {
     lesson: "Graph BFS Frontier",
     primaryHeading: "Graph Frontier",
     secondaryHeading: "Frontier Queue",
@@ -84,6 +89,14 @@ const presetMatrix = [
     secondarySnippet: "4",
     primaryHeading: "Execution Tree",
     secondaryHeading: "Call Stack",
+  },
+  {
+    lesson: "Rotting Oranges",
+    preset: "Sealed Fresh",
+    expectedSnippet: '"grid": [',
+    secondarySnippet: "0",
+    primaryHeading: "Orange Grid",
+    secondaryHeading: "Frontier Queue",
   },
   {
     lesson: "Tree DFS Traversal with Stack",

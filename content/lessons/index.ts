@@ -6,6 +6,7 @@ import { graphBfsLesson } from "./graph-bfs/lesson"
 import { heapTopKLesson } from "./heap-top-k/lesson"
 import { houseRobberLesson } from "./house-robber/lesson"
 import { maximumDepthLesson } from "./maximum-depth/lesson"
+import { rottingOrangesLesson } from "./rotting-oranges/lesson"
 import { slidingWindowMaximumLesson } from "./sliding-window-maximum/lesson"
 import { treeDfsTraversalLesson } from "./tree-dfs-traversal/lesson"
 
@@ -16,6 +17,7 @@ export const lessonDefinitions: AnyLessonDefinition[] = [
   heapTopKLesson,
   houseRobberLesson,
   maximumDepthLesson,
+  rottingOrangesLesson,
   slidingWindowMaximumLesson,
   treeDfsTraversalLesson,
 ]

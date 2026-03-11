@@ -90,6 +90,7 @@ Phase 9 now also has the runtime implementation of that model: the player shell 
 Graph BFS, Coin Change Memo DFS, Heap Top K, Maximum Depth, Sliding Window Maximum, and Tree DFS Traversal now also use shared lesson view specs so their stage composition is explicit in lesson metadata and projector viewport roles instead of relying on legacy `secondary` fallbacks.
 Phase 9 now also moves lesson identity into the router: `/lessons/:slug` is the canonical lesson URL, `/` redirects to the default registry lesson, invalid slugs redirect safely, and the new problem-selector modal on `Ctrl + E` replaces generic lesson-switching commands with a typed learner-facing catalog filtered by category, difficulty, mechanism, confusion type, and flagship status.
 Phase 9 now also begins the structured-narration hardening pass: Binary Search uses a shared explanation builder with `headline`, `reason`, `implication`, and evidence, the learner shell renders narration as an explanation panel instead of a plain sentence, and runtime verification now checks for narration/token drift and explanation-thin family payloads.
+Phase 9 now also includes the first matrix-graph primitive-family rollout: a new `grid` primitive family and `grid-traversal` lesson scaffold are being added so matrix-based graph problems can be taught through a real spatial board instead of being flattened into arrays or abstracted into node-link graphs.
 
 ## Phase 0: Operating System
 
@@ -258,6 +259,24 @@ Primitive implementation must follow both `docs/PRIMITIVE_SYSTEM_SPEC.md` and `d
 
 - an AI-authored lesson can be audited without relying on learner intuition
 - a wrong lesson fails loudly instead of looking plausible
+
+## Phase 9.x: Grid Traversal Family
+
+### Deliverables
+
+- first-class `grid` primitive contract and renderer
+- renderer-owned grid overlay support for transient teaching hints
+- `grid-traversal` lesson scaffold in the creation protocol
+- grid-family verification helpers for legal adjacency, overlay references, and visited-state continuity
+- `Rotting Oranges` as the first matrix-BFS flagship pilot
+
+### Acceptance criteria
+
+- matrix-based graph problems use `grid` as the stage-core world
+- BFS matrix lessons compose `grid + queue` in the stage without demoting either to support
+- narration uses structured explanation blocks from the first pilot
+- execution tokens remain recognizable across grid, queue, state, and narration
+- grid-family verification blocks illegal neighbor hops, missing cells, and frontier drift
 - the verification summary makes it clear why a lesson is blocked
 
 ## Phase 8: Flagship Lessons

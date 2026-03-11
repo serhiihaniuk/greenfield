@@ -5,10 +5,12 @@ import { graphBfsLesson } from "../../../content/lessons/graph-bfs/lesson"
 import { heapTopKLesson } from "../../../content/lessons/heap-top-k/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
+import { rottingOrangesLesson } from "../../../content/lessons/rotting-oranges/lesson"
 import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
 import type {
   CallTreePrimitiveFrameState,
   GraphPrimitiveFrameState,
+  GridPrimitiveFrameState,
   QueuePrimitiveFrameState,
   StackPrimitiveFrameState,
   StatePrimitiveFrameState,
@@ -664,6 +666,114 @@ describe("verifyRuntimeOutputs", () => {
     expect(returnFrame.narration.implication?.segments[0]?.text).toContain(
       "lesson ends here"
     )
+  })
+
+  it("projects rotting oranges tokens across grid, queue, state, and narration", () => {
+    const rottingApproach = rottingOrangesLesson.approaches[0]
+    const classicPreset = rottingApproach?.presets.find(
+      (preset) => preset.id === "classic-wave"
+    )
+
+    if (!rottingApproach || !classicPreset) {
+      throw new Error("Rotting oranges lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: rottingOrangesLesson,
+      approach: rottingApproach,
+      mode: "full",
+      rawInput: classicPreset.rawInput,
+    })
+
+    const spreadFrame = runtime.frames.find((frame) => frame.codeLine === "L10")
+    const gridPrimitive = spreadFrame?.primitives.find(
+      (primitive) => primitive.id === "grid"
+    )
+    const queuePrimitive = spreadFrame?.primitives.find(
+      (primitive) => primitive.id === "frontier-queue"
+    )
+
+    if (!spreadFrame || !gridPrimitive || gridPrimitive.kind !== "grid") {
+      throw new Error("Expected a rotting oranges grid primitive on the spread frame.")
+    }
+
+    if (!queuePrimitive || queuePrimitive.kind !== "queue") {
+      throw new Error("Expected a rotting oranges queue primitive on the spread frame.")
+    }
+
+    const typedGridPrimitive = gridPrimitive as GridPrimitiveFrameState
+    const typedQueuePrimitive = queuePrimitive as QueuePrimitiveFrameState
+
+    expect(
+      typedGridPrimitive.data.cells.find((cell) => cell.tokenId === "neighbor")
+    ).toBeDefined()
+    expect(
+      typedQueuePrimitive.data.items.some((item) => item.tokenId === "neighbor")
+    ).toBe(true)
+    expect(
+      spreadFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "neighbor"
+      )
+    ).toBe(true)
+    expect(
+      collectFrameExecutionTokens(spreadFrame).some((token) => token.id === "neighbor")
+    ).toBe(true)
+  })
+
+  it("flags broken grid overlay references through runtime verification", () => {
+    const rottingApproach = rottingOrangesLesson.approaches[0]
+    const classicPreset = rottingApproach?.presets.find(
+      (preset) => preset.id === "classic-wave"
+    )
+
+    if (!rottingApproach || !classicPreset) {
+      throw new Error("Rotting oranges lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: rottingOrangesLesson,
+      approach: rottingApproach,
+      mode: "full",
+      rawInput: classicPreset.rawInput,
+    })
+
+    const report = verifyRuntimeOutputs(
+      rottingOrangesLesson,
+      rottingApproach,
+      runtime.trace,
+      runtime.frames.map((frame) => {
+        if (frame.codeLine !== "L10") {
+          return frame
+        }
+
+        return {
+          ...frame,
+          primitives: frame.primitives.map((primitive) =>
+            primitive.id === "grid" && primitive.kind === "grid"
+              ? {
+                  ...primitive,
+                  data: {
+                    ...(primitive as GridPrimitiveFrameState).data,
+                    overlays: [
+                      ...((primitive as GridPrimitiveFrameState).data.overlays ?? []),
+                      {
+                        id: "broken-overlay",
+                        kind: "neighbor-arrow",
+                        sourceCellId: "r0-c0",
+                        targetCellId: "missing-cell",
+                      },
+                    ],
+                  },
+                }
+              : primitive
+          ),
+        }
+      })
+    )
+
+    expect(
+      report.errors.some((issue) => issue.code === "GRID_OVERLAY_TARGET_MISSING")
+    ).toBe(true)
   })
 
   it("projects the maximum depth dfs token across execution tree, stack, and narration", () => {

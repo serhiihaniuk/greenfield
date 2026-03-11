@@ -154,6 +154,29 @@ The default path is:
 Use shared narration builders where possible.
 If a lesson bypasses the structured narration path, that should be treated as an exception requiring review.
 
+## Grid-Traversal Lesson Scaffold
+
+Matrix-based graph problems should not be authored as freeform board demos.
+They should use a dedicated `grid-traversal` scaffold.
+
+The correct path is:
+
+1. choose `grid-traversal`
+2. declare learner-tracked execution objects such as `current`, `neighbor`, or `frontier-head`
+3. choose an adjacency model
+4. choose semantic cell-state vocabulary
+5. emit structured grid events
+6. project through `grid` plus approved aids such as `queue`, explicit `stack`, or auxiliary `call-stack`
+7. generate structured narration
+8. pass grid-family verification
+
+Do not hand-author:
+
+- raw board visuals
+- ad hoc cell colors
+- freeform narration strings
+- custom queue or stack semantics unrelated to the family scaffold
+
 ## Required Contract Sequence
 
 ### Step 1: Lesson definition
@@ -303,6 +326,29 @@ Minimum:
 - result state
 - code trace
 - narration
+
+### `grid-traversal`
+
+Minimum:
+
+- `grid` primary
+- `queue` co-primary for BFS matrix lessons
+- explicit `stack` co-primary for iterative DFS matrix lessons when it explains the traversal mechanism
+- auxiliary `call-stack` only for recursive waiting relationships
+- compact state, narration, and code in support
+
+Use event families such as:
+
+- `visit-cell`
+- `inspect-neighbor`
+- `skip-blocked`
+- `skip-visited`
+- `enqueue-neighbor`
+- `spread-frontier`
+- `mark-region`
+- `return-region`
+- `finish-unreachable`
+- `finish-count`
 
 ## Rules The AI Must Follow
 

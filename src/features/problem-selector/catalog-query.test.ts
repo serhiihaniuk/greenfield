@@ -9,7 +9,7 @@ describe("problem selector catalog query", () => {
   it("returns all flagship lessons when the filter is empty", () => {
     const results = queryCatalog(entries, emptyCatalogFilter)
 
-    expect(results).toHaveLength(8)
+    expect(results).toHaveLength(9)
   })
 
   it("uses AND semantics across groups and OR semantics within a group", () => {
@@ -38,7 +38,10 @@ describe("problem selector catalog query", () => {
     expect(recursionResults.map((entry) => entry.id)).toEqual(
       expect.arrayContaining(["coin-change", "maximum-depth"])
     )
-    expect(frontierResults.map((entry) => entry.id)).toEqual(["graph-bfs"])
+    expect(frontierResults.map((entry) => entry.id)).toEqual([
+      "graph-bfs",
+      "rotting-oranges",
+    ])
   })
 
   it("keeps the active lesson first when it still matches", () => {

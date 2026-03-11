@@ -23,6 +23,16 @@ const customInputMatrix = [
     }),
   },
   {
+    lessonId: "rotting-oranges",
+    rawInput: JSON.stringify({
+      grid: [
+        [2, 1, 1],
+        [1, 1, 0],
+        [0, 1, 1],
+      ],
+    }),
+  },
+  {
     lessonId: "graph-bfs",
     rawInput: JSON.stringify({
       nodes: [
@@ -142,6 +152,17 @@ describe("lesson player store", () => {
 
     const state = store.getState()
     expect(state.lesson?.id).toBe("maximum-depth")
+    expect(state.trace.length).toBeGreaterThan(0)
+    expect(state.frames.length).toBeGreaterThan(0)
+    expect(state.failure).toBeUndefined()
+  })
+
+  it("loads the rotting oranges lesson end to end", () => {
+    const store = createLessonPlayerStore()
+    store.getState().initialize("rotting-oranges")
+
+    const state = store.getState()
+    expect(state.lesson?.id).toBe("rotting-oranges")
     expect(state.trace.length).toBeGreaterThan(0)
     expect(state.frames.length).toBeGreaterThan(0)
     expect(state.failure).toBeUndefined()
