@@ -34,7 +34,7 @@ export function PrimitiveShell({
       className={cn(
         role === "primary" && "p-2",
         role === "secondary" && "p-2",
-        role === "reference" && "flex flex-1 flex-col p-2",
+        role === "reference" && "flex min-h-0 flex-1 flex-col p-2",
         !role &&
           "rounded-2xl border border-border/80 bg-card/90 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
         isSelected && "rounded-2xl ring-2 ring-cyan-400/60 ring-offset-2 ring-offset-background",

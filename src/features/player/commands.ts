@@ -40,7 +40,6 @@ export type LessonPlayerCommandContext = {
   closeCommandPalette: () => void
   toggleHotkeys: () => void
   openPresetStudio: (view?: "presets" | "custom") => void
-  toggleTheme: () => void
 }
 
 const PLAYBACK_SPEED_OPTIONS: PlaybackSpeed[] = ["0.5x", "1x", "1.5x", "2x"]
@@ -269,17 +268,6 @@ const STATIC_COMMANDS: readonly AppCommand<LessonPlayerCommandContext>[] = [
     run: (context) => {
       context.closeCommandPalette()
       context.openPresetStudio("custom")
-    },
-  },
-  {
-    id: "toggle-theme",
-    group: "Workspace",
-    title: "Toggle theme",
-    description: "Switch between the dark and light study themes.",
-    keywords: ["theme", "dark", "light"],
-    run: (context) => {
-      context.closeCommandPalette()
-      context.toggleTheme()
     },
   },
 ] as const

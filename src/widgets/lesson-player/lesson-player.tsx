@@ -12,7 +12,6 @@ import {
   SlidersHorizontalIcon,
 } from "lucide-react"
 
-import { useTheme } from "@/app/providers/theme-provider"
 import { listLessons } from "@/domains/lessons/loaders"
 import { listCatalogEntries } from "@/domains/lessons/catalog"
 import type { Frame } from "@/domains/projection/types"
@@ -80,7 +79,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { ThemeToggle } from "@/shared/ui/theme-toggle"
+import { ThemeCustomizer } from "@/shared/ui/theme-customizer"
 
 type LessonPlayerProps = {
   lessonId?: string
@@ -192,7 +191,6 @@ function buildCodeTracePrimitive(
 }
 
 export function LessonPlayer({ lessonId }: LessonPlayerProps) {
-  const { theme, setTheme } = useTheme()
   const {
     lesson,
     approach,
@@ -355,10 +353,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
     [playbackStatus, pause, play]
   )
 
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }, [setTheme, theme])
-
   const commandContext = useMemo<LessonPlayerCommandContext>(
     () => ({
       lessons,
@@ -394,7 +388,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       closeCommandPalette: () => setCommandOpen(false),
       toggleHotkeys: () => setHotkeysOpen((value) => !value),
       openPresetStudio,
-      toggleTheme,
     }),
     [
       approachId,
@@ -425,7 +418,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
       setPlaybackSpeed,
       toggleAuthorMode,
       togglePlayback,
-      toggleTheme,
     ]
   )
   const paletteCommands = useMemo(
@@ -509,7 +501,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
                 </div>
               ) : null}
 
-              <div className="shrink-0 border-b border-border/20 px-4 py-3">
+              <div className="max-h-[50%] min-h-0 shrink overflow-y-auto border-b border-border/20 px-4 py-3">
                 <NarrationPanel
                   narration={learnerModeBlocked ? undefined : activeFrame?.narration}
                   blockedMessage={
@@ -963,7 +955,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
           </TooltipContent>
         </Tooltip>
 
-        <ThemeToggle className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground" />
+        <ThemeCustomizer className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground" />
       </footer>
 
       <CommandDialog
