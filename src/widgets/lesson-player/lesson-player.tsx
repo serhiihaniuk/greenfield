@@ -514,7 +514,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
 
               <div
                 data-testid="reference-column"
-                className="flex min-h-0 flex-1 flex-col overflow-hidden"
+                className="flex min-h-30 flex-1 flex-col overflow-hidden"
               >
                 <PrimitiveRenderer primitive={codeTracePrimitive} role="reference" />
                 {failure ? (

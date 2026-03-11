@@ -2,6 +2,7 @@ import { buildLessonRuntime } from "@/features/player/runtime"
 import { verifyRuntimeOutputs } from "@/domains/verification/runtime"
 import { binarySearchLesson } from "../../../content/lessons/binary-search/lesson"
 import { graphBfsLesson } from "../../../content/lessons/graph-bfs/lesson"
+import { heapTopKLesson } from "../../../content/lessons/heap-top-k/lesson"
 import { houseRobberLesson } from "../../../content/lessons/house-robber/lesson"
 import { maximumDepthLesson } from "../../../content/lessons/maximum-depth/lesson"
 import { slidingWindowMaximumLesson } from "../../../content/lessons/sliding-window-maximum/lesson"
@@ -586,6 +587,82 @@ describe("verifyRuntimeOutputs", () => {
     ).toBe(true)
     expect(neighborCheckFrame.narration.reason?.segments[0]?.text).toMatch(
       /visited neighbors|unseen neighbor/
+    )
+  })
+
+  it("explains heap top-k threshold decisions through structured narration and the scan token", () => {
+    const heapTopKApproach = heapTopKLesson.approaches[0]
+    const classicPreset = heapTopKApproach?.presets.find(
+      (preset) => preset.id === "classic-six-k3"
+    )
+
+    if (!heapTopKApproach || !classicPreset) {
+      throw new Error("Heap top-k lesson fixture is not available.")
+    }
+
+    const runtime = buildLessonRuntime({
+      lesson: heapTopKLesson,
+      approach: heapTopKApproach,
+      mode: "full",
+      rawInput: classicPreset.rawInput,
+    })
+
+    const thresholdCheckFrame = runtime.frames.find((frame) => frame.codeLine === "L3")
+    const statePrimitive = thresholdCheckFrame?.primitives.find(
+      (primitive) => primitive.id === "heap-state"
+    )
+
+    if (!thresholdCheckFrame || !statePrimitive || statePrimitive.kind !== "state") {
+      throw new Error("Expected a heap top-k state primitive on the threshold frame.")
+    }
+
+    const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
+    expect(
+      typedStatePrimitive.data.values.find((entry) => entry.label === "i")
+    ).toMatchObject({
+      tokenId: "scan-index",
+      tokenStyle: "accent-1",
+    })
+    expect(
+      thresholdCheckFrame.narration.segments.some(
+        (segment) => segment.tokenId === "scan-index"
+      )
+    ).toBe(true)
+    expect(thresholdCheckFrame.narration.reason?.segments[0]?.text).toMatch(
+      /min-heap|root/
+    )
+    expect(thresholdCheckFrame.narration.implication?.segments[0]?.text).toMatch(
+      /pushes this value|compares the scanned value/
+    )
+
+    const replaceDecisionFrame = runtime.frames.find((frame) => frame.codeLine === "L6")
+    if (!replaceDecisionFrame) {
+      throw new Error("Expected a heap top-k threshold decision frame.")
+    }
+
+    expect(
+      replaceDecisionFrame.narration.segments.some(
+        (segment) => segment.tokenId === "scan-index"
+      )
+    ).toBe(true)
+    expect(replaceDecisionFrame.narration.reason?.segments[0]?.text).toContain(
+      "heap root"
+    )
+    expect(replaceDecisionFrame.narration.implication?.segments[0]?.text).toMatch(
+      /replaces the root|heap stays unchanged/
+    )
+
+    const returnFrame = runtime.frames.at(-1)
+    if (!returnFrame) {
+      throw new Error("Expected a heap top-k result frame.")
+    }
+
+    expect(returnFrame.codeLine).toBe("L11")
+    expect(returnFrame.narration.reason?.segments[0]?.text).toContain(
+      "heap preserved exactly k strongest candidates"
+    )
+    expect(returnFrame.narration.implication?.segments[0]?.text).toContain(
+      "lesson ends here"
     )
   })
 

@@ -8,7 +8,7 @@
       ],
       "codeLine": "L1",
       "id": "frame-1",
-      "narrationSummary": "Start with an empty min-heap that will hold only the current top k values.",
+      "narrationSummary": "Start with an empty min-heap that will keep only the strongest top-k candidates.",
       "primitives": [
         {
           "annotations": [],
@@ -105,7 +105,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-2",
-      "narrationSummary": "Scan nums[0] = 5.",
+      "narrationSummary": "i advances to nums[0] = 5.",
       "primitives": [
         {
           "annotations": [],
@@ -211,7 +211,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-3",
-      "narrationSummary": "The heap has room because size 0 is still below k = 3.",
+      "narrationSummary": "i sees room: heap size 0 is still below k = 3.",
       "primitives": [
         {
           "annotations": [],
@@ -325,7 +325,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-4",
-      "narrationSummary": "Push 5 into the heap as a new top-k candidate.",
+      "narrationSummary": "i pushes 5 into the heap as a new top-k candidate.",
       "primitives": [
         {
           "annotations": [],
@@ -446,7 +446,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-5",
-      "narrationSummary": "Scan nums[1] = 1.",
+      "narrationSummary": "i advances to nums[1] = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -559,7 +559,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-6",
-      "narrationSummary": "The heap has room because size 1 is still below k = 3.",
+      "narrationSummary": "i sees room: heap size 1 is still below k = 3.",
       "primitives": [
         {
           "annotations": [],
@@ -680,7 +680,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-7",
-      "narrationSummary": "Push 1 into the heap as a new top-k candidate.",
+      "narrationSummary": "i pushes 1 into the heap as a new top-k candidate.",
       "primitives": [
         {
           "annotations": [],
@@ -808,7 +808,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-8",
-      "narrationSummary": "1 is smaller than parent 5, so bubble it up.",
+      "narrationSummary": "Child 1 is smaller than parent 5.",
       "primitives": [
         {
           "annotations": [],
@@ -928,7 +928,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-9",
-      "narrationSummary": "Swap heap slots 0 and 1 to restore min-heap order.",
+      "narrationSummary": "Swap heap slots 0 and 1 during sift-up.",
       "primitives": [
         {
           "annotations": [],
@@ -1048,7 +1048,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-10",
-      "narrationSummary": "Scan nums[2] = 9.",
+      "narrationSummary": "i advances to nums[2] = 9.",
       "primitives": [
         {
           "annotations": [],
@@ -1167,7 +1167,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-11",
-      "narrationSummary": "The heap has room because size 2 is still below k = 3.",
+      "narrationSummary": "i sees room: heap size 2 is still below k = 3.",
       "primitives": [
         {
           "annotations": [],
@@ -1294,7 +1294,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-12",
-      "narrationSummary": "Push 9 into the heap as a new top-k candidate.",
+      "narrationSummary": "i pushes 9 into the heap as a new top-k candidate.",
       "primitives": [
         {
           "annotations": [],
@@ -1428,7 +1428,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-13",
-      "narrationSummary": "9 is not smaller than parent 1, so the min-heap order already holds.",
+      "narrationSummary": "Child 9 is not smaller than parent 1.",
       "primitives": [
         {
           "annotations": [],
@@ -1554,7 +1554,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-14",
-      "narrationSummary": "Scan nums[3] = 3.",
+      "narrationSummary": "i advances to nums[3] = 3.",
       "primitives": [
         {
           "annotations": [],
@@ -1679,7 +1679,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-15",
-      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "narrationSummary": "i must beat root threshold 1 because the heap is already full.",
       "primitives": [
         {
           "annotations": [],
@@ -1812,7 +1812,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-16",
-      "narrationSummary": "3 beats the root threshold 1, so it enters the top-k set.",
+      "narrationSummary": "i brings 3, which beats threshold 1.",
       "primitives": [
         {
           "annotations": [],
@@ -1937,7 +1937,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-17",
-      "narrationSummary": "Replace heap root 1 with 3.",
+      "narrationSummary": "i replaces root 1 with 3.",
       "primitives": [
         {
           "annotations": [],
@@ -2070,7 +2070,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-18",
-      "narrationSummary": "Parent 3 is already below its smaller child 5, so the heap is restored.",
+      "narrationSummary": "Parent 3 is already below smaller child 5.",
       "primitives": [
         {
           "annotations": [],
@@ -2196,7 +2196,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-19",
-      "narrationSummary": "Scan nums[4] = 7.",
+      "narrationSummary": "i advances to nums[4] = 7.",
       "primitives": [
         {
           "annotations": [],
@@ -2321,7 +2321,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-20",
-      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "narrationSummary": "i must beat root threshold 3 because the heap is already full.",
       "primitives": [
         {
           "annotations": [],
@@ -2454,7 +2454,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-21",
-      "narrationSummary": "7 beats the root threshold 3, so it enters the top-k set.",
+      "narrationSummary": "i brings 7, which beats threshold 3.",
       "primitives": [
         {
           "annotations": [],
@@ -2579,7 +2579,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-22",
-      "narrationSummary": "Replace heap root 3 with 7.",
+      "narrationSummary": "i replaces root 3 with 7.",
       "primitives": [
         {
           "annotations": [],
@@ -2712,7 +2712,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-23",
-      "narrationSummary": "The smaller child 5 is below parent 7, so sift the replacement down.",
+      "narrationSummary": "Parent 7 is larger than smaller child 5.",
       "primitives": [
         {
           "annotations": [],
@@ -2964,7 +2964,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-25",
-      "narrationSummary": "Scan nums[5] = 8.",
+      "narrationSummary": "i advances to nums[5] = 8.",
       "primitives": [
         {
           "annotations": [],
@@ -3089,7 +3089,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-26",
-      "narrationSummary": "The heap is full at size 3, so the new value must beat the root threshold to stay.",
+      "narrationSummary": "i must beat root threshold 5 because the heap is already full.",
       "primitives": [
         {
           "annotations": [],
@@ -3222,7 +3222,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-27",
-      "narrationSummary": "8 beats the root threshold 5, so it enters the top-k set.",
+      "narrationSummary": "i brings 8, which beats threshold 5.",
       "primitives": [
         {
           "annotations": [],
@@ -3347,7 +3347,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-28",
-      "narrationSummary": "Replace heap root 5 with 8.",
+      "narrationSummary": "i replaces root 5 with 8.",
       "primitives": [
         {
           "annotations": [],
@@ -3480,7 +3480,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-29",
-      "narrationSummary": "The smaller child 7 is below parent 8, so sift the replacement down.",
+      "narrationSummary": "Parent 8 is larger than smaller child 7.",
       "primitives": [
         {
           "annotations": [],

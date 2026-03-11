@@ -6,6 +6,11 @@ import {
   type NarrationPayloadInput,
   type VisualChangeType,
 } from "@/domains/projection/types"
+import {
+  defineStructuredNarration,
+  narrationText,
+  narrationToken,
+} from "@/domains/projection/narration"
 import type { TraceEvent } from "@/domains/tracing/types"
 import {
   defineArrayPrimitiveFrameState,
@@ -16,6 +21,7 @@ import {
 import type {
   AnnotationSpec,
   EdgeHighlightSpec,
+  ExecutionTokenStyle,
   HighlightSpec,
   PointerSpec,
   PrimitiveFrameState,
@@ -29,6 +35,21 @@ type HeapTopKSnapshot = {
   currentIndex?: number
   currentValue?: number
   result?: number[]
+}
+
+const scanIndexToken = {
+  id: "scan-index",
+  label: "i",
+  style: "accent-1" as ExecutionTokenStyle,
+}
+
+function narrationScanToken(id: string) {
+  return narrationToken({
+    id,
+    text: scanIndexToken.label,
+    tokenId: scanIndexToken.id,
+    tokenStyle: scanIndexToken.style,
+  })
 }
 
 function mapEventToVisualChange(event: TraceEvent): VisualChangeType {
@@ -53,88 +74,271 @@ function buildNarration(
   event: TraceEvent,
   snapshot: HeapTopKSnapshot
 ): NarrationPayloadInput {
+  const currentIndex = snapshot.currentIndex
+  const currentValue = snapshot.currentValue
+  const heapSize =
+    typeof event.payload.heapSize === "number"
+      ? event.payload.heapSize
+      : snapshot.heap.length
+  const thresholdValue =
+    typeof event.payload.rootValue === "number"
+      ? event.payload.rootValue
+      : (snapshot.heap[0] ?? "-")
+
   switch (event.codeLine) {
     case "L1":
-      return {
-        summary:
-          "Start with an empty min-heap that will hold only the current top k values.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "setup",
+        headline:
+          "Start with an empty min-heap that will keep only the strongest top-k candidates.",
+        reason:
+          "A min-heap makes the weakest kept value easy to inspect at the root, so every new candidate has a clear threshold to beat.",
+        implication:
+          "The next frames will scan the input one value at a time against that evolving threshold.",
+        evidence: [
+          {
+            id: `${event.id}-k`,
+            label: "k",
+            value: `${snapshot.k}`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L2":
-      return {
-        summary: `Scan nums[${snapshot.currentIndex}] = ${snapshot.currentValue}.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "advance",
+        headline: [
+          narrationScanToken(`${event.id}-headline-index`),
+          narrationText(
+            `${event.id}-headline-text`,
+            ` advances to nums[${currentIndex}] = ${currentValue}.`
+          ),
+        ],
+        reason:
+          "Top-k by heap works as a single left-to-right scan, so each input value gets exactly one chance to challenge the current threshold.",
+        implication:
+          "The next frame decides whether the heap still has room or whether this candidate must beat the root.",
+        evidence: [
+          {
+            id: `${event.id}-candidate`,
+            label: "Candidate",
+            value: `${currentValue}`,
+            tokenId: scanIndexToken.id,
+            tokenStyle: scanIndexToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L3":
-      return {
-        summary: event.payload.hasRoom
-          ? `The heap has room because size ${event.payload.heapSize} is still below k = ${snapshot.k}.`
-          : `The heap is full at size ${snapshot.k}, so the new value must beat the root threshold to stay.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "check",
+        headline: event.payload.hasRoom
+          ? [
+              narrationScanToken(`${event.id}-headline-index`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` sees room: heap size ${heapSize} is still below k = ${snapshot.k}.`
+              ),
+            ]
+          : [
+              narrationScanToken(`${event.id}-headline-index`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` must beat root threshold ${thresholdValue} because the heap is already full.`
+              ),
+            ],
+        reason: event.payload.hasRoom
+          ? "Until the min-heap reaches k items, every scanned value automatically belongs to the current top-k set because no root threshold exists yet."
+          : "Once the heap is full, the root is the weakest kept value, so only stronger candidates are allowed to enter.",
+        implication: event.payload.hasRoom
+          ? "The next frame pushes this value into the heap as a guaranteed candidate."
+          : "The next frame compares the scanned value against the root and either skips it or replaces the threshold.",
+        evidence: [
+          {
+            id: `${event.id}-size`,
+            label: "Heap size",
+            value: `${heapSize}`,
+          },
+          {
+            id: `${event.id}-threshold`,
+            label: "Threshold",
+            value: `${thresholdValue}`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L4":
-      return {
-        summary: `Push ${event.payload.pushedValue} into the heap as a new top-k candidate.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "commit",
+        headline: [
+          narrationScanToken(`${event.id}-headline-index`),
+          narrationText(
+            `${event.id}-headline-text`,
+            ` pushes ${event.payload.pushedValue} into the heap as a new top-k candidate.`
+          ),
+        ],
+        reason:
+          "Values scanned before the heap is full are provisionally part of the answer because there are not yet k stronger competitors to displace them.",
+        implication:
+          "The next frame checks whether the new leaf must bubble upward to restore min-heap order.",
+        evidence: [
+          {
+            id: `${event.id}-push`,
+            label: "Heap after push",
+            value: `[${snapshot.heap.join(", ")}]`,
+            tokenId: scanIndexToken.id,
+            tokenStyle: scanIndexToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L5":
-      return event.type === "compare"
-        ? {
-            summary: event.payload.shouldSwap
-              ? `${event.payload.childValue} is smaller than parent ${event.payload.parentValue}, so bubble it up.`
-              : `${event.payload.childValue} is not smaller than parent ${event.payload.parentValue}, so the min-heap order already holds.`,
-            segments: [],
-            sourceValues: event.payload,
-          }
-        : {
-            summary: `Swap heap slots ${event.payload.parentIndex} and ${event.payload.childIndex} to restore min-heap order.`,
-            segments: [],
-            sourceValues: event.payload,
-          }
+      return defineStructuredNarration({
+        family: event.type === "compare" ? "compare" : "commit",
+        headline:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? `Child ${event.payload.childValue} is smaller than parent ${event.payload.parentValue}.`
+              : `Child ${event.payload.childValue} is not smaller than parent ${event.payload.parentValue}.`
+            : `Swap heap slots ${event.payload.parentIndex} and ${event.payload.childIndex} during sift-up.`,
+        reason:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? "A min-heap keeps the smallest kept value at the root, so any smaller child must rise above a larger parent."
+              : "If the child is already greater than or equal to the parent, the local min-heap ordering is satisfied."
+            : "The swap moves the smaller value closer to the root so the heap can continue exposing the weakest kept candidate as the threshold.",
+        implication:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? "The next frame performs the swap that bubbles the new candidate toward its correct threshold position."
+              : "The push is fully integrated, so the scan can advance to the next input value."
+            : "The next frame either checks the next parent link or resumes scanning if the new candidate is settled.",
+        evidence: [
+          {
+            id: `${event.id}-heap`,
+            label: "Heap",
+            value: `[${snapshot.heap.join(", ")}]`,
+          },
+        ],
+        sourceValues: event.payload,
+      })
     case "L6":
-      return {
-        summary: event.payload.shouldReplace
-          ? `${event.payload.currentValue} beats the root threshold ${event.payload.rootValue}, so it enters the top-k set.`
-          : `${event.payload.currentValue} does not beat the root threshold ${event.payload.rootValue}, so it is skipped.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "compare",
+        headline: event.payload.shouldReplace
+          ? [
+              narrationScanToken(`${event.id}-headline-index`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` brings ${event.payload.currentValue}, which beats threshold ${event.payload.rootValue}.`
+              ),
+            ]
+          : [
+              narrationScanToken(`${event.id}-headline-index`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` brings ${event.payload.currentValue}, which does not beat threshold ${event.payload.rootValue}.`
+              ),
+            ],
+        reason: event.payload.shouldReplace
+          ? "Only values larger than the heap root can improve the current top-k set once the heap is full."
+          : "A value that is not larger than the root cannot belong in the top-k set because the heap already holds k values at least as strong.",
+        implication: event.payload.shouldReplace
+          ? "The next frame replaces the root so the heap can re-establish the new weakest kept value."
+          : "The heap stays unchanged and the scan moves on to the next candidate.",
+        evidence: [
+          {
+            id: `${event.id}-threshold`,
+            label: "Threshold comparison",
+            value: `${event.payload.currentValue} vs ${event.payload.rootValue}`,
+            tokenId: scanIndexToken.id,
+            tokenStyle: scanIndexToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L7":
-      return {
-        summary: `Replace heap root ${event.payload.replacedValue} with ${event.payload.nextValue}.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "commit",
+        headline: [
+          narrationScanToken(`${event.id}-headline-index`),
+          narrationText(
+            `${event.id}-headline-text`,
+            ` replaces root ${event.payload.replacedValue} with ${event.payload.nextValue}.`
+          ),
+        ],
+        reason:
+          "The old root was the weakest kept value, so replacing it is the only mutation needed to admit a stronger candidate into the top-k set.",
+        implication:
+          "The next frames sift the replacement downward until the min-heap threshold property is restored.",
+        evidence: [
+          {
+            id: `${event.id}-heap`,
+            label: "Heap after replace",
+            value: `[${snapshot.heap.join(", ")}]`,
+            tokenId: scanIndexToken.id,
+            tokenStyle: scanIndexToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L8":
-      return event.type === "compare"
-        ? {
-            summary: event.payload.shouldSwap
-              ? `The smaller child ${event.payload.chosenChildValue} is below parent ${event.payload.parentValue}, so sift the replacement down.`
-              : `Parent ${event.payload.parentValue} is already below its smaller child ${event.payload.chosenChildValue}, so the heap is restored.`,
-            segments: [],
-            sourceValues: event.payload,
-          }
-        : {
-            summary: `Swap parent slot ${event.payload.parentIndex} with child slot ${event.payload.childIndex} during sift-down.`,
-            segments: [],
-            sourceValues: event.payload,
-          }
+      return defineStructuredNarration({
+        family: event.type === "compare" ? "compare" : "commit",
+        headline:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? `Parent ${event.payload.parentValue} is larger than smaller child ${event.payload.chosenChildValue}.`
+              : `Parent ${event.payload.parentValue} is already below smaller child ${event.payload.chosenChildValue}.`
+            : `Swap parent slot ${event.payload.parentIndex} with child slot ${event.payload.childIndex} during sift-down.`,
+        reason:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? "After replacing the root, the new candidate may be too large to remain above smaller children in a min-heap."
+              : "When the parent is already below the smaller child, the threshold order is restored and no further repair is needed."
+            : "This swap pushes the oversized replacement away from the root so the smallest kept value can surface again as the threshold.",
+        implication:
+          event.type === "compare"
+            ? event.payload.shouldSwap
+              ? "The next frame performs the downward swap that repairs the threshold ordering."
+              : "The heap is stable again, so the scan can continue with the next input value."
+            : "The next frame either checks the next child relation or resumes the scan if the heap is settled.",
+        evidence: [
+          {
+            id: `${event.id}-heap`,
+            label: "Heap",
+            value: `[${snapshot.heap.join(", ")}]`,
+          },
+        ],
+        sourceValues: event.payload,
+      })
     case "L11":
-      return {
-        summary: `Return the top-k values [${(snapshot.result ?? []).join(", ")}] in descending order.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "return",
+        headline: `Return the top-k values [${(snapshot.result ?? []).join(", ")}] in descending order.`,
+        reason:
+          "The heap preserved exactly k strongest candidates throughout the scan, and sorting them descending produces the final answer form expected by the caller.",
+        implication:
+          "The lesson ends here with the final thresholded candidate set already resolved.",
+        evidence: [
+          {
+            id: `${event.id}-result`,
+            label: "Top-k result",
+            value: `[${(snapshot.result ?? []).join(", ")}]`,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     default:
-      return {
-        summary: "Advance the heap-backed top-k state.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "advance",
+        headline: "Advance the heap-backed top-k state.",
+        reason:
+          "The heap, input scan, and state panel stay synchronized one learner-visible threshold decision at a time.",
+        implication:
+          "The next frame will expose the next comparison or mutation in the top-k process.",
         sourceValues: event.payload,
-      }
+      })
   }
 }
 
@@ -413,7 +617,16 @@ function buildStatePrimitive(snapshot: HeapTopKSnapshot): PrimitiveFrameState {
     title: viewSpec.title,
     data: {
       values: [
-        { label: "i", value: snapshot.currentIndex ?? "-" },
+        {
+          label: "i",
+          value: snapshot.currentIndex ?? "-",
+          tokenId:
+            snapshot.currentIndex !== undefined ? scanIndexToken.id : undefined,
+          tokenStyle:
+            snapshot.currentIndex !== undefined
+              ? scanIndexToken.style
+              : undefined,
+        },
         { label: "num", value: snapshot.currentValue ?? "-" },
         { label: "k", value: snapshot.k },
         { label: "size", value: snapshot.heap.length },
@@ -464,7 +677,7 @@ export function projectMinHeapTopK(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-      primitives: buildPrimitiveStates(event, snapshot),
+        primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

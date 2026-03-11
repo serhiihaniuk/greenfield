@@ -182,6 +182,86 @@ function verifyPushAndReplaceFrames(frames: Frame[]): VerificationReport {
   return createVerificationReport(issues)
 }
 
+function verifyStructuredNarration(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+
+  for (const frame of frames) {
+    const { narration } = frame
+    const tokenIds = new Set(
+      narration.segments
+        .map((segment) => segment.tokenId)
+        .filter((tokenId): tokenId is string => Boolean(tokenId))
+    )
+
+    if (
+      ["L2", "L3", "L4", "L5", "L6", "L7", "L8", "L11"].includes(frame.codeLine) &&
+      (!narration.headline || !narration.reason || !narration.implication)
+    ) {
+      issues.push({
+        code: "HEAP_TOP_K_STRUCTURED_NARRATION_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should expose headline, reason, and implication for the active heap step.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (
+      ["L2", "L3", "L4", "L6", "L7"].includes(frame.codeLine) &&
+      !tokenIds.has("scan-index")
+    ) {
+      issues.push({
+        code: "HEAP_TOP_K_SCAN_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain the scanned candidate through the shared scan token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (frame.codeLine === "L3") {
+      const reasonText = narration.reason?.segments.map((segment) => segment.text).join("")
+      if (
+        !reasonText?.includes("min-heap") &&
+        !reasonText?.includes("root")
+      ) {
+        issues.push({
+          code: "HEAP_TOP_K_THRESHOLD_REASON_WEAK",
+          kind: "pedagogical-integrity",
+          severity: "error",
+          message: `Frame "${frame.id}" should explain why the heap root is the threshold once the heap is full.`,
+          frameId: frame.id,
+          pedagogicalCheck: "narration-mismatch",
+        })
+      }
+    }
+
+    if (frame.codeLine === "L6") {
+      const implicationText = narration.implication?.segments
+        .map((segment) => segment.text)
+        .join("")
+
+      if (
+        !implicationText?.includes("replaces the root") &&
+        !implicationText?.includes("heap stays unchanged")
+      ) {
+        issues.push({
+          code: "HEAP_TOP_K_DECISION_IMPLICATION_WEAK",
+          kind: "pedagogical-integrity",
+          severity: "error",
+          message: `Frame "${frame.id}" should make the threshold decision consequence explicit.`,
+          frameId: frame.id,
+          pedagogicalCheck: "narration-mismatch",
+        })
+      }
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 function verifyFinalAnswer(frames: Frame[]): VerificationReport {
   const issues: VerificationIssue[] = []
   const finalFrame = frames.at(-1)
@@ -243,6 +323,7 @@ export function verifyMinHeapTopK(
     verifyRequiredViews(frames),
     verifyThresholdVisibility(frames),
     verifyPushAndReplaceFrames(frames),
+    verifyStructuredNarration(frames),
     verifyFinalAnswer(frames)
   )
 }
