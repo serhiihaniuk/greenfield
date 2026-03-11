@@ -7,8 +7,6 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   KeyboardIcon,
-  PauseIcon,
-  PlayIcon,
   RotateCcwIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
@@ -88,7 +86,6 @@ type LessonPlayerProps = {
   lessonId?: string
 }
 
-const PLAYBACK_SPEED_OPTIONS = ["0.5x", "1x", "1.5x", "2x"] as const
 const CANVAS_KINDS = new Set(["tree", "call-tree", "graph"])
 const STATIC_COMMANDS = getStaticLessonCommands()
 
@@ -469,7 +466,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   )
   const firstFrameCommand = commandById.get("jump-first")
   const previousFrameCommand = commandById.get("previous-frame")
-  const togglePlaybackCommand = commandById.get("toggle-playback")
   const nextFrameCommand = commandById.get("next-frame")
   const lastFrameCommand = commandById.get("jump-last")
   const resetPlaybackCommand = commandById.get("reset-playback")
@@ -832,36 +828,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               render={
                 <Button
                   size="sm"
-                  variant="outline"
-                  onClick={() => togglePlaybackCommand && runCommand(togglePlaybackCommand)}
-                  disabled={togglePlaybackCommand ? commandDisabled(togglePlaybackCommand, commandContext) : learnerModeBlocked}
-                  aria-label={playbackStatus === "playing" ? "Pause" : "Play"}
-                />
-              }
-            >
-              {playbackStatus === "playing" ? (
-                <>
-                  <PauseIcon className="!size-4 stroke-[2.5]" data-icon="inline-start" />
-                  Pause
-                </>
-              ) : (
-                <>
-                  <PlayIcon className="!size-4 fill-current stroke-[2.5]" data-icon="inline-start" />
-                  Play
-                </>
-              )}
-            </TooltipTrigger>
-            <TooltipContent>
-              <CommandTooltipShortcut command={togglePlaybackCommand}>
-                {playbackStatus === "playing" ? "Pause playback" : "Play"}
-              </CommandTooltipShortcut>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger
-              render={
-                <Button
-                  size="sm"
                   variant="default"
                   onClick={() => nextFrameCommand && runCommand(nextFrameCommand)}
                   disabled={nextFrameCommand ? commandDisabled(nextFrameCommand, commandContext) : learnerModeBlocked}
@@ -937,27 +903,6 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         <span className="ml-1.5 shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">
           {currentFrameLabel}
         </span>
-
-        <div className="mx-1 h-5 border-l border-border/30" />
-
-        <Select
-          value={playbackSpeed}
-          onValueChange={(value) => value && setPlaybackSpeed(value)}
-        >
-          <SelectTrigger size="sm" className="w-[4.5rem]" aria-label="Playback speed">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Speed</SelectLabel>
-              {PLAYBACK_SPEED_OPTIONS.map((entry) => (
-                <SelectItem key={entry} value={entry}>
-                  {entry}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
 
         <Tooltip>
           <TooltipTrigger

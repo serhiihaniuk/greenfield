@@ -7,7 +7,7 @@ export async function selectFooterOption(
 ) {
   if (label === "Lesson") {
     await expect(
-      page.getByRole("button", { name: "Play", exact: true })
+      page.getByRole("button", { name: "Next frame", exact: true })
     ).toBeVisible()
     await page.locator("body").click({ position: { x: 8, y: 8 } })
     await page.keyboard.press("Control+e")
@@ -89,7 +89,7 @@ export async function expectRuntimeReady(
   secondaryHeading: string
 ) {
   await expect(
-    page.getByRole("button", { name: "Play", exact: true })
+    page.getByRole("button", { name: "Next frame", exact: true })
   ).toBeVisible()
   await expect(
     page.getByRole("heading", { name: primaryHeading, exact: true })
