@@ -25,7 +25,7 @@ export function CodeTraceView({
       <div
         className={cn(
           "overflow-auto rounded-lg border border-border/70 p-3 font-mono text-sm",
-          role === "reference" ? "min-h-0 flex-1" : "h-[19rem] xl:h-[23rem]"
+          role === "reference" ? "min-h-0 flex-1" : "h-76 xl:h-92"
         )}
         style={{
           background:

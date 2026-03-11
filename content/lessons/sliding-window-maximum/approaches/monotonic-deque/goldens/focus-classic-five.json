@@ -8,7 +8,7 @@
       ],
       "codeLine": "L1",
       "id": "frame-1",
-      "narrationSummary": "Initialize an empty deque that will keep candidate indices in decreasing value order.",
+      "narrationSummary": "Initialize the monotonic deque as empty.",
       "primitives": [
         {
           "annotations": [],
@@ -99,7 +99,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-2",
-      "narrationSummary": "Initialize the output list for completed window maximums.",
+      "narrationSummary": "Initialize the result list as empty.",
       "primitives": [
         {
           "annotations": [],
@@ -190,7 +190,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-3",
-      "narrationSummary": "Advance to index 0 for the next window transition.",
+      "narrationSummary": "Advance i to index 0 for the next window transition.",
       "primitives": [
         {
           "annotations": [],
@@ -232,7 +232,16 @@
           ],
           "id": "window-array",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-0",
+              "tone": "primary"
+            }
+          ],
           "title": "Sliding Window",
           "viewportRole": "primary"
         },
@@ -281,7 +290,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-4",
-      "narrationSummary": "Move the focus to nums[0] = 1.",
+      "narrationSummary": "Move i to nums[0] = 1.",
       "primitives": [
         {
           "annotations": [
@@ -389,7 +398,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-5",
-      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "narrationSummary": "front still belongs to the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -489,7 +498,7 @@
       ],
       "codeLine": "L11",
       "id": "frame-6",
-      "narrationSummary": "Push index 0 so it can compete in later windows.",
+      "narrationSummary": "Push i into the deque as a surviving candidate.",
       "primitives": [
         {
           "annotations": [
@@ -589,6 +598,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -627,7 +645,7 @@
       ],
       "codeLine": "L12",
       "id": "frame-7",
-      "narrationSummary": "The window is not full yet, so do not emit an output.",
+      "narrationSummary": "The live window is still warming up.",
       "primitives": [
         {
           "annotations": [],
@@ -711,6 +729,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -749,7 +776,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-8",
-      "narrationSummary": "Advance to index 1 for the next window transition.",
+      "narrationSummary": "Advance i to index 1 for the next window transition.",
       "primitives": [
         {
           "annotations": [],
@@ -791,7 +818,16 @@
           ],
           "id": "window-array",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-1",
+              "tone": "primary"
+            }
+          ],
           "title": "Sliding Window",
           "viewportRole": "primary"
         },
@@ -824,6 +860,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -862,7 +907,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-9",
-      "narrationSummary": "Move the focus to nums[1] = 3.",
+      "narrationSummary": "Move i to nums[1] = 3.",
       "primitives": [
         {
           "annotations": [
@@ -954,6 +999,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -992,7 +1046,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-10",
-      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "narrationSummary": "front still belongs to the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -1084,6 +1138,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1122,7 +1185,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-11",
-      "narrationSummary": "Deque back index 0 is dominated by 3, so pop it.",
+      "narrationSummary": "back at index 0 is dominated by 3.",
       "primitives": [
         {
           "annotations": [],
@@ -1214,6 +1277,15 @@
               "status": "active",
               "targetId": "deque-0",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-0",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1360,7 +1432,7 @@
       ],
       "codeLine": "L11",
       "id": "frame-13",
-      "narrationSummary": "Push index 1 so it can compete in later windows.",
+      "narrationSummary": "Push i into the deque as a surviving candidate.",
       "primitives": [
         {
           "annotations": [
@@ -1460,6 +1532,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1498,7 +1579,7 @@
       ],
       "codeLine": "L12",
       "id": "frame-14",
-      "narrationSummary": "The window is not full yet, so do not emit an output.",
+      "narrationSummary": "The live window is still warming up.",
       "primitives": [
         {
           "annotations": [],
@@ -1582,6 +1663,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1620,7 +1710,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-15",
-      "narrationSummary": "Advance to index 2 for the next window transition.",
+      "narrationSummary": "Advance i to index 2 for the next window transition.",
       "primitives": [
         {
           "annotations": [],
@@ -1662,7 +1752,16 @@
           ],
           "id": "window-array",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-2",
+              "tone": "primary"
+            }
+          ],
           "title": "Sliding Window",
           "viewportRole": "primary"
         },
@@ -1695,6 +1794,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1733,7 +1841,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-16",
-      "narrationSummary": "Move the focus to nums[2] = -1.",
+      "narrationSummary": "Move i to nums[2] = -1.",
       "primitives": [
         {
           "annotations": [
@@ -1825,6 +1933,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1863,7 +1980,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-17",
-      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "narrationSummary": "front still belongs to the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -1955,6 +2072,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -1993,7 +2119,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-18",
-      "narrationSummary": "The deque back is larger than the current value, so it can stay as a candidate.",
+      "narrationSummary": "back stays because 3 is larger than -1.",
       "primitives": [
         {
           "annotations": [],
@@ -2085,6 +2211,15 @@
               "status": "active",
               "targetId": "deque-1",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-1",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -2123,7 +2258,7 @@
       ],
       "codeLine": "L11",
       "id": "frame-19",
-      "narrationSummary": "Push index 2 so it can compete in later windows.",
+      "narrationSummary": "Push i into the deque as a surviving candidate.",
       "primitives": [
         {
           "annotations": [
@@ -2280,7 +2415,7 @@
       ],
       "codeLine": "L12",
       "id": "frame-20",
-      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "narrationSummary": "The live window now contains k elements.",
       "primitives": [
         {
           "annotations": [],
@@ -2421,7 +2556,7 @@
       ],
       "codeLine": "L13",
       "id": "frame-21",
-      "narrationSummary": "Append 3 from deque front index 1 to the result.",
+      "narrationSummary": "Emit 3 from front at index 1.",
       "primitives": [
         {
           "annotations": [
@@ -2578,7 +2713,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-22",
-      "narrationSummary": "Advance to index 3 for the next window transition.",
+      "narrationSummary": "Advance i to index 3 for the next window transition.",
       "primitives": [
         {
           "annotations": [],
@@ -2620,7 +2755,16 @@
           ],
           "id": "window-array",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-3",
+              "tone": "primary"
+            }
+          ],
           "title": "Sliding Window",
           "viewportRole": "primary"
         },
@@ -2710,7 +2854,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-23",
-      "narrationSummary": "Move the focus to nums[3] = -3.",
+      "narrationSummary": "Move i to nums[3] = -3.",
       "primitives": [
         {
           "annotations": [
@@ -2859,7 +3003,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-24",
-      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "narrationSummary": "front still belongs to the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -3008,7 +3152,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-25",
-      "narrationSummary": "The deque back is larger than the current value, so it can stay as a candidate.",
+      "narrationSummary": "back stays because -1 is larger than -3.",
       "primitives": [
         {
           "annotations": [],
@@ -3157,7 +3301,7 @@
       ],
       "codeLine": "L11",
       "id": "frame-26",
-      "narrationSummary": "Push index 3 so it can compete in later windows.",
+      "narrationSummary": "Push i into the deque as a surviving candidate.",
       "primitives": [
         {
           "annotations": [
@@ -3324,7 +3468,7 @@
       ],
       "codeLine": "L12",
       "id": "frame-27",
-      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "narrationSummary": "The live window now contains k elements.",
       "primitives": [
         {
           "annotations": [],
@@ -3475,7 +3619,7 @@
       ],
       "codeLine": "L13",
       "id": "frame-28",
-      "narrationSummary": "Append 3 from deque front index 1 to the result.",
+      "narrationSummary": "Emit 3 from front at index 1.",
       "primitives": [
         {
           "annotations": [
@@ -3642,7 +3786,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-29",
-      "narrationSummary": "Advance to index 4 for the next window transition.",
+      "narrationSummary": "Advance i to index 4 for the next window transition.",
       "primitives": [
         {
           "annotations": [],
@@ -3684,7 +3828,16 @@
           ],
           "id": "window-array",
           "kind": "array",
-          "pointers": [],
+          "pointers": [
+            {
+              "id": "index",
+              "label": "i",
+              "placement": "top",
+              "status": "active",
+              "targetId": "cell-4",
+              "tone": "primary"
+            }
+          ],
           "title": "Sliding Window",
           "viewportRole": "primary"
         },
@@ -3784,7 +3937,7 @@
       ],
       "codeLine": "L4",
       "id": "frame-30",
-      "narrationSummary": "Move the focus to nums[4] = 5.",
+      "narrationSummary": "Move i to nums[4] = 5.",
       "primitives": [
         {
           "annotations": [
@@ -3943,7 +4096,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-31",
-      "narrationSummary": "Deque front index 1 is stale, so it must leave the window.",
+      "narrationSummary": "front at index 1 has fallen out of the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -4251,7 +4404,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-33",
-      "narrationSummary": "The deque front still belongs to the current window, so keep it.",
+      "narrationSummary": "front still belongs to the live window.",
       "primitives": [
         {
           "annotations": [],
@@ -4400,7 +4553,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-34",
-      "narrationSummary": "Deque back index 3 is dominated by 5, so pop it.",
+      "narrationSummary": "back at index 3 is dominated by 5.",
       "primitives": [
         {
           "annotations": [],
@@ -4641,6 +4794,15 @@
               "status": "active",
               "targetId": "deque-2",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4679,7 +4841,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-36",
-      "narrationSummary": "Deque back index 2 is dominated by 5, so pop it.",
+      "narrationSummary": "back at index 2 is dominated by 5.",
       "primitives": [
         {
           "annotations": [],
@@ -4771,6 +4933,15 @@
               "status": "active",
               "targetId": "deque-2",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-2",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -4917,7 +5088,7 @@
       ],
       "codeLine": "L11",
       "id": "frame-38",
-      "narrationSummary": "Push index 4 so it can compete in later windows.",
+      "narrationSummary": "Push i into the deque as a surviving candidate.",
       "primitives": [
         {
           "annotations": [
@@ -5017,6 +5188,15 @@
               "status": "active",
               "targetId": "deque-4",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-4",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -5055,7 +5235,7 @@
       ],
       "codeLine": "L12",
       "id": "frame-39",
-      "narrationSummary": "The first full window is ready, so emit its maximum.",
+      "narrationSummary": "The live window now contains k elements.",
       "primitives": [
         {
           "annotations": [],
@@ -5139,6 +5319,15 @@
               "status": "active",
               "targetId": "deque-4",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-4",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -5177,7 +5366,7 @@
       ],
       "codeLine": "L13",
       "id": "frame-40",
-      "narrationSummary": "Append 5 from deque front index 4 to the result.",
+      "narrationSummary": "Emit 5 from front at index 4.",
       "primitives": [
         {
           "annotations": [
@@ -5277,6 +5466,15 @@
               "status": "active",
               "targetId": "deque-4",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-4",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -5315,7 +5513,7 @@
       ],
       "codeLine": "L3",
       "id": "frame-41",
-      "narrationSummary": "Every index has been processed, so the output list is complete.",
+      "narrationSummary": "All indices have been processed.",
       "primitives": [
         {
           "annotations": [],
@@ -5390,6 +5588,15 @@
               "status": "active",
               "targetId": "deque-4",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-4",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",
@@ -5519,6 +5726,15 @@
               "status": "active",
               "targetId": "deque-4",
               "tone": "secondary"
+            },
+            {
+              "id": "deque-back",
+              "label": "back",
+              "placement": "bottom",
+              "priority": 2,
+              "status": "waiting",
+              "targetId": "deque-4",
+              "tone": "compare"
             }
           ],
           "title": "Monotonic Deque",

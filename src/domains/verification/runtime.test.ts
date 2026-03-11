@@ -322,7 +322,13 @@ describe("verifyRuntimeOutputs", () => {
       rawInput: classicPreset.rawInput,
     })
 
-    const pushFrame = runtime.frames.find((frame) => frame.codeLine === "L11")
+    const pushFrame = runtime.frames.find(
+      (frame) =>
+        frame.codeLine === "L11" &&
+        frame.narration.implication?.segments[0]?.text.includes(
+          "the next frame can emit the deque front"
+        )
+    )
     const statePrimitive = pushFrame?.primitives.find(
       (primitive) => primitive.id === "window-state"
     )
@@ -348,6 +354,49 @@ describe("verifyRuntimeOutputs", () => {
     expect(
       pushFrame.narration.segments.some((segment) => segment.tokenId === "index")
     ).toBe(true)
+    expect(pushFrame.narration.headline?.segments.some((segment) => segment.tokenId === "index")).toBe(
+      true
+    )
+    expect(pushFrame.narration.reason?.segments[0]?.text).toContain(
+      "All stale and dominated indices have already been removed"
+    )
+    expect(pushFrame.narration.implication?.segments[0]?.text).toContain(
+      "the next frame can emit the deque front"
+    )
+
+    const compareFrame = runtime.frames.find((frame) => frame.codeLine === "L8")
+    if (!compareFrame) {
+      throw new Error("Expected a sliding window compare frame for the deque back.")
+    }
+
+    expect(
+      compareFrame.narration.segments.some(
+        (segment) => segment.tokenId === "deque-back"
+      )
+    ).toBe(true)
+    expect(compareFrame.narration.reason?.segments[0]?.text).toContain(
+      "A smaller-or-equal value behind the incoming index"
+    )
+    expect(compareFrame.narration.implication?.segments[0]?.text).toContain(
+      "The next frame pops"
+    )
+
+    const commitFrame = runtime.frames.find((frame) => frame.codeLine === "L13")
+    if (!commitFrame) {
+      throw new Error("Expected a sliding window commit frame.")
+    }
+
+    expect(
+      commitFrame.narration.segments.some(
+        (segment) => segment.tokenId === "deque-front"
+      )
+    ).toBe(true)
+    expect(commitFrame.narration.reason?.segments[0]?.text).toContain(
+      "The deque stores candidates in decreasing value order"
+    )
+    expect(commitFrame.narration.implication?.segments[0]?.text).toContain(
+      "The result list grows by one"
+    )
   })
 
   it("projects graph bfs current and neighbor tokens across graph, queue, state, and narration", () => {

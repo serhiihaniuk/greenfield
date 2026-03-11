@@ -130,6 +130,7 @@ describe("App", () => {
     window.history.replaceState({}, "", "/?audit=primitives")
 
     await renderApp()
+    await vi.dynamicImportSettled()
 
     expect(
       await screen.findByRole("heading", {

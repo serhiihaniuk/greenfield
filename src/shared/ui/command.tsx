@@ -78,7 +78,7 @@ function CommandList({
   return (
     <CommandPrimitive.List
       data-slot="command-list"
-      className={cn("max-h-[26rem] overflow-y-auto overflow-x-hidden p-2", className)}
+      className={cn("max-h-104 overflow-y-auto overflow-x-hidden p-2", className)}
       {...props}
     />
   )

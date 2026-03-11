@@ -289,6 +289,91 @@ function verifyOutputFrames(
   return createVerificationReport(issues)
 }
 
+function verifyStructuredNarration(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+
+  for (const frame of frames) {
+    const { narration } = frame
+
+    if (
+      (frame.codeLine === "L5" ||
+        frame.codeLine === "L8" ||
+        frame.codeLine === "L11" ||
+        frame.codeLine === "L13") &&
+      (!narration.headline || !narration.reason || !narration.implication)
+    ) {
+      issues.push({
+        code: "SLIDING_WINDOW_MAXIMUM_STRUCTURED_NARRATION_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should expose a full explanation block with headline, reason, and implication.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    const tokenIds = new Set(
+      narration.segments
+        .map((segment) => segment.tokenId)
+        .filter((tokenId): tokenId is string => Boolean(tokenId))
+    )
+
+    if (
+      frame.codeLine === "L5" &&
+      frame.narration.sourceValues.hasFront &&
+      !tokenIds.has("deque-front")
+    ) {
+      issues.push({
+        code: "SLIDING_WINDOW_MAXIMUM_FRONT_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain the front-window check using the shared front token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (
+      frame.codeLine === "L8" &&
+      frame.narration.sourceValues.hasBack &&
+      !tokenIds.has("deque-back")
+    ) {
+      issues.push({
+        code: "SLIDING_WINDOW_MAXIMUM_BACK_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain the back comparison using the shared back token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (frame.codeLine === "L11" && !tokenIds.has("index")) {
+      issues.push({
+        code: "SLIDING_WINDOW_MAXIMUM_INDEX_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain the deque push using the shared scan token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (frame.codeLine === "L13" && !tokenIds.has("deque-front")) {
+      issues.push({
+        code: "SLIDING_WINDOW_MAXIMUM_COMMIT_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain the emitted maximum through the shared front token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 export function verifyMonotonicDequeSlidingWindowMaximum(
   codeTemplate: CodeTemplate,
   events: TraceEvent[],
@@ -299,6 +384,7 @@ export function verifyMonotonicDequeSlidingWindowMaximum(
     verifyRequiredViews(frames),
     verifyCompareSignals(frames),
     verifyDequeMutations(frames),
-    verifyOutputFrames(events, frames)
+    verifyOutputFrames(events, frames),
+    verifyStructuredNarration(frames)
   )
 }

@@ -500,7 +500,7 @@ export function PrimitiveAudit() {
   return (
     <main className="bg-background text-foreground min-h-svh">
       <div className="min-h-svh bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_20%),radial-gradient(circle_at_top_right,rgba(251,191,36,0.08),transparent_18%),linear-gradient(180deg,rgba(9,14,23,0.96)_0%,rgba(9,14,23,1)_100%)]">
-        <div className="mx-auto flex w-full max-w-[1760px] flex-col gap-6 px-4 py-5 xl:px-6">
+      <div className="mx-auto flex w-full max-w-440 flex-col gap-6 px-4 py-5 xl:px-6">
           <Card className="border border-border/60 bg-card/70 shadow-[0_18px_70px_rgba(2,8,23,0.42)] backdrop-blur">
             <CardHeader>
               <CardTitle>

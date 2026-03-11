@@ -4,9 +4,13 @@ import {
   defineFrame,
   type Frame,
   type NarrationPayloadInput,
-  type NarrationSegmentTone,
   type VisualChangeType,
 } from "@/domains/projection/types"
+import {
+  defineStructuredNarration,
+  narrationText,
+  narrationTokenFromPointer,
+} from "@/domains/projection/narration"
 import type { TraceEvent } from "@/domains/tracing/types"
 import {
   defineArrayPrimitiveFrameState,
@@ -62,162 +66,356 @@ function buildNarration(
   event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot
 ): NarrationPayloadInput {
-  const executionTokens = deriveExecutionTokensFromPointers([
-    ...buildArrayPointers(event, snapshot),
-    ...buildDequePointers(event, snapshot),
-  ])
-  const indexToken = executionTokens.get("index")
-  const frontToken = executionTokens.get("deque-front")
-  const backToken = executionTokens.get("deque-back")
-  const textSegment = (
+  const arrayPointers = buildArrayPointers(event, snapshot)
+  const dequePointers = buildDequePointers(event, snapshot)
+  const indexPointer = arrayPointers.find((pointer) => pointer.id === "index")
+  const frontPointer = dequePointers.find(
+    (pointer) => pointer.id === "deque-front"
+  )
+  const backPointer = dequePointers.find(
+    (pointer) => pointer.id === "deque-back"
+  )
+  const windowStart = getWindowStart(snapshot)
+  const windowLabel =
+    snapshot.index !== undefined && windowStart !== undefined
+      ? `[${windowStart}..${snapshot.index}]`
+      : "warming up"
+  const dequeLabel =
+    snapshot.deque.length > 0 ? snapshot.deque.join(" -> ") : "empty"
+  const textSegment = (id: string, text: string) =>
+    narrationText(`${event.id}-${id}`, text)
+  const pointerSegment = (
     id: string,
-    text: string,
-    tone: NarrationSegmentTone = "default"
-  ) => ({
-    id: `${event.id}-${id}`,
-    text,
-    tone,
-  })
-  const tokenSegment = (
-    id: string,
-    token: typeof indexToken | typeof frontToken | typeof backToken | undefined,
+    pointer: PointerSpec | undefined,
     fallbackText: string
   ) =>
-    token
-      ? {
-          id: `${event.id}-${id}`,
-          text: token.label,
-          tokenId: token.id,
-          tokenStyle: token.style,
-        }
+    pointer
+      ? narrationTokenFromPointer(`${event.id}-${id}`, pointer)
       : textSegment(id, fallbackText)
 
   switch (event.codeLine) {
     case "L1":
-      return {
-        summary:
-          "Initialize an empty deque that will keep candidate indices in decreasing value order.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "setup",
+        headline: "Initialize the monotonic deque as empty.",
+        reason:
+          "It will hold only live candidate indices in decreasing value order, so the front can always name the strongest current maximum.",
+        implication:
+          "The scan can now start feeding indices into that candidate structure one by one.",
+        evidence: [
+          {
+            id: `${event.id}-deque`,
+            label: "Deque",
+            value: dequeLabel,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L2":
-      return {
-        summary: "Initialize the output list for completed window maximums.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "setup",
+        headline: "Initialize the result list as empty.",
+        reason:
+          "Every full window will contribute exactly one committed maximum in left-to-right scan order.",
+        implication:
+          "Once the first full window closes, the next commit frame can append its maximum here.",
+        evidence: [
+          {
+            id: `${event.id}-result`,
+            label: "Result",
+            value: snapshot.result.length > 0 ? snapshot.result.join(", ") : "[]",
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L3":
-      return {
-        summary:
+      return defineStructuredNarration({
+        family: event.payload.result === false ? "return" : "check",
+        headline:
           event.payload.result === false
-            ? "Every index has been processed, so the output list is complete."
-            : `Advance to index ${snapshot.index} for the next window transition.`,
-        segments: event.payload.result === false
-          ? []
-          : [
-              textSegment("t0", "Advance "),
-              tokenSegment("index", indexToken, "i"),
-              textSegment("t1", ` to index ${snapshot.index} for the next window transition.`),
-            ],
+            ? "All indices have been processed."
+            : [
+                textSegment("headline-0", "Advance "),
+                pointerSegment("headline-index", indexPointer, "i"),
+                textSegment(
+                  "headline-1",
+                  ` to index ${snapshot.index} for the next window transition.`
+                ),
+              ],
+        reason:
+          event.payload.result === false
+            ? "The scan pointer has moved past the end of the array, so no new windows can form."
+            : "Each loop iteration introduces one new index, repairs the deque, and possibly emits one maximum.",
+        implication:
+          event.payload.result === false
+            ? "The maxima list is complete and can now be returned."
+            : "The next frame makes the incoming array value concrete before the deque repairs begin.",
+        evidence: [
+          {
+            id: `${event.id}-window`,
+            label: "Live window",
+            value: windowLabel,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L4":
-      return {
-        summary: `Move the focus to nums[${snapshot.index}] = ${snapshot.currentValue}.`,
-        segments: [
-          textSegment("t0", "Move "),
-          tokenSegment("index", indexToken, "i"),
+      return defineStructuredNarration({
+        family: "advance",
+        headline: [
+          textSegment("headline-0", "Move "),
+          pointerSegment("headline-index", indexPointer, "i"),
           textSegment(
-            "t1",
+            "headline-1",
             ` to nums[${snapshot.index}] = ${snapshot.currentValue}.`
           ),
         ],
+        reason:
+          "The incoming index is the only new candidate that can evict stale or weaker deque entries on this step.",
+        implication:
+          "The following checks decide whether older front or back candidates still deserve to survive around it.",
+        evidence: [
+          {
+            id: `${event.id}-window`,
+            label: "Live window",
+            value: windowLabel,
+          },
+          {
+            id: `${event.id}-deque`,
+            label: "Deque before repair",
+            value: dequeLabel,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L5":
-      return {
-        summary: event.payload.result
-          ? `Deque front index ${event.payload.frontIndex} is stale, so it must leave the window.`
-          : "The deque front still belongs to the current window, so keep it.",
-        segments: [
-          tokenSegment("front", frontToken, "front"),
-          textSegment(
-            "t0",
-            event.payload.result
-              ? ` index ${event.payload.frontIndex} is stale, so it must leave the window.`
-              : " still belongs to the current window, so keep it."
-          ),
+      return defineStructuredNarration({
+        family: "check",
+        headline:
+          event.payload.result
+            ? [
+                pointerSegment("headline-front", frontPointer, "front"),
+                textSegment(
+                  "headline-0",
+                  ` at index ${event.payload.frontIndex} has fallen out of the live window.`
+                ),
+              ]
+            : [
+                pointerSegment("headline-front", frontPointer, "front"),
+                textSegment("headline-0", " still belongs to the live window."),
+              ],
+        reason: event.payload.result
+          ? `Its index is at or before ${event.payload.windowFloor}, so it can no longer represent the current window ${windowLabel}.`
+          : `Its index is still inside the current window ${windowLabel}, so it remains a valid maximum candidate.`,
+        implication: event.payload.result
+          ? "The next frame must remove that stale front before any maximum can be trusted."
+          : "Deque repair can continue by checking whether the back is dominated by the incoming value.",
+        evidence: [
+          {
+            id: `${event.id}-front`,
+            label: "Front index",
+            value: `${event.payload.frontIndex ?? "-"}`,
+            tokenId: frontPointer?.id,
+            tokenStyle: frontPointer
+              ? deriveExecutionTokensFromPointers([frontPointer]).get(
+                  frontPointer.id
+                )?.style
+              : undefined,
+          },
+          {
+            id: `${event.id}-window`,
+            label: "Live window",
+            value: windowLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L6":
-      return {
-        summary: `Remove stale index ${event.payload.poppedIndex} from the deque front.`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "shift",
+        headline: `Remove stale index ${event.payload.poppedIndex} from the deque front.`,
+        reason:
+          "Candidates outside the live window cannot be the maximum for this step, even if they were strongest earlier.",
+        implication:
+          "The deque front now points to the oldest remaining candidate that still overlaps the current window.",
+        evidence: [
+          {
+            id: `${event.id}-removed`,
+            label: "Removed index",
+            value: `${event.payload.poppedIndex ?? "-"}`,
+          },
+          {
+            id: `${event.id}-deque`,
+            label: "Deque after shift",
+            value: dequeLabel,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L8":
-      return {
-        summary: event.payload.result
-          ? `Deque back index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
-          : "The deque back is larger than the current value, so it can stay as a candidate.",
-        segments: [
-          tokenSegment("back", backToken, "back"),
+      return defineStructuredNarration({
+        family: "compare",
+        headline:
+          event.payload.result
+            ? [
+                pointerSegment("headline-back", backPointer, "back"),
+                textSegment(
+                  "headline-0",
+                  ` at index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}.`
+                ),
+              ]
+            : [
+                pointerSegment("headline-back", backPointer, "back"),
+                textSegment(
+                  "headline-0",
+                  ` stays because ${event.payload.backValue} is larger than ${snapshot.currentValue}.`
+                ),
+              ],
+        reason: event.payload.result
+          ? "A smaller-or-equal value behind the incoming index can never beat that newer value in this window or any later overlapping window."
+          : "A larger back value can still outlive the incoming index as a stronger maximum candidate, so the decreasing-order invariant already holds.",
+        implication: event.payload.result
+          ? "The next frame pops that dominated candidate from the deque back."
+          : "The deque is ready to append the incoming index without breaking monotonic order.",
+        evidence: [
+          {
+            id: `${event.id}-comparison`,
+            label: "Back vs current",
+            value: `${event.payload.backValue ?? "-"} vs ${snapshot.currentValue ?? "-"}`,
+          },
+          {
+            id: `${event.id}-deque`,
+            label: "Deque",
+            value: dequeLabel,
+          },
+        ],
+        sourceValues: event.payload,
+      })
+    case "L9":
+      return defineStructuredNarration({
+        family: "prune",
+        headline: `Pop dominated index ${event.payload.poppedIndex} from the deque back.`,
+        reason:
+          "That older candidate is weaker than the incoming value and will expire sooner, so it can never become a future maximum.",
+        implication:
+          "The deque back now exposes the next strongest surviving candidate before the incoming index is appended.",
+        evidence: [
+          {
+            id: `${event.id}-removed`,
+            label: "Removed index",
+            value: `${event.payload.poppedIndex ?? "-"}`,
+          },
+          {
+            id: `${event.id}-deque`,
+            label: "Deque after prune",
+            value: dequeLabel,
+          },
+        ],
+        sourceValues: event.payload,
+      })
+    case "L11":
+      return defineStructuredNarration({
+        family: "expand",
+        headline: [
+          textSegment("headline-0", "Push "),
+          pointerSegment("headline-index", indexPointer, "i"),
           textSegment(
-            "t0",
-            event.payload.result
-              ? ` index ${event.payload.backIndex} is dominated by ${snapshot.currentValue}, so pop it.`
-              : " is larger than the current value, so it can stay as a candidate."
+            "headline-1",
+            " into the deque as a surviving candidate."
           ),
         ],
-        sourceValues: event.payload,
-      }
-    case "L9":
-      return {
-        summary: `Pop dominated index ${event.payload.poppedIndex} from the deque back.`,
-        segments: [],
-        sourceValues: event.payload,
-      }
-    case "L11":
-      return {
-        summary: `Push index ${event.payload.pushedIndex} so it can compete in later windows.`,
-        segments: [
-          textSegment("t0", "Push "),
-          tokenSegment("index", indexToken, "i"),
-          textSegment("t1", " into the deque so it can compete in later windows."),
+        reason:
+          "All stale and dominated indices have already been removed, so the incoming index is now the newest valid candidate for upcoming windows.",
+        implication:
+          snapshot.index !== undefined && snapshot.index >= snapshot.k - 1
+            ? "Because the window is now full, the next frame can emit the deque front as its maximum."
+            : "The deque is ready, but the window still needs more elements before any maximum can be committed.",
+        evidence: [
+          {
+            id: `${event.id}-deque`,
+            label: "Deque after push",
+            value: dequeLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L12":
-      return {
-        summary: event.payload.result
-          ? "The first full window is ready, so emit its maximum."
-          : "The window is not full yet, so do not emit an output.",
-        segments: [],
-        sourceValues: event.payload,
-      }
-    case "L13":
-      return {
-        summary: `Append ${event.payload.maxValue} from deque front index ${event.payload.maxIndex} to the result.`,
-        segments: [
-          textSegment("t0", `Append ${event.payload.maxValue} from `),
-          tokenSegment("front", frontToken, "front"),
-          textSegment("t1", ` index ${event.payload.maxIndex} to the result.`),
+      return defineStructuredNarration({
+        family: "check",
+        headline: event.payload.result
+          ? "The live window now contains k elements."
+          : "The live window is still warming up.",
+        reason: event.payload.result
+          ? `Once i reaches ${snapshot.k - 1}, every step closes a full window of size ${snapshot.k}.`
+          : `Fewer than ${snapshot.k} elements are in scope, so a maximum would be premature.`,
+        implication: event.payload.result
+          ? "The next frame can safely read the deque front as the maximum for this window."
+          : "The scan continues until the first full window forms.",
+        evidence: [
+          {
+            id: `${event.id}-window`,
+            label: "Live window",
+            value: windowLabel,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
+    case "L13":
+      return defineStructuredNarration({
+        family: "commit",
+        headline: [
+          textSegment("headline-0", `Emit ${event.payload.maxValue} from `),
+          pointerSegment("headline-front", frontPointer, "front"),
+          textSegment("headline-1", ` at index ${event.payload.maxIndex}.`),
+        ],
+        reason:
+          "The deque stores candidates in decreasing value order, so the front is always the strongest live maximum candidate.",
+        implication:
+          "The result list grows by one, and the next incoming index can shift the window forward again.",
+        evidence: [
+          {
+            id: `${event.id}-result`,
+            label: "Result length",
+            value: `${event.payload.resultLength ?? snapshot.result.length}`,
+          },
+          {
+            id: `${event.id}-window`,
+            label: "Window maximum",
+            value: `${event.payload.maxValue ?? "-"}`,
+          },
+        ],
+        sourceValues: event.payload,
+      })
     case "L16":
-      return {
-        summary: `Return the completed maxima list [${snapshot.result.join(", ")}].`,
-        segments: [],
+      return defineStructuredNarration({
+        family: "return",
+        headline: `Return the completed maxima list [${snapshot.result.join(", ")}].`,
+        reason:
+          "Every full window emitted exactly one maximum, so the result list now contains the full scan order of committed answers.",
+        implication:
+          "The algorithm is finished; there are no remaining windows to repair or emit.",
+        evidence: [
+          {
+            id: `${event.id}-result`,
+            label: "Returned maxima",
+            value:
+              snapshot.result.length > 0
+                ? `[${snapshot.result.join(", ")}]`
+                : "[]",
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     default:
-      return {
-        summary: "Advance the deque-backed window state.",
-        segments: [],
+      return defineStructuredNarration({
+        family: "shift",
+        headline: "Advance the deque-backed window state.",
+        reason:
+          "The lesson keeps the scan, deque invariants, and output commitments synchronized one learner-visible change at a time.",
+        implication:
+          "The next frame will expose the next concrete array or deque transition.",
         sourceValues: event.payload,
-      }
+      })
   }
 }
 
@@ -382,10 +580,10 @@ function buildArrayAnnotations(
 }
 
 function buildArrayPointers(
-  event: TraceEvent,
+  _event: TraceEvent,
   snapshot: SlidingWindowMaximumSnapshot
 ): PointerSpec[] {
-  if (snapshot.index === undefined || event.codeLine === "L3") {
+  if (snapshot.index === undefined) {
     return []
   }
 
@@ -464,7 +662,7 @@ function buildDequePointers(
     },
   ]
 
-  if (backIndex !== undefined && backIndex !== frontIndex) {
+  if (backIndex !== undefined) {
     pointers.push({
       id: "deque-back",
       targetId: `deque-${backIndex}`,
@@ -563,6 +761,7 @@ function buildPrimitiveStates(
     ...arrayPointers,
     ...dequePointers,
   ])
+
   const arrayPrimitive = defineArrayPrimitiveFrameState({
     id: "window-array",
     kind: "array",
@@ -672,7 +871,7 @@ export function projectMonotonicDequeSlidingWindowMaximum(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-      primitives: buildPrimitiveStates(event, snapshot),
+        primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

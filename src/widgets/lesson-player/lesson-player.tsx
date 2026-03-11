@@ -468,7 +468,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
   const shortcutsCommand = commandById.get("toggle-hotkeys")
 
   return (
-    <main className="mx-auto flex h-svh max-w-[3840px] flex-col overflow-hidden bg-background text-foreground">
+    <main className="mx-auto flex h-svh max-w-960 flex-col overflow-hidden bg-background text-foreground">
       <div className="relative min-h-0 flex-1">
         <ResizablePanelGroup orientation="horizontal">
           <ResizablePanel
@@ -697,7 +697,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <ShieldCheckIcon className="size-3.5" />
               Runtime audit is internal QA tooling. Use it to verify trust, not to replace the learner-facing view.
             </div>
-            <div className="max-h-[360px] overflow-y-auto p-4">
+            <div className="max-h-90 overflow-y-auto p-4">
               <AuthorReview
                 frame={activeFrame}
                 previousFrame={previousVisibleFrame}
@@ -722,7 +722,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         <Button
           size="sm"
           variant="default"
-          className="max-w-[13rem] gap-1.5"
+          className="max-w-52 gap-1.5"
           onClick={() =>
             problemSelectorCommand ? runCommand(problemSelectorCommand) : setProblemSelectorOpen(true)
           }
@@ -756,7 +756,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
         <Button
           size="sm"
           variant="ghost"
-          className="max-w-[13rem] gap-1.5 text-muted-foreground"
+          className="max-w-52 gap-1.5 text-muted-foreground"
           onClick={() =>
             presetStudioCommand ? runCommand(presetStudioCommand) : openPresetStudio()
           }
@@ -1016,7 +1016,7 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               <DialogHeaderClose srLabel="Close keyboard shortcuts" />
             </div>
           </DialogHeader>
-          <div className="grid max-h-[28rem] gap-1 overflow-y-auto p-3">
+          <div className="grid max-h-112 gap-1 overflow-y-auto p-3">
             {hotkeyHelpCommands.map((command) => (
               <div
                 key={command.id}
