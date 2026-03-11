@@ -78,20 +78,27 @@ export function QueueView({
           <LayoutGroup id={`${primitive.id}-queue`}>
             <div
               ref={rootRef}
-              className="relative flex min-w-max items-start gap-2 px-5 pt-14 pb-6"
+              className="relative flex min-h-[5.5rem] min-w-max items-start gap-2 px-5 pt-14 pb-6"
             >
               <PointerLayer
                 pointers={pointers}
                 anchors={anchors}
                 scopeId={primitive.id}
               />
-              {primitive.data.items.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-border/60 bg-muted/10 px-3 py-2 text-sm text-muted-foreground">
-                  Queue is empty
-                </div>
-              ) : (
-                <AnimatePresence initial={false}>
-                  {primitive.data.items.map((item) => {
+              <AnimatePresence initial={false}>
+                {primitive.data.items.length === 0 ? (
+                  <motion.div
+                    key="__empty__"
+                    initial={animateTravel ? { opacity: 0 } : false}
+                    animate={{ opacity: 1 }}
+                    exit={animateTravel ? { opacity: 0 } : { opacity: 0 }}
+                    transition={transitions.shell}
+                    className="rounded-lg border border-dashed border-border/60 bg-muted/10 px-3 py-2 text-sm text-muted-foreground"
+                  >
+                    Queue is empty
+                  </motion.div>
+                ) : (
+                  primitive.data.items.map((item) => {
                     const highlight = highlightMap.get(item.id)
 
                     return (
@@ -180,9 +187,9 @@ export function QueueView({
                         ) : null}
                       </motion.div>
                     )
-                  })}
-                </AnimatePresence>
-              )}
+                  })
+                )}
+              </AnimatePresence>
             </div>
           </LayoutGroup>
         </div>

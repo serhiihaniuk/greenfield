@@ -43,7 +43,7 @@ import { VerificationBlockerDialog } from "@/widgets/lesson-player/verification-
 import { ProblemSelectorDialog } from "@/features/problem-selector/problem-selector-dialog"
 import { collectRelatedIssues } from "@/widgets/author-review/model"
 import { PrimitiveRenderer } from "@/shared/visualization/primitive-renderer"
-import { NarrationPanel } from "@/shared/visualization/views/narration-view"
+import { NarrationCard } from "@/shared/visualization/views/narration-view"
 import { Button } from "@/shared/ui/button"
 import { Badge } from "@/shared/ui/badge"
 import {
@@ -502,12 +502,17 @@ export function LessonPlayer({ lessonId }: LessonPlayerProps) {
               ) : null}
 
               <div className="max-h-[50%] min-h-0 shrink overflow-y-auto border-b border-border/20 px-4 py-3">
-                <NarrationPanel
-                  narration={learnerModeBlocked ? undefined : activeFrame?.narration}
-                  blockedMessage={
+                <NarrationCard
+                  summary={activeFrame?.narration.summary ?? ""}
+                  segments={activeFrame?.narration.segments ?? []}
+                  codeLine={activeFrame?.codeLine}
+                  visualChangeType={activeFrame?.visualChangeType}
+                  frameId={activeFrame?.id}
+                  blocked={learnerModeBlocked || !activeFrame}
+                  placeholder={
                     learnerModeBlocked
                       ? "Learner mode is blocked until verification issues are inspected in lesson audit."
-                      : undefined
+                      : "Load a lesson to begin playback."
                   }
                 />
               </div>

@@ -1,11 +1,23 @@
+import { AnimatePresence, motion } from "motion/react"
+import {
+  ArrowRightIcon,
+  CheckCircle2Icon,
+  LogInIcon,
+  LogOutIcon,
+  PencilIcon,
+  SearchIcon,
+} from "lucide-react"
+
 import type { NarrationPrimitiveFrameState } from "@/entities/visualization/primitives"
 import type {
   NarrationClause,
   NarrationEvidence,
   NarrationPayload,
+  VisualChangeType,
 } from "@/domains/projection/types"
 import { PrimitiveShell } from "@/shared/visualization/primitive-shell"
 import { ExecutionTokenMark } from "@/shared/visualization/execution-token-mark"
+import { MOTION_TOKENS, useMotionContract } from "@/shared/motion/contract"
 import { cn } from "@/shared/lib/utils"
 
 const segmentClasses = {
@@ -173,6 +185,113 @@ export function NarrationPanel({
           ))}
         </div>
       ) : null}
+    </div>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*  NarrationCard — compact accent-bordered card for the lesson player        */
+/* -------------------------------------------------------------------------- */
+
+const visualChangeAccent: Record<VisualChangeType, string> = {
+  move: "border-l-cyan-400",
+  compare: "border-l-sky-400",
+  mutate: "border-l-orange-400",
+  result: "border-l-emerald-400",
+  enter: "border-l-violet-400",
+  exit: "border-l-amber-400",
+}
+
+const visualChangeIconColor: Record<VisualChangeType, string> = {
+  move: "text-cyan-400",
+  compare: "text-sky-400",
+  mutate: "text-orange-400",
+  result: "text-emerald-400",
+  enter: "text-violet-400",
+  exit: "text-amber-400",
+}
+
+const visualChangeIcon: Record<VisualChangeType, React.ComponentType<{ className?: string }>> = {
+  move: ArrowRightIcon,
+  compare: SearchIcon,
+  mutate: PencilIcon,
+  result: CheckCircle2Icon,
+  enter: LogInIcon,
+  exit: LogOutIcon,
+}
+
+type NarrationCardProps = {
+  summary: string
+  segments: NarrationSegmentsProps["segments"]
+  visualChangeType?: VisualChangeType
+  codeLine?: string
+  frameId?: string
+  blocked?: boolean
+  placeholder?: string
+}
+
+export function NarrationCard({
+  summary,
+  segments,
+  visualChangeType,
+  codeLine,
+  frameId,
+  blocked,
+  placeholder,
+}: NarrationCardProps) {
+  const { prefersReducedMotion } = useMotionContract()
+
+  if (blocked || (!summary && segments.length === 0)) {
+    return (
+      <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3">
+        <p className="text-sm leading-6 text-muted-foreground">
+          {placeholder ?? "Load a lesson to begin playback."}
+        </p>
+      </div>
+    )
+  }
+
+  const changeType = visualChangeType ?? "move"
+  const Icon = visualChangeIcon[changeType]
+
+  return (
+    <div
+      className={cn(
+        "rounded-xl border border-border/50 bg-card/80 shadow-sm",
+        "border-l-2",
+        visualChangeAccent[changeType]
+      )}
+    >
+      <div className="flex items-center justify-between gap-2 px-4 pt-2.5 pb-1">
+        <div className="flex items-center gap-1.5">
+          <Icon
+            className={cn("size-3.5", visualChangeIconColor[changeType])}
+          />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            {changeType}
+          </span>
+        </div>
+        {codeLine ? (
+          <span className="rounded-md border border-border/40 bg-muted/10 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            {codeLine}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="px-4 pt-1 pb-3">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.p
+            key={frameId ?? summary}
+            className="text-sm leading-6 text-foreground"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, y: -4 }}
+            transition={MOTION_TOKENS.shell}
+          >
+            <NarrationSegments summary={summary} segments={segments} />
+          </motion.p>
+        </AnimatePresence>
+      </div>
     </div>
   )
 }
