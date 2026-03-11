@@ -205,6 +205,56 @@ function verifyFinalAnswer(frames: Frame[]): VerificationReport {
   return createVerificationReport(issues)
 }
 
+function verifyStructuredNarration(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+
+  for (const frame of frames) {
+    const { narration } = frame
+
+    if (
+      (frame.codeLine === "L5" ||
+        frame.codeLine === "L6" ||
+        frame.codeLine === "L7" ||
+        frame.codeLine === "L8" ||
+        (frame.codeLine === "L2" &&
+          frame.visualChangeType === "result")) &&
+      (!narration.headline || !narration.reason || !narration.implication)
+    ) {
+      issues.push({
+        code: "MAX_DEPTH_STRUCTURED_NARRATION_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should expose a full explanation block with headline, reason, and implication.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    const tokenIds = new Set(
+      narration.segments
+        .map((segment) => segment.tokenId)
+        .filter((tokenId): tokenId is string => Boolean(tokenId))
+    )
+
+    if (
+      frame.codeLine !== "L2" &&
+      frame.codeLine !== "L5" &&
+      !tokenIds.has("dfs")
+    ) {
+      issues.push({
+        code: "MAX_DEPTH_DFS_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain recursive execution through the shared dfs token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 export function verifyRecursiveMaximumDepth(
   codeTemplate: CodeTemplate,
   events: TraceEvent[],
@@ -214,6 +264,7 @@ export function verifyRecursiveMaximumDepth(
     verifyTraceShape(events, frames, codeTemplate),
     verifyRequiredViews(frames),
     verifyBaseCases(frames),
-    verifyFinalAnswer(frames)
+    verifyFinalAnswer(frames),
+    verifyStructuredNarration(frames)
   )
 }

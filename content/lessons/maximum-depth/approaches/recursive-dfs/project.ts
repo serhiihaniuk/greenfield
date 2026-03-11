@@ -4,9 +4,13 @@ import {
   defineFrame,
   type Frame,
   type NarrationPayloadInput,
-  type NarrationSegmentTone,
   type VisualChangeType,
 } from "@/domains/projection/types"
+import {
+  defineStructuredNarration,
+  narrationText,
+  narrationToken,
+} from "@/domains/projection/narration"
 import type { TraceEvent } from "@/domains/tracing/types"
 import {
   defineCallTreePrimitiveFrameState,
@@ -14,7 +18,10 @@ import {
   type CallTreeNode,
   type StackFrame,
 } from "@/entities/visualization/primitives"
-import type { EdgeHighlightSpec, PrimitiveFrameState } from "@/entities/visualization/types"
+import type {
+  EdgeHighlightSpec,
+  PrimitiveFrameState,
+} from "@/entities/visualization/types"
 import { recursiveMaximumDepthViewSpecs } from "./views"
 
 type TraversalSide = "root" | "left" | "right"
@@ -84,6 +91,15 @@ function getCall(snapshot: MaximumDepthSnapshot, callId: string | undefined) {
 
 function getCallStateValue(call: CallSnapshot) {
   return call.nodeValue === null ? "null" : `node ${call.nodeValue}`
+}
+
+function narrationDfsToken(id: string) {
+  return narrationToken({
+    id,
+    text: dfsExecutionToken.label,
+    tokenId: dfsExecutionToken.id,
+    tokenStyle: dfsExecutionToken.style,
+  })
 }
 
 function buildStackFrames(
@@ -220,144 +236,242 @@ function buildNarration(
   event: TraceEvent,
   snapshot: MaximumDepthSnapshot
 ): NarrationPayloadInput {
-  const tokenSegment = (id: string) => ({
-    id: `${event.id}-${id}`,
-    text: dfsExecutionToken.label,
-    tokenId: dfsExecutionToken.id,
-    tokenStyle: dfsExecutionToken.style,
-  })
-  const textSegment = (
-    id: string,
-    text: string,
-    tone: NarrationSegmentTone = "default"
-  ) => ({
-    id: `${event.id}-${id}`,
-    text,
-    tone,
-  })
+  const activeCall = getCall(snapshot, snapshot.activeCallId)
+  const eventCall = getCall(
+    snapshot,
+    typeof event.payload.callId === "string" ? event.payload.callId : undefined
+  )
+  const currentCall = eventCall ?? activeCall
+  const currentNodeValue = currentCall?.nodeValue
 
   switch (event.type) {
     case "call":
-      return {
-        summary:
-          event.payload.nodeValue === null
-            ? `Enter ${event.payload.side} child recursion with null.`
-            : event.payload.side === "root"
-              ? `Start recursion at the root node ${event.payload.nodeValue}.`
-              : `Descend into the ${event.payload.side} child at node ${event.payload.nodeValue}.`,
-        segments:
+      return defineStructuredNarration({
+        family: "advance",
+        headline:
           event.payload.nodeValue === null
             ? [
-                textSegment("t0", "Enter "),
-                tokenSegment("dfs"),
-                textSegment(
-                  "t1",
-                  ` on the ${event.payload.side} child with null.`
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  ` enters the ${event.payload.side} child and lands on null.`
                 ),
               ]
             : event.payload.side === "root"
               ? [
-                  textSegment("t0", "Start "),
-                  tokenSegment("dfs"),
-                  textSegment(
-                    "t1",
-                    ` at the root node ${event.payload.nodeValue}.`
+                  narrationDfsToken(`${event.id}-headline-dfs`),
+                  narrationText(
+                    `${event.id}-headline-text`,
+                    ` starts at the root node ${event.payload.nodeValue}.`
                   ),
                 ]
               : [
-                  textSegment("t0", "Descend into "),
-                  tokenSegment("dfs"),
-                  textSegment(
-                    "t1",
-                    ` on the ${event.payload.side} child at node ${event.payload.nodeValue}.`
+                  narrationDfsToken(`${event.id}-headline-dfs`),
+                  narrationText(
+                    `${event.id}-headline-text`,
+                    ` descends into the ${event.payload.side} child at node ${event.payload.nodeValue}.`
                   ),
                 ],
+        reason:
+          event.payload.nodeValue === null
+            ? "Every missing child still becomes an explicit recursive call so the base case can return a depth of 0."
+            : event.payload.side === "root"
+              ? "The wrapper delegates the whole problem to one recursive traversal rooted at the original tree."
+              : "Depth is aggregated from both children, so the current call must explore this branch before it can return.",
+        implication:
+          event.payload.nodeValue === null
+            ? "The next frame can terminate this branch immediately with the base depth."
+            : "The next frame checks whether this node is null or must keep expanding recursion.",
+        evidence: [
+          {
+            id: `${event.id}-side`,
+            label: "Branch",
+            value: String(event.payload.side),
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "compare":
-      return {
-        summary: `Node ${event.payload.nodeValue} is not null, so this call must ask both children for their depth.`,
-        segments: [
-          tokenSegment("dfs"),
-          textSegment(
-            "t0",
-            ` at node ${event.payload.nodeValue} is not null, so it must ask both children for their depth.`
+      return defineStructuredNarration({
+        family: "check",
+        headline: [
+          narrationDfsToken(`${event.id}-headline-dfs`),
+          narrationText(
+            `${event.id}-headline-text`,
+            ` confirms node ${event.payload.nodeValue} is not null.`
           ),
         ],
+        reason:
+          "A real node contributes one level of depth, but only after both child depths are known.",
+        implication:
+          "The next recursive call will ask the left child for its subtree depth first.",
+        evidence: [
+          {
+            id: `${event.id}-node`,
+            label: "Active node",
+            value: `${event.payload.nodeValue}`,
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "base-case":
-      return {
-        summary:
-          "dfs(null) returns 0 because an empty subtree contributes no depth.",
-        segments: [
-          tokenSegment("dfs"),
-          textSegment(
-            "t0",
-            "(null) returns 0 because an empty subtree contributes no depth."
+      return defineStructuredNarration({
+        family: "return",
+        headline: [
+          narrationDfsToken(`${event.id}-headline-dfs`),
+          narrationText(
+            `${event.id}-headline-text`,
+            "(null) returns base depth 0."
           ),
         ],
+        reason:
+          "An empty child adds no levels to the subtree, so recursion bottoms out immediately here.",
+        implication:
+          "That 0 now flows back to the waiting parent call as one side of its max comparison.",
+        evidence: [
+          {
+            id: `${event.id}-return`,
+            label: "Returned depth",
+            value: "0",
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "mutate":
-      return {
-        summary:
+      return defineStructuredNarration({
+        family: "commit",
+        headline:
           event.codeLine === "L6"
-            ? `Store leftDepth = ${event.payload.leftDepth} after the left subtree returns.`
-            : `Store rightDepth = ${event.payload.rightDepth} after the right subtree returns.`,
-        segments: [
-          tokenSegment("dfs"),
-          textSegment(
-            "t0",
-            event.codeLine === "L6"
-              ? ` stores leftDepth = ${event.payload.leftDepth} after the left subtree returns.`
-              : ` stores rightDepth = ${event.payload.rightDepth} after the right subtree returns.`
-          ),
-        ],
-        sourceValues: event.payload,
-      }
-    case "result":
-      return {
-        summary:
-          event.codeLine === "L2"
-            ? `The wrapper returns maximum depth ${snapshot.answer}.`
-            : `Compute depth at node ${getCall(snapshot, event.payload.callId as string | undefined)?.nodeValue}: 1 + max(${event.payload.leftDepth}, ${event.payload.rightDepth}) = ${event.payload.returnValue}.`,
-        segments:
-          event.codeLine === "L2"
-            ? []
+            ? [
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  ` stores leftDepth = ${event.payload.leftDepth}.`
+                ),
+              ]
             : [
-                tokenSegment("dfs"),
-                textSegment(
-                  "t0",
-                  ` at node ${getCall(snapshot, event.payload.callId as string | undefined)?.nodeValue} returns 1 + max(${event.payload.leftDepth}, ${event.payload.rightDepth}) = ${event.payload.returnValue}.`
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  ` stores rightDepth = ${event.payload.rightDepth}.`
                 ),
               ],
-        sourceValues: event.payload,
-      }
-    case "return":
-      return {
-        summary:
-          event.payload.nodeId === null || event.codeLine === "L5"
-            ? "Return base depth 0 to the waiting parent call."
-            : `Return depth ${event.payload.returnValue} to the parent call.`,
-        segments: [
-          textSegment("t0", "Return "),
-          tokenSegment("dfs"),
-          textSegment(
-            "t1",
-            event.payload.nodeId === null || event.codeLine === "L5"
-              ? " base depth 0 to the waiting parent call."
-              : ` depth ${event.payload.returnValue} to the parent call.`
-          ),
+        reason:
+          event.codeLine === "L6"
+            ? "The left subtree has finished unwinding, so its exact contribution is now stable."
+            : "The right subtree has finished unwinding, so the call now knows both child depths.",
+        implication:
+          event.codeLine === "L6"
+            ? "The next branch can recurse into the right child to collect the missing half of the answer."
+            : "The next frame can compute this node's returned depth from both stored child values.",
+        evidence: [
+          {
+            id: `${event.id}-depth`,
+            label: event.codeLine === "L6" ? "leftDepth" : "rightDepth",
+            value: `${event.codeLine === "L6" ? event.payload.leftDepth : event.payload.rightDepth}`,
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
         ],
         sourceValues: event.payload,
-      }
-    default:
-      return {
-        summary: "Advance the recursion state.",
-        segments: [],
+      })
+    case "result":
+      return defineStructuredNarration({
+        family: "commit",
+        headline:
+          event.codeLine === "L2"
+            ? [
+                narrationText(
+                  `${event.id}-headline-text-0`,
+                  "The wrapper publishes maximum depth "
+                ),
+                narrationText(
+                  `${event.id}-headline-text-1`,
+                  `${snapshot.answer}.`,
+                  "found"
+                ),
+              ]
+            : [
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  ` at node ${currentNodeValue} computes 1 + max(${event.payload.leftDepth}, ${event.payload.rightDepth}) = ${event.payload.returnValue}.`
+                ),
+              ],
+        reason:
+          event.codeLine === "L2"
+            ? "The root recursive call has already returned the complete subtree depth for the whole tree."
+            : "A node contributes one level above its deeper child, so recursion collapses both child depths into one returned answer here.",
+        implication:
+          event.codeLine === "L2"
+            ? "The lesson is finished because the final answer has reached the wrapper."
+            : "The next frame will hand that solved depth back to the waiting parent call.",
+        evidence: [
+          {
+            id: `${event.id}-result`,
+            label:
+              event.codeLine === "L2" ? "Maximum depth" : "Returned depth",
+            value: `${event.codeLine === "L2" ? snapshot.answer : event.payload.returnValue}`,
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
+    case "return":
+      return defineStructuredNarration({
+        family: "return",
+        headline:
+          event.payload.nodeId === null || event.codeLine === "L5"
+            ? [
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  " hands base depth 0 back to the waiting parent."
+                ),
+              ]
+            : [
+                narrationDfsToken(`${event.id}-headline-dfs`),
+                narrationText(
+                  `${event.id}-headline-text`,
+                  ` returns depth ${event.payload.returnValue} from node ${currentNodeValue}.`
+                ),
+              ],
+        reason:
+          event.payload.nodeId === null || event.codeLine === "L5"
+            ? "The null branch is solved immediately, so its parent can resume with that base contribution."
+            : "This call has already aggregated both child depths, so the parent can now treat it as a solved subtree.",
+        implication:
+          event.payload.nodeId === null || event.codeLine === "L5"
+            ? "The waiting parent call now has one side of its max comparison."
+            : "The parent frame can either store this depth or, if it is the root, finish the whole algorithm.",
+        evidence: [
+          {
+            id: `${event.id}-return`,
+            label: "Returned depth",
+            value: `${event.payload.returnValue}`,
+            tokenId: dfsExecutionToken.id,
+            tokenStyle: dfsExecutionToken.style,
+          },
+        ],
+        sourceValues: event.payload,
+      })
+    default:
+      return defineStructuredNarration({
+        family: "advance",
+        headline: "Advance the recursion state.",
+        reason:
+          "The execution tree, call stack, and explanation panel stay synchronized one learner-visible change at a time.",
+        implication:
+          "The next frame will expose the next explicit recursion step.",
+        sourceValues: event.payload,
+      })
   }
 }
 
@@ -387,7 +501,7 @@ export function projectRecursiveMaximumDepth(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-      primitives: buildPrimitiveStates(event, snapshot),
+        primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

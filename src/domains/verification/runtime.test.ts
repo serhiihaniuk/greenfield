@@ -556,5 +556,60 @@ describe("verifyRuntimeOutputs", () => {
     expect(
       rootFrame.narration.segments.some((segment) => segment.tokenId === "dfs")
     ).toBe(true)
+    expect(rootFrame.narration.headline?.segments.some((segment) => segment.tokenId === "dfs")).toBe(
+      true
+    )
+    expect(rootFrame.narration.reason?.segments[0]?.text).toContain(
+      "wrapper delegates the whole problem"
+    )
+    expect(rootFrame.narration.implication?.segments[0]?.text).toContain(
+      "The next frame checks"
+    )
+
+    const baseCaseFrame = runtime.frames.find(
+      (frame) =>
+        frame.codeLine === "L5" &&
+        frame.narration.headline?.segments.some((segment) =>
+          segment.text.includes("returns base depth 0")
+        )
+    )
+    if (!baseCaseFrame) {
+      throw new Error("Expected a maximum depth base-case frame.")
+    }
+
+    expect(
+      baseCaseFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "dfs"
+      )
+    ).toBe(true)
+    expect(baseCaseFrame.narration.reason?.segments[0]?.text).toContain(
+      "empty child adds no levels"
+    )
+    expect(baseCaseFrame.narration.implication?.segments[0]?.text).toContain(
+      "flows back to the waiting parent"
+    )
+
+    const aggregateFrame = runtime.frames.find(
+      (frame) =>
+        frame.codeLine === "L8" &&
+        frame.narration.headline?.segments.some((segment) =>
+          segment.text.includes("computes 1 + max")
+        )
+    )
+    if (!aggregateFrame) {
+      throw new Error("Expected a maximum depth aggregation frame.")
+    }
+
+    expect(
+      aggregateFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "dfs"
+      )
+    ).toBe(true)
+    expect(aggregateFrame.narration.reason?.segments[0]?.text).toContain(
+      "contributes one level above its deeper child"
+    )
+    expect(aggregateFrame.narration.implication?.segments[0]?.text).toContain(
+      "hand that solved depth back"
+    )
   })
 })

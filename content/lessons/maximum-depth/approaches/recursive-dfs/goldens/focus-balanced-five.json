@@ -8,7 +8,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-1",
-      "narrationSummary": "Start recursion at the root node 3.",
+      "narrationSummary": "dfs starts at the root node 3.",
       "primitives": [
         {
           "annotations": [],
@@ -63,7 +63,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-2",
-      "narrationSummary": "Node 3 is not null, so this call must ask both children for their depth.",
+      "narrationSummary": "dfs confirms node 3 is not null.",
       "primitives": [
         {
           "annotations": [],
@@ -118,7 +118,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-3",
-      "narrationSummary": "Descend into the left child at node 9.",
+      "narrationSummary": "dfs descends into the left child at node 9.",
       "primitives": [
         {
           "annotations": [],
@@ -188,7 +188,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-4",
-      "narrationSummary": "Node 9 is not null, so this call must ask both children for their depth.",
+      "narrationSummary": "dfs confirms node 9 is not null.",
       "primitives": [
         {
           "annotations": [],
@@ -258,7 +258,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-5",
-      "narrationSummary": "Enter left child recursion with null.",
+      "narrationSummary": "dfs enters the left child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -343,7 +343,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-6",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -429,7 +429,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-7",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -510,7 +510,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-8",
-      "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
+      "narrationSummary": "dfs stores leftDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -591,7 +591,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-9",
-      "narrationSummary": "Enter right child recursion with null.",
+      "narrationSummary": "dfs enters the right child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -687,7 +687,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-10",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -784,7 +784,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-11",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -876,7 +876,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-12",
-      "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
+      "narrationSummary": "dfs stores rightDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -968,7 +968,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-13",
-      "narrationSummary": "Compute depth at node 9: 1 + max(0, 0) = 1.",
+      "narrationSummary": "dfs at node 9 computes 1 + max(0, 0) = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -1061,7 +1061,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-14",
-      "narrationSummary": "Return depth 1 to the parent call.",
+      "narrationSummary": "dfs returns depth 1 from node 9.",
       "primitives": [
         {
           "annotations": [],
@@ -1149,7 +1149,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-15",
-      "narrationSummary": "Store leftDepth = 1 after the left subtree returns.",
+      "narrationSummary": "dfs stores leftDepth = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -1237,7 +1237,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-16",
-      "narrationSummary": "Descend into the right child at node 20.",
+      "narrationSummary": "dfs descends into the right child at node 20.",
       "primitives": [
         {
           "annotations": [],
@@ -1340,7 +1340,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-17",
-      "narrationSummary": "Node 20 is not null, so this call must ask both children for their depth.",
+      "narrationSummary": "dfs confirms node 20 is not null.",
       "primitives": [
         {
           "annotations": [],
@@ -1443,7 +1443,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-18",
-      "narrationSummary": "Descend into the left child at node 15.",
+      "narrationSummary": "dfs descends into the left child at node 15.",
       "primitives": [
         {
           "annotations": [],
@@ -1561,7 +1561,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-19",
-      "narrationSummary": "Node 15 is not null, so this call must ask both children for their depth.",
+      "narrationSummary": "dfs confirms node 15 is not null.",
       "primitives": [
         {
           "annotations": [],
@@ -1679,7 +1679,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-20",
-      "narrationSummary": "Enter left child recursion with null.",
+      "narrationSummary": "dfs enters the left child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -1812,7 +1812,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-21",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -1946,7 +1946,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-22",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -2075,7 +2075,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-23",
-      "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
+      "narrationSummary": "dfs stores leftDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -2204,7 +2204,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-24",
-      "narrationSummary": "Enter right child recursion with null.",
+      "narrationSummary": "dfs enters the right child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -2348,7 +2348,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-25",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -2493,7 +2493,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-26",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -2633,7 +2633,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-27",
-      "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
+      "narrationSummary": "dfs stores rightDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -2773,7 +2773,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-28",
-      "narrationSummary": "Compute depth at node 15: 1 + max(0, 0) = 1.",
+      "narrationSummary": "dfs at node 15 computes 1 + max(0, 0) = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -2914,7 +2914,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-29",
-      "narrationSummary": "Return depth 1 to the parent call.",
+      "narrationSummary": "dfs returns depth 1 from node 15.",
       "primitives": [
         {
           "annotations": [],
@@ -3050,7 +3050,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-30",
-      "narrationSummary": "Store leftDepth = 1 after the left subtree returns.",
+      "narrationSummary": "dfs stores leftDepth = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -3186,7 +3186,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-31",
-      "narrationSummary": "Descend into the right child at node 7.",
+      "narrationSummary": "dfs descends into the right child at node 7.",
       "primitives": [
         {
           "annotations": [],
@@ -3337,7 +3337,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-32",
-      "narrationSummary": "Node 7 is not null, so this call must ask both children for their depth.",
+      "narrationSummary": "dfs confirms node 7 is not null.",
       "primitives": [
         {
           "annotations": [],
@@ -3488,7 +3488,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-33",
-      "narrationSummary": "Enter left child recursion with null.",
+      "narrationSummary": "dfs enters the left child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -3654,7 +3654,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-34",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -3821,7 +3821,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-35",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -3983,7 +3983,7 @@
       ],
       "codeLine": "L6",
       "id": "frame-36",
-      "narrationSummary": "Store leftDepth = 0 after the left subtree returns.",
+      "narrationSummary": "dfs stores leftDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -4145,7 +4145,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-37",
-      "narrationSummary": "Enter right child recursion with null.",
+      "narrationSummary": "dfs enters the right child and lands on null.",
       "primitives": [
         {
           "annotations": [],
@@ -4322,7 +4322,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-38",
-      "narrationSummary": "dfs(null) returns 0 because an empty subtree contributes no depth.",
+      "narrationSummary": "dfs(null) returns base depth 0.",
       "primitives": [
         {
           "annotations": [],
@@ -4500,7 +4500,7 @@
       ],
       "codeLine": "L5",
       "id": "frame-39",
-      "narrationSummary": "Return base depth 0 to the waiting parent call.",
+      "narrationSummary": "dfs hands base depth 0 back to the waiting parent.",
       "primitives": [
         {
           "annotations": [],
@@ -4673,7 +4673,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-40",
-      "narrationSummary": "Store rightDepth = 0 after the right subtree returns.",
+      "narrationSummary": "dfs stores rightDepth = 0.",
       "primitives": [
         {
           "annotations": [],
@@ -4846,7 +4846,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-41",
-      "narrationSummary": "Compute depth at node 7: 1 + max(0, 0) = 1.",
+      "narrationSummary": "dfs at node 7 computes 1 + max(0, 0) = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -5020,7 +5020,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-42",
-      "narrationSummary": "Return depth 1 to the parent call.",
+      "narrationSummary": "dfs returns depth 1 from node 7.",
       "primitives": [
         {
           "annotations": [],
@@ -5189,7 +5189,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-43",
-      "narrationSummary": "Store rightDepth = 1 after the right subtree returns.",
+      "narrationSummary": "dfs stores rightDepth = 1.",
       "primitives": [
         {
           "annotations": [],
@@ -5358,7 +5358,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-44",
-      "narrationSummary": "Compute depth at node 20: 1 + max(1, 1) = 2.",
+      "narrationSummary": "dfs at node 20 computes 1 + max(1, 1) = 2.",
       "primitives": [
         {
           "annotations": [],
@@ -5528,7 +5528,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-45",
-      "narrationSummary": "Return depth 2 to the parent call.",
+      "narrationSummary": "dfs returns depth 2 from node 20.",
       "primitives": [
         {
           "annotations": [],
@@ -5693,7 +5693,7 @@
       ],
       "codeLine": "L7",
       "id": "frame-46",
-      "narrationSummary": "Store rightDepth = 2 after the right subtree returns.",
+      "narrationSummary": "dfs stores rightDepth = 2.",
       "primitives": [
         {
           "annotations": [],
@@ -5858,7 +5858,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-47",
-      "narrationSummary": "Compute depth at node 3: 1 + max(1, 2) = 3.",
+      "narrationSummary": "dfs at node 3 computes 1 + max(1, 2) = 3.",
       "primitives": [
         {
           "annotations": [],
@@ -6024,7 +6024,7 @@
       ],
       "codeLine": "L8",
       "id": "frame-48",
-      "narrationSummary": "Return depth 3 to the parent call.",
+      "narrationSummary": "dfs returns depth 3 from node 3.",
       "primitives": [
         {
           "annotations": [],
@@ -6184,7 +6184,7 @@
       ],
       "codeLine": "L2",
       "id": "frame-49",
-      "narrationSummary": "The wrapper returns maximum depth 3.",
+      "narrationSummary": "The wrapper publishes maximum depth 3.",
       "primitives": [
         {
           "annotations": [],
