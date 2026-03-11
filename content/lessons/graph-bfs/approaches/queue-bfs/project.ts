@@ -4,9 +4,13 @@ import {
   defineFrame,
   type Frame,
   type NarrationPayloadInput,
-  type NarrationSegment,
   type VisualChangeType,
 } from "@/domains/projection/types"
+import {
+  defineStructuredNarration,
+  narrationText,
+  narrationToken,
+} from "@/domains/projection/narration"
 import type { TraceEvent } from "@/domains/tracing/types"
 import {
   defineGraphPrimitiveFrameState,
@@ -54,28 +58,22 @@ const NEIGHBOR_TOKEN_ID = "neighbor"
 const NEIGHBOR_TOKEN_STYLE: ExecutionTokenStyle = "accent-3"
 const NEIGHBOR_TOKEN_LABEL = "neighbor"
 
-function textSegment(
-  id: string,
-  text: string
-): NarrationSegment {
-  return {
+function narrationCurrentToken(id: string) {
+  return narrationToken({
     id,
-    text,
-  }
+    text: CURRENT_TOKEN_LABEL,
+    tokenId: CURRENT_TOKEN_ID,
+    tokenStyle: CURRENT_TOKEN_STYLE,
+  })
 }
 
-function tokenSegment(
-  id: string,
-  text: string,
-  tokenId: string,
-  tokenStyle: ExecutionTokenStyle
-): NarrationSegment {
-  return {
+function narrationNeighborToken(id: string) {
+  return narrationToken({
     id,
-    text,
-    tokenId,
-    tokenStyle,
-  }
+    text: NEIGHBOR_TOKEN_LABEL,
+    tokenId: NEIGHBOR_TOKEN_ID,
+    tokenStyle: NEIGHBOR_TOKEN_STYLE,
+  })
 }
 
 function getCurrentProjectedNodeId(
@@ -279,225 +277,270 @@ function buildNarration(
   event: TraceEvent,
   snapshot: GraphBfsSnapshot
 ): NarrationPayloadInput {
+  const frontierSize =
+    typeof event.payload.queueSize === "number"
+      ? event.payload.queueSize
+      : snapshot.queue.length
+
   switch (event.codeLine) {
     case "L1":
-      return {
-        summary: `Seed the frontier queue with start node ${snapshot.startId}.`,
-        segments: [
-          textSegment("text-0", "Seed the frontier queue with start node "),
-          textSegment("text-1", snapshot.startId),
-          textSegment("text-2", "."),
+      return defineStructuredNarration({
+        family: "setup",
+        headline: [
+          narrationText(`${event.id}-headline-text-0`, "Seed the frontier with start node "),
+          narrationText(`${event.id}-headline-text-1`, snapshot.startId, "active"),
+          narrationText(`${event.id}-headline-text-2`, "."),
+        ],
+        reason:
+          "Breadth-first search always begins from the known start node so the queue represents the first frontier layer.",
+        implication:
+          "The next frame marks that same node visited before any neighbors can enqueue it again.",
+        evidence: [
+          {
+            id: `${event.id}-start`,
+            label: "Start node",
+            value: snapshot.startId,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L2":
-      return {
-        summary: `Mark ${snapshot.startId} visited immediately so BFS never enqueues it again.`,
-        segments: [
-          textSegment("text-0", "Mark "),
-          textSegment("text-1", snapshot.startId),
-          textSegment("text-2", " visited immediately so BFS never enqueues it again."),
+      return defineStructuredNarration({
+        family: "commit",
+        headline: [
+          narrationText(`${event.id}-headline-text-0`, "Mark "),
+          narrationText(`${event.id}-headline-text-1`, snapshot.startId, "active"),
+          narrationText(
+            `${event.id}-headline-text-2`,
+            " visited before exploration begins."
+          ),
+        ],
+        reason:
+          "BFS records a node as visited at enqueue time so the frontier never contains duplicates of the same vertex.",
+        implication:
+          "The next frame can safely test whether the frontier still has a node ready to expand.",
+        evidence: [
+          {
+            id: `${event.id}-visited`,
+            label: "Visited set",
+            value: [...snapshot.visited].join(", ") || snapshot.startId,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L3":
-      return {
-        summary: event.payload.hasFrontier
-          ? `The frontier is not empty, so BFS can expand ${event.payload.frontId} next.`
-          : "The frontier is empty, so the target cannot be reached from the start node.",
-        segments: event.payload.hasFrontier
+      return defineStructuredNarration({
+        family: "check",
+        headline: event.payload.hasFrontier
           ? [
-              textSegment("text-0", "The frontier is not empty, so "),
-              tokenSegment(
-                "token-current",
-                CURRENT_TOKEN_LABEL,
-                CURRENT_TOKEN_ID,
-                CURRENT_TOKEN_STYLE
+              narrationCurrentToken(`${event.id}-headline-current`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` is ${String(event.payload.frontId)} at the front of the queue.`
               ),
-              textSegment("text-1", " is "),
-              textSegment("text-2", String(event.payload.frontId)),
-              textSegment("text-3", " and will be expanded next."),
             ]
-          : [
-              textSegment(
-                "text-0",
-                "The frontier is empty, so the target cannot be reached from the start node."
-              ),
-            ],
+          : "The frontier queue is empty.",
+        reason: event.payload.hasFrontier
+          ? "BFS always expands the oldest queued node first, so the queue front determines the next graph node to process."
+          : "Once the frontier is exhausted, every reachable node has already been processed and no path to the target remains.",
+        implication: event.payload.hasFrontier
+          ? "The next frame dequeues that front node and turns it into the active expansion point."
+          : "The next frame must return null because the search ran out of reachable candidates.",
+        evidence: [
+          {
+            id: `${event.id}-frontier-size`,
+            label: "Frontier size",
+            value: `${frontierSize}`,
+            tokenId: event.payload.hasFrontier ? CURRENT_TOKEN_ID : undefined,
+            tokenStyle: event.payload.hasFrontier ? CURRENT_TOKEN_STYLE : undefined,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L4":
-      return {
-        summary: `Dequeue ${event.payload.currentId}; it is now the node BFS expands.`,
-        segments: [
-          textSegment("text-0", "Dequeue "),
-          tokenSegment(
-            "token-current",
-            CURRENT_TOKEN_LABEL,
-            CURRENT_TOKEN_ID,
-            CURRENT_TOKEN_STYLE
+      return defineStructuredNarration({
+        family: "advance",
+        headline: [
+          narrationCurrentToken(`${event.id}-headline-current`),
+          narrationText(
+            `${event.id}-headline-text`,
+            ` dequeues as ${String(event.payload.currentId)} and becomes the active node.`
           ),
-          textSegment("text-1", " = "),
-          textSegment("text-2", String(event.payload.currentId)),
-          textSegment("text-3", "; it is now the node BFS expands."),
+        ],
+        reason:
+          "Removing the queue front preserves BFS level order: the earliest discovered node is always expanded first.",
+        implication:
+          "The next frame checks whether this active node is already the target before scanning any neighbors.",
+        evidence: [
+          {
+            id: `${event.id}-current`,
+            label: "Active node",
+            value: String(event.payload.currentId),
+            tokenId: CURRENT_TOKEN_ID,
+            tokenStyle: CURRENT_TOKEN_STYLE,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L5":
-      return {
-        summary: event.payload.found
-          ? `${event.payload.currentId} matches the target, so BFS stops.`
-          : `${event.payload.currentId} is not the target, so inspect its neighbors.`,
-        segments: event.payload.found
+      return defineStructuredNarration({
+        family: "compare",
+        headline: event.payload.found
           ? [
-              tokenSegment(
-                "token-current",
-                CURRENT_TOKEN_LABEL,
-                CURRENT_TOKEN_ID,
-                CURRENT_TOKEN_STYLE
+              narrationCurrentToken(`${event.id}-headline-current`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` matches target ${String(event.payload.targetId)}.`
               ),
-              textSegment("text-0", " = "),
-              textSegment("text-1", String(event.payload.currentId)),
-              textSegment("text-2", " matches the target, so BFS stops."),
             ]
           : [
-              tokenSegment(
-                "token-current",
-                CURRENT_TOKEN_LABEL,
-                CURRENT_TOKEN_ID,
-                CURRENT_TOKEN_STYLE
-              ),
-              textSegment("text-0", " = "),
-              textSegment("text-1", String(event.payload.currentId)),
-              textSegment(
-                "text-2",
-                " is not the target, so inspect its neighbors."
+              narrationCurrentToken(`${event.id}-headline-current`),
+              narrationText(
+                `${event.id}-headline-text`,
+                ` does not match target ${String(event.payload.targetId)}.`
               ),
             ],
+        reason: event.payload.found
+          ? "BFS stops the moment it reaches the target because the queue guarantees this is the shortest-layer discovery."
+          : "A non-target node still matters because its unseen neighbors may extend the shortest path frontier outward.",
+        implication: event.payload.found
+          ? "The next frame can publish the found answer immediately."
+          : "The next frames will inspect each neighbor to decide which ones should join the frontier.",
+        evidence: [
+          {
+            id: `${event.id}-target`,
+            label: "Target node",
+            value: String(event.payload.targetId),
+            tokenId: event.payload.found ? CURRENT_TOKEN_ID : undefined,
+            tokenStyle: event.payload.found ? CURRENT_TOKEN_STYLE : undefined,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L7":
-      return {
-        summary: event.payload.alreadyVisited
-          ? `Neighbor ${event.payload.neighborId} was already visited, so BFS skips it.`
-          : `Neighbor ${event.payload.neighborId} is unseen and should join the frontier.`,
-        segments: event.payload.alreadyVisited
+      return defineStructuredNarration({
+        family: "compare",
+        headline: event.payload.alreadyVisited
           ? [
-              tokenSegment(
-                "token-current",
-                CURRENT_TOKEN_LABEL,
-                CURRENT_TOKEN_ID,
-                CURRENT_TOKEN_STYLE
-              ),
-              textSegment("text-current-0", " checks "),
-              tokenSegment(
-                "token-neighbor",
-                NEIGHBOR_TOKEN_LABEL,
-                NEIGHBOR_TOKEN_ID,
-                NEIGHBOR_TOKEN_STYLE
-              ),
-              textSegment("text-neighbor-0", " = "),
-              textSegment("text-neighbor-1", String(event.payload.neighborId)),
-              textSegment(
-                "text-neighbor-2",
-                " and finds it was already visited, so BFS skips it."
+              narrationCurrentToken(`${event.id}-headline-current`),
+              narrationText(`${event.id}-headline-text-0`, " sees "),
+              narrationNeighborToken(`${event.id}-headline-neighbor`),
+              narrationText(
+                `${event.id}-headline-text-1`,
+                ` = ${String(event.payload.neighborId)} was already visited.`
               ),
             ]
           : [
-              tokenSegment(
-                "token-current",
-                CURRENT_TOKEN_LABEL,
-                CURRENT_TOKEN_ID,
-                CURRENT_TOKEN_STYLE
-              ),
-              textSegment("text-current-0", " checks "),
-              tokenSegment(
-                "token-neighbor",
-                NEIGHBOR_TOKEN_LABEL,
-                NEIGHBOR_TOKEN_ID,
-                NEIGHBOR_TOKEN_STYLE
-              ),
-              textSegment("text-neighbor-0", " = "),
-              textSegment("text-neighbor-1", String(event.payload.neighborId)),
-              textSegment(
-                "text-neighbor-2",
-                " and sees it is unseen, so it should join the frontier."
+              narrationCurrentToken(`${event.id}-headline-current`),
+              narrationText(`${event.id}-headline-text-0`, " sees "),
+              narrationNeighborToken(`${event.id}-headline-neighbor`),
+              narrationText(
+                `${event.id}-headline-text-1`,
+                ` = ${String(event.payload.neighborId)} is unseen.`
               ),
             ],
+        reason: event.payload.alreadyVisited
+          ? "BFS ignores visited neighbors so the queue never revisits a node that already belongs to an earlier or equal frontier layer."
+          : "An unseen neighbor is the first time BFS has discovered that vertex, so it belongs to the next frontier layer.",
+        implication: event.payload.alreadyVisited
+          ? "The next frame can move on without mutating the queue or visited set."
+          : "The next frames will mark this neighbor visited and enqueue it at the back of the frontier.",
+        evidence: [
+          {
+            id: `${event.id}-neighbor`,
+            label: "Neighbor",
+            value: String(event.payload.neighborId),
+            tokenId: NEIGHBOR_TOKEN_ID,
+            tokenStyle: NEIGHBOR_TOKEN_STYLE,
+          },
+        ],
         sourceValues: event.payload,
-      }
+      })
     case "L8":
-      return {
-        summary: `Add ${event.payload.neighborId} to the visited set before enqueuing it.`,
-        segments: [
-          tokenSegment(
-            "token-current",
-            CURRENT_TOKEN_LABEL,
-            CURRENT_TOKEN_ID,
-            CURRENT_TOKEN_STYLE
+      return defineStructuredNarration({
+        family: "commit",
+        headline: [
+          narrationCurrentToken(`${event.id}-headline-current`),
+          narrationText(`${event.id}-headline-text-0`, " marks "),
+          narrationNeighborToken(`${event.id}-headline-neighbor`),
+          narrationText(
+            `${event.id}-headline-text-1`,
+            ` = ${String(event.payload.neighborId)} visited.`
           ),
-          textSegment("text-0", " marks "),
-          tokenSegment(
-            "token-neighbor",
-            NEIGHBOR_TOKEN_LABEL,
-            NEIGHBOR_TOKEN_ID,
-            NEIGHBOR_TOKEN_STYLE
-          ),
-          textSegment("text-1", " = "),
-          textSegment("text-2", String(event.payload.neighborId)),
-          textSegment("text-3", " visited before enqueuing it."),
+        ],
+        reason:
+          "BFS records visited status before enqueueing so the same node cannot be inserted twice through another edge in the same frontier wave.",
+        implication:
+          "The next frame can safely enqueue this newly claimed neighbor exactly once.",
+        evidence: [
+          {
+            id: `${event.id}-visited`,
+            label: "Visited size",
+            value: `${snapshot.visited.length}`,
+            tokenId: NEIGHBOR_TOKEN_ID,
+            tokenStyle: NEIGHBOR_TOKEN_STYLE,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L9":
-      return {
-        summary: `Enqueue ${event.payload.neighborId} at the back of the frontier queue.`,
-        segments: [
-          tokenSegment(
-            "token-current",
-            CURRENT_TOKEN_LABEL,
-            CURRENT_TOKEN_ID,
-            CURRENT_TOKEN_STYLE
+      return defineStructuredNarration({
+        family: "expand",
+        headline: [
+          narrationCurrentToken(`${event.id}-headline-current`),
+          narrationText(`${event.id}-headline-text-0`, " enqueues "),
+          narrationNeighborToken(`${event.id}-headline-neighbor`),
+          narrationText(
+            `${event.id}-headline-text-1`,
+            ` = ${String(event.payload.neighborId)} joins the back of the frontier queue.`
           ),
-          textSegment("text-0", " enqueues "),
-          tokenSegment(
-            "token-neighbor",
-            NEIGHBOR_TOKEN_LABEL,
-            NEIGHBOR_TOKEN_ID,
-            NEIGHBOR_TOKEN_STYLE
-          ),
-          textSegment("text-1", " = "),
-          textSegment("text-2", String(event.payload.neighborId)),
-          textSegment("text-3", " at the back of the frontier queue."),
+        ],
+        reason:
+          "Newly discovered neighbors always enter at the back so BFS expands all older frontier nodes before this deeper layer candidate.",
+        implication:
+          "The queue now holds the next nodes BFS can expand in first-in, first-out order.",
+        evidence: [
+          {
+            id: `${event.id}-queue`,
+            label: "Frontier queue",
+            value: snapshot.queue.join(" -> ") || "-",
+            tokenId: NEIGHBOR_TOKEN_ID,
+            tokenStyle: NEIGHBOR_TOKEN_STYLE,
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     case "L12":
-      return {
-        summary:
-          "Return null because BFS exhausted the frontier without finding the target.",
-        segments: [
-          textSegment(
-            "text-0",
-            "Return null because BFS exhausted the frontier without finding the target."
-          ),
+      return defineStructuredNarration({
+        family: "return",
+        headline: "Return null because the frontier is exhausted.",
+        reason:
+          "BFS has already expanded every reachable node, so no undiscovered path to the target remains in the graph.",
+        implication:
+          "The search terminates here with an unreachable result.",
+        evidence: [
+          {
+            id: `${event.id}-answer`,
+            label: "Answer",
+            value: "null",
+          },
         ],
         sourceValues: event.payload,
-      }
+      })
     default:
-      return {
-        summary: snapshot.answer
+      return defineStructuredNarration({
+        family: snapshot.answer ? "return" : "advance",
+        headline: snapshot.answer
           ? `Return found node ${snapshot.answer}.`
           : "Advance the BFS frontier.",
-        segments: snapshot.answer
-          ? [
-              textSegment("text-0", "Return found node "),
-              textSegment("text-1", snapshot.answer),
-              textSegment("text-2", "."),
-            ]
-          : [textSegment("text-0", "Advance the BFS frontier.")],
+        reason: snapshot.answer
+          ? "The active node matched the target, so the search can publish the answer immediately."
+          : "The queue, graph frontier, and narration remain synchronized one learner-visible BFS step at a time.",
+        implication: snapshot.answer
+          ? "The lesson is finished because BFS already found the target."
+          : "The next frame will expose the next explicit frontier mutation or check.",
         sourceValues: event.payload,
-      }
+      })
   }
 }
 
@@ -602,7 +645,7 @@ export function projectQueueBfs(
         codeLine: event.codeLine,
         visualChangeType: mapEventToVisualChange(event),
         narration: buildNarration(event, snapshot),
-      primitives: buildPrimitiveStates(event, snapshot),
+        primitives: buildPrimitiveStates(event, snapshot),
         checks: [
           {
             id: `frame-${index + 1}-sync`,

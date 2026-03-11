@@ -432,31 +432,23 @@ describe("verifyRuntimeOutputs", () => {
       tokenStyle: "accent-1",
     })
 
-    const enqueueFrame = runtime.frames.find((frame) => frame.codeLine === "L9")
-    const graphPrimitive = enqueueFrame?.primitives.find(
+    const markVisitedFrame = runtime.frames.find((frame) => frame.codeLine === "L8")
+    const graphPrimitive = markVisitedFrame?.primitives.find(
       (primitive) => primitive.id === "graph"
     )
-    const enqueueQueue = enqueueFrame?.primitives.find(
-      (primitive) => primitive.id === "frontier-queue"
-    )
-    const statePrimitive = enqueueFrame?.primitives.find(
+    const statePrimitive = markVisitedFrame?.primitives.find(
       (primitive) => primitive.id === "frontier-state"
     )
 
-    if (!enqueueFrame || !graphPrimitive || graphPrimitive.kind !== "graph") {
-      throw new Error("Expected a Graph BFS graph primitive on the enqueue frame.")
-    }
-
-    if (!enqueueQueue || enqueueQueue.kind !== "queue") {
-      throw new Error("Expected a Graph BFS queue primitive on the enqueue frame.")
+    if (!markVisitedFrame || !graphPrimitive || graphPrimitive.kind !== "graph") {
+      throw new Error("Expected a Graph BFS graph primitive on the mark-visited frame.")
     }
 
     if (!statePrimitive || statePrimitive.kind !== "state") {
-      throw new Error("Expected a Graph BFS state primitive on the enqueue frame.")
+      throw new Error("Expected a Graph BFS state primitive on the mark-visited frame.")
     }
 
     const typedGraphPrimitive = graphPrimitive as GraphPrimitiveFrameState
-    const typedQueuePrimitive = enqueueQueue as QueuePrimitiveFrameState
     const typedStatePrimitive = statePrimitive as StatePrimitiveFrameState
 
     expect(
@@ -467,12 +459,6 @@ describe("verifyRuntimeOutputs", () => {
     })
     expect(
       typedGraphPrimitive.data.nodes.find((node) => node.tokenId === "neighbor")
-    ).toMatchObject({
-      tokenLabel: "neighbor",
-      tokenStyle: "accent-3",
-    })
-    expect(
-      typedQueuePrimitive.data.items.find((item) => item.tokenId === "neighbor")
     ).toMatchObject({
       tokenLabel: "neighbor",
       tokenStyle: "accent-3",
@@ -490,22 +476,116 @@ describe("verifyRuntimeOutputs", () => {
       tokenStyle: "accent-3",
     })
     expect(
-      enqueueFrame.narration.segments.some(
+      markVisitedFrame.narration.segments.some(
         (segment) => segment.tokenId === "current"
       )
     ).toBe(true)
     expect(
-      enqueueFrame.narration.segments.some(
+      markVisitedFrame.narration.segments.some(
         (segment) => segment.tokenId === "neighbor"
       )
     ).toBe(true)
+    expect(
+      markVisitedFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "current"
+      )
+    ).toBe(true)
+    expect(
+      markVisitedFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "neighbor"
+      )
+    ).toBe(true)
+    expect(markVisitedFrame.narration.reason?.segments[0]?.text).toContain(
+      "visited status before enqueueing"
+    )
+    expect(markVisitedFrame.narration.implication?.segments[0]?.text).toContain(
+      "enqueue this newly claimed neighbor"
+    )
 
-    const tokenSources = collectFrameExecutionTokens(enqueueFrame)
+    const tokenSources = collectFrameExecutionTokens(markVisitedFrame)
     expect(tokenSources.find((token) => token.id === "current")?.sources).toEqual(
       expect.arrayContaining(["graph", "state", "narration"])
     )
     expect(tokenSources.find((token) => token.id === "neighbor")?.sources).toEqual(
-      expect.arrayContaining(["graph", "queue", "state", "narration"])
+      expect.arrayContaining(["graph", "state", "narration"])
+    )
+
+    const enqueueFrame = runtime.frames.find((frame) => frame.codeLine === "L9")
+    if (!enqueueFrame) {
+      throw new Error("Expected a Graph BFS enqueue frame.")
+    }
+
+    const enqueueQueue = enqueueFrame.primitives.find(
+      (primitive) => primitive.id === "frontier-queue"
+    )
+    if (!enqueueQueue || enqueueQueue.kind !== "queue") {
+      throw new Error("Expected a Graph BFS queue primitive on the enqueue frame.")
+    }
+
+    const typedQueuePrimitive = enqueueQueue as QueuePrimitiveFrameState
+    expect(
+      typedQueuePrimitive.data.items.find((item) => item.tokenId === "neighbor")
+    ).toMatchObject({
+      tokenLabel: "neighbor",
+      tokenStyle: "accent-3",
+    })
+
+    expect(
+      enqueueFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "current"
+      )
+    ).toBe(true)
+    expect(
+      enqueueFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "neighbor"
+      )
+    ).toBe(true)
+    expect(enqueueFrame.narration.reason?.segments[0]?.text).toContain(
+      "enter at the back"
+    )
+    expect(enqueueFrame.narration.implication?.segments[0]?.text).toContain(
+      "holds the next nodes"
+    )
+    const enqueueTokenSources = collectFrameExecutionTokens(enqueueFrame)
+    expect(
+      enqueueTokenSources.find((token) => token.id === "neighbor")?.sources
+    ).toEqual(expect.arrayContaining(["graph", "queue", "state", "narration"]))
+
+    const frontierCheckFrame = runtime.frames.find(
+      (frame) =>
+        frame.codeLine === "L3" &&
+        frame.narration.headline?.segments.some(
+          (segment) => segment.tokenId === "current"
+        )
+    )
+    if (!frontierCheckFrame) {
+      throw new Error("Expected a Graph BFS frontier-check frame with the current token.")
+    }
+
+    expect(frontierCheckFrame.narration.reason?.segments[0]?.text).toContain(
+      "oldest queued node first"
+    )
+    expect(frontierCheckFrame.narration.implication?.segments[0]?.text).toContain(
+      "dequeues that front node"
+    )
+
+    const neighborCheckFrame = runtime.frames.find((frame) => frame.codeLine === "L7")
+    if (!neighborCheckFrame) {
+      throw new Error("Expected a Graph BFS neighbor-check frame.")
+    }
+
+    expect(
+      neighborCheckFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "current"
+      )
+    ).toBe(true)
+    expect(
+      neighborCheckFrame.narration.headline?.segments.some(
+        (segment) => segment.tokenId === "neighbor"
+      )
+    ).toBe(true)
+    expect(neighborCheckFrame.narration.reason?.segments[0]?.text).toMatch(
+      /visited neighbors|unseen neighbor/
     )
   })
 

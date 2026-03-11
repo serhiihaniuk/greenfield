@@ -46,7 +46,15 @@ export async function selectFooterOption(
 }
 
 export async function openCustomInput(page: Page) {
-  await page.getByRole("button", { name: "Custom input", exact: true }).click()
+  const directTrigger = page.getByLabel("Custom input", { exact: true })
+
+  try {
+    await expect(directTrigger).toBeVisible({ timeout: 2000 })
+    await directTrigger.click()
+  } catch {
+    await page.getByRole("button", { name: "Open preset studio" }).click()
+  }
+
   await expect(customInputDialog(page)).toBeVisible()
 }
 

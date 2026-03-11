@@ -178,6 +178,66 @@ function verifyQueueMutations(frames: Frame[]): VerificationReport {
   return createVerificationReport(issues)
 }
 
+function verifyStructuredNarration(frames: Frame[]): VerificationReport {
+  const issues: VerificationIssue[] = []
+
+  for (const frame of frames) {
+    const { narration } = frame
+    const sourceValues = narration.sourceValues as Record<string, unknown>
+
+    if (
+      ["L3", "L4", "L5", "L7", "L8", "L9", "L12"].includes(frame.codeLine) &&
+      (!narration.headline || !narration.reason || !narration.implication)
+    ) {
+      issues.push({
+        code: "GRAPH_BFS_STRUCTURED_NARRATION_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should expose headline, reason, and implication for the active BFS step.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    const tokenIds = new Set(
+      narration.segments
+        .map((segment) => segment.tokenId)
+        .filter((tokenId): tokenId is string => Boolean(tokenId))
+    )
+
+    if (
+      ["L3", "L4", "L5", "L7", "L8", "L9"].includes(frame.codeLine) &&
+      !(frame.codeLine === "L3" && sourceValues.hasFrontier === false) &&
+      !tokenIds.has("current")
+    ) {
+      issues.push({
+        code: "GRAPH_BFS_CURRENT_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain BFS through the shared current token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+
+    if (
+      ["L7", "L8", "L9"].includes(frame.codeLine) &&
+      !tokenIds.has("neighbor")
+    ) {
+      issues.push({
+        code: "GRAPH_BFS_NEIGHBOR_TOKEN_MISSING",
+        kind: "pedagogical-integrity",
+        severity: "error",
+        message: `Frame "${frame.id}" should explain neighbor handling through the shared neighbor token.`,
+        frameId: frame.id,
+        pedagogicalCheck: "narration-mismatch",
+      })
+    }
+  }
+
+  return createVerificationReport(issues)
+}
+
 function verifyFinalFrame(frames: Frame[]): VerificationReport {
   const issues: VerificationIssue[] = []
   const finalFrame = frames.at(-1)
@@ -254,6 +314,7 @@ export function verifyQueueBfs(
     verifyRequiredViews(frames),
     verifyNeighborChecks(frames),
     verifyQueueMutations(frames),
+    verifyStructuredNarration(frames),
     verifyFinalFrame(frames)
   )
 }
