@@ -73,8 +73,8 @@ const STATIC_COMMANDS: readonly AppCommand<LessonPlayerCommandContext>[] = [
     title: "Open problem selector",
     description: "Browse verified algorithm lessons by category, difficulty, mechanism, and confusion pattern.",
     keywords: ["search", "problem", "lesson", "task", "catalog"],
-    shortcuts: ["Mod+E"],
-    shortcutHints: [["Ctrl", "E"]],
+    shortcuts: ["E"],
+    shortcutHints: [["E"]],
     scope: "global",
     isEnabled: (context) =>
       !context.problemSelectorOpen &&

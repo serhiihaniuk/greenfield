@@ -112,7 +112,7 @@ test("opens the problem selector through the global hotkey", async ({ page }) =>
   await page.goto("/")
   await expectRuntimeReady(page, "Search Interval", "State")
 
-  await page.keyboard.press("Control+e")
+  await page.keyboard.press("E")
   const dialog = page.getByRole("dialog", { name: "Choose a Problem" })
   await expect(dialog).toBeVisible()
   await dialog.getByPlaceholder(/search lessons/i).fill("House Robber")
@@ -133,7 +133,7 @@ test("ignores global shortcuts while editing custom input", async ({ page }) => 
 
   await page.keyboard.press("Q")
   await page.keyboard.press("W")
-  await page.keyboard.press("Control+e")
+  await page.keyboard.press("E")
 
   await expect(customInputEditor(page)).toBeFocused()
   await expect(timeline).toHaveValue("0")

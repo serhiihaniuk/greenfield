@@ -10,7 +10,7 @@ export async function selectFooterOption(
       page.getByRole("button", { name: "Next frame", exact: true })
     ).toBeVisible()
     await page.locator("body").click({ position: { x: 8, y: 8 } })
-    await page.keyboard.press("Control+e")
+    await page.keyboard.press("E")
 
     const dialog = page.getByRole("dialog", { name: "Choose a Problem" })
     await expect(dialog).toBeVisible()
